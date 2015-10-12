@@ -27,11 +27,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app\forms.py" />
-    <Compile Include="app\models.py" />
-    <Compile Include="app\tests.py" />
-    <Compile Include="app\views.py" />
-    <Compile Include="app\__init__.py" />
+    <Compile Include="graduate\forms.py" />
+    <Compile Include="graduate\models.py" />
+    <Compile Include="graduate\tests.py" />
+    <Compile Include="graduate\views.py" />
+    <Compile Include="graduate\__init__.py" />
     <Compile Include="manage.py" />
     <Compile Include="ttt_capstone_2015\__init__.py" />
     <Compile Include="ttt_capstone_2015\settings.py" />
@@ -39,47 +39,51 @@
     <Compile Include="ttt_capstone_2015\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\" />
-    <Folder Include="app\static\" />
-    <Folder Include="app\static\app\" />
-    <Folder Include="app\static\app\content\" />
-    <Folder Include="app\static\app\fonts\" />
-    <Folder Include="app\static\app\scripts\" />
-    <Folder Include="app\templates\" />
-    <Folder Include="app\templates\app\" />
+    <Folder Include="graduate\" />
+    <Folder Include="graduate\static\" />
+    <Folder Include="graduate\static\app\" />
+    <Folder Include="graduate\static\app\content\" />
+    <Folder Include="graduate\static\app\fonts\" />
+    <Folder Include="graduate\static\app\scripts\" />
+    <Folder Include="graduate\templates\" />
+    <Folder Include="graduate\templates\app\" />
     <Folder Include="ttt_capstone_2015\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="graduate\templates\app\confirmation.html" />
+    <Content Include="graduate\templates\app\page-1.html" />
+    <Content Include="graduate\templates\app\page-2.html" />
+    <Content Include="graduate\templates\app\page-3.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
-    <Content Include="app\static\app\content\bootstrap.css" />
-    <Content Include="app\static\app\content\bootstrap.min.css" />
-    <Content Include="app\static\app\content\site.css" />
-    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="app\static\app\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="app\static\app\scripts\bootstrap.js" />
-    <Content Include="app\static\app\scripts\bootstrap.min.js" />
-    <Content Include="app\static\app\scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="app\static\app\scripts\jquery-1.10.2.js" />
-    <Content Include="app\static\app\scripts\jquery-1.10.2.min.js" />
-    <Content Include="app\static\app\scripts\jquery-1.10.2.min.map" />
-    <Content Include="app\static\app\scripts\jquery.validate-vsdoc.js" />
-    <Content Include="app\static\app\scripts\jquery.validate.js" />
-    <Content Include="app\static\app\scripts\jquery.validate.min.js" />
-    <Content Include="app\static\app\scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="app\static\app\scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="app\static\app\scripts\modernizr-2.6.2.js" />
-    <Content Include="app\static\app\scripts\respond.js" />
-    <Content Include="app\static\app\scripts\respond.min.js" />
-    <Content Include="app\static\app\scripts\_references.js" />
-    <Content Include="app\templates\app\about.html" />
-    <Content Include="app\templates\app\contact.html" />
-    <Content Include="app\templates\app\index.html" />
-    <Content Include="app\templates\app\layout.html" />
-    <Content Include="app\templates\app\login.html" />
-    <Content Include="app\templates\app\loginpartial.html" />
+    <Content Include="graduate\static\app\content\bootstrap.css" />
+    <Content Include="graduate\static\app\content\bootstrap.min.css" />
+    <Content Include="graduate\static\app\content\site.css" />
+    <Content Include="graduate\static\app\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="graduate\static\app\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="graduate\static\app\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="graduate\static\app\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="graduate\static\app\scripts\bootstrap.js" />
+    <Content Include="graduate\static\app\scripts\bootstrap.min.js" />
+    <Content Include="graduate\static\app\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="graduate\static\app\scripts\jquery-1.10.2.js" />
+    <Content Include="graduate\static\app\scripts\jquery-1.10.2.min.js" />
+    <Content Include="graduate\static\app\scripts\jquery-1.10.2.min.map" />
+    <Content Include="graduate\static\app\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="graduate\static\app\scripts\jquery.validate.js" />
+    <Content Include="graduate\static\app\scripts\jquery.validate.min.js" />
+    <Content Include="graduate\static\app\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="graduate\static\app\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="graduate\static\app\scripts\modernizr-2.6.2.js" />
+    <Content Include="graduate\static\app\scripts\respond.js" />
+    <Content Include="graduate\static\app\scripts\respond.min.js" />
+    <Content Include="graduate\static\app\scripts\_references.js" />
+    <Content Include="graduate\templates\app\about.html" />
+    <Content Include="graduate\templates\app\contact.html" />
+    <Content Include="graduate\templates\app\index.html" />
+    <Content Include="graduate\templates\app\layout.html" />
+    <Content Include="graduate\templates\app\login.html" />
+    <Content Include="graduate\templates\app\loginpartial.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.mht">
