@@ -4,7 +4,7 @@ Definition of urls for ttt_capstone_2015.
 
 from datetime import datetime
 from django.conf.urls import patterns, url
-from graduate.forms import BootstrapAuthenticationForm
+#from graduate.forms import BootstrapAuthenticationForm
 
 # Uncomment the next lines to enable the admin:
 # from django.conf.urls import include
