@@ -1,5 +1,5 @@
 ﻿"""
-Django settings for ttt_capstone_2015 project.
+Django settings for ttk_capstone_2015 project.
 """
 
 from os import path
@@ -111,10 +111,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'ttt_capstone_2015.urls'
+ROOT_URLCONF = 'ttk_capstone_2015.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'ttt_capstone_2015.wsgi.application'
+WSGI_APPLICATION = 'ttk_capstone_2015.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or

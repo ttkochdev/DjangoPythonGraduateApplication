@@ -2,14 +2,15 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <Name>ttt_capstone_2015</Name>
+    <Name>ttk_capstone_2015</Name>
     <RootNamespace>ttt_capstone_2015</RootNamespace>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>3b1d398d-ec0d-4bd0-ac00-adbe4d69ec64</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
+    <ProjectHome>
+    </ProjectHome>
     <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <StartupFile>manage.py</StartupFile>
     <SearchPath>
@@ -33,10 +34,10 @@
     <Compile Include="graduate\views.py" />
     <Compile Include="graduate\__init__.py" />
     <Compile Include="manage.py" />
-    <Compile Include="ttt_capstone_2015\__init__.py" />
-    <Compile Include="ttt_capstone_2015\settings.py" />
-    <Compile Include="ttt_capstone_2015\urls.py" />
-    <Compile Include="ttt_capstone_2015\wsgi.py" />
+    <Compile Include="ttk_capstone_2015\__init__.py" />
+    <Compile Include="ttk_capstone_2015\settings.py" />
+    <Compile Include="ttk_capstone_2015\urls.py" />
+    <Compile Include="ttk_capstone_2015\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="graduate\" />
@@ -47,7 +48,7 @@
     <Folder Include="graduate\static\app\scripts\" />
     <Folder Include="graduate\templates\" />
     <Folder Include="graduate\templates\app\" />
-    <Folder Include="ttt_capstone_2015\" />
+    <Folder Include="ttk_capstone_2015\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="graduate\templates\app\confirmation.html" />
