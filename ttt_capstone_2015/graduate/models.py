@@ -50,6 +50,8 @@ class Student(models.Model):
 class Address(models.Model):
     said = models.IntegerField(2)
     sid = models.IntegerField(10)
+    address1 = models.CharField(max_length=255)
+    address2 = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     zipcode = models.CharField(max_length=32)
