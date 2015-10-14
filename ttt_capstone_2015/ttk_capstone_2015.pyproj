@@ -129,9 +129,11 @@
     <Content Include="graduate\static\app\scripts\not used\respond.js" />
     <Content Include="graduate\static\app\scripts\not used\respond.min.js" />
     <Content Include="graduate\templates\app\confirmation.html" />
+    <Content Include="graduate\templates\app\header.html" />
     <Content Include="graduate\templates\app\page-1.html" />
     <Content Include="graduate\templates\app\page-2.html" />
     <Content Include="graduate\templates\app\page-3.html" />
+    <Content Include="graduate\templates\app\summary.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="graduate\static\app\content\bootstrap.css" />

@@ -10,7 +10,6 @@ from datetime import datetime
 
 from .forms import PageOneForm
 from .forms import PageTwoForm
-from .forms import PageThreeForm
 
 def page1(request):
     """Renders the home page."""
@@ -78,28 +77,12 @@ def page3(request):
     """Renders page3."""
     assert isinstance(request, HttpRequest)
     
-    if request.method == 'POST':
-        
-        # create a form instance and populate it with data from the request:
-        form = PageThreeForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/page-2/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = PageThreeForm()
-
     return render(
         request,
         'app/page-3.html',
         context_instance = RequestContext(request,
         {
-            'title':'Graduate Application Page-3',
-            'form': form,
+            'title':'Graduate Application Page-3',            
             'year':datetime.now().year,
         })
     )
