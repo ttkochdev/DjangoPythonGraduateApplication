@@ -6,11 +6,41 @@
     <title></title>
 </head>
 <body>
-{% block content %}
+<!-- completed boolean here -->
 
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
 
-{% endblock %}
+    <!--if valid/complete form -->
+<div class='row-fluid'>
+	<div class='container-fluid'>
+		<div class='span12'>
+			<div class='row-fluid'>
+				<h1 class='pg2-header'>PAGE 3 - FINAL STEPS</h1>
+				<p>You're now ready to submit your completed application.</p>
+				<br />
+			</div>
+	    </div>
+	</div>
+</div>
+<!--otherwise show errors-->
+<div class='row-fluid'>
+	<div class='container-fluid'>
+		<div class='span12'>
+			<div class='row-fluid'>
+				<h1 class='pg2-header'>PAGE 3 - FINAL STEPS</h1>
+				<p>Some of the information on this Application for Admission is mandatory. Please complete these last few blanks before finally submitting your application or going to previous pages.</p>
+				<br />
+			</div>
+	    </div>
+	</div>
+</div>
+<!-- Print subform errors here -->
+<div class='row-fluid'>
+	<div class='container-fluid'>
+		<div class='span12'>
+			<div class='row-fluid'>
+			    <p>This application must be electronically signed by the applicant by pressing submit below and is not valid if information is withheld or misinformation given. North Central College reserves the right to verify the information contained in this application by contacting prior educational institutions. Admission and credit earned by an invalid application will be canceled. If admitted, the applicant agrees to comply with all rules and regulations of the College. If you have changes to make before submitting your application for admission, please use the page navigation to return to previous pages.</p>
+  			</div>
+	    </div>
+	</div>
 </body>
 </html>
