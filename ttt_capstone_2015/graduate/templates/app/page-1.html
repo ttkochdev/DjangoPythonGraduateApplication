@@ -1,23 +1,1080 @@
-﻿<!DOCTYPE html>
+﻿{% load widget_tweaks %}
+{% load staticfiles %}
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title></title>    
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap-responsive.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/jquery-ui-1.10.3.custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/print.css' %}" />
 </head>
 <body>
-{% block content %}
+    
+<div id="top">
+            <div class="row-fluid">
+              <div class="container">
+                  <div class="navbar navbar-inverse">
+                      <div class="container">
+                          <button data-target=".mobile-nav" data-toggle="collapse" class="btn btn-navbar" type="button">
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                              <span class="icon-bar"></span>
+                          </button>
+                          <div class="mobile-nav hidden-desktop collapse">
+                            <ul>
+                              <li><a href="http://northcentralcollege.edu/admission">Admission</a></li>
+                              <li><a href="http://northcentralcollege.edu/academics">Academics</a></li>
+                              <li><a href="http://northcentralcollege.edu/admission/graduate">Graduate Studies</a></li>
+                              <li><a href="http://northcentralcollege.edu/show">Fine Arts</a></li>
+                              <li><a href="http://northcentralcardinals.com/">Athletics</a></li>
+                              <li><a href="http://northcentralcollege.edu/student-life%22">Student Life</a></li>
+                              <li><a href="http://northcentralcollege.edu/alumni">Alumni</a></li>
+                            </ul>
+                          </div>
+                          <div class="banner visible-desktop">
+                            <form action="http://northcentralcollege.edu/gsearch/index.php" id="cse-search-box">
+                              <fieldset>
+                                <input type="text" name="q" id="q" size="18">
+                                <input type="image" name="sa" value="Search" src="{% static 'app/images/search.png' %}" alt="search" id="sa">                            
+                              </fieldset>
+                            </form>
+                              <div class="nav-collapse collapse">
+                                  <a href="http://northcentralcollege.edu/">
+                                    <img width="654" height="73" alt="North Central College - Naperville, IL" id="north_central2" src="{% static 'app/images/north_central2.png' %}">
+                                  </a>
+                                  <ul id="nav_verb">
+                                    <li>
+                                      <a href="http://northcentralcollege.edu/apply">
+                                        <img width="96" height="46" alt="Apply for Admission" title="Apply for Admission" src="./page-1_files/nav_verb_apply.png">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="http://northcentralcollege.edu/admission/visit-programs">
+                                        <img width="111" height="46" title="Visit" alt="Visit" src="./page-1_files/nav_verb_visit.png">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="https://www.applyweb.com/public/contribute?nccgift">
+                                        <img width="107" height="46" title="Give" alt="Give" src="./page-1_files/nav_verb_give.png">
+                                      </a>
+                                    </li>
+                                  </ul>
+                                  <ul class="nav top-navi nav-main">
+                                    <li>
+                                      <a href="http://northcentralcollege.edu/admission">
+                                        <img width="118" height="60" title="Admission" alt="Admission" src="./page-1_files/nav_main_admission.png">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="http://northcentralcollege.edu/academics">
+                                        <img width="105" height="60" alt="Academics" title="Academics" src="./page-1_files/nav_main_academics.png">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="http://northcentralcollege.edu/admission/graduate">
+                                        <img width="143" height="60" alt="Graduate Studies" title="Graduate Studies" src="./page-1_files/nav_main_graduatestudies.png">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="http://northcentralcollege.edu/show">
+                                        <img width="93" height="60" title="Fine Arts" alt="Fine Arts" src="./page-1_files/nav_main_finearts.png">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="http://northcentralcardinals.com/">
+                                        <img width="91" height="60" title="Athletics" alt="Athletics" src="./page-1_files/nav_main_athletics.png">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="http://northcentralcollege.edu/student-life">
+                                        <img width="111" height="60" alt="Student Life" title="Student Life" src="./page-1_files/nav_main_studentlife.png">
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a href="http://northcentralcollege.edu/alumni">
+                                        <img width="103" height="60" alt="Alumni" title="Alumni" src="./page-1_files/nav_main_alumni.png">
+                                      </a>
+                                    </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
 
-<h2>{{ title }}.</h2>
-<h3>{{ message }}</h3>
 
-    <form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-    </form>
+    <div class="container-fluid">
+            <div class="content row-fluid">
+                <div class="container">
+                  <form enctype="multipart/form-data" action="page-2.html" method="post" name="applicationDefault">
+                       {% csrf_token %}
+    <div class="application">
+        <div class="row-fluid">
+            <div class="mini-nav">
+                    <a id="custom-breadcrumbs-home" href="http://northcentralcollege.edu">Home</a> &gt; <a href="http://northcentralcollege.edu/admission">Admission</a> &gt;
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="inner-node"> 
+                
+<div class="row-fluid">
+    <div class="span7">
+        <div class="row-fluid">
+            <h1 class="pg2-header">GRADUATE</h1>
+        </div>
+    </div>
+</div>
+<h2>About You</h2>
+<div class="row-fluid">
+    <div class="span12">
+        <fieldset class="acct">
+            <div class="row-fluid">
+                <div class="span3"><label for="applicatoinEmail">Email Address</label></div>
+                <div class="span8"><span>
+<input type="text" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat;" maxlength="50" value="" id="email" name="email"></span><br>
+                    <span id="email-notice"></span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="row-fluid">
+        <fieldset>
+        <div class="span3"><label>Name</label></div>
+        <div class="span2">
+            <span>
+            {% render_field form.first_name class+="input-medium fieldLabel" placeholder="First" maxlength="14" %}
+            </span>        
+        </div>
+        <div class="span2">
+            <span>
+            {% render_field form.middle_name class+="input-small" placeholder="Middle" maxlength="14" %}
+            </span>        
+        </div>
+        <div class="span2">
+            <span>
+<input type="text" placeholder="Last" class="input-medium" maxlength="25" value="" id="last_name" name="last_name"></span>        </div>
+    </fieldset>
+            <fieldset>
+        <div class="span3"><label>Suffix</label></div>
+        <div class="span4">
+            
+<select placeholder="Suffix" class="input-medium" maxlength="25" id="suffix_name" name="suffix_name">
+    <option selected="selected" label="" value=""></option>
+    <option label="Jr." value="Jr.">Jr.</option>
+    <option label="Sr." value="Sr.">Sr.</option>
+    <option label="II" value="II">II</option>
+    <option label="III" value="III">III</option>
+    <option label="IV" value="IV">IV</option>
+</select>        </div>
+    </fieldset>
+            <fieldset>
+        <div class="span3 inline"><label>Preferred First Name</label></div>
+        <div class="span4 inline">
+            <span>
+<input type="text" maxlength="15" value="" id="preferred_first_name" name="preferred_first_name"></span>        </div>
+    </fieldset>
+            <fieldset>
+        <div class="span3 inline"><label>Birth Last Name</label></div>
+        <div class="span4 inline">
+            <span>
+<input type="text" placeholder="If different than above" maxlength="25" value="" id="birth_last_name" name="birth_last_name"></span>        </div>
+    </fieldset>
+    </div>
+<div class="row-fluid">
+    <div class="container-fluid">
+        <div class="span7">
+                        <h2>Permanent Mailing Address</h2>
+                                    <div class="row-fluid">
+                <fieldset>
+                    <div class="span12">
+                        <div class="span7 offset5">
+                            
+<input type="hidden" value="0" name="address_outside_us"><input type="checkbox" value="1" id="address_outside_us" name="address_outside_us">                            <label for="address_outside_us" class="no-bold inline">Address outside of the United States?</label>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <fieldset>
+                <div class="span5"><label>Mailing Address</label></div>
+                <div class="span7">
+                    <span>
+<input type="text" maxlength="30" value="" id="address1" name="address1"></span>                </div>
+            </fieldset>
+            <fieldset>
+                <div class="span5"><label>Mailing Address 2</label></div>
+                <div class="span7">
+                    <span>
+<input type="text" maxlength="30" value="" id="address2" name="address2"></span>                </div>
+            </fieldset>
+            <div id="inside_us">
+                <fieldset>
+                    <div class="span5"><label>City / State</label></div>
+                    <div class="span7">
+                        <span>
+<input type="text" placeholder="City" class="input-small" maxlength="25" value="" id="city" name="city"></span>                        
+<select class="input-medium" id="state" name="state">
+    <option selected="selected" label="" value=""></option>
+    <option label="Alabama" value="Alabama">Alabama</option>
+    <option label="Alaska" value="Alaska">Alaska</option>
+    <option label="Arizona" value="Arizona">Arizona</option>
+    <option label="Arkansas" value="Arkansas">Arkansas</option>
+    <option label="California" value="California">California</option>
+    <option label="Colorado" value="Colorado">Colorado</option>
+    <option label="Connecticut" value="Connecticut">Connecticut</option>
+    <option label="Delaware" value="Delaware">Delaware</option>
+    <option label="District Of Columbia" value="District Of Columbia">District Of Columbia</option>
+    <option label="Florida" value="Florida">Florida</option>
+    <option label="Georgia" value="Georgia">Georgia</option>
+    <option label="Hawaii" value="Hawaii">Hawaii</option>
+    <option label="Idaho" value="Idaho">Idaho</option>
+    <option label="Illinois" value="Illinois">Illinois</option>
+    <option label="Indiana" value="Indiana">Indiana</option>
+    <option label="Iowa" value="Iowa">Iowa</option>
+    <option label="Kansas" value="Kansas">Kansas</option>
+    <option label="Kentucky" value="Kentucky">Kentucky</option>
+    <option label="Louisiana" value="Louisiana">Louisiana</option>
+    <option label="Maine" value="Maine">Maine</option>
+    <option label="Maryland" value="Maryland">Maryland</option>
+    <option label="Massachusetts" value="Massachusetts">Massachusetts</option>
+    <option label="Michigan" value="Michigan">Michigan</option>
+    <option label="Minnesota" value="Minnesota">Minnesota</option>
+    <option label="Mississippi" value="Mississippi">Mississippi</option>
+    <option label="Missouri" value="Missouri">Missouri</option>
+    <option label="Montana" value="Montana">Montana</option>
+    <option label="Nebraska" value="Nebraska">Nebraska</option>
+    <option label="Nevada" value="Nevada">Nevada</option>
+    <option label="New Hampshire" value="New Hampshire">New Hampshire</option>
+    <option label="New Jersey" value="New Jersey">New Jersey</option>
+    <option label="New Mexico" value="New Mexico">New Mexico</option>
+    <option label="New York" value="New York">New York</option>
+    <option label="North Carolina" value="North Carolina">North Carolina</option>
+    <option label="North Dakota" value="North Dakota">North Dakota</option>
+    <option label="Ohio" value="Ohio">Ohio</option>
+    <option label="Oklahoma" value="Oklahoma">Oklahoma</option>
+    <option label="Oregon" value="Oregon">Oregon</option>
+    <option label="Pennsylvania" value="Pennsylvania">Pennsylvania</option>
+    <option label="Rhode Island" value="Rhode Island">Rhode Island</option>
+    <option label="South Carolina" value="South Carolina">South Carolina</option>
+    <option label="South Dakota" value="South Dakota">South Dakota</option>
+    <option label="Tennessee" value="Tennessee">Tennessee</option>
+    <option label="Texas" value="Texas">Texas</option>
+    <option label="Utah" value="Utah">Utah</option>
+    <option label="Vermont" value="Vermont">Vermont</option>
+    <option label="Virginia" value="Virginia">Virginia</option>
+    <option label="Washington" value="Washington">Washington</option>
+    <option label="West Virginia" value="West Virginia">West Virginia</option>
+    <option label="Wisconsin" value="Wisconsin">Wisconsin</option>
+    <option label="Wyoming" value="Wyoming">Wyoming</option>
+</select>                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="span5"><label>Zip Code</label></div>
+                    <div class="span7"><span>
+<input type="text" class="input-small" maxlength="10" value="" id="zip" name="zip"></span></div>
+                </fieldset>
+            </div>
+            <div style="display:none;" id="outside_us">
+                <fieldset>
+                    <div class="span5"><label>City and Postal Code</label></div>
+                    <div class="span7">
+                        <span>
+<input type="text" maxlength="30" value="" id="address3" name="address3"></span>                    </div>
+                </fieldset>
+                <div class="row-fluid">
+                    <div class="span12">
+                        <fieldset>
+                            <div class="span5"><label for="country">Country</label></div>
+                            <div class="span7">
+                                
+<select id="country" name="country">
+    <option selected="selected" label="" value=""></option>
+    <option label="Afghanistan" value="Afghanistan">Afghanistan</option>
+    <option label="Albania" value="Albania">Albania</option>
+    <option label="Algeria" value="Algeria">Algeria</option>
+    <option label="Andorra" value="Andorra">Andorra</option>
+    <option label="Angola" value="Angola">Angola</option>
+    <option label="Argentina" value="Argentina">Argentina</option>
+    <option label="Armenia" value="Armenia">Armenia</option>
+    <option label="Australia" value="Australia">Australia</option>
+    <option label="Austria" value="Austria">Austria</option>
+    <option label="Azerbaijan" value="Azerbaijan">Azerbaijan</option>
+    <option label="Bahamas, The" value="Bahamas, The">Bahamas, The</option>
+    <option label="Bahrain" value="Bahrain">Bahrain</option>
+    <option label="Bangladesh" value="Bangladesh">Bangladesh</option>
+    <option label="Barbados" value="Barbados">Barbados</option>
+    <option label="Belarus" value="Belarus">Belarus</option>
+    <option label="Belgium" value="Belgium">Belgium</option>
+    <option label="Belize" value="Belize">Belize</option>
+    <option label="Benin" value="Benin">Benin</option>
+    <option label="Bhutan" value="Bhutan">Bhutan</option>
+    <option label="Bolivia" value="Bolivia">Bolivia</option>
+    <option label="Bosnia and Herzegovina" value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+    <option label="Botswana" value="Botswana">Botswana</option>
+    <option label="Brazil" value="Brazil">Brazil</option>
+    <option label="Bulgaria" value="Bulgaria">Bulgaria</option>
+    <option label="Burkina Faso" value="Burkina Faso">Burkina Faso</option>
+    <option label="Burma" value="Burma">Burma</option>
+    <option label="Burundi" value="Burundi">Burundi</option>
+    <option label="Cambodia" value="Cambodia">Cambodia</option>
+    <option label="Cameroon" value="Cameroon">Cameroon</option>
+    <option label="Canada" value="Canada">Canada</option>
+    <option label="Central African Republic" value="Central African Republic">Central African Republic</option>
+    <option label="Chad" value="Chad">Chad</option>
+    <option label="Chile" value="Chile">Chile</option>
+    <option label="China" value="China">China</option>
+    <option label="Colombia" value="Colombia">Colombia</option>
+    <option label="Congo" value="Congo">Congo</option>
+    <option label="Costa Rica" value="Costa Rica">Costa Rica</option>
+    <option label="Cote d'Ivoire" value="Cote d'Ivoire">Cote d'Ivoire</option>
+    <option label="Croatia" value="Croatia">Croatia</option>
+    <option label="Cuba" value="Cuba">Cuba</option>
+    <option label="Cyprus" value="Cyprus">Cyprus</option>
+    <option label="Czech Republic" value="Czech Republic">Czech Republic</option>
+    <option label="Denmark" value="Denmark">Denmark</option>
+    <option label="Dominica" value="Dominica">Dominica</option>
+    <option label="Dominican Republic" value="Dominican Republic">Dominican Republic</option>
+    <option label="Ecuador" value="Ecuador">Ecuador</option>
+    <option label="Egypt" value="Egypt">Egypt</option>
+    <option label="El Salvador" value="El Salvador">El Salvador</option>
+    <option label="England" value="England">England</option>
+    <option label="Estonia" value="Estonia">Estonia</option>
+    <option label="Ethiopia" value="Ethiopia">Ethiopia</option>
+    <option label="Fiji" value="Fiji">Fiji</option>
+    <option label="Finland" value="Finland">Finland</option>
+    <option label="France" value="France">France</option>
+    <option label="Gambia, The" value="Gambia, The">Gambia, The</option>
+    <option label="Georgia" value="Georgia">Georgia</option>
+    <option label="Germany" value="Germany">Germany</option>
+    <option label="Ghana" value="Ghana">Ghana</option>
+    <option label="Greece" value="Greece">Greece</option>
+    <option label="Grenada" value="Grenada">Grenada</option>
+    <option label="Guatemala" value="Guatemala">Guatemala</option>
+    <option label="Guinea" value="Guinea">Guinea</option>
+    <option label="Haiti" value="Haiti">Haiti</option>
+    <option label="Honduras" value="Honduras">Honduras</option>
+    <option label="Hong Kong" value="Hong Kong">Hong Kong</option>
+    <option label="Hungary" value="Hungary">Hungary</option>
+    <option label="Iceland" value="Iceland">Iceland</option>
+    <option label="India" value="India">India</option>
+    <option label="Indonesia" value="Indonesia">Indonesia</option>
+    <option label="Iran" value="Iran">Iran</option>
+    <option label="Iraq" value="Iraq">Iraq</option>
+    <option label="Ireland" value="Ireland">Ireland</option>
+    <option label="Israel" value="Israel">Israel</option>
+    <option label="Italy" value="Italy">Italy</option>
+    <option label="Jamaica" value="Jamaica">Jamaica</option>
+    <option label="Japan" value="Japan">Japan</option>
+    <option label="Jordan" value="Jordan">Jordan</option>
+    <option label="Kazakhstan" value="Kazakhstan">Kazakhstan</option>
+    <option label="Kenya" value="Kenya">Kenya</option>
+    <option label="Korea, North" value="Korea, North">Korea, North</option>
+    <option label="Korea, South" value="Korea, South">Korea, South</option>
+    <option label="Kuwait" value="Kuwait">Kuwait</option>
+    <option label="Kyrgyzstan" value="Kyrgyzstan">Kyrgyzstan</option>
+    <option label="Latvia" value="Latvia">Latvia</option>
+    <option label="Lebanon" value="Lebanon">Lebanon</option>
+    <option label="Liberia" value="Liberia">Liberia</option>
+    <option label="Libya" value="Libya">Libya</option>
+    <option label="Liechtenstein" value="Liechtenstein">Liechtenstein</option>
+    <option label="Lithuania" value="Lithuania">Lithuania</option>
+    <option label="Luxembourg" value="Luxembourg">Luxembourg</option>
+    <option label="Macedonia" value="Macedonia">Macedonia</option>
+    <option label="Madagascar" value="Madagascar">Madagascar</option>
+    <option label="Malawi" value="Malawi">Malawi</option>
+    <option label="Malaysia" value="Malaysia">Malaysia</option>
+    <option label="Mali" value="Mali">Mali</option>
+    <option label="Malta" value="Malta">Malta</option>
+    <option label="Mauritius" value="Mauritius">Mauritius</option>
+    <option label="Mexico" value="Mexico">Mexico</option>
+    <option label="Moldova" value="Moldova">Moldova</option>
+    <option label="Monaco" value="Monaco">Monaco</option>
+    <option label="Mongolia" value="Mongolia">Mongolia</option>
+    <option label="Morocco" value="Morocco">Morocco</option>
+    <option label="Mozambique" value="Mozambique">Mozambique</option>
+    <option label="Myanmar" value="Myanmar">Myanmar</option>
+    <option label="Namibia" value="Namibia">Namibia</option>
+    <option label="Nauru" value="Nauru">Nauru</option>
+    <option label="Nepal" value="Nepal">Nepal</option>
+    <option label="Netherlands" value="Netherlands">Netherlands</option>
+    <option label="New Zealand" value="New Zealand">New Zealand</option>
+    <option label="Nicaragua" value="Nicaragua">Nicaragua</option>
+    <option label="Niger" value="Niger">Niger</option>
+    <option label="Nigeria" value="Nigeria">Nigeria</option>
+    <option label="Northern Ireland" value="Northern Ireland">Northern Ireland</option>
+    <option label="Norway" value="Norway">Norway</option>
+    <option label="Oman" value="Oman">Oman</option>
+    <option label="Pakistan" value="Pakistan">Pakistan</option>
+    <option label="Panama" value="Panama">Panama</option>
+    <option label="Papua New Guinea" value="Papua New Guinea">Papua New Guinea</option>
+    <option label="Paraguay" value="Paraguay">Paraguay</option>
+    <option label="Peru" value="Peru">Peru</option>
+    <option label="Philippines" value="Philippines">Philippines</option>
+    <option label="Poland" value="Poland">Poland</option>
+    <option label="Portugal" value="Portugal">Portugal</option>
+    <option label="Qatar" value="Qatar">Qatar</option>
+    <option label="Romania" value="Romania">Romania</option>
+    <option label="Russia" value="Russia">Russia</option>
+    <option label="Rwanda" value="Rwanda">Rwanda</option>
+    <option label="Saint Kitts and Nevis" value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+    <option label="Saint Lucia" value="Saint Lucia">Saint Lucia</option>
+    <option label="Samoa" value="Samoa">Samoa</option>
+    <option label="San Marino" value="San Marino">San Marino</option>
+    <option label="Saudi Arabia" value="Saudi Arabia">Saudi Arabia</option>
+    <option label="Scotland" value="Scotland">Scotland</option>
+    <option label="Senegal" value="Senegal">Senegal</option>
+    <option label="Serbia" value="Serbia">Serbia</option>
+    <option label="Singapore" value="Singapore">Singapore</option>
+    <option label="Slovakia" value="Slovakia">Slovakia</option>
+    <option label="Somalia" value="Somalia">Somalia</option>
+    <option label="South Africa" value="South Africa">South Africa</option>
+    <option label="Spain" value="Spain">Spain</option>
+    <option label="Sri Lanka" value="Sri Lanka">Sri Lanka</option>
+    <option label="Sudan" value="Sudan">Sudan</option>
+    <option label="Sweden" value="Sweden">Sweden</option>
+    <option label="Switzerland" value="Switzerland">Switzerland</option>
+    <option label="Syria" value="Syria">Syria</option>
+    <option label="Taiwan" value="Taiwan">Taiwan</option>
+    <option label="Tajikistan" value="Tajikistan">Tajikistan</option>
+    <option label="Tanzania" value="Tanzania">Tanzania</option>
+    <option label="Thailand" value="Thailand">Thailand</option>
+    <option label="Trinidad and Tobago" value="Trinidad and Tobago">Trinidad and Tobago</option>
+    <option label="Tunisia" value="Tunisia">Tunisia</option>
+    <option label="Turkey" value="Turkey">Turkey</option>
+    <option label="Turkmenistan" value="Turkmenistan">Turkmenistan</option>
+    <option label="Uganda" value="Uganda">Uganda</option>
+    <option label="Ukraine" value="Ukraine">Ukraine</option>
+    <option label="United Arab Emirates" value="United Arab Emirates">United Arab Emirates</option>
+    <option label="United Kingdom" value="United Kingdom">United Kingdom</option>
+    <option label="United States" value="United States">United States</option>
+    <option label="Uruguay" value="Uruguay">Uruguay</option>
+    <option label="Uzbekistan" value="Uzbekistan">Uzbekistan</option>
+    <option label="Venezuela" value="Venezuela">Venezuela</option>
+    <option label="Vietnam" value="Vietnam">Vietnam</option>
+    <option label="Wales" value="Wales">Wales</option>
+    <option label="Yemen" value="Yemen">Yemen</option>
+    <option label="Zambia" value="Zambia">Zambia</option>
+    <option label="Zimbabwe" value="Zimbabwe">Zimbabwe</option>
+</select>                            </div>
+                            <br>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+                                        <h2>More About You</h2>
+                                        <div class="row-fluid">
+                    <fieldset>
+                        <div class="span12">
+                            <div class="span8 offset5">
+                                
+<input type="hidden" value="0" name="phone_outside_us"><input type="checkbox" value="1" id="phone_outside_us" name="phone_outside_us">                                <label for="phone_outside_us" class="no-bold inline">Check here if you have a non-U.S. phone number</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <fieldset>
+                    <div class="span5"><label for="permanentPhone">Permanent Telephone Number</label><span class="us_number">with Area Code (###-###-####)</span><span style="display:none;" class="non_us_number">exclude: international call prefix<br>country calling code<br>leading zero</span></div>
+                    <div class="span7">
+                        <span>
+<input type="text" maxlength="12" value="" id="phone1" name="phone1"></span>                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="span5"><label>Cell Phone Number</label><span class="us_number">with Area Code (###-###-####)</span><span style="display:none;" class="non_us_number">exclude: international call prefix<br>country calling code<br>leading zero</span></div>
+                    <div class="span7">
+                        <span>
+<input type="text" maxlength="12" value="" id="phone2" name="phone2"></span>                    </div>
+                </fieldset>
+                                                <fieldset>
+                    <div class="span5"><label for="gender">Gender</label></div>
+                    <div class="span7">
+                        
+<select class="input-small" id="gender" name="gender">
+    <option selected="selected" label="" value=""></option>
+    <option label="Female" value="Female">Female</option>
+    <option label="Male" value="Male">Male</option>
+</select>                    </div>
+                </fieldset>
+                                                <fieldset>
+                    <div class="span5"><label>Birth Date</label></div>
+                    <div class="span7">
+                        <span>
+<input type="text" class="birthdatepicker hasDatepicker" placeholder="MM/DD/YYYY" value="" id="birth_date" name="birth_date"></span>                    </div>
+                </fieldset>
+                                                <fieldset>
+                    <div class="span5"><label>Birthplace (City/State)</label></div>
+                    <div class="span7">
+                        <span>
+<input type="text" placeholder="City, ST" maxlength="30" value="" id="birth_place" name="birth_place"></span>                    </div>
+                </fieldset>
+                                                <fieldset>
+                    <div class="span5"><label for="ethnicity">Are you Hispanic or Latino?</label></div>
+                    <div class="span1">
+                        
+<select id="ethnicity" name="ethnicity">
+    <option selected="selected" label="" value=""></option>
+    <option label="Yes, Hispanic or Latino" value="Yes, Hispanic or Latino">Yes, Hispanic or Latino</option>
+    <option label="No, not Hispanic or Latino" value="No, not Hispanic or Latino">No, not Hispanic or Latino</option>
+</select>                    </div>
+                </fieldset>
+                <br><br>
+                                                <fieldset>
+                    <div class="span4"><label>What is your race?<br><span class="subtext">Choose one or more</span></label></div>
+                </fieldset>
+                <br>
+                <fieldset class="right-justified">
+                    <div class="span8 offset2 half">
+                        <i title="" data-original-title="" data-content="A person having origins in any of the original peoples of North and South America [including Central America], and who maintains tribal affiliation or community attachment." data-placement="top" rel="popover" data-trigger="click" class="icon-question-sign race-popover"></i>
+                        &nbsp; <strong>American Indian or Alaska Native</strong>
+                    </div>
+                    <div class="span1 half">
+                        
+<input type="hidden" value="" name="race1"><input type="checkbox" value="American Indian or Alaska Native" id="race1" name="race1">                    </div>
+                </fieldset>
+                <fieldset class="right-justified">
+                    <div class="span8 offset2 half">
+                        <i title="" data-original-title="" data-content="A person having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, Vietnam." data-placement="top" rel="popover" data-trigger="click" class="icon-question-sign race-popover"></i>
+                        &nbsp; <strong>Asian</strong>
+                    </div>
+                    <div class="span1 half">
+                        
+<input type="hidden" value="" name="race2"><input type="checkbox" value="Asian" id="race2" name="race2">                    </div>
+                </fieldset>
+                <fieldset class="right-justified">
+                    <div class="span8 offset2 half">
+                        <i title="" data-original-title="" data-content="A person having origins in any of the black racial groups of Africa." data-placement="top" rel="popover" data-trigger="click" class="icon-question-sign race-popover"></i>
+                        &nbsp; <strong>Black or African American</strong>
+                        <p></p>
+                    </div>
+                    <div class="span1 half">
+                        
+<input type="hidden" value="" name="race3"><input type="checkbox" value="Black or African American" id="race3" name="race3">                    </div>
+                </fieldset>
+                <fieldset class="right-justified">
+                    <div class="span8 offset2 half">
+                        <i title="" data-original-title="" data-content="A person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands." data-placement="top" rel="popover" data-trigger="click" class="icon-question-sign race-popover"></i>
+                        &nbsp; <strong>Native Hawaiian or Other Pacific Islander</strong>
+                        <p></p>
+                    </div>
+                    <div class="span1 half">
+                        
+<input type="hidden" value="" name="race4"><input type="checkbox" value="Native Hawaiian or Other Pacific Islander" id="race4" name="race4">                    </div>
+                </fieldset>
+                <fieldset class="right-justified">
+                    <div class="span8 offset2 half">
+                        <i title="" data-original-title="" data-content="A person having origins in any of the original peoples of Europe, the Middle East or North Africa." data-placement="top" rel="popover" data-trigger="click" class="icon-question-sign race-popover"></i>
+                        &nbsp; <strong>White</strong>
+                        <p></p>
+                    </div>
+                    <div class="span1 half">
+                        
+<input type="hidden" value="" name="race5"><input type="checkbox" value="White" id="race5" name="race5">                    </div>
+                </fieldset>
+                                                <fieldset>
+                    <p>
+                        </p><div class="span4">
+                            <label>Religious Affiliation<br><span class="subtext">(Optional)</span></label>
+                        </div>
+                        <div class="span3">
+                            
+<select id="denomination" name="denomination">
+    <option selected="selected" label="" value=""></option>
+    <option label="No Response" value="No Response">No Response</option>
+    <option label="African Methodist Episcopal" value="African Methodist Episcopal">African Methodist Episcopal</option>
+    <option label="Assembly of God" value="Assembly of God">Assembly of God</option>
+    <option label="Baptist" value="Baptist">Baptist</option>
+    <option label="Bible Church" value="Bible Church">Bible Church</option>
+    <option label="Buddhist" value="Buddhist">Buddhist</option>
+    <option label="Calvary Christian" value="Calvary Christian">Calvary Christian</option>
+    <option label="Christian" value="Christian">Christian</option>
+    <option label="Christian Orthodox" value="Christian Orthodox">Christian Orthodox</option>
+    <option label="Church of Brethren" value="Church of Brethren">Church of Brethren</option>
+    <option label="Church of Christ" value="Church of Christ">Church of Christ</option>
+    <option label="Church of Christian Science" value="Church of Christian Science">Church of Christian Science</option>
+    <option label="Church of God" value="Church of God">Church of God</option>
+    <option label="Community" value="Community">Community</option>
+    <option label="Congregational" value="Congregational">Congregational</option>
+    <option label="Disciples of Christ" value="Disciples of Christ">Disciples of Christ</option>
+    <option label="Episcopal" value="Episcopal">Episcopal</option>
+    <option label="Evangelical" value="Evangelical">Evangelical</option>
+    <option label="Evangelical Lutheran" value="Evangelical Lutheran">Evangelical Lutheran</option>
+    <option label="Greek Orthodox" value="Greek Orthodox">Greek Orthodox</option>
+    <option label="Hindu" value="Hindu">Hindu</option>
+    <option label="Independent" value="Independent">Independent</option>
+    <option label="Islam/Moslem" value="Islam/Moslem">Islam/Moslem</option>
+    <option label="Jewish" value="Jewish">Jewish</option>
+    <option label="Lutheran-Missouri" value="Lutheran-Missouri">Lutheran-Missouri</option>
+    <option label="Lutheran-Other" value="Lutheran-Other">Lutheran-Other</option>
+    <option label="Mennonite" value="Mennonite">Mennonite</option>
+    <option label="Mormon" value="Mormon">Mormon</option>
+    <option label="No Church Affiliation" value="No Church Affiliation">No Church Affiliation</option>
+    <option label="Non-Affiliated Christian" value="Non-Affiliated Christian">Non-Affiliated Christian</option>
+    <option label="Non-Christian" value="Non-Christian">Non-Christian</option>
+    <option label="Non-Denominational" value="Non-Denominational">Non-Denominational</option>
+    <option label="Other" value="Other">Other</option>
+    <option label="Other Protestant" value="Other Protestant">Other Protestant</option>
+    <option label="Pentecostal" value="Pentecostal">Pentecostal</option>
+    <option label="Presbyterian" value="Presbyterian">Presbyterian</option>
+    <option label="Reformed" value="Reformed">Reformed</option>
+    <option label="Roman Catholic" value="Roman Catholic">Roman Catholic</option>
+    <option label="Serbian Orthodox" value="Serbian Orthodox">Serbian Orthodox</option>
+    <option label="Seventh Day Adventist" value="Seventh Day Adventist">Seventh Day Adventist</option>
+    <option label="Unitarian/Universalist" value="Unitarian/Universalist">Unitarian/Universalist</option>
+    <option label="United Church of Christ" value="United Church of Christ">United Church of Christ</option>
+    <option label="United Methodist" value="United Methodist">United Methodist</option>
+    <option label="United Presbyterian" value="United Presbyterian">United Presbyterian</option>
+    <option label="Wesleyan" value="Wesleyan">Wesleyan</option>
+</select>                        </div>
+                    <p></p>
+                </fieldset>
+                            </div> <!-- end container span7 -->
+                    <div class="span5 visible-desktop">
+            <div class="row">
+                <img alt="Undergrad Page 1" src="./page-1_files/admission_ug_page1.jpg" class="admission_ug_page1">
+            </div>
+        </div>
+                </div>
+    <div class="row-fluid">
+        <div class="container-fluid" id="citizen-contain">
+             
+            <h2>Citizenship</h2>
+                                    <fieldset>
+                <div class="span3"><label>Are you a United States citizen?</label></div>
+                <div class="span4">
+                                        
+<select id="CitizenYes" name="is_citzen">
+    <option selected="selected" label="" value=""></option>
+    <option label="Yes" value="Yes">Yes</option>
+    <option label="Legal Permanent Resident" value="Legal Permanent Resident">Legal Permanent Resident</option>
+    <option label="No" value="No">No</option>
+</select>                </div>
+            </fieldset>
+            <div style="display:none;" id="citizen_yes">
+            <fieldset>
+                <div class="span3"><label for="socialSecurityNumber">Social Security Number</label><br><span class="ssn_number">(###-##-####)</span></div>
+                <div class="span4">
+                    <span>
+<input type="text" maxlength="11" value="" id="ssn" name="ssn"></span>                </div>
+            </fieldset>
+            </div>
+            <div style="display:none;" id="citizen_legal_resident">
+            <fieldset>
+                <div class="span3"><label for="citizenship_country">What is your country of citizenship?</label></div>
+                <div class="span4">
+                    
+<select id="citizenship_country" name="citizenship_country">
+    <option selected="selected" label="" value=""></option>
+    <option label="Afghanistan" value="Afghanistan">Afghanistan</option>
+    <option label="Albania" value="Albania">Albania</option>
+    <option label="Algeria" value="Algeria">Algeria</option>
+    <option label="Andorra" value="Andorra">Andorra</option>
+    <option label="Angola" value="Angola">Angola</option>
+    <option label="Argentina" value="Argentina">Argentina</option>
+    <option label="Armenia" value="Armenia">Armenia</option>
+    <option label="Australia" value="Australia">Australia</option>
+    <option label="Austria" value="Austria">Austria</option>
+    <option label="Azerbaijan" value="Azerbaijan">Azerbaijan</option>
+    <option label="Bahamas, The" value="Bahamas, The">Bahamas, The</option>
+    <option label="Bahrain" value="Bahrain">Bahrain</option>
+    <option label="Bangladesh" value="Bangladesh">Bangladesh</option>
+    <option label="Barbados" value="Barbados">Barbados</option>
+    <option label="Belarus" value="Belarus">Belarus</option>
+    <option label="Belgium" value="Belgium">Belgium</option>
+    <option label="Belize" value="Belize">Belize</option>
+    <option label="Benin" value="Benin">Benin</option>
+    <option label="Bhutan" value="Bhutan">Bhutan</option>
+    <option label="Bolivia" value="Bolivia">Bolivia</option>
+    <option label="Bosnia and Herzegovina" value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+    <option label="Botswana" value="Botswana">Botswana</option>
+    <option label="Brazil" value="Brazil">Brazil</option>
+    <option label="Bulgaria" value="Bulgaria">Bulgaria</option>
+    <option label="Burkina Faso" value="Burkina Faso">Burkina Faso</option>
+    <option label="Burma" value="Burma">Burma</option>
+    <option label="Burundi" value="Burundi">Burundi</option>
+    <option label="Cambodia" value="Cambodia">Cambodia</option>
+    <option label="Cameroon" value="Cameroon">Cameroon</option>
+    <option label="Canada" value="Canada">Canada</option>
+    <option label="Central African Republic" value="Central African Republic">Central African Republic</option>
+    <option label="Chad" value="Chad">Chad</option>
+    <option label="Chile" value="Chile">Chile</option>
+    <option label="China" value="China">China</option>
+    <option label="Colombia" value="Colombia">Colombia</option>
+    <option label="Congo" value="Congo">Congo</option>
+    <option label="Costa Rica" value="Costa Rica">Costa Rica</option>
+    <option label="Cote d'Ivoire" value="Cote d'Ivoire">Cote d'Ivoire</option>
+    <option label="Croatia" value="Croatia">Croatia</option>
+    <option label="Cuba" value="Cuba">Cuba</option>
+    <option label="Cyprus" value="Cyprus">Cyprus</option>
+    <option label="Czech Republic" value="Czech Republic">Czech Republic</option>
+    <option label="Denmark" value="Denmark">Denmark</option>
+    <option label="Dominica" value="Dominica">Dominica</option>
+    <option label="Dominican Republic" value="Dominican Republic">Dominican Republic</option>
+    <option label="Ecuador" value="Ecuador">Ecuador</option>
+    <option label="Egypt" value="Egypt">Egypt</option>
+    <option label="El Salvador" value="El Salvador">El Salvador</option>
+    <option label="England" value="England">England</option>
+    <option label="Estonia" value="Estonia">Estonia</option>
+    <option label="Ethiopia" value="Ethiopia">Ethiopia</option>
+    <option label="Fiji" value="Fiji">Fiji</option>
+    <option label="Finland" value="Finland">Finland</option>
+    <option label="France" value="France">France</option>
+    <option label="Gambia, The" value="Gambia, The">Gambia, The</option>
+    <option label="Georgia" value="Georgia">Georgia</option>
+    <option label="Germany" value="Germany">Germany</option>
+    <option label="Ghana" value="Ghana">Ghana</option>
+    <option label="Greece" value="Greece">Greece</option>
+    <option label="Grenada" value="Grenada">Grenada</option>
+    <option label="Guatemala" value="Guatemala">Guatemala</option>
+    <option label="Guinea" value="Guinea">Guinea</option>
+    <option label="Haiti" value="Haiti">Haiti</option>
+    <option label="Honduras" value="Honduras">Honduras</option>
+    <option label="Hong Kong" value="Hong Kong">Hong Kong</option>
+    <option label="Hungary" value="Hungary">Hungary</option>
+    <option label="Iceland" value="Iceland">Iceland</option>
+    <option label="India" value="India">India</option>
+    <option label="Indonesia" value="Indonesia">Indonesia</option>
+    <option label="Iran" value="Iran">Iran</option>
+    <option label="Iraq" value="Iraq">Iraq</option>
+    <option label="Ireland" value="Ireland">Ireland</option>
+    <option label="Israel" value="Israel">Israel</option>
+    <option label="Italy" value="Italy">Italy</option>
+    <option label="Jamaica" value="Jamaica">Jamaica</option>
+    <option label="Japan" value="Japan">Japan</option>
+    <option label="Jordan" value="Jordan">Jordan</option>
+    <option label="Kazakhstan" value="Kazakhstan">Kazakhstan</option>
+    <option label="Kenya" value="Kenya">Kenya</option>
+    <option label="Korea, North" value="Korea, North">Korea, North</option>
+    <option label="Korea, South" value="Korea, South">Korea, South</option>
+    <option label="Kuwait" value="Kuwait">Kuwait</option>
+    <option label="Kyrgyzstan" value="Kyrgyzstan">Kyrgyzstan</option>
+    <option label="Latvia" value="Latvia">Latvia</option>
+    <option label="Lebanon" value="Lebanon">Lebanon</option>
+    <option label="Liberia" value="Liberia">Liberia</option>
+    <option label="Libya" value="Libya">Libya</option>
+    <option label="Liechtenstein" value="Liechtenstein">Liechtenstein</option>
+    <option label="Lithuania" value="Lithuania">Lithuania</option>
+    <option label="Luxembourg" value="Luxembourg">Luxembourg</option>
+    <option label="Macedonia" value="Macedonia">Macedonia</option>
+    <option label="Madagascar" value="Madagascar">Madagascar</option>
+    <option label="Malawi" value="Malawi">Malawi</option>
+    <option label="Malaysia" value="Malaysia">Malaysia</option>
+    <option label="Mali" value="Mali">Mali</option>
+    <option label="Malta" value="Malta">Malta</option>
+    <option label="Mauritius" value="Mauritius">Mauritius</option>
+    <option label="Mexico" value="Mexico">Mexico</option>
+    <option label="Moldova" value="Moldova">Moldova</option>
+    <option label="Monaco" value="Monaco">Monaco</option>
+    <option label="Mongolia" value="Mongolia">Mongolia</option>
+    <option label="Morocco" value="Morocco">Morocco</option>
+    <option label="Mozambique" value="Mozambique">Mozambique</option>
+    <option label="Myanmar" value="Myanmar">Myanmar</option>
+    <option label="Namibia" value="Namibia">Namibia</option>
+    <option label="Nauru" value="Nauru">Nauru</option>
+    <option label="Nepal" value="Nepal">Nepal</option>
+    <option label="Netherlands" value="Netherlands">Netherlands</option>
+    <option label="New Zealand" value="New Zealand">New Zealand</option>
+    <option label="Nicaragua" value="Nicaragua">Nicaragua</option>
+    <option label="Niger" value="Niger">Niger</option>
+    <option label="Nigeria" value="Nigeria">Nigeria</option>
+    <option label="Northern Ireland" value="Northern Ireland">Northern Ireland</option>
+    <option label="Norway" value="Norway">Norway</option>
+    <option label="Oman" value="Oman">Oman</option>
+    <option label="Pakistan" value="Pakistan">Pakistan</option>
+    <option label="Panama" value="Panama">Panama</option>
+    <option label="Papua New Guinea" value="Papua New Guinea">Papua New Guinea</option>
+    <option label="Paraguay" value="Paraguay">Paraguay</option>
+    <option label="Peru" value="Peru">Peru</option>
+    <option label="Philippines" value="Philippines">Philippines</option>
+    <option label="Poland" value="Poland">Poland</option>
+    <option label="Portugal" value="Portugal">Portugal</option>
+    <option label="Qatar" value="Qatar">Qatar</option>
+    <option label="Romania" value="Romania">Romania</option>
+    <option label="Russia" value="Russia">Russia</option>
+    <option label="Rwanda" value="Rwanda">Rwanda</option>
+    <option label="Saint Kitts and Nevis" value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+    <option label="Saint Lucia" value="Saint Lucia">Saint Lucia</option>
+    <option label="Samoa" value="Samoa">Samoa</option>
+    <option label="San Marino" value="San Marino">San Marino</option>
+    <option label="Saudi Arabia" value="Saudi Arabia">Saudi Arabia</option>
+    <option label="Scotland" value="Scotland">Scotland</option>
+    <option label="Senegal" value="Senegal">Senegal</option>
+    <option label="Serbia" value="Serbia">Serbia</option>
+    <option label="Singapore" value="Singapore">Singapore</option>
+    <option label="Slovakia" value="Slovakia">Slovakia</option>
+    <option label="Somalia" value="Somalia">Somalia</option>
+    <option label="South Africa" value="South Africa">South Africa</option>
+    <option label="Spain" value="Spain">Spain</option>
+    <option label="Sri Lanka" value="Sri Lanka">Sri Lanka</option>
+    <option label="Sudan" value="Sudan">Sudan</option>
+    <option label="Sweden" value="Sweden">Sweden</option>
+    <option label="Switzerland" value="Switzerland">Switzerland</option>
+    <option label="Syria" value="Syria">Syria</option>
+    <option label="Taiwan" value="Taiwan">Taiwan</option>
+    <option label="Tajikistan" value="Tajikistan">Tajikistan</option>
+    <option label="Tanzania" value="Tanzania">Tanzania</option>
+    <option label="Thailand" value="Thailand">Thailand</option>
+    <option label="Trinidad and Tobago" value="Trinidad and Tobago">Trinidad and Tobago</option>
+    <option label="Tunisia" value="Tunisia">Tunisia</option>
+    <option label="Turkey" value="Turkey">Turkey</option>
+    <option label="Turkmenistan" value="Turkmenistan">Turkmenistan</option>
+    <option label="Uganda" value="Uganda">Uganda</option>
+    <option label="Ukraine" value="Ukraine">Ukraine</option>
+    <option label="United Arab Emirates" value="United Arab Emirates">United Arab Emirates</option>
+    <option label="United Kingdom" value="United Kingdom">United Kingdom</option>
+    <option label="United States" value="United States">United States</option>
+    <option label="Uruguay" value="Uruguay">Uruguay</option>
+    <option label="Uzbekistan" value="Uzbekistan">Uzbekistan</option>
+    <option label="Venezuela" value="Venezuela">Venezuela</option>
+    <option label="Vietnam" value="Vietnam">Vietnam</option>
+    <option label="Wales" value="Wales">Wales</option>
+    <option label="Yemen" value="Yemen">Yemen</option>
+    <option label="Zambia" value="Zambia">Zambia</option>
+    <option label="Zimbabwe" value="Zimbabwe">Zimbabwe</option>
+</select>                </div>
+            </fieldset>
+            <fieldset>
+                <div class="span3"><label for="residence_country">What is your country of current residence?</label></div>
+                <div class="span4">
+                    
+<select id="residence_country" name="residence_country">
+    <option selected="selected" label="" value=""></option>
+    <option label="Afghanistan" value="Afghanistan">Afghanistan</option>
+    <option label="Albania" value="Albania">Albania</option>
+    <option label="Algeria" value="Algeria">Algeria</option>
+    <option label="Andorra" value="Andorra">Andorra</option>
+    <option label="Angola" value="Angola">Angola</option>
+    <option label="Argentina" value="Argentina">Argentina</option>
+    <option label="Armenia" value="Armenia">Armenia</option>
+    <option label="Australia" value="Australia">Australia</option>
+    <option label="Austria" value="Austria">Austria</option>
+    <option label="Azerbaijan" value="Azerbaijan">Azerbaijan</option>
+    <option label="Bahamas, The" value="Bahamas, The">Bahamas, The</option>
+    <option label="Bahrain" value="Bahrain">Bahrain</option>
+    <option label="Bangladesh" value="Bangladesh">Bangladesh</option>
+    <option label="Barbados" value="Barbados">Barbados</option>
+    <option label="Belarus" value="Belarus">Belarus</option>
+    <option label="Belgium" value="Belgium">Belgium</option>
+    <option label="Belize" value="Belize">Belize</option>
+    <option label="Benin" value="Benin">Benin</option>
+    <option label="Bhutan" value="Bhutan">Bhutan</option>
+    <option label="Bolivia" value="Bolivia">Bolivia</option>
+    <option label="Bosnia and Herzegovina" value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+    <option label="Botswana" value="Botswana">Botswana</option>
+    <option label="Brazil" value="Brazil">Brazil</option>
+    <option label="Bulgaria" value="Bulgaria">Bulgaria</option>
+    <option label="Burkina Faso" value="Burkina Faso">Burkina Faso</option>
+    <option label="Burma" value="Burma">Burma</option>
+    <option label="Burundi" value="Burundi">Burundi</option>
+    <option label="Cambodia" value="Cambodia">Cambodia</option>
+    <option label="Cameroon" value="Cameroon">Cameroon</option>
+    <option label="Canada" value="Canada">Canada</option>
+    <option label="Central African Republic" value="Central African Republic">Central African Republic</option>
+    <option label="Chad" value="Chad">Chad</option>
+    <option label="Chile" value="Chile">Chile</option>
+    <option label="China" value="China">China</option>
+    <option label="Colombia" value="Colombia">Colombia</option>
+    <option label="Congo" value="Congo">Congo</option>
+    <option label="Costa Rica" value="Costa Rica">Costa Rica</option>
+    <option label="Cote d'Ivoire" value="Cote d'Ivoire">Cote d'Ivoire</option>
+    <option label="Croatia" value="Croatia">Croatia</option>
+    <option label="Cuba" value="Cuba">Cuba</option>
+    <option label="Cyprus" value="Cyprus">Cyprus</option>
+    <option label="Czech Republic" value="Czech Republic">Czech Republic</option>
+    <option label="Denmark" value="Denmark">Denmark</option>
+    <option label="Dominica" value="Dominica">Dominica</option>
+    <option label="Dominican Republic" value="Dominican Republic">Dominican Republic</option>
+    <option label="Ecuador" value="Ecuador">Ecuador</option>
+    <option label="Egypt" value="Egypt">Egypt</option>
+    <option label="El Salvador" value="El Salvador">El Salvador</option>
+    <option label="England" value="England">England</option>
+    <option label="Estonia" value="Estonia">Estonia</option>
+    <option label="Ethiopia" value="Ethiopia">Ethiopia</option>
+    <option label="Fiji" value="Fiji">Fiji</option>
+    <option label="Finland" value="Finland">Finland</option>
+    <option label="France" value="France">France</option>
+    <option label="Gambia, The" value="Gambia, The">Gambia, The</option>
+    <option label="Georgia" value="Georgia">Georgia</option>
+    <option label="Germany" value="Germany">Germany</option>
+    <option label="Ghana" value="Ghana">Ghana</option>
+    <option label="Greece" value="Greece">Greece</option>
+    <option label="Grenada" value="Grenada">Grenada</option>
+    <option label="Guatemala" value="Guatemala">Guatemala</option>
+    <option label="Guinea" value="Guinea">Guinea</option>
+    <option label="Haiti" value="Haiti">Haiti</option>
+    <option label="Honduras" value="Honduras">Honduras</option>
+    <option label="Hong Kong" value="Hong Kong">Hong Kong</option>
+    <option label="Hungary" value="Hungary">Hungary</option>
+    <option label="Iceland" value="Iceland">Iceland</option>
+    <option label="India" value="India">India</option>
+    <option label="Indonesia" value="Indonesia">Indonesia</option>
+    <option label="Iran" value="Iran">Iran</option>
+    <option label="Iraq" value="Iraq">Iraq</option>
+    <option label="Ireland" value="Ireland">Ireland</option>
+    <option label="Israel" value="Israel">Israel</option>
+    <option label="Italy" value="Italy">Italy</option>
+    <option label="Jamaica" value="Jamaica">Jamaica</option>
+    <option label="Japan" value="Japan">Japan</option>
+    <option label="Jordan" value="Jordan">Jordan</option>
+    <option label="Kazakhstan" value="Kazakhstan">Kazakhstan</option>
+    <option label="Kenya" value="Kenya">Kenya</option>
+    <option label="Korea, North" value="Korea, North">Korea, North</option>
+    <option label="Korea, South" value="Korea, South">Korea, South</option>
+    <option label="Kuwait" value="Kuwait">Kuwait</option>
+    <option label="Kyrgyzstan" value="Kyrgyzstan">Kyrgyzstan</option>
+    <option label="Latvia" value="Latvia">Latvia</option>
+    <option label="Lebanon" value="Lebanon">Lebanon</option>
+    <option label="Liberia" value="Liberia">Liberia</option>
+    <option label="Libya" value="Libya">Libya</option>
+    <option label="Liechtenstein" value="Liechtenstein">Liechtenstein</option>
+    <option label="Lithuania" value="Lithuania">Lithuania</option>
+    <option label="Luxembourg" value="Luxembourg">Luxembourg</option>
+    <option label="Macedonia" value="Macedonia">Macedonia</option>
+    <option label="Madagascar" value="Madagascar">Madagascar</option>
+    <option label="Malawi" value="Malawi">Malawi</option>
+    <option label="Malaysia" value="Malaysia">Malaysia</option>
+    <option label="Mali" value="Mali">Mali</option>
+    <option label="Malta" value="Malta">Malta</option>
+    <option label="Mauritius" value="Mauritius">Mauritius</option>
+    <option label="Mexico" value="Mexico">Mexico</option>
+    <option label="Moldova" value="Moldova">Moldova</option>
+    <option label="Monaco" value="Monaco">Monaco</option>
+    <option label="Mongolia" value="Mongolia">Mongolia</option>
+    <option label="Morocco" value="Morocco">Morocco</option>
+    <option label="Mozambique" value="Mozambique">Mozambique</option>
+    <option label="Myanmar" value="Myanmar">Myanmar</option>
+    <option label="Namibia" value="Namibia">Namibia</option>
+    <option label="Nauru" value="Nauru">Nauru</option>
+    <option label="Nepal" value="Nepal">Nepal</option>
+    <option label="Netherlands" value="Netherlands">Netherlands</option>
+    <option label="New Zealand" value="New Zealand">New Zealand</option>
+    <option label="Nicaragua" value="Nicaragua">Nicaragua</option>
+    <option label="Niger" value="Niger">Niger</option>
+    <option label="Nigeria" value="Nigeria">Nigeria</option>
+    <option label="Northern Ireland" value="Northern Ireland">Northern Ireland</option>
+    <option label="Norway" value="Norway">Norway</option>
+    <option label="Oman" value="Oman">Oman</option>
+    <option label="Pakistan" value="Pakistan">Pakistan</option>
+    <option label="Panama" value="Panama">Panama</option>
+    <option label="Papua New Guinea" value="Papua New Guinea">Papua New Guinea</option>
+    <option label="Paraguay" value="Paraguay">Paraguay</option>
+    <option label="Peru" value="Peru">Peru</option>
+    <option label="Philippines" value="Philippines">Philippines</option>
+    <option label="Poland" value="Poland">Poland</option>
+    <option label="Portugal" value="Portugal">Portugal</option>
+    <option label="Qatar" value="Qatar">Qatar</option>
+    <option label="Romania" value="Romania">Romania</option>
+    <option label="Russia" value="Russia">Russia</option>
+    <option label="Rwanda" value="Rwanda">Rwanda</option>
+    <option label="Saint Kitts and Nevis" value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+    <option label="Saint Lucia" value="Saint Lucia">Saint Lucia</option>
+    <option label="Samoa" value="Samoa">Samoa</option>
+    <option label="San Marino" value="San Marino">San Marino</option>
+    <option label="Saudi Arabia" value="Saudi Arabia">Saudi Arabia</option>
+    <option label="Scotland" value="Scotland">Scotland</option>
+    <option label="Senegal" value="Senegal">Senegal</option>
+    <option label="Serbia" value="Serbia">Serbia</option>
+    <option label="Singapore" value="Singapore">Singapore</option>
+    <option label="Slovakia" value="Slovakia">Slovakia</option>
+    <option label="Somalia" value="Somalia">Somalia</option>
+    <option label="South Africa" value="South Africa">South Africa</option>
+    <option label="Spain" value="Spain">Spain</option>
+    <option label="Sri Lanka" value="Sri Lanka">Sri Lanka</option>
+    <option label="Sudan" value="Sudan">Sudan</option>
+    <option label="Sweden" value="Sweden">Sweden</option>
+    <option label="Switzerland" value="Switzerland">Switzerland</option>
+    <option label="Syria" value="Syria">Syria</option>
+    <option label="Taiwan" value="Taiwan">Taiwan</option>
+    <option label="Tajikistan" value="Tajikistan">Tajikistan</option>
+    <option label="Tanzania" value="Tanzania">Tanzania</option>
+    <option label="Thailand" value="Thailand">Thailand</option>
+    <option label="Trinidad and Tobago" value="Trinidad and Tobago">Trinidad and Tobago</option>
+    <option label="Tunisia" value="Tunisia">Tunisia</option>
+    <option label="Turkey" value="Turkey">Turkey</option>
+    <option label="Turkmenistan" value="Turkmenistan">Turkmenistan</option>
+    <option label="Uganda" value="Uganda">Uganda</option>
+    <option label="Ukraine" value="Ukraine">Ukraine</option>
+    <option label="United Arab Emirates" value="United Arab Emirates">United Arab Emirates</option>
+    <option label="United Kingdom" value="United Kingdom">United Kingdom</option>
+    <option label="United States" value="United States">United States</option>
+    <option label="Uruguay" value="Uruguay">Uruguay</option>
+    <option label="Uzbekistan" value="Uzbekistan">Uzbekistan</option>
+    <option label="Venezuela" value="Venezuela">Venezuela</option>
+    <option label="Vietnam" value="Vietnam">Vietnam</option>
+    <option label="Wales" value="Wales">Wales</option>
+    <option label="Yemen" value="Yemen">Yemen</option>
+    <option label="Zambia" value="Zambia">Zambia</option>
+    <option label="Zimbabwe" value="Zimbabwe">Zimbabwe</option>
+</select>                </div>
+            </fieldset>
+            </div>
+             <div style="display:none;" id="citizen_alien">
+            <fieldset>
+                <div class="span3"><label for="alien_reg_no">Alien Registration Number</label><span class="ssn_number">Include the leading letter A</span></div>
+                <div class="span4">
+                    <span>
+<input type="text" value="" id="alien_reg_no" name="alien_reg_no"></span>                </div>
+            </fieldset>
+            </div>
+            <div style="display:none;" id="citizen_no">
+            <fieldset>
+                <div class="span3"><label for="is_international_student">Are you or will you be an international student?</label></div>
+                <div class="span4">
+                    
+<select id="is_international_student" name="is_international_student">
+    <option label="Yes" value="1">Yes</option>
+    <option label="No" value="0">No</option>
+    <option selected="selected" label="" value=""></option>
+</select>                </div>
+            </fieldset>
+            <br>
+            <fieldset>
+                <div class="span3"><label for="alien_status">What is your visa status?</label></div>
+                <div class="span4">
+                    
+<select id="alien_status" name="alien_status">
+    <option selected="selected" label="" value=""></option>
+    <option label="F1 Student" value="F1 Student">F1 Student</option>
+    <option label="F2" value="F2">F2</option>
+    <option label="H1" value="H1">H1</option>
+    <option label="H4" value="H4">H4</option>
+    <option label="J1 Exchange Visitor" value="J1 Exchange Visitor">J1 Exchange Visitor</option>
+    <option label="J2" value="J2">J2</option>
+    <option label="K1" value="K1">K1</option>
+    <option label="PR Permanent Resident US" value="PR Permanent Resident US">PR Permanent Resident US</option>
+    <option label="TD" value="TD">TD</option>
+    <option label="Unknown" value="Unknown">Unknown</option>
+</select>                </div>
+            </fieldset>
+            </div>
+                    </div>
+    </div>
+</div>            </div>
+        </div>
+        <div class="row-fluid" id="navigation">
+            <div class="span12">
+                
+<ul class="clearfix" id="saves">
+    <span class="button-wrapper">
+<input type="submit" class="multi-submit current-navigation" value="1" id="page1" name="page1"></span><span class="button-wrapper">
+<input type="submit" class="multi-submit" value="Ahead to Page 2 &gt;&gt;" id="page2" name="page2"></span><span class="button-wrapper">
+<input type="submit" class="multi-submit" value="3 &gt;&gt;" id="page3" name="page3"></span><span>
+<input type="hidden" id="page" value="Page1" name="page"></span></ul>
+<span>
+<input type="hidden" id="page" value="Page1" name="page"></span>            </div>
+        </div>
+    </div>
+<input type="hidden" value="" id="baseUrl" name="baseUrl">
+</form>
+                </div>
+            </div>
+        </div>
 
 
-{% endblock %}
+
 </body>
 </html>

@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+
+@media print
+{
+   * {
+	visibility:hidden;
+    }
+   .printableArea * {
+       font-size: 16px;
+       visibility:visible;
+       position: relative;
+       line-height: 150%;
+       left:0;
+       top:0;
+   }
+   .print {
+		visibility:visible;
+       position: relative;
+   }
+   h1.print {
+		font-size:16px;
+   		margin-bottom:0;
+   }
+   .dontPrint { /* takes no space, not shown */
+      display: none;
+   }
+   .dontShow { /* still takes up space but not shown*/
+      visibility: hidden;
+   }
+   .pageBreak { /* page break to separate pages */
+      page-break-after: always;
+   }
+   #top { /* Hide the top element */
+      display: none;
+   }
+   .bottom { /* Hide the bottom element */
+      display: none;
+   }
+   .submit {
+      text-align: right;
+   }
+	.application th, .application td {
+		  text-align:left;
+		  vertical-align:top;
+		  padding-right:10px;
+	}
+}

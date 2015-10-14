@@ -1,0 +1,492 @@
+body{
+	font: 12pt Verdana;
+	background-color: #DAD4BE;
+}
+p{
+	font-size: 14px;
+}
+h3{
+	color: black;
+}
+#top{
+	background: url('http://northcentralcollege.edu/sites/all/themes/ncc/images/bg_generic_notan.jpg') repeat-x;
+}
+.banner{
+	height:199px;
+	background: url('http://northcentralcollege.edu/sites/all/themes/ncc/images/be-central-background.png') no-repeat;
+	margin-left: 20px;
+/*	margin-right: auto;
+	width: 960px;
+*/
+}
+#north_central2{
+	margin: 44px 0px 0px 2px !important;
+}
+#nav_verb{
+	margin: -22px -4px -5px 634px;
+	list-style: none;
+	float: right
+}
+#nav_verb li{
+	display: inline;
+	float: left;
+}
+.nav-main{
+/*	margin: 0px 0px 0px 196px !important;
+*/
+	position: relative;
+}
+.nav{
+	float: right !important;
+	margin: 0px 0px 0px 0px !important;
+}
+.nav > li{
+	float: right;
+	margin: 0px 0px 0px 0px;
+	display: block;
+}
+.btn-navbar{
+	background-color:#660000;
+	display: none;
+	float: right;
+	padding: 7px 10px;
+}
+.content{
+	margin-top: -2px;
+	margin-right: auto;
+	margin-left: auto;
+	clear: both;
+	position: relative;
+}
+.acct{
+	background: rgb(230,230,230);
+	border: 1px solid rgb(204,204,204);
+	padding: .5em 0em 0em;
+	margin-bottom: 1em;
+}
+.application{
+	background: #ffffff;
+	width: auto;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: -19px;
+}
+.application label{
+	font-weight: bold;
+	cursor: default;
+	margin: 0 auto;
+	text-align: right;
+}
+
+.application label.no-bold{
+	font-weight: normal;
+	text-align: left;
+}
+.no-margin{
+	margin:0;
+	float: left;
+}
+h2{
+	font-size: 14pt;
+	margin-top: 0px;
+	margin-bottom: -4px;
+	color: #725F50;
+	display: block;
+}
+.mini-nav{
+	background: transparent url('http://northcentralcollege.edu/sites/all/themes/ncc/images/bg_breadcrumb.png') repeat-x;
+	height: 27px;
+	margin: 0;
+	padding: 0px 0 0 6px;
+	color: white;
+}
+.mini-nav a{
+	color: white;
+	font-size: 10px;
+	padding: 0 4px 2px 4px;
+	font-family: verdana;
+	text-decoration: underline;
+}
+.inner-node{
+	padding: 30px;
+}
+.inline{
+	display: inline;
+}
+.subtext{
+	font-size: 10px;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+}
+.block{
+	display: block;
+}
+.ugappimg{
+	background: url('http://northcentralcollege.edu/sites/all/themes/ncc/images/admission_ug_page1.jpg') no-repeat;
+	height: 480px;
+	float: right(20px);
+}
+.right-justified{
+	text-align: right;
+}
+.top-navi {
+	
+}
+.bottom{
+	background-color: #7D0E0F;
+	color: white;
+}
+address{
+	min-height: 91px;
+	font-style: normal;
+	float: left;
+	margin: 20px 190px 0 0;
+	background: transparent url('http://northcentralcollege.edu/sites/all/themes/ncc/images/bg_address.png') no-repeat;
+	padding: 33px 0 0 58px;
+	line-height: 1.2em;
+}
+#footer{
+	font-size: x-small;
+	font-weight: bold;
+}
+#bottom ul{
+	float: right;
+}
+#bottom ul li{
+	display: inline;
+}
+#footer p{
+	color: rgb(217,205,166);
+	float: left;
+	width: 440px;
+}
+#utility{
+	float:right;
+}
+#utility li {
+	float: right;
+	display: block;
+	width: 68px;
+	height: 24px;
+	background: transparent url('http://northcentralcollege.edu/sites/all/themes/ncc/images/bg_utility.png') no-repeat;
+	text-align: center;
+	border: 0;
+	padding: 1px 0 0;
+	margin-right: 6px;
+}
+#utility li a {
+	color: #BE8787;
+}
+#footer-mission{
+	padding-top: 50px;
+}
+#footer-mission p {
+	font-size: 10px;
+}
+#footer ul{
+	display: inline;
+	clear: right;
+}
+#footer-links ul{
+	float: left;
+	margin: 0;
+}
+#footer-links li:after{
+	content: ' | ';
+}
+#footer-links li:last-child:after {
+    content: '';
+}
+#footer a{
+	color: white;
+}
+#saves{
+	display: block;
+	clear: both;
+	padding-left: 16.3em;
+	padding-left: 0;
+	list-style: none;
+	margin-top: 35px;
+	margin-left: 3px;
+}
+#saves li{
+	display: inline;
+	float: left;
+	margin-left: 1em;	
+}
+#saves li .current{
+	border: 2px solid black;
+}
+.nav-main > li > a{
+	padding: 0 !important;
+}
+form#cse-search-box input#q {
+	background: none repeat scroll 0 0 transparent !important;
+	border: 0 none !important;
+	display: block;
+	float: left;
+	font-weight: bold;
+	padding: 3px 3px 3px !important;
+	width: 125px;
+}
+form#cse-search-box {
+	float: right;
+	background-image: url('http://northcentralcollege.edu/sites/all/themes/ncc/images/bg_search.png');
+	width: 182px;
+	height: 24px;
+	padding: 4px 1px 0 10px;
+	margin-top: 25px;
+}
+.btn{
+	background-color: #660000;
+	z-index: 5;
+}
+.mobile-nav{
+	float: left;
+	margin-top: 13px;
+	margin-bottom: -20px;
+}
+.mobile-nav li{
+	list-style-type: none;
+	margin-bottom: 5px;
+	box-shadow: 13px 0px 88px 5px #440000;
+}
+.mobile-nav li > a{
+	color: white;
+}
+.center{
+	float: none;
+	margin: 0 auto;
+	text-align: center;
+	display: block;
+	width:auto;
+	height:auto;
+}
+#outside_us2{
+	display: none;
+}
+.pg2-header{
+	background: url('http://northcentralcollege.edu/sites/all/themes/ncc/images/header_curl.png') no-repeat scroll 0 0 transparent;
+	color: #880F10;
+	font: bold 18pt Arial;
+	margin: 0 0 10px -10px;
+	padding: 10px 0 18px 18px;
+}
+h3{
+	margin-top: 0px;
+	display: block;
+	font-size: 1.05em;
+	color: #725F50;
+}
+#denomination {
+	width: 235px;
+}
+
+input[type^='radio']+label, #address_outside_us+label, #phone_outside_us+label, #guardian1_address_outside_us+label, #guardian2_address_outside_us+label{
+	display: inline;
+	position: relative;
+	top: 3px;
+}
+#ethnicity{
+	width:221px;
+}
+input[type^='checkbox']{
+	float: left;
+}
+#guardian2_education, #guardian1_education{
+	width: 350px;
+}
+select{
+	width: 300px;
+}
+.admission_ug_page{
+	padding-top: 150px;
+	padding-left: 100px;
+}
+
+.admission_ug_page1{
+	padding-top: 0px;
+	padding-left: 100px;
+}
+
+#address_outside_us, #phone_outside_us, #guardian1_address_outside_us, #guardian2_address_outside_us{
+	float: none;
+}
+.scrollableContainer1 {
+    height: 350px;
+    padding: 3px; 
+}
+.scrollableContent1 {
+    height: 200px;
+    overflow:auto;
+}
+
+#undergradInstitution_div2{
+	display:none;
+}
+
+#undergradInstitution_div3{
+	display:none;
+}
+
+#undergradInstitution_div4{
+	display:none;
+}
+
+#undergradInstitution_div5{
+	display:none;
+}
+#undergradInstitution_div6{
+	display:none;
+}
+
+@media all and (min-width: 1200px){
+	.wide{
+		width:951px;
+	}
+	#last_name{
+	margin-left: -101px;
+	}
+	#middle_name{
+		margin-left: -20px;
+	}
+	.pg2-header{
+		width: 1000px;
+	}
+}
+
+@media all and (max-width: 1200px){
+	
+	#nav_verb{
+		margin: -21px -4px -5px 609px;
+		list-style: none;
+		float: right
+	}
+	.admission_ug_page {
+		padding-top: 150px;
+		padding-left: 70px;
+	}
+	.admission_ug_page1{
+		padding-top: 0px;
+		padding-left: 60px;
+	}
+	#last_name{
+	margin-left: -22px;
+	}
+	#middle_name{
+		margin-left: 19px;
+	}
+}
+
+@media all and (max-width: 979px){
+	.application{
+		margin-top: 2px;
+	}
+	#last_name{
+	margin-left: 50px;
+	}
+	#middle_name{
+		margin-left: 56px;
+	}
+}
+
+@media all and (max-width: 767px){
+	.application label{
+		text-align: left;
+	}
+	.top{
+
+	}
+	.right-justified label{
+		text-align: right;
+	}
+	.right-justified fieldset div{
+		display: inline;
+	}
+	.half {
+        float: left !important;
+        width: 50% !important;
+    }
+    input[type^='checkbox']{
+		margin-left: 15px;
+	}
+	#last_name{
+	margin-left: 0;
+	}
+	#middle_name{
+		margin-left: 0;
+	}
+}
+
+#navigation {
+	margin:0 0 20px 50px;
+}
+
+.current-navigation {
+	font-weight:bold;
+	font-size:15px;
+	border:1px solid #000;
+}
+.us_number, .non_us_number {
+	color:#aaa;
+    font-size:11px;
+}
+.ssn_number {
+	color:#aaa;
+    font-size:11px;
+}
+.errors {
+	margin:0;
+	padding:0;
+	text-decoration:none;
+	list-style:none;
+}
+.errors li {
+	padding: 8px 35px 8px 14px;
+	  margin-bottom: 20px;
+	  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	  background-color: #fcf8e3;
+	  border: 1px solid #fbeed5;
+	  -webkit-border-radius: 4px;
+	     -moz-border-radius: 4px;
+	          border-radius: 4px;
+	color: #b94a48;
+  	background-color: #f2dede;
+ 	border-color: #eed3d7;
+}
+#citizen-contain label {
+	display:inline;
+}
+#attended-contain label, #policy-issue-contain label, #arrested-contain label {
+	display:inline;
+}
+#citizen_yes {
+	margin-top:10px;
+}
+#citizen_yes .labelRight, 
+#citizen_legal_resident .labelRight, 
+#citizen_no .labelRight, 
+#citizen_alien .labelRight {
+	text-align:right;
+}
+#CitizenYes {
+	width:225px;
+}
+#summary-links {
+	float:right;
+	width:220px;
+}
+#summary-links li {
+	list-style:none;
+	float:left;
+	margin-right:10px;
+}
+#summary-links li a {
+	text-decoration:underline;
+}
+h1 span.college_name { display: none; }
+.application {
+	font-size:13px;
+}
