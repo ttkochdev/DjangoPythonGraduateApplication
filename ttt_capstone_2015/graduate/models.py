@@ -8,7 +8,6 @@ import binascii
 
 class Student(models.Model):
     id = models.AutoField(primary_key=True)
-    employer = models.CharField(max_length=255)
     batch_id = models.IntegerField(10)
     first_name = models.CharField(max_length=30)
     middle_name = models.CharField(max_length=30)
@@ -39,10 +38,15 @@ class Student(models.Model):
     student_load_intent = models.CharField(max_length=255)
     residency_status = models.CharField(max_length=255)
     planned_major = models.CharField(max_length=255)
-    level = models.CharField(max_length=3)
-    gi = models.IntegerField(1)
+    level = models.CharField(max_length=3)    
     refered_by_name = models.CharField(max_length=255)
     refered_by_relationship = models.CharField(max_length=255)
+    refered_by_name2 = models.CharField(max_length=255)
+    refered_by_relationship2 = models.CharField(max_length=255)
+    influence = models.CharField(max_length=255)
+    employer = models.CharField(max_length=255)
+    tution_remission = models.IntegerField(1)
+    gi = models.IntegerField(1)
 
     def __str__(self):
         return self.id

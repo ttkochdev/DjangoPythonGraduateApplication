@@ -15,6 +15,7 @@ def page1(request):
     assert isinstance(request, HttpRequest)
 
     if request.method == 'POST':
+        
         # create a form instance and populate it with data from the request:
         form = PageOneForm(request.POST)
         # check whether it's valid:
