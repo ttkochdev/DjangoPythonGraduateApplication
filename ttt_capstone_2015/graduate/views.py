@@ -11,12 +11,12 @@ from datetime import datetime
 from .forms import PageOneForm
 from .forms import PageTwoForm
 
-#from graduate.models import Race
+from graduate.models import Race
 
 def page1(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
-    #test = Race.objects.all() 
+    test = Race.objects.all() 
 
     if request.method == 'POST':
         
@@ -40,7 +40,7 @@ def page1(request):
         {
             'title':'Graduate Application Page-1',
             'form': form,
-            #'test': test,
+            'test': test,
             'year':datetime.now().year,
         })
     )

@@ -9,8 +9,15 @@ class PageOneForm(forms.Form):
     email = forms.CharField(label='Email', required=True)
     first_name = forms.CharField(label='First Name', required=True)
     middle_name = forms.CharField(label='Middle Name', required=True)
-    last_name = forms.CharField(label='Last Name', required=True)
-    suffix_name = forms.CharField(label='Suffix', required=True)
+    last_name = forms.CharField(label='Last Name', required=True)    
+    SUFFIX_TYPE_CHOICES = (
+        ('Jr','Jr.'),
+        ('Sr','Sr.'),
+        ('II','II'),
+        ('III','III'),
+        ('IV','IV'),
+        )
+    suffix = forms.ChoiceField(choices=SUFFIX_TYPE_CHOICES)
     preferred_first_name = forms.CharField(label='Prefered First Name', required=True)
     birth_last_name = forms.CharField(label='Birth Last Name', required=True)
     country = forms.BooleanField()
@@ -21,6 +28,7 @@ class PageOneForm(forms.Form):
     zipcode = forms.CharField(label='Zip Code', required=True)
     international_phone = forms.BooleanField()
     permanent_phone = forms.CharField(label='Permanent Telephone Number', required=True)
+    international_phone = forms.CharField(label='International Telephone Number', required=True)
     GENDER_TYPE_CHOICES = (
         ('M','Male'),
         ('F','Female'),
@@ -34,19 +42,20 @@ class PageOneForm(forms.Form):
         )
     gender = forms.ChoiceField(choices=ETHNICITY_TYPE_CHOICES)
      #INSERT INTO `admissions.dev.capstone`.`graduate_race` (`rid`, `race`) VALUES (NULL, 'American Indian or Alaska Native'), (NULL, 'Asian'), (NULL, 'Black or African American'), (NULL, 'Native Hawaiian or Other Pacific Islander'), (NULL, 'White');
-    RACE_CHOICES = (
-        ('American_Indian','American Indian or Alaska Native'),
-        ('Asian','Asian'),
-        ('Black','Black or African American'),
-        ('Native_Hawaiian','Native Hawaiian or Other Pacific Islander'),
-        ('White','White'),
-        )
+    #RACE_CHOICES = (
+    #    ('American_Indian','American Indian or Alaska Native'),
+    #    ('Asian','Asian'),
+    #    ('Black','Black or African American'),
+    #    ('Native_Hawaiian','Native Hawaiian or Other Pacific Islander'),
+    #    ('White','White'),
+    #    )
     #race = forms.MultipleChoiceField(choices=RACE_CHOICES,widget=forms.CheckboxSelectMultiple())
     race = forms.ModelMultipleChoiceField(queryset=Race.objects.all(),widget=forms.CheckboxSelectMultiple())
     denomination = forms.ChoiceField(choices=(('db','Database'),('val','Values')))
     is_citizen = forms.ChoiceField(choices=(('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')))
 
 class PageTwoForm(forms.Form):
+
     START_TERM_CHOICES = (
         #dynamic
         )
