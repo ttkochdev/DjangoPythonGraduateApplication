@@ -52,8 +52,8 @@ class Student(models.Model):
         return self.id
 
 class Address(models.Model):
-    said = models.IntegerField(2)
-    sid = models.IntegerField(10)
+    said = models.AutoField(primary_key=True)
+    sid = models.ForeignKey(Student)
     address1 = models.CharField(max_length=255)
     address2 = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
@@ -66,8 +66,8 @@ class Address(models.Model):
         return self.said
 
 class Phone(models.Model):
-    spid = models.IntegerField(2) 
-    sid = models.IntegerField(10)
+    spid = models.AutoField(primary_key=True) 
+    sid = models.ForeignKey(Student)
     phone = models.CharField(max_length=75)
     typeflag = models.CharField(max_length=255)
 
@@ -75,37 +75,39 @@ class Phone(models.Model):
         return self.spid
 
 class Religions(models.Model):
-    rid = models.IntegerField(3)
+    rid = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.rid
 
 class StudentLegal(models.Model):
-    sid = models.IntegerField(10)
+    slid = models.AutoField(primary_key=True)
+    sid = models.ForeignKey(Student)
     reason = models.CharField(max_length=255)
 
     def __str__(self):
         return self.sid
 
 class StudentPolicy(models.Model):
-    sid = models.IntegerField(10)
+    spid = models.AutoField(primary_key=True)
+    sid = models.ForeignKey(Student)
     reason = models.CharField(max_length=255)
 
     def __str__(self):
         return self.sid
 
 class StudentRace(models.Model):
-    srid = models.IntegerField(2)
-    sid = models.IntegerField(10)
+    srid = models.AutoField(primary_key=True)
+    sid = models.ForeignKey(Student)
     race = models.CharField(max_length=255)
 
     def __str__(self):
         return self.srid
 
 class StudentUndergraduateInstitution(models.Model):
-    soiid = models.IntegerField(2)
-    sid = models.IntegerField(10)
+    soiid = models.AutoField(primary_key=True)
+    sid = models.ForeignKey(Student)
     name = models.CharField(max_length=255)
     ceeb = models.CharField(max_length=10)
 
@@ -113,8 +115,8 @@ class StudentUndergraduateInstitution(models.Model):
         return self.soiid
 
 class StudentUploads(models.Model):
-    uid = models.IntegerField(2)
-    sid = models.IntegerField(10)
+    uid = models.AutoField(primary_key=True)
+    sid = models.ForeignKey(Student)
     name = models.CharField(max_length=255)
 
     _data = models.TextField(
@@ -131,3 +133,7 @@ class StudentUploads(models.Model):
 
     def __str__(self):
         return self.uid        
+
+class Race(models.Model):
+    rid = models.AutoField(primary_key=True)
+    race = models.CharField(max_length=255)
