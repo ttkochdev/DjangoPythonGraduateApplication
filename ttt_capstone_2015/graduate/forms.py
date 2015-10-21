@@ -3,6 +3,7 @@ Definition of forms.
 """
 
 from django import forms
+from graduate.models import Race
 
 class PageOneForm(forms.Form): 
     email = forms.CharField(label='Email', required=True)
@@ -32,6 +33,7 @@ class PageOneForm(forms.Form):
         ('NO','No, not Hispanic or Latino'),
         )
     gender = forms.ChoiceField(choices=ETHNICITY_TYPE_CHOICES)
+     #INSERT INTO `admissions.dev.capstone`.`graduate_race` (`rid`, `race`) VALUES (NULL, 'American Indian or Alaska Native'), (NULL, 'Asian'), (NULL, 'Black or African American'), (NULL, 'Native Hawaiian or Other Pacific Islander'), (NULL, 'White');
     RACE_CHOICES = (
         ('American_Indian','American Indian or Alaska Native'),
         ('Asian','Asian'),
@@ -39,7 +41,8 @@ class PageOneForm(forms.Form):
         ('Native_Hawaiian','Native Hawaiian or Other Pacific Islander'),
         ('White','White'),
         )
-    race = forms.MultipleChoiceField(choices=RACE_CHOICES,widget=forms.CheckboxSelectMultiple())
+    #race = forms.MultipleChoiceField(choices=RACE_CHOICES,widget=forms.CheckboxSelectMultiple())
+    race = forms.ModelMultipleChoiceField(queryset=Race.objects.all(),widget=forms.CheckboxSelectMultiple())
     denomination = forms.ChoiceField(choices=(('db','Database'),('val','Values')))
     is_citizen = forms.ChoiceField(choices=(('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')))
 
