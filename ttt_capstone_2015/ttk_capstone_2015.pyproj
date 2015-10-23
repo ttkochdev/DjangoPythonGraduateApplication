@@ -30,6 +30,12 @@
   <ItemGroup>
     <Compile Include="graduate\forms.py" />
     <Compile Include="graduate\models.py" />
+    <Compile Include="graduate\templatetags\debugtemplate.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="graduate\templatetags\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="graduate\tests.py" />
     <Compile Include="graduate\views.py" />
     <Compile Include="graduate\__init__.py" />
@@ -41,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="graduate\" />
+    <Folder Include="graduate\templatetags\" />
     <Folder Include="graduate\static\" />
     <Folder Include="graduate\static\app\" />
     <Folder Include="graduate\static\app\content\" />

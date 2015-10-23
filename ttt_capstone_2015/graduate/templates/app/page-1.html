@@ -175,9 +175,8 @@
     <option label="Sr." value="Sr.">Sr.</option>
     <option label="II" value="II">II</option>
     <option label="III" value="III">III</option>
-    <option label="IV" value="IV">IV</option> 
+    <option label="IV" value="IV">IV</option>
 </select>  
-            
             {% render_field form.suffix %}  
             {% for field in form.suffix %}
                 <li>{{ field }}</li>
@@ -495,8 +494,7 @@
                                         <div class="row-fluid">
                     <fieldset>
                         <div class="span12">
-                            <div class="span8 offset5">
-                                
+                            <div class="span8 offset5">                               
                                 {% render_field form.international_phone name="phone_outside_us" %}                                                             
                                 <label for="id_international_phone" class="no-bold inline">Check here if you have a non-U.S. phone number</label>
                             </div>
@@ -563,49 +561,21 @@
                                                 <fieldset>
                     <div class="span4"><label>What is your race?<br><span class="subtext">Choose one or more</span></label></div>
                 </fieldset>
-                <br>        
-   <!--http://stackoverflow.com/questions/2170228/iterate-over-model-instance-field-names-and-values-in-template-->
-        <!--http://www.coderhelps.xyz/code/10715401-how-to-save-data-from-multiplechoicefield-with-checkbox-widget-in-django.html-->
+                <br>
      
+        {% render_field form.race %}
+   
         {% for field in form.race %}
-                <li>{{ field.label_tag }}</li>
-                <div>{{ field }}</div>          
-        {% endfor %}
-
-        {% for key, value in form.race.field.choices %}
-             {{ key }}: {{ value }}
-        {% endfor %}
-
-        <ul>
-            <!--http://stackoverflow.com/questions/4437386/how-to-loop-over-form-field-choices-and-display-associated-model-instance-fields-->
-{% for choice in form.race.field.choices %}
-  <li>
-    <input type="checkbox" name="my_choice_field" value="{{choice.0}}"
-      {% ifequal form.race.data choice.0 %} 
-         checked="checked"
-      {% endifequal %}/>
-    <label for="">{{choice.1}}</label>
- </li>
-{% endfor %}
-</ul>
-
-        {% for pk, choice in form.race.field.widget.choices %}
-<tr>
-<td><a href="/link/{{ choice }}">{{ choice }}</a></td>
-<td><label for="id_options_{{ forloop.counter0 }}">
-    <input {% for option in app.options.all %}{% if option.pk == pk %}checked="checked"{% endif %}{% endfor %} type="checkbox" id="id_options_{{ forloop.counter0 }}" value="{{ pk }}" name="options" />
-    </label></td>
-</tr>
-{% endfor %} 
+                <li>{{ field }}</li>
+             {% endfor %}
 
 
-        {{ form.race|pprint }}
+        {% load debugtemplate %}
 
-
-         {% for field in test %}
-                <div>{{ field.race }}</div>          
-        {% endfor %}
-
+        <!--https://djangosnippets.org/snippets/1689/-->
+        <!--http://stackoverflow.com/questions/1118183/how-to-debug-in-django-the-good-way-->
+        <!-- {# pdbdebug #} -->
+         <!-- {# form|pdbdebug #} -->
      
         <!--            <fieldset class="right-justified">
                     <div class="span8 offset2 half">

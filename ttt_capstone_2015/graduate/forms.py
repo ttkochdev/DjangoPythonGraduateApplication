@@ -3,6 +3,7 @@ Definition of forms.
 """
 
 from django import forms
+#from django.forms.models import model_to_dict
 from graduate.models import Race
 
 class PageOneForm(forms.Form): 
@@ -50,6 +51,8 @@ class PageOneForm(forms.Form):
     #    ('White','White'),
     #    )
     #race = forms.MultipleChoiceField(choices=RACE_CHOICES,widget=forms.CheckboxSelectMultiple())
+    #racedata = model_to_dict(Race.objects.all())
+    #race = forms.MultipleChoiceField(choices=racedata,widget=forms.CheckboxSelectMultiple())
     race = forms.ModelMultipleChoiceField(queryset=Race.objects.all(),widget=forms.CheckboxSelectMultiple())
     denomination = forms.ChoiceField(choices=(('db','Database'),('val','Values')))
     is_citizen = forms.ChoiceField(choices=(('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')))
