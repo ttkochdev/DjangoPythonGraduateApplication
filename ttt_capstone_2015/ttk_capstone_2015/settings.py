@@ -1,5 +1,11 @@
 ﻿"""
 Django settings for ttk_capstone_2015 project.
+python packages requirements:
+crypto 1.4.1
+django-widget-tweaks 1.4.1
+mysqlclient 1.3.6
+
+
 """
 
 from os import path
