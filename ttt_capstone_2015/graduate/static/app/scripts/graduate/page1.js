@@ -48,7 +48,7 @@ $().ready(function() {
 	});
 	
 	$("select[name='is_citzen']").change(function() {
-		if ($(this).val() == 'Yes') {
+		if ($(this).val() == 'yes') {
 			$('#citizen_yes').show();
 			$('#citizen_legal_resident').hide();
 			$('#citizen_alien').hide();
@@ -60,7 +60,7 @@ $().ready(function() {
 			$('#is_international_student').val('');
 			$('#alien_status').val('');
 			
-		} else if ($(this).val() == 'Legal Permanent Resident') {
+		} else if ($(this).val() == 'legal') {
 			$('#citizen_yes').show();
 			$('#citizen_legal_resident').show();
 			$('#citizen_alien').show();
@@ -69,7 +69,7 @@ $().ready(function() {
 			$('#is_international_student').val('');
 			$('#alien_status').val('');
 			
-		} else if ($(this).val() == 'No') {
+		} else if ($(this).val() == 'no') {
 			$('#citizen_yes').hide();
 			$('#citizen_alien').hide();
 			$('#citizen_legal_resident').show();

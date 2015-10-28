@@ -473,12 +473,9 @@
                 <div class="span3"><label>Are you a United States citizen?</label></div>
                 <div class="span4">
                                         
-<select id="CitizenYes" name="is_citzen">
-    <option selected="selected" label="" value=""></option>
-    <option label="Yes" value="Yes">Yes</option>
-    <option label="Legal Permanent Resident" value="Legal Permanent Resident">Legal Permanent Resident</option>
-    <option label="No" value="No">No</option>
-</select>                </div>
+             
+                {% render_field form.is_citizen name='is_citzen' %}
+                </div>
             </fieldset>
             <div style="display:none;" id="citizen_yes">
             <fieldset>

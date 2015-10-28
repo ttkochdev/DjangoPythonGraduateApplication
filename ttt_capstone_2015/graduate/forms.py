@@ -67,7 +67,7 @@ class PageOneForm(forms.Form):
     #race = forms.MultipleChoiceField(choices=racedata,widget=forms.CheckboxSelectMultiple())
     race = forms.ModelMultipleChoiceField(queryset=Race.objects.values('race'),widget=forms.CheckboxSelectMultiple())
     denomination = forms.ChoiceField(choices=(('db','Database'),('val','Values')))
-    is_citizen = forms.ChoiceField(choices=(('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')))
+    is_citizen = forms.ChoiceField(choices=(("",""),('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')))
 
 class PageTwoForm(forms.Form):
 
