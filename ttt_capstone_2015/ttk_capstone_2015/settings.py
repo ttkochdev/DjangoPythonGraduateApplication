@@ -5,7 +5,7 @@ crypto 1.4.1
 django-widget-tweaks 1.4.1
 mysqlclient 1.3.6
 django-localflavor
-
+django-countries
 """
 
 from os import path
@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'widget_tweaks', #https://pypi.python.org/pypi/django-widget-tweaks
     'debug_toolbar', #http://django-debug-toolbar.readthedocs.org/en/1.4/installation.html
     'localflavor',
+    'django_countries',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

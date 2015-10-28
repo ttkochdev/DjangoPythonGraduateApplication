@@ -8,7 +8,7 @@ from graduate.models import Race
 
 from localflavor.us.us_states import STATE_CHOICES
 #from localflavor.us.forms import USStateSelect
-
+from django_countries import countries
 
 class PageOneForm(forms.Form): 
     email = forms.CharField(label='Email', required=True)
@@ -25,7 +25,9 @@ class PageOneForm(forms.Form):
     suffix = forms.ChoiceField(choices=SUFFIX_TYPE_CHOICES)
     preferred_first_name = forms.CharField(label='Prefered First Name', required=True)
     birth_last_name = forms.CharField(label='Birth Last Name', required=True)
-    country = forms.BooleanField()
+    #country = forms.BooleanField()
+    internationalcheck = forms.BooleanField()
+    country = forms.ChoiceField(choices=countries)
     address1 = forms.CharField(label='Mailing Address', required=True) 
     address2 = forms.CharField(label='Mailing Address 2', required=True)
     city = forms.CharField(label='City', required=True)
