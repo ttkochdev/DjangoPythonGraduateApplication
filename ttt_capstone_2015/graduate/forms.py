@@ -9,12 +9,14 @@ from graduate.models import Race
 from localflavor.us.us_states import STATE_CHOICES
 #from localflavor.us.forms import USStateSelect
 from django_countries import countries
+from localflavor.us.forms import USSocialSecurityNumberField
 
 class PageOneForm(forms.Form): 
     email = forms.CharField(label='Email', required=True)
     first_name = forms.CharField(label='First Name', required=True)
     middle_name = forms.CharField(label='Middle Name', required=True)
     last_name = forms.CharField(label='Last Name', required=True)    
+    social_security = USSocialSecurityNumberField()
     SUFFIX_TYPE_CHOICES = (
         ('Jr','Jr.'),
         ('Sr','Sr.'),
@@ -28,6 +30,8 @@ class PageOneForm(forms.Form):
     #country = forms.BooleanField()
     internationalcheck = forms.BooleanField()
     country = forms.ChoiceField(choices=countries)
+    citizenship_country = forms.ChoiceField(choices=countries)
+    residence_country = forms.ChoiceField(choices=countries)
     address1 = forms.CharField(label='Mailing Address', required=True) 
     address2 = forms.CharField(label='Mailing Address 2', required=True)
     city = forms.CharField(label='City', required=True)
