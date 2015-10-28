@@ -6,6 +6,10 @@ from django import forms
 #from django.forms.models import model_to_dict
 from graduate.models import Race
 
+from localflavor.us.us_states import STATE_CHOICES
+#from localflavor.us.forms import USStateSelect
+
+
 class PageOneForm(forms.Form): 
     email = forms.CharField(label='Email', required=True)
     first_name = forms.CharField(label='First Name', required=True)
@@ -25,7 +29,9 @@ class PageOneForm(forms.Form):
     address1 = forms.CharField(label='Mailing Address', required=True) 
     address2 = forms.CharField(label='Mailing Address 2', required=True)
     city = forms.CharField(label='City', required=True)
-    state = forms.CharField(label='State', required=True)
+    STATE_CHOICES = (('', '---------'),) + STATE_CHOICES
+    state = forms.ChoiceField(choices=STATE_CHOICES)
+    #state = forms.CharField(label='State', required=True)
     zipcode = forms.CharField(label='Zip Code', required=True)
     international_phone = forms.BooleanField()
     permanent_phone = forms.CharField(label='Permanent Telephone Number', required=True)

@@ -4,7 +4,7 @@ python packages requirements:
 crypto 1.4.1
 django-widget-tweaks 1.4.1
 mysqlclient 1.3.6
-
+django-localflavor
 
 """
 
