@@ -139,6 +139,7 @@ INSTALLED_APPS = (
     'graduate',
     'widget_tweaks', #https://pypi.python.org/pypi/django-widget-tweaks
     'debug_toolbar', #http://django-debug-toolbar.readthedocs.org/en/1.4/installation.html
+    'localflavor',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
