@@ -566,9 +566,30 @@
         {% render_field form.race %}
    
         {% for field in form.race %}
-                <li>{{ field }}</li>
+                <div>{{ field }}</div>
              {% endfor %}
 
+
+<ul>
+{% for choice in form.race.field.choices %}
+
+  <li>
+
+    <input type="checkbox" name="my_choice_field" value="{{choice.0}}"
+
+      {% ifequal form.race.data choice.0 %} 
+
+         checked="checked"
+
+      {% endifequal %}/>
+
+    <label for="">{{choice.1}}</label>
+
+ </li>
+
+{% endfor %}
+
+</ul>
 
         {% load debugtemplate %}
 
