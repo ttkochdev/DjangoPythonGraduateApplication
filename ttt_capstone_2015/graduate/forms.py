@@ -18,6 +18,7 @@ class PageOneForm(forms.Form):
     last_name = forms.CharField(label='Last Name', required=True)    
     social_security = USSocialSecurityNumberField()
     SUFFIX_TYPE_CHOICES = (
+        ('',''),
         ('Jr','Jr.'),
         ('Sr','Sr.'),
         ('II','II'),
@@ -43,6 +44,7 @@ class PageOneForm(forms.Form):
     permanent_phone = forms.CharField(label='Permanent Telephone Number', required=True)
     international_phone = forms.CharField(label='International Telephone Number', required=True)
     GENDER_TYPE_CHOICES = (
+        ('',''),
         ('M','Male'),
         ('F','Female'),
         )
@@ -50,10 +52,11 @@ class PageOneForm(forms.Form):
     birth_date = forms.DateTimeField(input_formats='%m/%d/%Y')
     birth_place = forms.CharField(label='Birthplace', required=True)
     ETHNICITY_TYPE_CHOICES = (
+        ('',''),
         ('YES','Yes, Hispanic or Latino'),
         ('NO','No, not Hispanic or Latino'),
         ) 
-    gender = forms.ChoiceField(choices=ETHNICITY_TYPE_CHOICES)
+    ethnicity = forms.ChoiceField(choices=ETHNICITY_TYPE_CHOICES)
      #INSERT INTO `admissions.dev.capstone`.`graduate_race` (`rid`, `race`) VALUES (NULL, 'American Indian or Alaska Native'), (NULL, 'Asian'), (NULL, 'Black or African American'), (NULL, 'Native Hawaiian or Other Pacific Islander'), (NULL, 'White');
     #RACE_CHOICES = (
     #    ('American_Indian','American Indian or Alaska Native'),

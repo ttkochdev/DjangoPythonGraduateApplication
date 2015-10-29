@@ -237,7 +237,7 @@
                 <fieldset>
                     <div class="span5"><label>Zip Code</label></div>
                     <div class="span7"><span>
-                        {% render_field form.zipcode class="input-small"  maxlength="10" name="zip" %}
+                        {% render_field form.zipcode class="input-small"  maxlength="10" name="zipcode" %}
                         </span>
                     </div>
                 </fieldset>
@@ -294,16 +294,10 @@
                         </span>                    
                     </div>
                 </fieldset>
-                                                <fieldset>
+                <fieldset>
                     <div class="span5"><label for="gender">Gender</label></div>
-                    <div class="span7">
-                        
-<select class="input-small" id="gender" name="gender">
-    <option selected="selected" label="" value=""></option>
-    <option label="Female" value="Female">Female</option>
-    <option label="Male" value="Male">Male</option>
-</select>                    
-           {% render_field form.gender %}          
+                    <div class="span7">                                  
+                        {% render_field form.gender class='input-small' %}          
                     </div>
                 </fieldset>
                                                 <fieldset>
@@ -316,17 +310,15 @@
                     <div class="span5"><label>Birthplace (City/State)</label></div>
                     <div class="span7">
                         <span>
-<input type="text" placeholder="City, ST" maxlength="30" value="" id="birth_place" name="birth_place"></span>                    </div>
+                            {% render_field form.birth_place name='birth_place' placeholder='City, ST' maxlength='30' %}   
+                        </span>                    
+                    </div>
                 </fieldset>
                                                 <fieldset>
                     <div class="span5"><label for="ethnicity">Are you Hispanic or Latino?</label></div>
-                    <div class="span1">
-                        
-<select id="ethnicity" name="ethnicity">
-    <option selected="selected" label="" value=""></option>
-    <option label="Yes, Hispanic or Latino" value="Yes, Hispanic or Latino">Yes, Hispanic or Latino</option>
-    <option label="No, not Hispanic or Latino" value="No, not Hispanic or Latino">No, not Hispanic or Latino</option>
-</select>                    </div>
+                    <div class="span1">                        
+                        {% render_field form.ethnicity %}                      
+                    </div>
                 </fieldset>
                 <br><br>
                                                 <fieldset>
