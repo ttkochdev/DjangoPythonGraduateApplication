@@ -19,18 +19,19 @@ def page1(request):
     test = Race.objects.all() 
 
     if request.method == 'POST':
+        #save post data to session
         
-        # create a form instance and populate it with data from the request:
-        form = PageOneForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
+        #if submit = page2 then go to page 2 else if page-3 then go to page 3
+        if(request.POST.get('page2', '')):
             return HttpResponseRedirect('/page-2/')
+        elif (request.POST.get('page3', '')):
+            return HttpResponseRedirect('/page-3/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
+        #if session exists populate form
+        #form = PageOneForm(SESSION)
+        #else create empty form
         form = PageOneForm()
 
     return render(
@@ -51,19 +52,20 @@ def page2(request):
 
 
     if request.method == 'POST':
+        #save post data to session
         
-        # create a form instance and populate it with data from the request:
-        form = PageTwoForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
+        #if submit = page2 then go to page 2 else if page-3 then go to page 3
+        if(request.POST.get('page2', '')):
             return HttpResponseRedirect('/page-2/')
+        elif (request.POST.get('page3', '')):
+            return HttpResponseRedirect('/page-3/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = PageTwoForm()
+        #if session exists populate form
+        #form = PageOneForm(SESSION)
+        #else create empty form
+        form = PageOneForm()
 
 
     return render(
@@ -81,6 +83,25 @@ def page3(request):
     """Renders page3."""
     assert isinstance(request, HttpRequest)
     
+    
+    if request.method == 'POST':
+        #validate all forms and show errors
+        #if no errors then display ready to submit and final submit button
+        
+        #if submit = page2 then go to page 2 else if page-3 then go to page 3
+        if(request.POST.get('page1', '')):
+            return HttpResponseRedirect('/page-1/')
+        elif (request.POST.get('page2', '')):
+            return HttpResponseRedirect('/page-2/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        #if session exists populate form
+        #form = PageOneForm(SESSION)
+        #else create empty form
+        #form = PageOneForm()
+        print("page3")
+
     return render(
         request,
         'app/page-3.html',
