@@ -334,7 +334,10 @@
           <label>Have you ever been accused or charged with violating a code of student conduct or institutional policy, or been suspended, placed on probation, dismissed, or expelled from any high school or college?</label>
         </div>
         <div id="policy-issue-contain" class="span7"> 
-<label for="has_policy_issue-1"><input type="radio" name="has_policy_issue" id="has_policy_issue-1" value="1">Yes</label> &nbsp; <label for="has_policy_issue-0"><input type="radio" name="has_policy_issue" id="has_policy_issue-0" value="0">No</label> </div>
+<!--<label for="has_policy_issue-1"><input type="radio" name="has_policy_issue" id="has_policy_issue-1" value="1">Yes</label> &nbsp; 
+                            <label for="has_policy_issue-0"><input type="radio" name="has_policy_issue" id="has_policy_issue-0" value="0">No</label> -->
+        {{ form.policy }}   
+        </div>
       </div>
       <br>
             <div id="policy-reason" class="row-fluid" style="display:none;">
@@ -351,7 +354,12 @@
           <label>Have you ever been arrested, indicted, or convicted of anything other than a minor traffic violation?</label>
         </div>
         <div id="arrested-contain" class="span7"> 
-<label for="has_legal_issue-1"><input type="radio" name="has_legal_issue" id="has_legal_issue-1" value="1">Yes</label> &nbsp; <label for="has_legal_issue-0"><input type="radio" name="has_legal_issue" id="has_legal_issue-0" value="0">No</label> </div>
+            <!--<label for="has_legal_issue-1">
+            <input type="radio" name="has_legal_issue" id="has_legal_issue-1" value="1">Yes</label> &nbsp; 
+            <label for="has_legal_issue-0">
+            <input type="radio" name="has_legal_issue" id="has_legal_issue-0" value="0">No</label>  -->
+            {{ form.legal }}       
+        </div>
       </div>
       <br>
             <div id="legal-reason" class="row-fluid" style="display:none;">
@@ -359,7 +367,9 @@
           <label>If yes, please explain your conviction in 140 characters or less.</label>
         </div>
         <div class="span7"> <span>
-<input type="text" name="legal_reason" id="legal_reason" value="" maxlength="140" class="input-large"></span> </div>
+<input type="text" name="legal_reason" id="legal_reason" value="" maxlength="140" class="input-large">
+            
+            </span> </div>
       </div>
             <div class="span7">
                 <h2>Employer Mailing Address</h2>
@@ -368,7 +378,9 @@
             <label>Employer Name</label>
           </div>
           <div class="span7"> <span>
-<input type="text" name="employer_name" id="employer_name" value="" maxlength="100" class="input-medium fieldLabel"></span> </div>
+
+              {% render_field form.employment_name class='input-medium fieldLabel' maxlength='100' %}
+              </span> </div>
         </fieldset>
                 			                      <div class="row-fluid">
           <fieldset>
@@ -384,7 +396,7 @@
             <label>Employment Mailing Address</label>
           </div>
           <div class="span7"> <span>
-<input type="text" name="employer_address" id="employer_address" value="" maxlength="30"></span> </div>
+{% render_field form.employment_address name='employment_address' maxlength='30' %}</span> </div>
         </fieldset>
        			
             			                          <div id="employer_inside_us">
@@ -393,61 +405,11 @@
               <label>City / State</label>
             </div>
             <div class="span7"> <span>
-<input type="text" name="employer_city" id="employer_city" value="" maxlength="25" class="input-small" placeholder="City"></span> 
-<select name="employer_state" id="employer_state" class="input-medium">
-    <option value="" label="" selected="selected"></option>
-    <option value="Alabama" label="Alabama">Alabama</option>
-    <option value="Alaska" label="Alaska">Alaska</option>
-    <option value="Arizona" label="Arizona">Arizona</option>
-    <option value="Arkansas" label="Arkansas">Arkansas</option>
-    <option value="California" label="California">California</option>
-    <option value="Colorado" label="Colorado">Colorado</option>
-    <option value="Connecticut" label="Connecticut">Connecticut</option>
-    <option value="Delaware" label="Delaware">Delaware</option>
-    <option value="District Of Columbia" label="District Of Columbia">District Of Columbia</option>
-    <option value="Florida" label="Florida">Florida</option>
-    <option value="Georgia" label="Georgia">Georgia</option>
-    <option value="Hawaii" label="Hawaii">Hawaii</option>
-    <option value="Idaho" label="Idaho">Idaho</option>
-    <option value="Illinois" label="Illinois">Illinois</option>
-    <option value="Indiana" label="Indiana">Indiana</option>
-    <option value="Iowa" label="Iowa">Iowa</option>
-    <option value="Kansas" label="Kansas">Kansas</option>
-    <option value="Kentucky" label="Kentucky">Kentucky</option>
-    <option value="Louisiana" label="Louisiana">Louisiana</option>
-    <option value="Maine" label="Maine">Maine</option>
-    <option value="Maryland" label="Maryland">Maryland</option>
-    <option value="Massachusetts" label="Massachusetts">Massachusetts</option>
-    <option value="Michigan" label="Michigan">Michigan</option>
-    <option value="Minnesota" label="Minnesota">Minnesota</option>
-    <option value="Mississippi" label="Mississippi">Mississippi</option>
-    <option value="Missouri" label="Missouri">Missouri</option>
-    <option value="Montana" label="Montana">Montana</option>
-    <option value="Nebraska" label="Nebraska">Nebraska</option>
-    <option value="Nevada" label="Nevada">Nevada</option>
-    <option value="New Hampshire" label="New Hampshire">New Hampshire</option>
-    <option value="New Jersey" label="New Jersey">New Jersey</option>
-    <option value="New Mexico" label="New Mexico">New Mexico</option>
-    <option value="New York" label="New York">New York</option>
-    <option value="North Carolina" label="North Carolina">North Carolina</option>
-    <option value="North Dakota" label="North Dakota">North Dakota</option>
-    <option value="Ohio" label="Ohio">Ohio</option>
-    <option value="Oklahoma" label="Oklahoma">Oklahoma</option>
-    <option value="Oregon" label="Oregon">Oregon</option>
-    <option value="Pennsylvania" label="Pennsylvania">Pennsylvania</option>
-    <option value="Rhode Island" label="Rhode Island">Rhode Island</option>
-    <option value="South Carolina" label="South Carolina">South Carolina</option>
-    <option value="South Dakota" label="South Dakota">South Dakota</option>
-    <option value="Tennessee" label="Tennessee">Tennessee</option>
-    <option value="Texas" label="Texas">Texas</option>
-    <option value="Utah" label="Utah">Utah</option>
-    <option value="Vermont" label="Vermont">Vermont</option>
-    <option value="Virginia" label="Virginia">Virginia</option>
-    <option value="Washington" label="Washington">Washington</option>
-    <option value="West Virginia" label="West Virginia">West Virginia</option>
-    <option value="Wisconsin" label="Wisconsin">Wisconsin</option>
-    <option value="Wyoming" label="Wyoming">Wyoming</option>
-</select> </div>
+                {% render_field form.employment_city name='employment_city' maxlength='25' class='input-small' placeholder='City' %}
+                </span> 
+
+              {{ form.employment_state }}
+               </div>
           </fieldset>
         
           <fieldset>
@@ -455,16 +417,20 @@
               <label>Zip Code</label>
             </div>
             <div class="span7"><span>
-<input type="text" name="employer_zip" id="employer_zip" value="" maxlength="10" class="input-small"></span></div>
+              {% render_field form.employment_zip name='employment_zip' maxlength='10' class='input-small' %}
+                  </span>
+              </div>
           </fieldset>
         </div>
-        			                          <div id="employer_outside_us" style="display:none;">
+        	<div id="employer_outside_us" style="display:none;">
           <fieldset>
             <div class="span5">
               <label>City and Postal Code</label>
             </div>
             <div class="span7"> <span>
-<input type="text" name="employer_address3" id="employer_address3" value="" maxlength="30"></span> </div>
+                {% render_field form.employment_address_outside name='employment_address_outside' maxlength='30' %}
+                </span> 
+              </div>
           </fieldset>
                     <div class="row-fluid">
             <div class="span12">
@@ -473,175 +439,8 @@
                   <label for="country">Country</label>
                 </div>
                 <div class="span7"> 
-<select name="employer_country" id="employer_country">
-    <option value="" label="" selected="selected"></option>
-    <option value="Afghanistan" label="Afghanistan">Afghanistan</option>
-    <option value="Albania" label="Albania">Albania</option>
-    <option value="Algeria" label="Algeria">Algeria</option>
-    <option value="Andorra" label="Andorra">Andorra</option>
-    <option value="Angola" label="Angola">Angola</option>
-    <option value="Argentina" label="Argentina">Argentina</option>
-    <option value="Armenia" label="Armenia">Armenia</option>
-    <option value="Australia" label="Australia">Australia</option>
-    <option value="Austria" label="Austria">Austria</option>
-    <option value="Azerbaijan" label="Azerbaijan">Azerbaijan</option>
-    <option value="Bahamas, The" label="Bahamas, The">Bahamas, The</option>
-    <option value="Bahrain" label="Bahrain">Bahrain</option>
-    <option value="Bangladesh" label="Bangladesh">Bangladesh</option>
-    <option value="Barbados" label="Barbados">Barbados</option>
-    <option value="Belarus" label="Belarus">Belarus</option>
-    <option value="Belgium" label="Belgium">Belgium</option>
-    <option value="Belize" label="Belize">Belize</option>
-    <option value="Benin" label="Benin">Benin</option>
-    <option value="Bhutan" label="Bhutan">Bhutan</option>
-    <option value="Bolivia" label="Bolivia">Bolivia</option>
-    <option value="Bosnia and Herzegovina" label="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-    <option value="Botswana" label="Botswana">Botswana</option>
-    <option value="Brazil" label="Brazil">Brazil</option>
-    <option value="Bulgaria" label="Bulgaria">Bulgaria</option>
-    <option value="Burkina Faso" label="Burkina Faso">Burkina Faso</option>
-    <option value="Burma" label="Burma">Burma</option>
-    <option value="Burundi" label="Burundi">Burundi</option>
-    <option value="Cambodia" label="Cambodia">Cambodia</option>
-    <option value="Cameroon" label="Cameroon">Cameroon</option>
-    <option value="Canada" label="Canada">Canada</option>
-    <option value="Central African Republic" label="Central African Republic">Central African Republic</option>
-    <option value="Chad" label="Chad">Chad</option>
-    <option value="Chile" label="Chile">Chile</option>
-    <option value="China" label="China">China</option>
-    <option value="Colombia" label="Colombia">Colombia</option>
-    <option value="Congo" label="Congo">Congo</option>
-    <option value="Costa Rica" label="Costa Rica">Costa Rica</option>
-    <option value="Cote d&#39;Ivoire" label="Cote d&#39;Ivoire">Cote d'Ivoire</option>
-    <option value="Croatia" label="Croatia">Croatia</option>
-    <option value="Cuba" label="Cuba">Cuba</option>
-    <option value="Cyprus" label="Cyprus">Cyprus</option>
-    <option value="Czech Republic" label="Czech Republic">Czech Republic</option>
-    <option value="Denmark" label="Denmark">Denmark</option>
-    <option value="Dominica" label="Dominica">Dominica</option>
-    <option value="Dominican Republic" label="Dominican Republic">Dominican Republic</option>
-    <option value="Ecuador" label="Ecuador">Ecuador</option>
-    <option value="Egypt" label="Egypt">Egypt</option>
-    <option value="El Salvador" label="El Salvador">El Salvador</option>
-    <option value="England" label="England">England</option>
-    <option value="Estonia" label="Estonia">Estonia</option>
-    <option value="Ethiopia" label="Ethiopia">Ethiopia</option>
-    <option value="Fiji" label="Fiji">Fiji</option>
-    <option value="Finland" label="Finland">Finland</option>
-    <option value="France" label="France">France</option>
-    <option value="Gambia, The" label="Gambia, The">Gambia, The</option>
-    <option value="Georgia" label="Georgia">Georgia</option>
-    <option value="Germany" label="Germany">Germany</option>
-    <option value="Ghana" label="Ghana">Ghana</option>
-    <option value="Greece" label="Greece">Greece</option>
-    <option value="Grenada" label="Grenada">Grenada</option>
-    <option value="Guatemala" label="Guatemala">Guatemala</option>
-    <option value="Guinea" label="Guinea">Guinea</option>
-    <option value="Haiti" label="Haiti">Haiti</option>
-    <option value="Honduras" label="Honduras">Honduras</option>
-    <option value="Hong Kong" label="Hong Kong">Hong Kong</option>
-    <option value="Hungary" label="Hungary">Hungary</option>
-    <option value="Iceland" label="Iceland">Iceland</option>
-    <option value="India" label="India">India</option>
-    <option value="Indonesia" label="Indonesia">Indonesia</option>
-    <option value="Iran" label="Iran">Iran</option>
-    <option value="Iraq" label="Iraq">Iraq</option>
-    <option value="Ireland" label="Ireland">Ireland</option>
-    <option value="Israel" label="Israel">Israel</option>
-    <option value="Italy" label="Italy">Italy</option>
-    <option value="Jamaica" label="Jamaica">Jamaica</option>
-    <option value="Japan" label="Japan">Japan</option>
-    <option value="Jordan" label="Jordan">Jordan</option>
-    <option value="Kazakhstan" label="Kazakhstan">Kazakhstan</option>
-    <option value="Kenya" label="Kenya">Kenya</option>
-    <option value="Korea, North" label="Korea, North">Korea, North</option>
-    <option value="Korea, South" label="Korea, South">Korea, South</option>
-    <option value="Kuwait" label="Kuwait">Kuwait</option>
-    <option value="Kyrgyzstan" label="Kyrgyzstan">Kyrgyzstan</option>
-    <option value="Latvia" label="Latvia">Latvia</option>
-    <option value="Lebanon" label="Lebanon">Lebanon</option>
-    <option value="Liberia" label="Liberia">Liberia</option>
-    <option value="Libya" label="Libya">Libya</option>
-    <option value="Liechtenstein" label="Liechtenstein">Liechtenstein</option>
-    <option value="Lithuania" label="Lithuania">Lithuania</option>
-    <option value="Luxembourg" label="Luxembourg">Luxembourg</option>
-    <option value="Macedonia" label="Macedonia">Macedonia</option>
-    <option value="Madagascar" label="Madagascar">Madagascar</option>
-    <option value="Malawi" label="Malawi">Malawi</option>
-    <option value="Malaysia" label="Malaysia">Malaysia</option>
-    <option value="Mali" label="Mali">Mali</option>
-    <option value="Malta" label="Malta">Malta</option>
-    <option value="Mauritius" label="Mauritius">Mauritius</option>
-    <option value="Mexico" label="Mexico">Mexico</option>
-    <option value="Moldova" label="Moldova">Moldova</option>
-    <option value="Monaco" label="Monaco">Monaco</option>
-    <option value="Mongolia" label="Mongolia">Mongolia</option>
-    <option value="Morocco" label="Morocco">Morocco</option>
-    <option value="Mozambique" label="Mozambique">Mozambique</option>
-    <option value="Myanmar" label="Myanmar">Myanmar</option>
-    <option value="Namibia" label="Namibia">Namibia</option>
-    <option value="Nauru" label="Nauru">Nauru</option>
-    <option value="Nepal" label="Nepal">Nepal</option>
-    <option value="Netherlands" label="Netherlands">Netherlands</option>
-    <option value="New Zealand" label="New Zealand">New Zealand</option>
-    <option value="Nicaragua" label="Nicaragua">Nicaragua</option>
-    <option value="Niger" label="Niger">Niger</option>
-    <option value="Nigeria" label="Nigeria">Nigeria</option>
-    <option value="Northern Ireland" label="Northern Ireland">Northern Ireland</option>
-    <option value="Norway" label="Norway">Norway</option>
-    <option value="Oman" label="Oman">Oman</option>
-    <option value="Pakistan" label="Pakistan">Pakistan</option>
-    <option value="Panama" label="Panama">Panama</option>
-    <option value="Papua New Guinea" label="Papua New Guinea">Papua New Guinea</option>
-    <option value="Paraguay" label="Paraguay">Paraguay</option>
-    <option value="Peru" label="Peru">Peru</option>
-    <option value="Philippines" label="Philippines">Philippines</option>
-    <option value="Poland" label="Poland">Poland</option>
-    <option value="Portugal" label="Portugal">Portugal</option>
-    <option value="Qatar" label="Qatar">Qatar</option>
-    <option value="Romania" label="Romania">Romania</option>
-    <option value="Russia" label="Russia">Russia</option>
-    <option value="Rwanda" label="Rwanda">Rwanda</option>
-    <option value="Saint Kitts and Nevis" label="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-    <option value="Saint Lucia" label="Saint Lucia">Saint Lucia</option>
-    <option value="Samoa" label="Samoa">Samoa</option>
-    <option value="San Marino" label="San Marino">San Marino</option>
-    <option value="Saudi Arabia" label="Saudi Arabia">Saudi Arabia</option>
-    <option value="Scotland" label="Scotland">Scotland</option>
-    <option value="Senegal" label="Senegal">Senegal</option>
-    <option value="Serbia" label="Serbia">Serbia</option>
-    <option value="Singapore" label="Singapore">Singapore</option>
-    <option value="Slovakia" label="Slovakia">Slovakia</option>
-    <option value="Somalia" label="Somalia">Somalia</option>
-    <option value="South Africa" label="South Africa">South Africa</option>
-    <option value="Spain" label="Spain">Spain</option>
-    <option value="Sri Lanka" label="Sri Lanka">Sri Lanka</option>
-    <option value="Sudan" label="Sudan">Sudan</option>
-    <option value="Sweden" label="Sweden">Sweden</option>
-    <option value="Switzerland" label="Switzerland">Switzerland</option>
-    <option value="Syria" label="Syria">Syria</option>
-    <option value="Taiwan" label="Taiwan">Taiwan</option>
-    <option value="Tajikistan" label="Tajikistan">Tajikistan</option>
-    <option value="Tanzania" label="Tanzania">Tanzania</option>
-    <option value="Thailand" label="Thailand">Thailand</option>
-    <option value="Trinidad and Tobago" label="Trinidad and Tobago">Trinidad and Tobago</option>
-    <option value="Tunisia" label="Tunisia">Tunisia</option>
-    <option value="Turkey" label="Turkey">Turkey</option>
-    <option value="Turkmenistan" label="Turkmenistan">Turkmenistan</option>
-    <option value="Uganda" label="Uganda">Uganda</option>
-    <option value="Ukraine" label="Ukraine">Ukraine</option>
-    <option value="United Arab Emirates" label="United Arab Emirates">United Arab Emirates</option>
-    <option value="United Kingdom" label="United Kingdom">United Kingdom</option>
-    <option value="United States" label="United States">United States</option>
-    <option value="Uruguay" label="Uruguay">Uruguay</option>
-    <option value="Uzbekistan" label="Uzbekistan">Uzbekistan</option>
-    <option value="Venezuela" label="Venezuela">Venezuela</option>
-    <option value="Vietnam" label="Vietnam">Vietnam</option>
-    <option value="Wales" label="Wales">Wales</option>
-    <option value="Yemen" label="Yemen">Yemen</option>
-    <option value="Zambia" label="Zambia">Zambia</option>
-    <option value="Zimbabwe" label="Zimbabwe">Zimbabwe</option>
-</select> </div>
+                    {{ form.employer_country}} 
+                </div>
                 <br>
               </fieldset>
             </div>
@@ -760,10 +559,16 @@
                       </div>
                 </div>
             </div>
-        </div><div style="position: static;"><div class="a2a_overlay" id="a2apage_overlay"></div><div class="a2a_menu a2a_full" id="a2apage_full" role="dialog" tabindex="-1" aria-label="Share"><div class="a2a_full_header"><div id="a2apage_find_container" class="a2a_menu_find_container"><input id="a2apage_find" class="a2a_menu_find" type="text" onclick="a2a.focus_find()" onkeyup="a2a.do_find()" autocomplete="off" title="Find any service"><span id="a2apage_find_icon" class="a2a_svg a2a_s_find" onclick="a2a.focus_find()"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><path fill="#CCCCCC" d="M19.7 18.2l-4.5-4.5c0.7-1.1 1.2-2.3 1.2-3.6 0-3.5-2.8-6.3-6.3-6.3 -3.5 0-6.3 2.8-6.3 6.3 0 3.5 2.8 6.3 6.3 6.3 1.4 0 2.6-0.4 3.6-1.2l4.5 4.5c0.6 0.6 1.3 0.7 1.7 0.2C20.4 19.5 20.3 18.8 19.7 18.2zM10.1 14.6c-2.5 0-4.5-2.1-4.5-4.5 0-2.5 2.1-4.5 4.5-4.5 2.5 0 4.5 2.1 4.5 4.5C14.6 12.5 12.6 14.6 10.1 14.6z"></path></svg></span></div></div><div class="a2a_full_services" id="a2apage_full_services" role="presentation"><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook"></span>Facebook</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twitter"></span>Twitter</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google_plus"></span>Google+</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinterest"></span>Pinterest</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_linkedin"></span>LinkedIn</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_reddit"></span>Reddit</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tumblr"></span>Tumblr</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wordpress"></span>WordPress</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_stumbleupon"></span>StumbleUpon</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_gmail"></span>Google Gmail</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_whatsapp"></span>WhatsApp</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aim"></span>AIM</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_amazon"></span>Amazon Wish List</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aol"></span>AOL Mail</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_app_net"></span>App.net</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_baidu"></span>Baidu</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_balatarin"></span>Balatarin</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bibsonomy"></span>BibSonomy</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bitty"></span>Bitty Browser</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blinklist"></span>Blinklist</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blogger"></span>Blogger Post</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blogmarks"></span>BlogMarks</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bookmarks_fr"></span>Bookmarks.fr</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_box"></span>Box.net</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_buddymarks"></span>BuddyMarks</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_buffer"></span>Buffer</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_care2"></span>Care2 News</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_citeulike"></span>CiteULike</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_delicious"></span>Delicious</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_designfloat"></span>Design Float</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diary_ru"></span>Diary.Ru</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diaspora"></span>Diaspora</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_digg"></span>Digg</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_dihitt"></span>diHITT</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diigo"></span>Diigo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_dzone"></span>DZone</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_evernote"></span>Evernote</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_fark"></span>Fark</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_flipboard"></span>Flipboard</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_folkd"></span>Folkd</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google"></span>Google Bookmarks</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_y18"></span>Hacker News</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_hatena"></span>Hatena</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_instapaper"></span>Instapaper</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_jamespot"></span>Jamespot</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_kakao"></span>Kakao</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_kindle"></span>Kindle It</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_known"></span>Known</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_line"></span>Line</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_livejournal"></span>LiveJournal</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mail_ru"></span>Mail.Ru</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mendeley"></span>Mendeley</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_meneame"></span>Meneame</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mixi"></span>Mixi</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_myspace"></span>MySpace</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_netlog"></span>Netlog</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_netvouz"></span>Netvouz</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_newsvine"></span>NewsVine</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_nujij"></span>NUjij</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_odnoklassniki"></span>Odnoklassniki</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_oknotizie"></span>Oknotizie</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_outlook_com"></span>Outlook.com</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinboard"></span>Pinboard</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_plurk"></span>Plurk</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pocket"></span>Pocket</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_print"></span>Print</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_printfriendly"></span>PrintFriendly</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_protopage"></span>Protopage Bookmarks</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pusha"></span>Pusha</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_qzone"></span>Qzone</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_rediff"></span>Rediff MyPage</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_renren"></span>Renren</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_segnalo"></span>Segnalo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_sina_weibo"></span>Sina Weibo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_sitejot"></span>SiteJot</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_slashdot"></span>Slashdot</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_stumpedia"></span>Stumpedia</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_svejo"></span>Svejo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_symbaloo"></span>Symbaloo Feeds</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tuenti"></span>Tuenti</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twiddla"></span>Twiddla</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_typepad"></span>TypePad Post</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_viadeo"></span>Viadeo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_vk"></span>VK</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wanelo"></span>Wanelo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_webnews"></span>Webnews</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wykop"></span>Wykop</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_xing"></span>XING</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Bookmarks</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Mail</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yim"></span>Yahoo Messenger</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yoolink"></span>Yoolink</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_youmob"></span>YouMob</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yummly"></span>Yummly</a><i class="a2a_i"></i><i class="a2a_i"></i></div><div class="a2a_full_footer"><a href="https://www.addtoany.com/" title="Share Buttons" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_a2a"></span>AddToAny</a></div></div><div id="a2apage_dropdown" class="a2a_menu a2a_mini" onmouseover="a2a.onMouseOver_stay()" onmouseout="a2a.onMouseOut_delay()" tabindex="-1" aria-label="Share" style="display:none"><div id="a2apage_title_container" class="a2a_menu_title_container" style="display:none"><input id="a2apage_title" class="a2a_menu_title"></div><div class="a2a_mini_services" id="a2apage_mini_services"><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook"></span>Facebook</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twitter"></span>Twitter</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google_plus"></span>Google+</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinterest"></span>Pinterest</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_linkedin"></span>LinkedIn</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_reddit"></span>Reddit</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tumblr"></span>Tumblr</a></div><div id="a2apage_cols_container" class="a2a_cols_container"><div class="a2a_col1" id="a2apage_col1"></div><div id="a2apage_2_col1" style="display:none"><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_gmail"></span>Google Gmail</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aol"></span>AOL Mail</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_outlook_com"></span>Outlook.com</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Mail</a><a rel="nofollow" class="a2a_i a2a_emailer" href="http://apply.northcentralcollege.edu.dev/" target="_blank" id="a2apage_any_email"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Any email</a><a rel="nofollow" class="a2a_i a2a_emailer a2a_email_client" href="http://apply.northcentralcollege.edu.dev/" target="" id="a2apage_email_client"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email app</a></div><div class="a2a_clear"></div></div><div class="a2apage_wide a2a_wide"><a href="" id="a2apage_show_more_less" class="a2a_menu_show_more_less a2a_more" title="Show all"><span class="a2a_svg a2a_s__default a2a_s_a2a"></span>More…</a></div></div><div style="height: 1px; width: 1px; position: absolute; z-index: 100000; top: 0px; visibility: hidden;"><iframe id="a2apage_sm_ifr" height="1" width="1" title="AddToAny Utility Frame" transparency="true" allowtransparency="true" frameborder="0" src="{% static 'app/content/sm13.html' %}" style="height: 1px; width: 1px; border: 0px; left: 0px; top: 0px; position: absolute; z-index: 100000; display: none;"></iframe></div></div>
-        <script type="text/javascript" src="{% static 'app/scripts/jquery.js' %}"></script>
+        </div><div style="position: static;">
+<div class="a2a_overlay" id="a2apage_overlay"></div>
+<div class="a2a_menu a2a_full" id="a2apage_full" role="dialog" tabindex="-1" aria-label="Share"><div class="a2a_full_header">
+<div id="a2apage_find_container" class="a2a_menu_find_container">
+<input id="a2apage_find" class="a2a_menu_find" type="text" onclick="a2a.focus_find()" onkeyup="a2a.do_find()" autocomplete="off" title="Find any service">
+<span id="a2apage_find_icon" class="a2a_svg a2a_s_find" onclick="a2a.focus_find()"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><path fill="#CCCCCC" d="M19.7 18.2l-4.5-4.5c0.7-1.1 1.2-2.3 1.2-3.6 0-3.5-2.8-6.3-6.3-6.3 -3.5 0-6.3 2.8-6.3 6.3 0 3.5 2.8 6.3 6.3 6.3 1.4 0 2.6-0.4 3.6-1.2l4.5 4.5c0.6 0.6 1.3 0.7 1.7 0.2C20.4 19.5 20.3 18.8 19.7 18.2zM10.1 14.6c-2.5 0-4.5-2.1-4.5-4.5 0-2.5 2.1-4.5 4.5-4.5 2.5 0 4.5 2.1 4.5 4.5C14.6 12.5 12.6 14.6 10.1 14.6z"></path></svg></span></div></div><div class="a2a_full_services" id="a2apage_full_services" role="presentation"><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook"></span>Facebook</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twitter"></span>Twitter</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google_plus"></span>Google+</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinterest"></span>Pinterest</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_linkedin"></span>LinkedIn</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_reddit"></span>Reddit</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tumblr"></span>Tumblr</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wordpress"></span>WordPress</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_stumbleupon"></span>StumbleUpon</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_gmail"></span>Google Gmail</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_whatsapp"></span>WhatsApp</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aim"></span>AIM</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_amazon"></span>Amazon Wish List</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aol"></span>AOL Mail</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_app_net"></span>App.net</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_baidu"></span>Baidu</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_balatarin"></span>Balatarin</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bibsonomy"></span>BibSonomy</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bitty"></span>Bitty Browser</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blinklist"></span>Blinklist</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blogger"></span>Blogger Post</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blogmarks"></span>BlogMarks</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bookmarks_fr"></span>Bookmarks.fr</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_box"></span>Box.net</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_buddymarks"></span>BuddyMarks</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_buffer"></span>Buffer</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_care2"></span>Care2 News</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_citeulike"></span>CiteULike</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_delicious"></span>Delicious</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_designfloat"></span>Design Float</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diary_ru"></span>Diary.Ru</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diaspora"></span>Diaspora</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_digg"></span>Digg</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_dihitt"></span>diHITT</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diigo"></span>Diigo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_dzone"></span>DZone</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_evernote"></span>Evernote</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_fark"></span>Fark</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_flipboard"></span>Flipboard</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_folkd"></span>Folkd</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google"></span>Google Bookmarks</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_y18"></span>Hacker News</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_hatena"></span>Hatena</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_instapaper"></span>Instapaper</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_jamespot"></span>Jamespot</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_kakao"></span>Kakao</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_kindle"></span>Kindle It</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_known"></span>Known</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_line"></span>Line</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_livejournal"></span>LiveJournal</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mail_ru"></span>Mail.Ru</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mendeley"></span>Mendeley</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_meneame"></span>Meneame</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mixi"></span>Mixi</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_myspace"></span>MySpace</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_netlog"></span>Netlog</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_netvouz"></span>Netvouz</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_newsvine"></span>NewsVine</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_nujij"></span>NUjij</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_odnoklassniki"></span>Odnoklassniki</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_oknotizie"></span>Oknotizie</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_outlook_com"></span>Outlook.com</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinboard"></span>Pinboard</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_plurk"></span>Plurk</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pocket"></span>Pocket</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_print"></span>Print</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_printfriendly"></span>PrintFriendly</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_protopage"></span>Protopage Bookmarks</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pusha"></span>Pusha</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_qzone"></span>Qzone</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_rediff"></span>Rediff MyPage</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_renren"></span>Renren</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_segnalo"></span>Segnalo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_sina_weibo"></span>Sina Weibo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_sitejot"></span>SiteJot</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_slashdot"></span>Slashdot</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_stumpedia"></span>Stumpedia</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_svejo"></span>Svejo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_symbaloo"></span>Symbaloo Feeds</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tuenti"></span>Tuenti</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twiddla"></span>Twiddla</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_typepad"></span>TypePad Post</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_viadeo"></span>Viadeo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_vk"></span>VK</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wanelo"></span>Wanelo</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_webnews"></span>Webnews</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wykop"></span>Wykop</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_xing"></span>XING</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Bookmarks</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Mail</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yim"></span>Yahoo Messenger</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yoolink"></span>Yoolink</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_youmob"></span>YouMob</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yummly"></span>Yummly</a><i class="a2a_i"></i><i class="a2a_i"></i></div><div class="a2a_full_footer"><a href="https://www.addtoany.com/" title="Share Buttons" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_a2a"></span>AddToAny</a></div></div><div id="a2apage_dropdown" class="a2a_menu a2a_mini" onmouseover="a2a.onMouseOver_stay()" onmouseout="a2a.onMouseOut_delay()" tabindex="-1" aria-label="Share" style="display:none"><div id="a2apage_title_container" class="a2a_menu_title_container" style="display:none"><input id="a2apage_title" class="a2a_menu_title"></div><div class="a2a_mini_services" id="a2apage_mini_services"><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook"></span>Facebook</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twitter"></span>Twitter</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google_plus"></span>Google+</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinterest"></span>Pinterest</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_linkedin"></span>LinkedIn</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_reddit"></span>Reddit</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tumblr"></span>Tumblr</a></div><div id="a2apage_cols_container" class="a2a_cols_container"><div class="a2a_col1" id="a2apage_col1"></div><div id="a2apage_2_col1" style="display:none"><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_gmail"></span>Google Gmail</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aol"></span>AOL Mail</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_outlook_com"></span>Outlook.com</a><a rel="nofollow" class="a2a_i" href="http://apply.northcentralcollege.edu.dev/" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Mail</a><a rel="nofollow" class="a2a_i a2a_emailer" href="http://apply.northcentralcollege.edu.dev/" target="_blank" id="a2apage_any_email"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Any email</a><a rel="nofollow" class="a2a_i a2a_emailer a2a_email_client" href="http://apply.northcentralcollege.edu.dev/" target="" id="a2apage_email_client"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email app</a></div><div class="a2a_clear"></div></div><div class="a2apage_wide a2a_wide"><a href="" id="a2apage_show_more_less" class="a2a_menu_show_more_less a2a_more" title="Show all"><span class="a2a_svg a2a_s__default a2a_s_a2a"></span>More…</a></div></div><div style="height: 1px; width: 1px; position: absolute; z-index: 100000; top: 0px; visibility: hidden;"><iframe id="a2apage_sm_ifr" height="1" width="1" title="AddToAny Utility Frame" transparency="true" allowtransparency="true" frameborder="0" src="{% static 'app/content/sm13.html' %}" style="height: 1px; width: 1px; border: 0px; left: 0px; top: 0px; position: absolute; z-index: 100000; display: none;"></iframe></div></div>
+<script type="text/javascript" src="{% static 'app/scripts/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'app/scripts/bootstrap.js' %}"></script>
 <script type="text/javascript" src="{% static 'app/scripts/bootstrap-popover.js' %}"></script>
-<script type="text/javascript" src="{% static 'app/scripts/graduate/page2.js' %}"></script>    <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"2705c9c370","applicationID":"6142407","transactionName":"NgcAYRFYXEICAkEKWQ9NI1YXUF1fTAVQBVcUDhYaBEtTVRYAQQYZEQMFUE4L","queueTime":0,"applicationTime":410,"atts":"GkADF1lCT0w=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-741.min.js"}</script>
+<script type="text/javascript" src="{% static 'app/scripts/graduate/page2.js' %}"></script>    
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"2705c9c370","applicationID":"6142407","transactionName":"NgcAYRFYXEICAkEKWQ9NI1YXUF1fTAVQBVcUDhYaBEtTVRYAQQYZEQMFUE4L","queueTime":0,"applicationTime":410,"atts":"GkADF1lCT0w=","errorBeacon":"bam.nr-data.net","agent":"js-agent.newrelic.com\/nr-741.min.js"}</script>
 
 <script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; if (typeof(lastpass_f.lpsubmitorig2)=='object'){ continue;}lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ if (typeof(d.innerText) != 'undefined') { d.innerText=i.toString(); } else { d.textContent=i.toString(); } } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body></html>

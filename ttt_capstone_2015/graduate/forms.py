@@ -87,14 +87,24 @@ class PageTwoForm(forms.Form):
     refered_by_name2 = forms.CharField(label='Friend / Relative Name')
     refered_by_relationship2 = forms.CharField(label='Relationship To You')
     influence = forms.CharField(label='Who or what helped influence your decision to apply to North Central College?') 
-    policy = forms.BooleanField(label='Have you ever been accused or charged with violating a code of student conduct or institutional policy, or been suspended, placed on probation, dismissed, or expelled from any high school or college?')
+    POLICY_CHOICES=(
+        ('Yes','Yes'),
+        ('No','No'),)
+    policy = forms.ChoiceField(choices=POLICY_CHOICES, label='Have you ever been accused or charged with violating a code of student conduct or institutional policy, or been suspended, placed on probation, dismissed, or expelled from any high school or college?', widget=forms.RadioSelect())
     policy_reason = forms.CharField(label='If yes, please explain why you were suspended/dismissed in 140 characters or less.')
-    legal = forms.BooleanField(label='Have you ever been arrested, indicted, or convicted of anything other than a minor traffic violation?')
+    LEGAL_CHOICES=(
+        ('Yes','Yes'),
+        ('No','No'),)
+    legal = forms.ChoiceField(choices=LEGAL_CHOICES, label='Have you ever been arrested, indicted, or convicted of anything other than a minor traffic violation?', widget=forms.RadioSelect())
     legal_reason = forms.CharField(label='If yes, please explain your conviction in 140 characters or less.')
     employer = forms.CharField(label='Employer Name')
     outside_us_employment = forms.BooleanField(label='Employment address outside of the United States?')
+    employer_country = forms.ChoiceField(choices=countries) 
+    employment_address = forms.CharField()
+    employment_address_outside = forms.CharField()
     employment_city = forms.CharField()
-    employment_state = forms.CharField() #dropdown of states....
+    STATE_CHOICES = (('', '---------'),) + STATE_CHOICES
+    employment_state = forms.ChoiceField(choices=STATE_CHOICES)
     employment_zip = forms.CharField()
     tuition_remission = forms.BooleanField()
     gi = forms.BooleanField()
