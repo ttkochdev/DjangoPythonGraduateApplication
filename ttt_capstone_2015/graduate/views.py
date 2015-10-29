@@ -11,6 +11,8 @@ from datetime import datetime
 from .forms import PageOneForm
 from .forms import PageTwoForm
 
+from .saveForms import *
+
 from graduate.models import Race
 
 def page1(request):
@@ -23,7 +25,7 @@ def page1(request):
         form = PageOneForm(request.POST)
         #for key in request.POST:
         #    print (key)
-        
+        saveForms.savePage1(request.POST)
         #print(form)
         #save post data to session
         #request.session['form1'] = 
