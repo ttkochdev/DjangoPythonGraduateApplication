@@ -137,3 +137,6 @@ class StudentUploads(models.Model):
 class Race(models.Model):
     rid = models.AutoField(primary_key=True)
     race = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.race

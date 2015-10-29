@@ -325,17 +325,9 @@
                     <div class="span4"><label>What is your race?<br><span class="subtext">Choose one or more</span></label></div>
                 </fieldset>
                 <br>
-        <ul>
-         {% for field in test %}
-              
-            <li>
-        <input type="checkbox" name="race" value="{{test.id}}" />
-       
-         <label for="">{{field.race}}</label>
-                </li>
-             {% endfor %}
-            </ul>
-        <br />
+   
+
+        {{ form.race }}
 
         {% load debugtemplate %}
 

@@ -18,8 +18,8 @@ from graduate.models import Race
 def page1(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
-    test = Race.objects.all() 
-
+    #test = Race.objects.all() 
+    #print(test)
     if request.method == 'POST':
         #print(request.POST,"\n\n")
         form = PageOneForm(request.POST)
@@ -55,7 +55,7 @@ def page1(request):
         {
             'title':'Graduate Application Page-1',
             'form': form,
-            'test': test,
+            #'test': test,
             'year':datetime.now().year,
         })
     )
