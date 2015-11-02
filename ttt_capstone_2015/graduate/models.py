@@ -199,7 +199,7 @@ class MyUser(AbstractBaseUser):
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_of_birth']
+    REQUIRED_FIELDS = ['date_of_birth'] #YYYY-MM-DD
 
     def get_full_name(self):
         # The user is identified by their email address
