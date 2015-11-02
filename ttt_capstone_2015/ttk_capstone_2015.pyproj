@@ -28,6 +28,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="graduate\admin.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="graduate\forms.py" />
     <Compile Include="graduate\models.py" />
     <Compile Include="graduate\saveForms.py">

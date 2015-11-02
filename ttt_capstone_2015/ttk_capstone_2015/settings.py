@@ -19,6 +19,8 @@ ALLOWED_HOSTS = (
     'localhost',
 )
 
+AUTH_USER_MODEL = 'graduate.MyUser'
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
