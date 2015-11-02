@@ -12,9 +12,80 @@ import binascii
 
 # Create your models here.
 
-class Student(models.Model):
+class MyUserManager(BaseUserManager):
+    def create_user(self, email, date_of_birth, password=None):
+        """
+        Creates and saves a User with the given email, date of
+        birth and password.
+        """
+        if not email:
+            raise ValueError('Users must have an email address')
+
+        user = self.model(
+            email=self.normalize_email(email),
+            date_of_birth=date_of_birth,
+        )
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, date_of_birth, password):
+        """
+        Creates and saves a superuser with the given email, date of
+        birth and password.
+        """
+        user = self.create_user(email,
+            password=password,
+            date_of_birth=date_of_birth
+        )
+        user.is_admin = True
+        user.save(using=self._db)
+        return user
+
+
+class Student(AbstractBaseUser): #models.Model
     id = models.AutoField(primary_key=True)
-    batch_id = models.IntegerField(10)
+    email = models.EmailField(
+        verbose_name='email address',
+        max_length=255,
+        unique=True,
+    )
+    date_of_birth = models.DateField()
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+
+    objects = MyUserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['date_of_birth'] #YYYY-MM-DD
+
+    def get_full_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def get_short_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def __str__(self):              # __unicode__ on Python 2
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
+    batch_id = models.IntegerField(default=0)
     first_name = models.CharField(max_length=30)
     middle_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -23,9 +94,9 @@ class Student(models.Model):
     birth_last_name = models.CharField(max_length=30)
     gender = models.CharField(max_length=45)
     birth_place = models.CharField(max_length=255)
-    birth_date = models.DateTimeField(auto_now=False, auto_now_add=False) #may have to come back to this one after testing....there are known issues with django datetime
+    #birth_date = models.DateTimeField(auto_now=False, auto_now_add=False) #may have to come back to this one after testing....there are known issues with django datetime
     ethnicity = models.CharField(max_length=255)
-    is_citizen = models.IntegerField(1)
+    is_citizen = models.IntegerField(default=0)
     social_security_number = models.CharField(max_length=32) #this was not syncing with the db like the others...need to check funcitonality carefully. 
 
     def _get_ssn(self):
@@ -39,7 +110,7 @@ class Student(models.Model):
         self.social_security_number = binascii.b2a_hex(enc_obj.encrypt( ssn_value ))
 
     ssn = property(_get_ssn, _set_ssn)
-    denomination = models.IntegerField(3)
+    denomination = models.IntegerField(default=0)
     start_term = models.CharField(max_length=255)
     student_load_intent = models.CharField(max_length=255)
     residency_status = models.CharField(max_length=255)
@@ -51,8 +122,8 @@ class Student(models.Model):
     refered_by_relationship2 = models.CharField(max_length=255)
     influence = models.CharField(max_length=255)
     employer = models.CharField(max_length=255)
-    tution_remission = models.IntegerField(1)
-    gi = models.IntegerField(1)
+    tution_remission = models.IntegerField(default=0)
+    gi = models.IntegerField(default=0)
 
     def __str__(self):
         return self.id
@@ -154,73 +225,43 @@ class Race(models.Model):
 
 
 
-class MyUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, password=None):
-        """
-        Creates and saves a User with the given email, date of
-        birth and password.
-        """
-        if not email:
-            raise ValueError('Users must have an email address')
-
-        user = self.model(
-            email=self.normalize_email(email),
-            date_of_birth=date_of_birth,
-        )
-
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
-
-    def create_superuser(self, email, date_of_birth, password):
-        """
-        Creates and saves a superuser with the given email, date of
-        birth and password.
-        """
-        user = self.create_user(email,
-            password=password,
-            date_of_birth=date_of_birth
-        )
-        user.is_admin = True
-        user.save(using=self._db)
-        return user
 
 
-class MyUser(AbstractBaseUser):
-    email = models.EmailField(
-        verbose_name='email address',
-        max_length=255,
-        unique=True,
-    )
-    date_of_birth = models.DateField()
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+#class MyUser(AbstractBaseUser):
+#    email = models.EmailField(
+#        verbose_name='email address',
+#        max_length=255,
+#        unique=True,
+#    )
+#    date_of_birth = models.DateField()
+#    is_active = models.BooleanField(default=True)
+#    is_admin = models.BooleanField(default=False)
 
-    objects = MyUserManager()
+#    objects = MyUserManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_of_birth'] #YYYY-MM-DD
+#    USERNAME_FIELD = 'email'
+#    REQUIRED_FIELDS = ['date_of_birth'] #YYYY-MM-DD
 
-    def get_full_name(self):
-        # The user is identified by their email address
-        return self.email
+#    def get_full_name(self):
+#        # The user is identified by their email address
+#        return self.email
 
-    def get_short_name(self):
-        # The user is identified by their email address
-        return self.email
+#    def get_short_name(self):
+#        # The user is identified by their email address
+#        return self.email
 
-    def __str__(self):              # __unicode__ on Python 2
-        return self.email
+#    def __str__(self):              # __unicode__ on Python 2
+#        return self.email
 
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        return True
+#    def has_perm(self, perm, obj=None):
+#        "Does the user have a specific permission?"
+#        # Simplest possible answer: Yes, always
+#        return True
 
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
+#    def has_module_perms(self, app_label):
+#        "Does the user have permissions to view the app `app_label`?"
+#        # Simplest possible answer: Yes, always
+#        return True
 
     #@property
     #def is_staff(self):

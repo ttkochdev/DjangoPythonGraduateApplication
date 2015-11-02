@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-from graduate.models import MyUser
+from graduate.models import Student
 
 
 class UserCreationForm(forms.ModelForm):
@@ -14,7 +14,7 @@ class UserCreationForm(forms.ModelForm):
     password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
 
     class Meta:
-        model = MyUser
+        model = Student
         fields = ('email', 'date_of_birth')
 
     def clean_password2(self):
@@ -42,7 +42,7 @@ class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
-        model = MyUser
+        model = Student
         fields = ('email', 'password', 'date_of_birth', 'is_active', 'is_admin')
 
     def clean_password(self):
@@ -80,7 +80,7 @@ class MyUserAdmin(UserAdmin):
     filter_horizontal = ()
 
 # Now register the new UserAdmin...
-admin.site.register(MyUser, MyUserAdmin)
+admin.site.register(Student, MyUserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)
