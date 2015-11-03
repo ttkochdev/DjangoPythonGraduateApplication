@@ -3,112 +3,8 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>    
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/style.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap-responsive.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/smoothness/jquery-ui-1.10.3.custom.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/print.css' %}" />
- 
-</head>
-<body>
-    
-<div id="top">
-            <div class="row-fluid">
-              <div class="container">
-                  <div class="navbar navbar-inverse">
-                      <div class="container">
-                          <button data-target=".mobile-nav" data-toggle="collapse" class="btn btn-navbar" type="button">
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                          </button>
-                          <div class="mobile-nav hidden-desktop collapse">
-                            <ul>
-                              <li><a href="http://northcentralcollege.edu/admission">Admission</a></li>
-                              <li><a href="http://northcentralcollege.edu/academics">Academics</a></li>
-                              <li><a href="http://northcentralcollege.edu/admission/graduate">Graduate Studies</a></li>
-                              <li><a href="http://northcentralcollege.edu/show">Fine Arts</a></li>
-                              <li><a href="http://northcentralcardinals.com/">Athletics</a></li>
-                              <li><a href="http://northcentralcollege.edu/student-life%22">Student Life</a></li>
-                              <li><a href="http://northcentralcollege.edu/alumni">Alumni</a></li>
-                            </ul>
-                          </div>
-                          <div class="banner visible-desktop">
-                            <form action="http://northcentralcollege.edu/gsearch/index.php" id="cse-search-box">
-                              <fieldset>
-                                <input type="text" name="q" id="q" size="18">
-                                <input type="image" name="sa" value="Search" src="{% static 'app/images/search.png' %}" alt="search" id="sa">                            
-                              </fieldset>
-                            </form>
-                              <div class="nav-collapse collapse">
-                                  <a href="http://northcentralcollege.edu/">
-                                    <img width="654" height="73" alt="North Central College - Naperville, IL" id="north_central2" src="{% static 'app/images/north_central2.png' %}">
-                                  </a>
-                                  <ul id="nav_verb">
-                                    <li>
-                                      <a href="http://northcentralcollege.edu/apply">
-                                        <img width="96" height="46" alt="Apply for Admission" title="Apply for Admission" src="{% static 'app/images/nav_verb_apply.png' %}">
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="http://northcentralcollege.edu/admission/visit-programs">
-                                        <img width="111" height="46" title="Visit" alt="Visit" src="{% static 'app/images/nav_verb_visit.png' %}">
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="https://www.applyweb.com/public/contribute?nccgift">
-                                        <img width="107" height="46" title="Give" alt="Give" src="{% static 'app/images/nav_verb_give.png' %}">
-                                      </a>
-                                    </li>
-                                  </ul>
-                                  <ul class="nav top-navi nav-main">
-                                    <li>
-                                      <a href="http://northcentralcollege.edu/admission">
-                                        <img width="118" height="60" title="Admission" alt="Admission" src="{% static 'app/images/nav_main_admission.png' %}">
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="http://northcentralcollege.edu/academics">
-                                        <img width="105" height="60" alt="Academics" title="Academics" src="{% static 'app/images/nav_main_academics.png' %}">
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="http://northcentralcollege.edu/admission/graduate">
-                                        <img width="143" height="60" alt="Graduate Studies" title="Graduate Studies" src="{% static 'app/images/nav_main_graduatestudies.png' %}">
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="http://northcentralcollege.edu/show">
-                                        <img width="93" height="60" title="Fine Arts" alt="Fine Arts" src="{% static 'app/images/nav_main_finearts.png' %}">
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="http://northcentralcardinals.com/">
-                                        <img width="91" height="60" title="Athletics" alt="Athletics" src="{% static 'app/images/nav_main_athletics.png' %}">
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="http://northcentralcollege.edu/student-life">
-                                        <img width="111" height="60" alt="Student Life" title="Student Life" src="{% static 'app/images/nav_main_studentlife.png' %}">
-                                      </a>
-                                    </li>
-                                    <li>
-                                      <a href="http://northcentralcollege.edu/alumni">
-                                        <img width="103" height="60" alt="Alumni" title="Alumni" src="{% static 'app/images/nav_main_alumni.png' %}">
-                                      </a>
-                                    </li>
-                                  </ul>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                </div>
-            </div>
-        </div>
 
+{% include 'app/header.html' %}
 
     <div class="container-fluid">
             <div class="content row-fluid">
@@ -551,11 +447,4 @@
             </div>
         </div>
 
-
-<script src="{% static 'app/scripts/jquery.js' %}"></script>
-<script src="{% static 'app/scripts/bootstrap.js' %}"></script>
-<script src="{% static 'app/scripts/bootstrap-popover.js' %}"></script>
-<script src="{% static 'app/scripts/jquery-ui-1.10.3.custom.min.js' %}"></script>
-<script src="{% static 'app/scripts/graduate/page1.js' %}"></script>
-</body>
-</html>
+ {% include 'app/footer.html' %}
