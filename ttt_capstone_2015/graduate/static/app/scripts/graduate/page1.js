@@ -16,13 +16,13 @@ $().ready(function() {
 	
 	$('.birthdatepicker').datepicker({
 		minDate: new Date(1900,1-1,1), maxDate: '-10Y',
-	    dateFormat: 'mm/dd/yy',
+		dateFormat: 'mm/dd/yy',
 	    changeMonth: true,
 	    changeYear: true,
 	    yearRange: '-100:-10'
 	});
 	
-	$('#address_outside_us').change(function() {
+	$('#id_internationalcheck').change(function () {
 		if ($(this).is(':checked')) {
 			$('#outside_us').show();
 			$('#inside_us').hide();
@@ -47,7 +47,7 @@ $().ready(function() {
 		}
 	});
 	
-	$("select[name='is_citzen']").change(function() {
+	$("select[name='id_is_citizen']").change(function () {
 		if ($(this).val() == 'yes') {
 			$('#citizen_yes').show();
 			$('#citizen_legal_resident').hide();

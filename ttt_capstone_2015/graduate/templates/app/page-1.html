@@ -200,7 +200,7 @@
                     <div class="span5"><label>Birth Date</label></div>
                     <div class="span7">
                         <span>
-<input type="text" class="birthdatepicker hasDatepicker" placeholder="MM/DD/YYYY" value="" id="birth_date" name="birth_date">
+<input type="text" class="birthdatepicker hasDatepicker" placeholder="yyyy-mm-dd" value="" id="birth_date" name="birth_date">
                         </span>                    
                     </div>
                 </fieldset>
@@ -225,9 +225,26 @@
                 <br>
    
 
-        {{ form.race }}
+   
 
-        {% load debugtemplate %}
+
+
+<fieldset class="right-justified">
+{% for choice in form.race.field.choices %}
+    <div class="span8 offset2 half">
+      <strong>{{choice.1}}</strong>
+    </div>
+    <div class="span1 half">
+      <input type="checkbox" name="my_choice_field" value="{{choice.0}}"
+        {% ifequal form.race.data choice.0 %} 
+          checked="checked"
+        {% endifequal %}/>
+    </div>
+{% endfor %}
+</fieldset>
+
+
+               {% load debugtemplate %}
 
         <!--https://djangosnippets.org/snippets/1689/-->
         <!--http://stackoverflow.com/questions/1118183/how-to-debug-in-django-the-good-way-->
