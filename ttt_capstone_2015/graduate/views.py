@@ -25,11 +25,12 @@ def page1(request):
         form = PageOneForm(request.POST)
         #for key in request.POST:
         #    print (key)
-        saveForms.savePage1(request.POST)
+        
         #print(form)
         #save post data to session
         #request.session['form1'] = 
         request.session['form_data_page1'] = request.POST
+        saveForms.savePage1(request.session['form_data_page1'])
         print(request.session["form_data_page1"])
         #if submit = page2 then go to page 2 else if page-3 then go to page 3
         if(request.POST.get('page2', '')):

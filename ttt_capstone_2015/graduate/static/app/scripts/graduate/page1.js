@@ -1,4 +1,5 @@
-$().ready(function() {
+$().ready(function () {
+    console.log("started p1 js");
 	$('#email').change(function() { 
 		$.ajax({
 			type: 'POST',
@@ -14,7 +15,7 @@ $().ready(function() {
 		});
 	});
 	
-	$('.birthdatepicker').datepicker({
+	$('.birthdatepicker').datepicker({	    
 		minDate: new Date(1900,1-1,1), maxDate: '-10Y',
 		dateFormat: 'mm/dd/yy',
 	    changeMonth: true,
@@ -47,8 +48,10 @@ $().ready(function() {
 		}
 	});
 	
-	$("select[name='id_is_citizen']").change(function () {
-		if ($(this).val() == 'yes') {
+	$("select[name='is_citizen']").change(function () {
+	    console.log("is citiz");
+	    if ($(this).val() == 'yes') {
+	        console.log("yes yes yes");
 			$('#citizen_yes').show();
 			$('#citizen_legal_resident').hide();
 			$('#citizen_alien').hide();
