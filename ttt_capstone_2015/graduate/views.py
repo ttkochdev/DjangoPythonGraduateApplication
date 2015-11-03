@@ -30,13 +30,16 @@ def page1(request):
         #save post data to session
         #request.session['form1'] = 
         request.session['form_data_page1'] = request.POST
-        saveForms.savePage1(request.session['form_data_page1'])
+        
         print(request.session["form_data_page1"])
         #if submit = page2 then go to page 2 else if page-3 then go to page 3
         if(request.POST.get('page2', '')):
             return HttpResponseRedirect('/page-2/')
         elif (request.POST.get('page3', '')):
             return HttpResponseRedirect('/page-3/')
+        elif (request.POST.get('save', '')):
+            saveForms.savePage1(request.session['form_data_page1'])
+            return HttpResponseRedirect('/page-1/') 
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -76,7 +79,9 @@ def page2(request):
             return HttpResponseRedirect('/page-1/')
         elif (request.POST.get('page3', '')):
             return HttpResponseRedirect('/page-3/')
-
+        elif (request.POST.get('save', '')):
+            #saveForms.savePage2(request.session['form_data_page2'])
+            return HttpResponseRedirect('/page-2/') 
     # if a GET (or any other method) we'll create a blank form
     else:
         if 'form_data_page2' in request.session:
@@ -113,7 +118,9 @@ def page3(request):
             return HttpResponseRedirect('/page-1/')
         elif (request.POST.get('page2', '')):
             return HttpResponseRedirect('/page-2/')
-
+        elif (request.POST.get('save', '')):
+            #saveForms.savePage2(request.session['form_data_page2'])
+            return HttpResponseRedirect('/page-3/') 
     # if a GET (or any other method) we'll create a blank form
     else:
         #if session exists populate form
