@@ -36,7 +36,7 @@ class PageOneForm(forms.Form):
     address1 = forms.CharField(label='Mailing Address', required=True) 
     address2 = forms.CharField(label='Mailing Address 2', required=True)
     city = forms.CharField(label='City', required=True)
-    STATE_CHOICES = (('', '---------'),) + STATE_CHOICES
+    STATE_CHOICES = (('', ''),) + STATE_CHOICES
     state = forms.ChoiceField(choices=STATE_CHOICES)
     #state = forms.CharField(label='State', required=True)
     zipcode = forms.CharField(label='Zip Code', required=True)
@@ -58,18 +58,6 @@ class PageOneForm(forms.Form):
         ) 
     ethnicity = forms.ChoiceField(choices=ETHNICITY_TYPE_CHOICES)
      #INSERT INTO `admissions.dev.capstone`.`graduate_race` (`rid`, `race`) VALUES (NULL, 'American Indian or Alaska Native'), (NULL, 'Asian'), (NULL, 'Black or African American'), (NULL, 'Native Hawaiian or Other Pacific Islander'), (NULL, 'White');
-    #RACE_CHOICES = (
-    #    ('American_Indian','American Indian or Alaska Native'),
-    #    ('Asian','Asian'),
-    #    ('Black','Black or African American'),
-    #    ('Native_Hawaiian','Native Hawaiian or Other Pacific Islander'),
-    #    ('White','White'),
-    #    )
-    #race = forms.MultipleChoiceField(choices=RACE_CHOICES,widget=forms.CheckboxSelectMultiple())
-    #racedata = model_to_dict(Race.objects.all())
-    #race = forms.MultipleChoiceField(choices=racedata,widget=forms.CheckboxSelectMultiple())
-    #values('race')
-    
     race = forms.ModelMultipleChoiceField(queryset=Race.objects.all(),widget=forms.CheckboxSelectMultiple())
     denomination = forms.ChoiceField(choices=(('db','Database'),('val','Values')))
     is_citizen = forms.ChoiceField(choices=(("",""),('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')))
@@ -105,7 +93,7 @@ class PageTwoForm(forms.Form):
     employment_address = forms.CharField()
     employment_address_outside = forms.CharField()
     employment_city = forms.CharField()
-    STATE_CHOICES = (('', '---------'),) + STATE_CHOICES
+    STATE_CHOICES = (('', ''),) + STATE_CHOICES
     employment_state = forms.ChoiceField(choices=STATE_CHOICES)
     employment_zip = forms.CharField()
     tuition_remission = forms.BooleanField()
