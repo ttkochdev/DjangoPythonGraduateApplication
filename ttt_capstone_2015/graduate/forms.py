@@ -40,7 +40,7 @@ class PageOneForm(forms.Form):
     state = forms.ChoiceField(choices=STATE_CHOICES)
     #state = forms.CharField(label='State', required=True)
     zipcode = forms.CharField(label='Zip Code', required=True)
-    international_phone = forms.BooleanField()
+    international_phonecheck = forms.BooleanField()
     permanent_phone = forms.CharField(label='Permanent Telephone Number', required=True)
     international_phone = forms.CharField(label='International Telephone Number', required=True)
     GENDER_TYPE_CHOICES = (
