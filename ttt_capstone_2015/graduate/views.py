@@ -5,8 +5,11 @@ Definition of views.
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.template import RequestContext
 from datetime import datetime
+import json
+from django.core.mail import send_mail
 
 from .forms import PageOneForm
 from .forms import PageTwoForm
@@ -152,6 +155,28 @@ def confirmation(request):
         })
     )
 
+def pwemail(request):
+   if request.method == 'GET':
+       email = request.GET.get('email')  
+       #seem to be issues with my localhost mailer.      
+       send_mail('Subject here', 'Here is the message.', 'ttkoch@noctrl.edu', [email], fail_silently=False)
+       return HttpResponse("GET")
+   else:
+       return HttpResponse("no get")
+
+        #return HttpResponse(
+        #    json.dumps({"something to see": "this thing is happening"}),
+        #    content_type="application/json"
+        #)
+    #else:
+    #    return HttpResponse(
+    #        json.dumps({"nothing to see": "this isn't happening"}),
+    #        content_type="application/json"
+    #    )
+
+
+    
+    #return render(request, 'app/pwemail.html', context_instance = RequestContext(request,{}))
 
 #def home(request):
 #    """Renders the home page."""

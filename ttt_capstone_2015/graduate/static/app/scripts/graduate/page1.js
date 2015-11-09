@@ -1,20 +1,24 @@
 $().ready(function () {
     console.log("started p1 js");
+    /*$('#baseUrl').val()+*/
 	$('#email').change(function() { 
 		$.ajax({
-			type: 'POST',
+			type: 'GET',
 			dataType: 'json',
-			url: $('#baseUrl').val()+'/graduate/send-application-password/email/'+$(this).val(),
-			success: function(json) {
+			url: '/pwemail/?email='+$(this).val(),
+			success: function (json) {
+			    console.log("here");
 				if (json['result'] == 'success') {
-					$('#email-notice').html(json['msg']);
+				    /*$('#email-notice').html(json['msg']);*/
+				    console.log("sucess")
 				} else {
-					$('#email-notice').html(json['errors']);
+				    console.log("fail")
+					/*$('#email-notice').html(json['errors']);*/
 				}
 			}
 		});
 	});
-	
+	console.log("after email change");
 	$('.birthdatepicker').datepicker({	    
 		minDate: new Date(1900,1-1,1), maxDate: '-10Y',
 		dateFormat: 'mm/dd/yy',
@@ -22,7 +26,7 @@ $().ready(function () {
 	    changeYear: true,
 	    yearRange: '-100:-10'
 	});
-	
+	console.log("after datepicker");
 	$('#id_internationalcheck').change(function () {
 		if ($(this).is(':checked')) {
 			$('#outside_us').show();
