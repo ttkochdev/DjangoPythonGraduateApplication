@@ -3,9 +3,9 @@ Definition of forms.
 """
 
 from django import forms
-#from django.forms.models import model_to_dict
 from graduate.models import Race
 from graduate.models import Religions
+from graduate.models import Majors
 
 from localflavor.us.us_states import STATE_CHOICES
 #from localflavor.us.forms import USStateSelect
@@ -97,7 +97,8 @@ class PageTwoForm(forms.Form):
     START_TERM_CHOICES = (('', ''),) + seasons
     start_term = forms.ChoiceField(choices=START_TERM_CHOICES ,label='When do you intend to enroll at North Central College?') 
     student_load_intent = forms.ChoiceField(label='What is your intended course load?', choices=(('fulltime','Full-time'),('parttime','Part-time')))
-    planned_major = forms.CharField(label='What is your program of study?')
+    #INSERT INTO `admissions.dev.capstone`.`graduate_majors` (`mid`, `majors`) VALUES (NULL, 'Master of Arts in Education: Curriculum and Instruction'), (NULL, 'Master of Arts in Education:  Educational Leadership & Administration'), (NULL, 'Master of Arts in Liberal Studies:  Culture and Society'), (NULL, 'Master of Arts in Liberal Studies:  Writing, Editing, and Publishing'), (NULL, 'Master of Business Administration:  Accounting'), (NULL, 'Master of Business Administration:  Change Management'), (NULL, 'Master of Business Administration:  Finance'), (NULL, 'Master of Business Administration:  Human Resource Management'), (NULL, 'Master of Business Administration:  Management'), (NULL, 'Master of Business Administration:  Marketing'), (NULL, 'Master of International Business Administration'), (NULL, 'Master of Leadership Studies:  Professional Leadership'), (NULL, 'Master of Leadership Studies:  Higher Education'), (NULL, 'Master of Leadership Studies:  Social Entrepreneurship'), (NULL, 'Master of Leadership Studies: Sport Leadership'), (NULL, 'Master of Science in Web and Internet Applications');
+    planned_major = forms.ModelChoiceField(queryset=Majors.objects.all(), label='What is your program of study?')
     undergraduate_institution = forms.CharField()
     ceeb = forms.CharField()
     refered_by_name = forms.CharField(label='Friend / Relative Name')
