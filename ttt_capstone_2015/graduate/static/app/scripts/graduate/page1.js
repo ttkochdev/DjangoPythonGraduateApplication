@@ -19,13 +19,15 @@ $().ready(function () {
 		});
 	});
 	console.log("after email change");
-	$('.birthdatepicker').datepicker({	    
+	/*$('.birthdatepicker').datepicker({	    
 		minDate: new Date(1900,1-1,1), maxDate: '-10Y',
 		dateFormat: 'mm/dd/yy',
 	    changeMonth: true,
 	    changeYear: true,
 	    yearRange: '-100:-10'
 	});
+
+    */
 	console.log("after datepicker");
 	$('#id_internationalcheck').change(function () {
 		if ($(this).is(':checked')) {
@@ -42,7 +44,7 @@ $().ready(function () {
 		}
 	});
 	
-	$('#phone_outside_us').change(function() {
+	$("#id_international_phonecheck").change(function () {	    
 		if ($(this).is(':checked')) {
 			$('.non_us_number').show();
 			$('.us_number').hide();
@@ -52,7 +54,7 @@ $().ready(function () {
 		}
 	});
 	
-	$("select[name='is_citizen']").change(function () {
+	$("#id_is_citizen").change(function () {
 	    console.log("is citiz");
 	    if ($(this).val() == 'yes') {
 	        console.log("yes yes yes");

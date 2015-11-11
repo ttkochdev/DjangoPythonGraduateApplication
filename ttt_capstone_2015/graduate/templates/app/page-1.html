@@ -163,7 +163,7 @@
                     <fieldset>
                         <div class="span12">
                             <div class="span8 offset5">                               
-                                {% render_field form.international_phone name="phone_outside_us" %}                                                             
+                                {% render_field form.international_phonecheck name="phone_outside_us" %}                                                             
                                 <label for="id_international_phone" class="no-bold inline">Check here if you have a non-U.S. phone number</label>
                             </div>
                         </div>
@@ -228,78 +228,11 @@
 
    
 
-
-
-<fieldset class="right-justified">
-{% for choice in form.race.field.choices %}
-    <div class="span8 offset2 half">
-      <strong>{{choice.1}}</strong>
-    </div>
-    <div class="span1 half">
-      <input type="checkbox" name="my_choice_field" value="{{choice.0}}"
-        {% ifequal form.race.data choice.0 %} 
-          checked="checked"
-        {% endifequal %}/>
-    </div>
-{% endfor %}
-</fieldset>
-
-
-               {% load debugtemplate %}
-
-        <!--https://djangosnippets.org/snippets/1689/-->
-        <!--http://stackoverflow.com/questions/1118183/how-to-debug-in-django-the-good-way-->
-        <!-- {# pdbdebug #} -->
-         <!-- {# form|pdbdebug #} -->
-     
-        <!--            <fieldset class="right-justified">
-                    <div class="span8 offset2 half">
-                        <i title="" data-original-title="" data-content="A person having origins in any of the original peoples of North and South America [including Central America], and who maintains tribal affiliation or community attachment." data-placement="top" rel="popover" data-trigger="click" class="icon-question-sign race-popover"></i>
-                        &nbsp; <strong>American Indian or Alaska Native</strong>
-                    </div>
-                    <div class="span1 half">
-                        
-<input type="hidden" value="" name="race1"><input type="checkbox" value="American Indian or Alaska Native" id="race1" name="race1">                    </div>
-                </fieldset>
-                <fieldset class="right-justified">
-                    <div class="span8 offset2 half">
-                        <i title="" data-original-title="" data-content="A person having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, Vietnam." data-placement="top" rel="popover" data-trigger="click" class="icon-question-sign race-popover"></i>
-                        &nbsp; <strong>Asian</strong>
-                    </div>
-                    <div class="span1 half">
-                        
-<input type="hidden" value="" name="race2"><input type="checkbox" value="Asian" id="race2" name="race2">                    </div>
-                </fieldset>
-                <fieldset class="right-justified">
-                    <div class="span8 offset2 half">
-                        <i title="" data-original-title="" data-content="A person having origins in any of the black racial groups of Africa." data-placement="top" rel="popover" data-trigger="click" class="icon-question-sign race-popover"></i>
-                        &nbsp; <strong>Black or African American</strong>
-                        <p></p>
-                    </div>
-                    <div class="span1 half">
-                        
-<input type="hidden" value="" name="race3"><input type="checkbox" value="Black or African American" id="race3" name="race3">                    </div>
-                </fieldset>
-                <fieldset class="right-justified">
-                    <div class="span8 offset2 half">
-                        <i title="" data-original-title="" data-content="A person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands." data-placement="top" rel="popover" data-trigger="click" class="icon-question-sign race-popover"></i>
-                        &nbsp; <strong>Native Hawaiian or Other Pacific Islander</strong>
-                        <p></p>
-                    </div>
-                    <div class="span1 half">
-                        
-<input type="hidden" value="" name="race4"><input type="checkbox" value="Native Hawaiian or Other Pacific Islander" id="race4" name="race4">                    </div>
-                </fieldset>
-                <fieldset class="right-justified">
-                    <div class="span8 offset2 half">
-                        <i title="" data-original-title="" data-content="A person having origins in any of the original peoples of Europe, the Middle East or North Africa." data-placement="top" rel="popover" data-trigger="click" class="icon-question-sign race-popover"></i>
-                        &nbsp; <strong>White</strong>
-                        <p></p>
-                    </div>
-                    <div class="span1 half">
-                        
-<input type="hidden" value="" name="race5"><input type="checkbox" value="White" id="race5" name="race5">                    </div>
-                </fieldset> -->
+        <fieldset class="right-justified">
+            <div class="span8 offset2 half">
+                {{ form.race }}
+            </div>
+        </fieldset>              
 
                                                 <fieldset>
                     <p>
@@ -307,55 +240,8 @@
                             <label>Religious Affiliation<br><span class="subtext">(Optional)</span></label>
                         </div>
                         <div class="span3">
-                            
-<select id="denomination" name="denomination">
-    <option selected="selected" label="" value=""></option>
-    <option label="No Response" value="No Response">No Response</option>
-    <option label="African Methodist Episcopal" value="African Methodist Episcopal">African Methodist Episcopal</option>
-    <option label="Assembly of God" value="Assembly of God">Assembly of God</option>
-    <option label="Baptist" value="Baptist">Baptist</option>
-    <option label="Bible Church" value="Bible Church">Bible Church</option>
-    <option label="Buddhist" value="Buddhist">Buddhist</option>
-    <option label="Calvary Christian" value="Calvary Christian">Calvary Christian</option>
-    <option label="Christian" value="Christian">Christian</option>
-    <option label="Christian Orthodox" value="Christian Orthodox">Christian Orthodox</option>
-    <option label="Church of Brethren" value="Church of Brethren">Church of Brethren</option>
-    <option label="Church of Christ" value="Church of Christ">Church of Christ</option>
-    <option label="Church of Christian Science" value="Church of Christian Science">Church of Christian Science</option>
-    <option label="Church of God" value="Church of God">Church of God</option>
-    <option label="Community" value="Community">Community</option>
-    <option label="Congregational" value="Congregational">Congregational</option>
-    <option label="Disciples of Christ" value="Disciples of Christ">Disciples of Christ</option>
-    <option label="Episcopal" value="Episcopal">Episcopal</option>
-    <option label="Evangelical" value="Evangelical">Evangelical</option>
-    <option label="Evangelical Lutheran" value="Evangelical Lutheran">Evangelical Lutheran</option>
-    <option label="Greek Orthodox" value="Greek Orthodox">Greek Orthodox</option>
-    <option label="Hindu" value="Hindu">Hindu</option>
-    <option label="Independent" value="Independent">Independent</option>
-    <option label="Islam/Moslem" value="Islam/Moslem">Islam/Moslem</option>
-    <option label="Jewish" value="Jewish">Jewish</option>
-    <option label="Lutheran-Missouri" value="Lutheran-Missouri">Lutheran-Missouri</option>
-    <option label="Lutheran-Other" value="Lutheran-Other">Lutheran-Other</option>
-    <option label="Mennonite" value="Mennonite">Mennonite</option>
-    <option label="Mormon" value="Mormon">Mormon</option>
-    <option label="No Church Affiliation" value="No Church Affiliation">No Church Affiliation</option>
-    <option label="Non-Affiliated Christian" value="Non-Affiliated Christian">Non-Affiliated Christian</option>
-    <option label="Non-Christian" value="Non-Christian">Non-Christian</option>
-    <option label="Non-Denominational" value="Non-Denominational">Non-Denominational</option>
-    <option label="Other" value="Other">Other</option>
-    <option label="Other Protestant" value="Other Protestant">Other Protestant</option>
-    <option label="Pentecostal" value="Pentecostal">Pentecostal</option>
-    <option label="Presbyterian" value="Presbyterian">Presbyterian</option>
-    <option label="Reformed" value="Reformed">Reformed</option>
-    <option label="Roman Catholic" value="Roman Catholic">Roman Catholic</option>
-    <option label="Serbian Orthodox" value="Serbian Orthodox">Serbian Orthodox</option>
-    <option label="Seventh Day Adventist" value="Seventh Day Adventist">Seventh Day Adventist</option>
-    <option label="Unitarian/Universalist" value="Unitarian/Universalist">Unitarian/Universalist</option>
-    <option label="United Church of Christ" value="United Church of Christ">United Church of Christ</option>
-    <option label="United Methodist" value="United Methodist">United Methodist</option>
-    <option label="United Presbyterian" value="United Presbyterian">United Presbyterian</option>
-    <option label="Wesleyan" value="Wesleyan">Wesleyan</option>
-</select>                        </div>
+                            {% render_field form.denomination name='denomination' %}
+                        </div>
                     <p></p>
                 </fieldset>
                             </div> <!-- end container span7 -->

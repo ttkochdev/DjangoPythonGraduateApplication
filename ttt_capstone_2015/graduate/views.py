@@ -21,8 +21,7 @@ from graduate.models import Race
 def page1(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
-    #test = Race.objects.all() 
-    #print(test)
+
     if request.method == 'POST':
         #print(request.POST,"\n\n")
         form = PageOneForm(request.POST)
@@ -45,14 +44,17 @@ def page1(request):
             return HttpResponseRedirect('/page-1/') 
 
     # if a GET (or any other method) we'll create a blank form
-    else:
-        #if session exists populate form
+    else:     
+        
+        print(request.session.get('form_data_page1'))  
+        #check if login session exists
+        #if so populate session data from database        
         if 'form_data_page1' in request.session:
             print("form data in session")
             #form = PageOneForm(request.session['form_data'])
             form = PageOneForm(initial=request.session.get('form_data_page1'))
         #form = PageOneForm(SESSION)
-        else: #create empty form
+        else: #no login - create empty form
             form = PageOneForm()
 
     return render(

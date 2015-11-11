@@ -149,14 +149,14 @@ class Phone(models.Model):
     typeflag = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.spid
+        return self.phone
 
 class Religions(models.Model):
     rid = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.rid
+        return self.name
 
 class StudentLegal(models.Model):
     slid = models.AutoField(primary_key=True)
