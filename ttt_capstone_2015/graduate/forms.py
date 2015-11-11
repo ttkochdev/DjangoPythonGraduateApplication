@@ -11,6 +11,9 @@ from localflavor.us.us_states import STATE_CHOICES
 #from localflavor.us.forms import USStateSelect
 from django_countries import countries
 from localflavor.us.forms import USSocialSecurityNumberField
+from django.contrib.auth.forms import AuthenticationForm
+from django.utils.translation import ugettext_lazy as _
+from datetime import date, datetime
 
 class PageOneForm(forms.Form): 
     email = forms.CharField(label='Email', required=True)
@@ -65,11 +68,34 @@ class PageOneForm(forms.Form):
     is_citizen = forms.ChoiceField(choices=(("",""),('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')))
 
 class PageTwoForm(forms.Form):
+    def season():
+        doy = datetime.today().timetuple().tm_yday
+        currentYear = date.today().year
 
-    START_TERM_CHOICES = (
-        #dynamic
-        )
-    start_term = forms.CharField(label='When do you intend to enroll at North Central College?') #make dynamic ChoiceField
+        # "day of year" ranges for the northern hemisphere
+        spring = range(80, 172)
+        summer = range(172, 264)
+        fall = range(264, 355)
+        # winter = everything else
+    
+        #(("",""),("",""),...)
+        if doy in spring:
+            season = 'spring'
+            seasonChoices = ( ('summer', 'Summer (June) ' + str(currentYear) ), ('fall', 'Fall (September) '+ str(currentYear) ), ('winter', 'Winter (January) '+ str(currentYear + 1)), ('spring', 'Spring (March) '+ str(currentYear + 1)) )
+        elif doy in summer:
+            season = 'summer'
+            seasonChoices = ( ('fall', 'Fall (September) '+ str(currentYear)), ('winter', 'Winter (January) '+ str(currentYear + 1)), ('spring', 'Spring (March) '+ str(currentYear + 1)), ('summer', 'Summer (June) '+ str(currentYear + 1)) )
+        elif doy in fall:
+            season = 'fall'
+            seasonChoices = ( ('winter', 'Winter (January) '+ str(currentYear + 1)), ('spring', 'Spring (March) '+ str(currentYear + 1)), ('summer', 'Summmer (June) '+ str(currentYear + 1)), ('fall', 'Fall (September) '+ str(currentYear + 1)) )
+        else:
+            season = 'winter'
+            seasonChoices = ( ('spring', 'Spring (March) '+ str(currentYear)), ('summer', 'Summer (June) '+ str(currentYear)), ('fall', 'Fall (September) '+ str(currentYear)), ('winter', 'Winter (January) '+ str(currentYear + 1)) )
+        return seasonChoices
+    
+    seasons = season()    
+    START_TERM_CHOICES = (('', ''),) + seasons
+    start_term = forms.ChoiceField(choices=START_TERM_CHOICES ,label='When do you intend to enroll at North Central College?') 
     student_load_intent = forms.ChoiceField(label='What is your intended course load?', choices=(('fulltime','Full-time'),('parttime','Part-time')))
     planned_major = forms.CharField(label='What is your program of study?')
     undergraduate_institution = forms.CharField()
@@ -100,10 +126,9 @@ class PageTwoForm(forms.Form):
     employment_zip = forms.CharField()
     tuition_remission = forms.BooleanField()
     gi = forms.BooleanField()
+    
 
 
-from django.contrib.auth.forms import AuthenticationForm
-from django.utils.translation import ugettext_lazy as _
 
 class BootstrapAuthenticationForm(AuthenticationForm):
     """Authentication form which uses boostrap CSS."""

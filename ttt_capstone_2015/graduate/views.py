@@ -7,7 +7,7 @@ from django.http import HttpRequest
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.template import RequestContext
-from datetime import datetime
+from datetime import date, datetime
 import json
 from django.core.mail import send_mail
 
@@ -50,12 +50,14 @@ def page1(request):
         #check if login session exists
         #if so populate session data from database        
         if 'form_data_page1' in request.session:
-            print("form data in session")
+            print("form data in session\n\n")
+            print("\n\n")
             #form = PageOneForm(request.session['form_data'])
             form = PageOneForm(initial=request.session.get('form_data_page1'))
         #form = PageOneForm(SESSION)
         else: #no login - create empty form
             form = PageOneForm()
+            
 
     return render(
         request,
@@ -220,3 +222,4 @@ def pwemail(request):
 #            'year':datetime.now().year,
 #        })
 #    )
+
