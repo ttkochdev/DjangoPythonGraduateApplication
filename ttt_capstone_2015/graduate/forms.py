@@ -68,6 +68,24 @@ class PageOneForm(forms.Form):
     is_citizen = forms.ChoiceField(choices=(("",""),('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')))
 
 class PageTwoForm(forms.Form):
+
+    undergraduate_institution = forms.CharField()
+    #ceeb = forms.CharField()
+    extra_field_count = forms.CharField(widget=forms.HiddenInput())
+
+    def __init__(self, *args, **kwargs):
+        extra_fields = kwargs.pop('extra', 0)
+        print('\nextra_fields\n')
+        print(extra_fields)
+
+        super(PageTwoForm, self).__init__(*args, **kwargs)
+        self.fields['extra_field_count'].initial = extra_fields
+
+        for index in range(int(extra_fields)):
+            # generate extra fields in the number specified via extra_fields
+            self.fields['extra_field_{index}'.format(index=index)] = forms.CharField()
+
+
     def season():
         doy = datetime.today().timetuple().tm_yday
         currentYear = date.today().year
@@ -96,11 +114,10 @@ class PageTwoForm(forms.Form):
     seasons = season()    
     START_TERM_CHOICES = (('', ''),) + seasons
     start_term = forms.ChoiceField(choices=START_TERM_CHOICES ,label='When do you intend to enroll at North Central College?') 
-    student_load_intent = forms.ChoiceField(label='What is your intended course load?', choices=(('fulltime','Full-time'),('parttime','Part-time')))
+    student_load_intent = forms.ChoiceField(label='What is your intended course load?', choices=(('',''), ('fulltime','Full-time'),('parttime','Part-time')))
     #INSERT INTO `admissions.dev.capstone`.`graduate_majors` (`mid`, `majors`) VALUES (NULL, 'Master of Arts in Education: Curriculum and Instruction'), (NULL, 'Master of Arts in Education:  Educational Leadership & Administration'), (NULL, 'Master of Arts in Liberal Studies:  Culture and Society'), (NULL, 'Master of Arts in Liberal Studies:  Writing, Editing, and Publishing'), (NULL, 'Master of Business Administration:  Accounting'), (NULL, 'Master of Business Administration:  Change Management'), (NULL, 'Master of Business Administration:  Finance'), (NULL, 'Master of Business Administration:  Human Resource Management'), (NULL, 'Master of Business Administration:  Management'), (NULL, 'Master of Business Administration:  Marketing'), (NULL, 'Master of International Business Administration'), (NULL, 'Master of Leadership Studies:  Professional Leadership'), (NULL, 'Master of Leadership Studies:  Higher Education'), (NULL, 'Master of Leadership Studies:  Social Entrepreneurship'), (NULL, 'Master of Leadership Studies: Sport Leadership'), (NULL, 'Master of Science in Web and Internet Applications');
-    planned_major = forms.ModelChoiceField(queryset=Majors.objects.all(), label='What is your program of study?')
-    undergraduate_institution = forms.CharField()
-    ceeb = forms.CharField()
+    planned_major = forms.ModelChoiceField(queryset=Majors.objects.all(), label='What is your program of study?')        
+
     refered_by_name = forms.CharField(label='Friend / Relative Name')
     refered_by_relationship = forms.CharField(label='Relationship To You')
     refered_by_name2 = forms.CharField(label='Friend / Relative Name')

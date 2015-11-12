@@ -78,8 +78,13 @@ def page2(request):
 
     if request.method == 'POST':
         #save post data to session
-        form = PageTwoForm(request.POST)
+        print(request.POST)
+        print('\n\n')
+        print(request.POST.get('extra_field_count'))
+        print('\n\n')
+        form = PageTwoForm(request.POST, extra=request.POST.get('extra_field_count'))
         request.session['form_data_page2'] = request.POST
+        request.session['extra_count'] = extra=request.POST.get('extra_field_count')
         print(request.session["form_data_page2"])
         #if submit = page2 then go to page 2 else if page-3 then go to page 3
         if(request.POST.get('page1', '')):
@@ -94,7 +99,7 @@ def page2(request):
         if 'form_data_page2' in request.session:
             print("form2 data in session")
             #form = PageOneForm(request.session['form_data'])
-            form = PageTwoForm(initial=request.session.get('form_data_page2'))
+            form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
         #form = PageOneForm(SESSION)
         else: #create empty form
             form = PageTwoForm()
