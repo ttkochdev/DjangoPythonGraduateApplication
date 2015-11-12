@@ -53,7 +53,7 @@ class PageOneForm(forms.Form):
         ('F','Female'),
         )
     gender = forms.ChoiceField(choices=GENDER_TYPE_CHOICES)
-    date_of_birth = forms.DateTimeField()
+    date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'class': 'birthdatepicker hasDatepicker', 'id':'birth_date'}))
     birth_place = forms.CharField(label='Birthplace', required=True)
     ETHNICITY_TYPE_CHOICES = (
         ('',''),

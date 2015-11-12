@@ -1,4 +1,4 @@
-$().ready(function () {
+$(document).ready(function () {
     console.log("started p1 js");
     /*$('#baseUrl').val()+*/
 	$('#email').change(function() { 
@@ -19,13 +19,7 @@ $().ready(function () {
 		});
 	});
 	console.log("after email change");
-	$('#id_date_of_birth').datepicker({
-		minDate: new Date(1900,1-1,1), maxDate: '-10Y',
-		dateFormat: 'mm/dd/yy',
-	    changeMonth: true,
-	    changeYear: true,
-	    yearRange: '-100:-10'
-	});
+	$('.birthdatepicker').datepicker();
 
     
 	console.log("after datepicker");
