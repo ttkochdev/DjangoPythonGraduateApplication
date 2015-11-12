@@ -19,7 +19,14 @@ $(document).ready(function () {
 		});
 	});
 	console.log("after email change");
-	$('.birthdatepicker').datepicker();
+
+$("#birth_date").click(function(){
+console.log("clicked birthdate picker");
+ $("#birth_date").datepicker();
+      
+    });
+
+	/*$('.birthdatepicker').datepicker();*/
 
     
 	console.log("after datepicker");

@@ -86,7 +86,8 @@
                     {{ form.undergraduate_institution }}                    
                 </div>
                 {%render_field form.extra_field_count value='0' name='extra_field_count' %}
-                    
+                    {%render_field form.extra_1 value='0' name='extra_field_count' %}
+
                 <button id="add-another1">add another1</button>
 
         <div id="current-institution-1" class="row-fluid">
@@ -104,8 +105,7 @@
                  <span class="block"> Can't find a <a class="international-ceeb-college" id="CEEB1" title="Enter 0002 as your code.">foreign CEEB</a> ? </span> 
                 </span> 
             </div>
-                              <
-            div class="span3"> &nbsp;
+                              <div class="span3"> &nbsp;
             <input id="add_CEEB_2" type="button" value="Add Another">
           </div>
                             </div>
