@@ -67,25 +67,25 @@ class PageOneForm(forms.Form):
     denomination = forms.ModelChoiceField(queryset=Religions.objects.all())
     is_citizen = forms.ChoiceField(choices=(("",""),('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')))
 
-class PageTwoForm(forms.Form):
-
+class Institutions(forms.Form):
     undergraduate_institution = forms.CharField()
-    #ceeb = forms.CharField()
-    extra_field_count = forms.CharField(widget=forms.HiddenInput())
+    ceeb = forms.CharField()
+    #extra_field_count = forms.CharField(widget=forms.HiddenInput())
 
-    def __init__(self, *args, **kwargs):
-        extra_fields = kwargs.pop('extra', 0)
-        print('\nextra_fields\n')
-        print(extra_fields)
+    #def __init__(self, *args, **kwargs):
+    #    extra_fields = kwargs.pop('extra', 0)
+    #    print('\nextra_fields\n')
+    #    print(extra_fields)
 
-        super(PageTwoForm, self).__init__(*args, **kwargs)
-        self.fields['extra_field_count'].initial = extra_fields
+    #    super(PageTwoForm, self).__init__(*args, **kwargs)
+    #    self.fields['extra_field_count'].initial = extra_fields
 
-        for index in range(int(extra_fields)):
-            # generate extra fields in the number specified via extra_fields
-            self.fields['extra_field_{index}'.format(index=index)] = forms.CharField()
+    #    for index in range(int(extra_fields)):
+    #        # generate extra fields in the number specified via extra_fields
+    #        self.fields['extra_field_{index}'.format(index=index)] = forms.CharField()
 
-
+class PageTwoForm(forms.Form):
+    
     def season():
         doy = datetime.today().timetuple().tm_yday
         currentYear = date.today().year

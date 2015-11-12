@@ -8,11 +8,13 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.template import RequestContext
 from datetime import date, datetime
+from django.forms import formset_factory
 import json
 from django.core.mail import send_mail
 
 from .forms import PageOneForm
 from .forms import PageTwoForm
+from .forms import Institutions
 
 from .saveForms import *
 
@@ -74,7 +76,8 @@ def page1(request):
 def page2(request):
     """Renders page2."""
     assert isinstance(request, HttpRequest)
-
+    #InstitutionsFormset = formset_factory(Institutions)
+    
 
     if request.method == 'POST':
         #save post data to session
@@ -83,6 +86,7 @@ def page2(request):
         print(request.POST.get('extra_field_count'))
         print('\n\n')
         form = PageTwoForm(request.POST, extra=request.POST.get('extra_field_count'))
+        #formset = InstitutionsFormset()
         request.session['form_data_page2'] = request.POST
         request.session['extra_count'] = extra=request.POST.get('extra_field_count')
         print(request.session["form_data_page2"])
@@ -102,6 +106,7 @@ def page2(request):
             form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
         #form = PageOneForm(SESSION)
         else: #create empty form
+            #formset = InstitutionsFormset()
             form = PageTwoForm()
 
 
@@ -112,6 +117,7 @@ def page2(request):
         {
             'title':'Graduate Application Page-2',
             'form': form,
+            #'formset': formset,
             'year':datetime.now().year,
         })
     )
