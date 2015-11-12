@@ -19,7 +19,7 @@ $().ready(function () {
 		});
 	});
 	console.log("after email change");
-	/*$('.birthdatepicker').datepicker({	    
+	$('#id_date_of_birth').datepicker({
 		minDate: new Date(1900,1-1,1), maxDate: '-10Y',
 		dateFormat: 'mm/dd/yy',
 	    changeMonth: true,
@@ -27,7 +27,7 @@ $().ready(function () {
 	    yearRange: '-100:-10'
 	});
 
-    */
+    
 	console.log("after datepicker");
 	$('#id_internationalcheck').change(function () {
 		if ($(this).is(':checked')) {

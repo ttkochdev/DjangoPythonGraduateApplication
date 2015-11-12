@@ -201,7 +201,7 @@
                     <div class="span5"><label>Birth Date</label></div>
                     <div class="span7">
                         <span>
-                            {% render_field form.date_of_birth placeholder='yyyy-mm-dd' name='date_of_birth' class='birthdatepicker hasDatepicker' %}
+                            {% render_field form.date_of_birth placeholder='yyyy-mm-dd' name='birth_date' class='birthdatepicker hasDatepicker' %}
                         </span>                    
                     </div>
                 </fieldset>
@@ -355,3 +355,11 @@
         </div>
 
  {% include 'app/footer.html' %}
+<script type="text/javascript" src="{% static 'app/scripts/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'app/scripts/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'app/scripts/bootstrap-popover.js' %}"></script>
+<script type="text/javascript" src="{% static 'app/scripts/jquery-ui-1.10.3.custom.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'app/scripts/graduate/page1.js' %}"></script>
+
+</body>
+</html>
