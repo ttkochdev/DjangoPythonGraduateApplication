@@ -160,6 +160,7 @@ def page3(request):
 def confirmation(request):
     """Renders confirmation page."""
     assert isinstance(request, HttpRequest)
+    form = PageOneForm()
     return render(
         request,
         'app/confirmation.html',
@@ -167,6 +168,7 @@ def confirmation(request):
         {
             'title':'Graduate Application Confirmation',
             'year':datetime.now().year,
+            'form':form,
         })
     )
 

@@ -15,6 +15,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy as _
 from datetime import date, datetime
 
+from functools import partial
+DateInput = partial(forms.DateInput, {'class': 'birthdatepicker'})
+
 class PageOneForm(forms.Form): 
     email = forms.CharField(label='Email', required=True)
     first_name = forms.CharField(label='First Name', required=True)
@@ -53,7 +56,7 @@ class PageOneForm(forms.Form):
         ('F','Female'),
         )
     gender = forms.ChoiceField(choices=GENDER_TYPE_CHOICES)
-    date_of_birth = forms.DateField(widget=forms.DateInput(attrs={'class': 'birthdatepicker hasDatepicker', 'id':'birth_date'}))
+    date_of_birth = forms.DateField(widget=DateInput())
     birth_place = forms.CharField(label='Birthplace', required=True)
     ETHNICITY_TYPE_CHOICES = (
         ('',''),

@@ -18,18 +18,15 @@ $(document).ready(function () {
 			}
 		});
 	});
-	console.log("after email change");
 
-$("#birth_date").click(function(){
-console.log("clicked birthdate picker");
- $("#birth_date").datepicker();
-      
-    });
+	$('.birthdatepicker').datepicker({
+	    minDate: new Date(1900, 1 - 1, 1), maxDate: '-10Y',
+	    dateFormat: 'yy-mm-dd',
+	    changeMonth: true,
+	    changeYear: true,
+	    yearRange: '-100:-10'
+	});
 
-	/*$('.birthdatepicker').datepicker();*/
-
-    
-	console.log("after datepicker");
 	$('#id_internationalcheck').change(function () {
 		if ($(this).is(':checked')) {
 			$('#outside_us').show();
