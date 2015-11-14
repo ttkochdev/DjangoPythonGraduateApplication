@@ -62,33 +62,15 @@
           <h4>Undergraduate Institution</h4>
         </div>
 
-                <script>
-                    //http://www.b-list.org/weblog/2008/nov/09/dynamic-forms/
-                    //https://docs.djangoproject.com/en/dev/topics/forms/formsets/#using-a-formset-in-views-and-templates
-                    $( document ).ready(function() {
-                    form_count = $("#id_extra_field_count").val();
-                    // get extra form count so we know what index to use for the next item.
-                    $("#add-another1").click(function () {
-                        console.log('clicked');
-                        element = $('<input type="text"/>');
-                        element.attr('name', 'extra_field_' + form_count);
-                        $("#forms").append(element);
-                        // build element and append it to our forms container
+                {{ formset.management_form }}
+    <table>
+        {% for form in formset %}
+        {{ form }}
+        {% endfor %}
+    </table>
 
-                        form_count++;
-                        $("#id_extra_field_count").val(form_count);
-                        // increment form count so our view knows to populate 
-                        // that many fields for validation
-                    });
-                    });
-                </script>
-                <div id="forms">
-                    {{ form.undergraduate_institution }}                    
-                </div>
-                {%render_field form.extra_field_count value='0' name='extra_field_count' %}
-                    {%render_field form.extra_1 value='0' name='extra_field_count' %}
 
-                <button id="add-another1">add another1</button>
+               
 
         <div id="current-institution-1" class="row-fluid">
           <div class="span5"> <span>

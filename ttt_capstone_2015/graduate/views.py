@@ -76,8 +76,8 @@ def page1(request):
 def page2(request):
     """Renders page2."""
     assert isinstance(request, HttpRequest)
-    #InstitutionsFormset = formset_factory(Institutions)
-    
+    InstitutionsFormset = formset_factory(Institutions)
+    formset = InstitutionsFormset()
 
     if request.method == 'POST':
         #save post data to session
@@ -117,7 +117,7 @@ def page2(request):
         {
             'title':'Graduate Application Page-2',
             'form': form,
-            #'formset': formset,
+            'formset': formset,
             'year':datetime.now().year,
         })
     )
