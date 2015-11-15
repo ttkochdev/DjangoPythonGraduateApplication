@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
  {% include 'app/header.html' %}
+  <script type="text/javascript" src="{% static 'app/scripts/graduate/page2.js' %}"></script> 
+  <script type="text/javascript" src="{% static 'app/scripts/graduate/jquery.formset.js' %}"></script> 
         <div class="container-fluid">
             <div class="content row-fluid">
                 <div class="container">
@@ -51,7 +53,7 @@
             {{ form.planned_major }}       
         </div>
       </div>
-                                                      <div class="row-fluid">
+<div class="row-fluid">
         <h2>About Your Educational Background</h2>
       </div>
       <div class="row-fluid">
@@ -62,89 +64,65 @@
           <h4>Undergraduate Institution</h4>
         </div>
 
-                {{ formset.management_form }}
-    <table>
-        {% for form in formset %}
-        {{ form }}
-        {% endfor %}
-    </table>
+<script>
+$( document ).ready(function() {
+    //function cloneMore(selector, type) {
+    //    var newElement = $(selector).clone(true);
+    //    var total = $('#id_' + type + '-TOTAL_FORMS').val();
+    //    newElement.find(':input').each(function () {
+    //        var name = $(this).attr('name').replace('-' + (total - 1) + '-', '-' + total + '-');
+    //        var id = 'id_' + name;
+    //        $(this).attr({ 'name': name, 'id': id }).val('').removeAttr('checked');
+    //    });
+    //    newElement.find('label').each(function () {
+    //        var newFor = $(this).attr('for').replace('-' + (total - 1) + '-', '-' + total + '-');
+    //        $(this).attr('for', newFor);
+    //    });
+    //    total++;
+    //    $('#id_' + type + '-TOTAL_FORMS').val(total);
+    //    $(selector).after(newElement);
+    //}
+
+    //$('#add_more').click(function () {
+    //    cloneMore('div.table:last', 'service');
+    //});
+    //});
+
+    $(function () {
+        $('#undergraduate_institution tbody tr').formset({
+            // For inline formsets, be sure to set the prefix, as the default prefix
+            // ('form') isn't correct.
+            // Django appears to generate the prefix from the lowercase plural
+            // name of the related model, with camel-case converted to underscores.
+            //prefix: 'institutions'
+        })
+    })
 
 
-               
+});
+</script>   
+                <!--need to populate initial data in views https://github.com/elo80ka/django-dynamic-formset/blob/master/demo/example/views.py-->
+ <table id="undergraduate_institution" border="0" cellpadding="0" cellspacing="5">
+                <thead>
+                    <tr>                       
+                        <th scope="col">Previous institution</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for form in formset.forms %}
+                    <tr id="{{ form.prefix }}-row">                        
+                        <td>{{ form.undergraduate_institution }}</td>
+                        <td>{{ form.ceeb }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+{{ formset.management_form }}
+        
 
-        <div id="current-institution-1" class="row-fluid">
-          <div class="span5"> <span>
-
-<input type="text" name="additional_institution1" id="additional_institution1" value="" class="input-medium" placeholder="Name" style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==); background-attachment: scroll; background-position: 100% 50%; background-repeat: no-repeat;"></span> </div>
-          
-            <div class="span4"> 
-            <span>
-
-<input type="text" name="additional_institution1_ceeb" id="additional_institution1_ceeb" value="" maxlength="4" class="input-small college-ceeb" placeholder="CEEB Code">
-
-                </span> 
-                <span class="wide block subtext"> Look up <a href="http://sat.collegeboard.org/register/sat-code-search" target="_new">here</a>; choose "Colleges &amp; Scholarships" from menu.
-                 <span class="block"> Can't find a <a class="international-ceeb-college" id="CEEB1" title="Enter 0002 as your code.">foreign CEEB</a> ? </span> 
-                </span> 
-            </div>
-                              <div class="span3"> &nbsp;
-            <input id="add_CEEB_2" type="button" value="Add Another">
-          </div>
-                            </div>
       </div>
-            <div id="attendedCollege_div2" style="display:none;">
-        <div class="row-fluid">
-          <h4>Previous institution</h4>
-        </div>
-        <div id="current-institution-2" class="row-fluid">
-          <div class="span5"> <span>
-<input type="text" name="additional_institution2" id="additional_institution2" value="" class="input-medium" placeholder="Name"></span> </div>
-          <div class="span4"> <span>
-<input type="text" name="additional_institution2_ceeb" id="additional_institution2_ceeb" value="" maxlength="4" class="input-small college-ceeb" placeholder="CEEB Code"></span> <span class="wide block subtext"> Look up <a href="http://sat.collegeboard.org/register/sat-code-search" target="_new">here</a>; choose "Colleges &amp; Scholarships" from menu. <span class="block"> Can't find a <a class="international-ceeb-college" id="CEEB2" title="Enter 0002 as your code.">foreign CEEB</a> ? </span> </span> </div>
-                              <div class="span3"> &nbsp;
-            <input id="add_CEEB_3" type="button" value="Add Another">
-          </div>
-                            </div>
-      </div>
-            <div id="attendedCollege_div3" style="display:none;">
-        <div class="row-fluid">
-          <h4>Previous institution</h4>
-        </div>
-        <div id="current-institution-3" class="row-fluid">
-          <div class="span5"> <span>
-<input type="text" name="additional_institution3" id="additional_institution3" value="" class="input-medium" placeholder="Name"></span> </div>
-          <div class="span4"> <span>
-<input type="text" name="additional_institution3_ceeb" id="additional_institution3_ceeb" value="" maxlength="4" class="input-small college-ceeb" placeholder="CEEB Code"></span> <span class="wide block subtext"> Look up <a href="http://sat.collegeboard.org/register/sat-code-search" target="_new">here</a>; choose "Colleges &amp; Scholarships" from menu. <span class="block"> Can't find a <a class="international-ceeb-college" id="CEEB3" title="Enter 0002 as your code.">foreign CEEB</a> ? </span> </span> </div>
-                              <div class="span3"> &nbsp;
-            <input id="add_CEEB_4" type="button" value="Add Another">
-          </div>
-                            </div>
-      </div>
-            <div id="attendedCollege_div4" style="display:none;">
-        <div class="row-fluid">
-          <h4>Previous institution</h4>
-        </div>
-        <div id="current-institution-4" class="row-fluid">
-          <div class="span5"> <span>
-<input type="text" name="additional_institution4" id="additional_institution4" value="" class="input-medium" placeholder="Name"></span> </div>
-          <div class="span4"> <span>
-<input type="text" name="additional_institution4_ceeb" id="additional_institution4_ceeb" value="" maxlength="4" class="input-small college-ceeb" placeholder="CEEB Code"></span> <span class="wide block subtext"> Look up <a href="http://sat.collegeboard.org/register/sat-code-search" target="_new">here</a>; choose "Colleges &amp; Scholarships" from menu. <span class="block"> Can't find a <a class="international-ceeb-college" id="CEEB4" title="Enter 0002 as your code.">foreign CEEB</a> ? </span> </span> </div>
-                              <div class="span3"> &nbsp;
-            <input id="add_CEEB_5" type="button" value="Add Another">
-          </div>
-                            </div>
-      </div>
-            <div id="attendedCollege_div5" style="display:none;">
-        <div class="row-fluid">
-          <h4>Previous institution</h4>
-        </div>
-        <div id="current-institution-5" class="row-fluid">
-          <div class="span5"> <span>
-<input type="text" name="additional_institution5" id="additional_institution5" value="" class="input-medium" placeholder="Name"></span> </div>
-          <div class="span4"> <span>
-<input type="text" name="additional_institution5_ceeb" id="additional_institution5_ceeb" value="" maxlength="4" class="input-small college-ceeb" placeholder="CEEB Code"></span> <span class="wide block subtext"> Look up <a href="http://sat.collegeboard.org/register/sat-code-search" target="_new">here</a>; choose "Colleges &amp; Scholarships" from menu. <span class="block"> Can't find a <a class="international-ceeb-college" id="CEEB5" title="Enter 0002 as your code.">foreign CEEB</a> ? </span> </span> </div>
-                  </div>
-      </div>
+     
                         <div class="row-fluid">
         <h2>More About You</h2>
         <p class="wide"> Please list any parents, siblings, other relatives, or friends who have attended North Central College including their relationship to you. </p>
@@ -419,6 +397,6 @@
             </div>
         </div>
  {% include 'app/footer.html' %}
-  <script type="text/javascript" src="{% static 'app/scripts/graduate/page2.js' %}"></script> 
+
 </body>
 </html>

@@ -121,6 +121,7 @@
     <Content Include="graduate\static\app\scripts\bootstrap-dropdown.js" />
     <Content Include="graduate\static\app\scripts\bootstrap-popover.js" />
     <Content Include="graduate\static\app\scripts\bootstrap-transition.js" />
+    <Content Include="graduate\static\app\scripts\graduate\jquery.formset.js" />
     <Content Include="graduate\static\app\scripts\graduate\page1.js" />
     <Content Include="graduate\static\app\scripts\graduate\page2.js" />
     <Content Include="graduate\static\app\scripts\graduate\page3.js" />

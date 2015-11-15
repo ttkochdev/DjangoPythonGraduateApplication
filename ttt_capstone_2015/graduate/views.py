@@ -85,10 +85,10 @@ def page2(request):
         print('\n\n')
         print(request.POST.get('extra_field_count'))
         print('\n\n')
-        form = PageTwoForm(request.POST, extra=request.POST.get('extra_field_count'))
+        form = PageTwoForm(request.POST) #, extra=request.POST.get('extra_field_count')
         #formset = InstitutionsFormset()
         request.session['form_data_page2'] = request.POST
-        request.session['extra_count'] = extra=request.POST.get('extra_field_count')
+        #request.session['extra_count'] = extra=request.POST.get('extra_field_count')
         print(request.session["form_data_page2"])
         #if submit = page2 then go to page 2 else if page-3 then go to page 3
         if(request.POST.get('page1', '')):
