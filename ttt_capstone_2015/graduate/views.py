@@ -107,7 +107,7 @@ def page2(request):
             print("form2 data in session")
             #form = PageOneForm(request.session['form_data'])
             form = PageTwoForm(initial=request.session.get('form_data_page2'), prefix='p2form') #, request.session.get('extra_count')
-            formset = InstitutionsFormset(request.session.get('formset_data_page2'), prefix='institutions')
+            formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
         #form = PageOneForm(SESSION)
         else: #create empty form
             formset = InstitutionsFormset(prefix='institutions')
