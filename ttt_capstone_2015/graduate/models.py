@@ -182,6 +182,7 @@ class StudentRace(models.Model):
     def __str__(self):
         return self.srid
 
+    #maybe try making this a model form? 
 class StudentUndergraduateInstitution(models.Model):
     soiid = models.AutoField(primary_key=True)
     sid = models.ForeignKey(Student)

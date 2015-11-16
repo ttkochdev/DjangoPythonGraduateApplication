@@ -32,7 +32,7 @@ def page1(request):
         
         #print(form)
         #save post data to session
-        #request.session['form1'] = 
+        #request.session['form1'] =
         request.session['form_data_page1'] = request.POST
         
         print(request.session["form_data_page1"])
@@ -50,7 +50,7 @@ def page1(request):
         
         print(request.session.get('form_data_page1'))  
         #check if login session exists
-        #if so populate session data from database        
+        #if so populate session data from database
         if 'form_data_page1' in request.session:
             print("form data in session\n\n")
             print("\n\n")
@@ -61,8 +61,7 @@ def page1(request):
             form = PageOneForm()
             
 
-    return render(
-        request,
+    return render(request,
         'app/page-1.html',
         context_instance = RequestContext(request,
         {
@@ -70,25 +69,29 @@ def page1(request):
             'form': form,
             #'test': test,
             'year':datetime.now().year,
-        })
-    )
+        }))
 
 def page2(request):
     """Renders page2."""
     assert isinstance(request, HttpRequest)
     InstitutionsFormset = formset_factory(Institutions)
-    formset = InstitutionsFormset()
+    
+
+    #ideas
+    #http://stackoverflow.com/questions/24255955/django-formsets-initializing-values-for-extra-fields-from-list-in-model-formset
 
     if request.method == 'POST':
         #save post data to session
-        print(request.POST)
         print('\n\n')
-        print(request.POST.get('extra_field_count'))
+        print(request.POST) #post value example on bottom of this document
         print('\n\n')
-        form = PageTwoForm(request.POST) #, extra=request.POST.get('extra_field_count')
-        #formset = InstitutionsFormset()
+        #print(request.POST.get('extra_field_count'))
+        print('\n\n')
+        form = PageTwoForm(request.POST, prefix='p2form') #, extra=request.POST.get('extra_field_count')
+        formset = InstitutionsFormset(request.POST, prefix='institutions')
         request.session['form_data_page2'] = request.POST
-        #request.session['extra_count'] = extra=request.POST.get('extra_field_count')
+        #request.session['extra_count'] =
+        #extra=request.POST.get('extra_field_count')
         print(request.session["form_data_page2"])
         #if submit = page2 then go to page 2 else if page-3 then go to page 3
         if(request.POST.get('page1', '')):
@@ -99,19 +102,19 @@ def page2(request):
             #saveForms.savePage2(request.session['form_data_page2'])
             return HttpResponseRedirect('/page-2/') 
     # if a GET (or any other method) we'll create a blank form
-    else:
+    else:        
         if 'form_data_page2' in request.session:
             print("form2 data in session")
             #form = PageOneForm(request.session['form_data'])
-            form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
+            form = PageTwoForm(initial=request.session.get('form_data_page2'), prefix='p2form') #, request.session.get('extra_count')
+            formset = InstitutionsFormset(request.session.get('formset_data_page2'), prefix='institutions')
         #form = PageOneForm(SESSION)
         else: #create empty form
-            #formset = InstitutionsFormset()
-            form = PageTwoForm()
+            formset = InstitutionsFormset(prefix='institutions')
+            form = PageTwoForm(prefix='p2form')
 
 
-    return render(
-        request,
+    return render(request,
         'app/page-2.html',
         context_instance = RequestContext(request,
         {
@@ -119,8 +122,7 @@ def page2(request):
             'form': form,
             'formset': formset,
             'year':datetime.now().year,
-        })
-    )
+        }))
 
 def page3(request):
     """Renders page3."""
@@ -147,35 +149,31 @@ def page3(request):
         #form = PageOneForm()
         print("page3")
 
-    return render(
-        request,
+    return render(request,
         'app/page-3.html',
         context_instance = RequestContext(request,
         {
             'title':'Graduate Application Page-3',            
             'year':datetime.now().year,
-        })
-    )
+        }))
 
 def confirmation(request):
     """Renders confirmation page."""
     assert isinstance(request, HttpRequest)
     form = PageOneForm()
-    return render(
-        request,
+    return render(request,
         'app/confirmation.html',
         context_instance = RequestContext(request,
         {
             'title':'Graduate Application Confirmation',
             'year':datetime.now().year,
             'form':form,
-        })
-    )
+        }))
 
 def pwemail(request):
    if request.method == 'GET':
        email = request.GET.get('email')  
-       #seem to be issues with my localhost mailer.      
+       #seem to be issues with my localhost mailer.
        send_mail('Subject here', 'Here is the message.', 'ttkoch@noctrl.edu', [email], fail_silently=False)
        return HttpResponse("GET")
    else:
@@ -193,7 +191,8 @@ def pwemail(request):
 
 
     
-    #return render(request, 'app/pwemail.html', context_instance = RequestContext(request,{}))
+    #return render(request, 'app/pwemail.html', context_instance =
+    #RequestContext(request,{}))
 
 #def home(request):
 #    """Renders the home page."""
@@ -236,3 +235,6 @@ def pwemail(request):
 #        })
 #    )
 
+
+#add this to postman or json editor to make it easy to read
+#{"employment_address_outside":[""],"policy_reason":[""],"employment_zip":[""],"MAX_FILE_SIZE":["2097152"],"gi":["0"],"employment_state":[""],"influenced_to_apply":[""],"planned_major":[""],"page":["Page2","Page2"],"form-TOTAL_FORMS":["3"],"form-0-ceeb":["1895"],"reference1_relationship":[""],"form-MAX_NUM_FORMS":["1000"],"form-1-undergraduate_institution":["North Central College"],"form-MIN_NUM_FORMS":["0"],"legal_reason":[""],"baseUrl":[""],"student_load_intent":[""],"form-1-ceeb":["1000"],"employer_country":["AF"],"employment_city":[""],"form-2-undergraduate_institution":["Ball State"],"tuition_remission":["0"],"page3":["Ahead to Page 3 >>"],"form-2-ceeb":["2000"],"employment_address":[""],"start_term":[""],"form-0-undergraduate_institution":["Wabash College"],"employer_address_outside_us":["0"],"reference2_name":[""],"reference1_name":[""],"resume":[""],"csrfmiddlewaretoken":["GiVvaimRmMtjC5NOczgAlxZ82Om8gfgt"],"reference2_relationship":[""],"form-INITIAL_FORMS":["0"]}

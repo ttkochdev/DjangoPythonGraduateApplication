@@ -94,7 +94,7 @@ $( document ).ready(function() {
             // ('form') isn't correct.
             // Django appears to generate the prefix from the lowercase plural
             // name of the related model, with camel-case converted to underscores.
-            //prefix: 'institutions'
+            prefix: 'institutions'
         })
     })
 
@@ -132,28 +132,37 @@ $( document ).ready(function() {
           <label>Friend / Relative Name</label>
         </div>
         <div class="span7"> <span>
-<input type="text" name="reference1_name" id="reference1_name" value="" maxlength="50"></span> </div>
+             {% render_field form.refered_by_name maxlength='50' %}
+
+            </span> 
+       </div>
       </div>
                                           <div class="row-fluid">
         <div class="span5">
           <label>Relationship To You</label>
         </div>
         <div class="span7"> <span>
-<input type="text" name="reference1_relationship" id="reference1_relationship" value="" maxlength="20"></span> </div>
+
+            {% render_field form.refered_by_relationship maxlength='20' %}
+            </span> </div>
       </div>
                                     <div class="row-fluid">
         <div class="span5">
           <label>Friend / Relative Name</label>
         </div>
         <div class="span7"> <span>
-<input type="text" name="reference2_name" id="reference2_name" value="" maxlength="50"></span> </div>
+
+            {% render_field form.refered_by_name2 maxlength='50' %}
+            </span> </div>
       </div>
                               <div class="row-fluid">
         <div class="span5">
           <label>Relationship To You</label>
         </div>
         <div class="span7"> <span>
-<input type="text" name="reference2_relationship" id="reference2_relationship" value="" maxlength="20"></span> </div>
+
+            {% render_field form.refered_by_relationship2 maxlength='20' %}
+            </span> </div>
       </div>
             
             <div class="row-fluid">
