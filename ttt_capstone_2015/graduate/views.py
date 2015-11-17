@@ -174,13 +174,13 @@ def pwemail(request):
    if request.method == 'GET':
        email = request.GET.get('email')  
         
-
-
-       send_mail('Subject here', 'Here is the message.', 'ttkoch@noctrl.edu', [email], fail_silently=False)
-       
-       return HttpResponse("<p>Login with your previous session or continue to overwrite previous changes.</p><p><a href='/login'>Login to continue old application</a></p>")
+       if Student.objects.filter(email=email).exists():
+           #send_mail('Subject here', 'Here is the message.', 'ttkoch@noctrl.edu', [email], fail_silently=False)
+           return HttpResponse("<p>Login with your previous session or continue to overwrite previous changes.</p><p><a href='/login'>Login to continue previous application</a></p>")
+       else:
+           return HttpResponse("<p>Saving a form will email you a password so that you can return to the application where you left off.</p>")       
    else:
-       return HttpResponse("")
+       return HttpResponse("An Error Occurred")
 
 #def home(request):
 #    """Renders the home page."""
