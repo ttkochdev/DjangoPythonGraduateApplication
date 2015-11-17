@@ -10,6 +10,10 @@ from graduate.models import Majors
 from localflavor.us.us_states import STATE_CHOICES
 #from localflavor.us.forms import USStateSelect
 from django_countries import countries
+from django_countries.fields import CountryField
+from django_countries.fields import LazyTypedChoiceField
+from django_countries.widgets import CountrySelectWidget
+
 from localflavor.us.forms import USSocialSecurityNumberField
 from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy as _
@@ -19,11 +23,11 @@ from functools import partial
 DateInput = partial(forms.DateInput, {'class': 'birthdatepicker'})
 
 class PageOneForm(forms.Form): 
-    email = forms.CharField(label='Email', required=True) #
-    first_name = forms.CharField(label='First Name', required=True)
-    middle_name = forms.CharField(label='Middle Name', required=True)
-    last_name = forms.CharField(label='Last Name', required=True)    
-    social_security = USSocialSecurityNumberField()
+    email = forms.CharField(label='Email', required=True) #Student
+    first_name = forms.CharField(label='First Name', required=True)#Student
+    middle_name = forms.CharField(label='Middle Name', required=True)#Student
+    last_name = forms.CharField(label='Last Name', required=True)    #Student
+    social_security = USSocialSecurityNumberField()#Student
     SUFFIX_TYPE_CHOICES = (
         ('',''),
         ('Jr','Jr.'),
@@ -32,14 +36,18 @@ class PageOneForm(forms.Form):
         ('III','III'),
         ('IV','IV'),
         )
-    suffix = forms.ChoiceField(choices=SUFFIX_TYPE_CHOICES)
-    preferred_first_name = forms.CharField(label='Prefered First Name', required=True)
-    birth_last_name = forms.CharField(label='Birth Last Name', required=True)
+    suffix = forms.ChoiceField(choices=SUFFIX_TYPE_CHOICES)#Student
+    preferred_first_name = forms.CharField(label='Prefered First Name', required=True)#Student
+    birth_last_name = forms.CharField(label='Birth Last Name', required=True)#Student
     #country = forms.BooleanField()
     internationalcheck = forms.BooleanField()
-    country = forms.ChoiceField(choices=countries)
-    citizenship_country = forms.ChoiceField(choices=countries)
-    residence_country = forms.ChoiceField(choices=countries)
+
+    COUNTRY_CHOICES = tuple(countries)
+    COUNTRY_CHOICES = (('', ''),) + COUNTRY_CHOICES
+    country = forms.ChoiceField(choices=COUNTRY_CHOICES)    
+    citizenship_country = forms.ChoiceField(choices=COUNTRY_CHOICES) #citizenship country #Address
+    residence_country = forms.ChoiceField(choices=COUNTRY_CHOICES)
+    
     address1 = forms.CharField(label='Mailing Address', required=True) 
     address2 = forms.CharField(label='Mailing Address 2', required=True)
     city = forms.CharField(label='City', required=True)
@@ -138,7 +146,9 @@ class PageTwoForm(forms.Form):
     legal_reason = forms.CharField(label='If yes, please explain your conviction in 140 characters or less.')
     employer = forms.CharField(label='Employer Name')
     outside_us_employment = forms.BooleanField(label='Employment address outside of the United States?')
-    employer_country = forms.ChoiceField(choices=countries) 
+    COUNTRY_CHOICES = tuple(countries)
+    COUNTRY_CHOICES = (('', ''),) + COUNTRY_CHOICES
+    employer_country = forms.ChoiceField(choices=COUNTRY_CHOICES) 
     employment_address = forms.CharField()
     employment_address_outside = forms.CharField()
     employment_city = forms.CharField()
