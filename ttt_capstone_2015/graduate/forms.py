@@ -19,7 +19,7 @@ from functools import partial
 DateInput = partial(forms.DateInput, {'class': 'birthdatepicker'})
 
 class PageOneForm(forms.Form): 
-    email = forms.CharField(label='Email', required=True)
+    email = forms.CharField(label='Email', required=True) #
     first_name = forms.CharField(label='First Name', required=True)
     middle_name = forms.CharField(label='Middle Name', required=True)
     last_name = forms.CharField(label='Last Name', required=True)    
