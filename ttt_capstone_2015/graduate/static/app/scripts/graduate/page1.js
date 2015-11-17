@@ -3,18 +3,10 @@ $(document).ready(function () {
     /*$('#baseUrl').val()+*/
 	$('#email').change(function() { 
 		$.ajax({
-			type: 'GET',
-			dataType: 'json',
+			type: 'GET',			
 			url: '/pwemail/?email='+$(this).val(),
-			success: function (json) {
-			    console.log("here");
-				if (json['result'] == 'success') {
-				    /*$('#email-notice').html(json['msg']);*/
-				    console.log("sucess")
-				} else {
-				    console.log("fail")
-					/*$('#email-notice').html(json['errors']);*/
-				}
+			success: function (data) {			   
+			    $('#email-notice').html(data);
 			}
 		});
 	});

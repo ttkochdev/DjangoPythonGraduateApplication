@@ -173,26 +173,14 @@ def confirmation(request):
 def pwemail(request):
    if request.method == 'GET':
        email = request.GET.get('email')  
-       #seem to be issues with my localhost mailer.
+        
+
+
        send_mail('Subject here', 'Here is the message.', 'ttkoch@noctrl.edu', [email], fail_silently=False)
-       return HttpResponse("GET")
+       
+       return HttpResponse("<p>Login with your previous session or continue to overwrite previous changes.</p><p><a href='/login'>Login to continue old application</a></p>")
    else:
-       return HttpResponse("no get")
-
-        #return HttpResponse(
-        #    json.dumps({"something to see": "this thing is happening"}),
-        #    content_type="application/json"
-        #)
-    #else:
-    #    return HttpResponse(
-    #        json.dumps({"nothing to see": "this isn't happening"}),
-    #        content_type="application/json"
-    #    )
-
-
-    
-    #return render(request, 'app/pwemail.html', context_instance =
-    #RequestContext(request,{}))
+       return HttpResponse("")
 
 #def home(request):
 #    """Renders the home page."""
