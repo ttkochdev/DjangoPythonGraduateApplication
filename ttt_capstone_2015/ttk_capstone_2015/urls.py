@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^pwemail/$', 'graduate.views.pwemail', name='pwemail'),
     #url(r'^about', 'graduate.views.about', name='about'),
     url(r'^login/$',
-        'django.contrib.auth.views.login',
+        'graduate.views.login',
         {
             'template_name': 'app/login.html',
             'authentication_form': BootstrapAuthenticationForm,

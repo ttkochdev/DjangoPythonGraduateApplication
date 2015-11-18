@@ -29,7 +29,7 @@ class saveForms(object):
         permanent_phone = data.get("permanent_phone", "")
         international_phone = data.get("international_phone", "")
         gender = data.get("gender", "")
-        date_of_birth = data.get("date_of_birth", "")
+        birth_date = data.get("birth_date", "")
         ethnicity = data.get("ethnicity", "")
         race = data.get("race", "")
         denomination = data.get("denomination", "")
@@ -44,7 +44,7 @@ class saveForms(object):
                                                                   'birth_last_name':'','country':'','residence_country':'',
                                                                   'address1':'','address2':'','city':'',
                                                                   'state':'','zipcode':'','permanent_phone':'',
-                                                                  'international_phone':'','gender':'','date_of_birth':date_of_birth,
+                                                                  'international_phone':'','gender':'','date_of_birth':birth_date,
                                                                   'ethnicity':'','race':'','denomination':'0','is_citizen':'0',
                                                                   'level':'1', 'tution_remission':'1', 'gi':'1',
                                                                   })

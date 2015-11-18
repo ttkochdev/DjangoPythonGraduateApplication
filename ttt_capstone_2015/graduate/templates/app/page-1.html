@@ -177,7 +177,7 @@
                     </div>
                     <div class="span7">
                         <span>                        
-                        {% render_field form.permanent_phone name="phone1" maxlength="12" %} 
+                        {% render_field form.permanent_phone name="permanent_phone" maxlength="12" %} 
                         </span>
                     </div>
                 </fieldset>
@@ -188,7 +188,7 @@
                     </div>
                     <div class="span7">
                         <span>
-                            {% render_field form.international_phone name="phone2" maxlength="12" %} 
+                            {% render_field form.international_phone name="international_phone" maxlength="12" %} 
                         </span>                    
                     </div>
                 </fieldset>
@@ -202,7 +202,7 @@
                     <div class="span5"><label>Birth Date</label></div>
                     <div class="span7">
                         <span>
-                            {% render_field form.date_of_birth name='birth_date' placeholder='yyyy-mm-dd' %}
+                            {% render_field form.birth_date name='birth_date' placeholder='yyyy-mm-dd' %}
                         </span>                    
                     </div>
                 </fieldset>
@@ -261,7 +261,7 @@
                 <div class="span4">
                                         
              
-                {% render_field form.is_citizen name='is_citzen' %}
+                {% render_field form.is_citizen name='is_citizen' %}
                 </div>
             </fieldset>
             <div style="display:none;" id="citizen_yes">
@@ -270,7 +270,7 @@
                 <div class="span3"><label for="socialSecurityNumber">Social Security Number</label><br><span class="ssn_number">(###-##-####)</span></div>
                 <div class="span4">
                     <span>
-                       {% render_field form.social_security maxlength='11' name='ssn' %}
+                       {% render_field form.social_security maxlength='11' name='social_security' %}
                     </span>                
                 </div>
             </fieldset>
