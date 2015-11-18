@@ -43,6 +43,12 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+class Phone(models.Model):    
+    phone = models.CharField(max_length=75)
+    typeflag = models.CharField(max_length=255)
+
+    def __str__(self):              
+        return "%s %s" % (self.phone, self.typeflag)
 
 class Student(AbstractBaseUser): #models.Model
     id = models.AutoField(primary_key=True)
@@ -124,9 +130,10 @@ class Student(AbstractBaseUser): #models.Model
     employer = models.CharField(max_length=255)
     tution_remission = models.IntegerField(default=0)
     gi = models.IntegerField(default=0)
+    phone = models.ManyToManyField(Phone)
 
     def __str__(self):
-        return self.id
+        return self.email
 
 class Address(models.Model):
     said = models.AutoField(primary_key=True)
@@ -142,14 +149,6 @@ class Address(models.Model):
     def __str__(self):
         return self.said
 
-class Phone(models.Model):
-    spid = models.AutoField(primary_key=True) 
-    sid = models.ForeignKey(Student)
-    phone = models.CharField(max_length=75)
-    typeflag = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.phone
 
 class Religions(models.Model):
     rid = models.AutoField(primary_key=True)

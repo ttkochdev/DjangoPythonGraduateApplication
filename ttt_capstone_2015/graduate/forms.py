@@ -73,7 +73,7 @@ class PageOneForm(forms.Form):
     international_phonecheck = forms.BooleanField()
 
     permanent_phone = forms.CharField(label='Permanent Telephone Number', required=True) #Phone
-    international_phone = forms.CharField(label='International Telephone Number', required=True) #Phone
+    cell_phone = forms.CharField(label='Cell Phone Number', required=True) #Phone
     
     #INSERT INTO `admissions.dev.capstone`.`graduate_race` (`rid`, `race`) VALUES (NULL, 'American Indian or Alaska Native'), (NULL, 'Asian'), (NULL, 'Black or African American'), (NULL, 'Native Hawaiian or Other Pacific Islander'), (NULL, 'White');
     race = forms.ModelMultipleChoiceField(queryset=Race.objects.all(),widget=forms.CheckboxSelectMultiple()) #StudentRace
