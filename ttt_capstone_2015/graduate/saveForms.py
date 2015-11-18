@@ -39,11 +39,13 @@ class saveForms(object):
 
         #Student.objects.create(batch_id="123", first_name="first", last_name="last", date_of_birth=dob, is_citizen="1", denomination="1", level="1", tution_remission="1", gi="1")
         #if international_phonecheck == 1:
-        phone1 = Phone.objects.create(phone=permanent_phone, typeflag='permanent_phone')
-        phone1.save()
+        
+        #need to get the correct primary key for the phone
+        permphone = Phone.objects.update_or_create(pk=1, defaults={'phone':permanent_phone, 'typeflag':'permanent_phone'})[0]
+        #permphone.save()
         #else:
-        phone2 = Phone.objects.create(phone=cell_phone, typeflag='permanent_phone')
-        phone2.save()
+        cellphone = Phone.objects.update_or_create(pk=2, defaults={'phone':cell_phone, 'typeflag':'permanent_phone'})[0]
+        #cellphone.save()
 
         obj, created = Student.objects.update_or_create(email="ttkoch@noctrl.edu", 
                                                         defaults={'batch_id':'0','first_name': first_name, 'middle_name':'middle_name', 'last_name':last_name,
@@ -54,7 +56,7 @@ class saveForms(object):
                                                                   'ethnicity':'','race':'','denomination':'0','is_citizen':'0',
                                                                   'level':'1', 'tution_remission':'1', 'gi':'1',
                                                                   })
-        obj.phone.add(phone1, phone2)
+        obj.phone.add(permphone, cellphone)        
         #def updatePage1(data):    
 
     #def savePage2(data):
