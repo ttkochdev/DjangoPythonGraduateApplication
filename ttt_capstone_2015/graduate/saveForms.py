@@ -41,10 +41,10 @@ class saveForms(object):
         #if international_phonecheck == 1:
         
         #need to get the correct primary key for the phone
-        permphone = Phone.objects.update_or_create(pk=1, defaults={'phone':permanent_phone, 'typeflag':'permanent_phone'})[0]
+        #permphone = Phone.objects.update_or_create(pk=1, defaults={'phone':permanent_phone, 'typeflag':'permanent_phone'})[0]
         #permphone.save()
         #else:
-        cellphone = Phone.objects.update_or_create(pk=2, defaults={'phone':cell_phone, 'typeflag':'permanent_phone'})[0]
+        #cellphone = Phone.objects.update_or_create(pk=2, defaults={'phone':cell_phone, 'typeflag':'permanent_phone'})[0]
         #cellphone.save()
 
         obj, created = Student.objects.update_or_create(email="ttkoch@noctrl.edu", 
@@ -56,7 +56,7 @@ class saveForms(object):
                                                                   'ethnicity':'','race':'','denomination':'0','is_citizen':'0',
                                                                   'level':'1', 'tution_remission':'1', 'gi':'1',
                                                                   })
-        obj.phone.add(permphone, cellphone)        
+        #obj.phone.add(permphone, cellphone)        
         #def updatePage1(data):    
 
     #def savePage2(data):
