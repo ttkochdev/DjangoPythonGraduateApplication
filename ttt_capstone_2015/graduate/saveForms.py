@@ -38,7 +38,7 @@ class saveForms(object):
 
         studentobj, created = Student.objects.update_or_create(email=email, 
                                                         defaults={'first_name': first_name, 'middle_name':middle_name, 'last_name':last_name,
-                                                                  'social_security': Student._set_ssn(Student,social_security),'suffix':suffix,'preferred_first_name':preferred_first_name,
+                                                                  'social_security': social_security,'suffix':suffix,'preferred_first_name':preferred_first_name,
                                                                   'birth_last_name':birth_last_name,'gender':gender,'date_of_birth':birth_date,
                                                                   'ethnicity':ethnicity,'denomination':denomination,'is_citizen':is_citizen,
                                                                   #'permanent_phone':permanent_phone, 'cell_phone':cell_phone,                                                                  

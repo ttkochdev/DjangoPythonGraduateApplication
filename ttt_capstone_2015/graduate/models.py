@@ -5,8 +5,9 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
-from crypto import * #https://djangosnippets.org/snippets/824/
-from crypto.Cipher import Blowfish
+
+#from simplecrypt import encrypt, decrypt
+from fernet_fields import EncryptedTextField
 from django.conf import settings
 import binascii
 
@@ -94,19 +95,24 @@ class Student(AbstractBaseUser): #models.Model
     birth_place = models.CharField(max_length=255)
     ethnicity = models.CharField(max_length=255)
     is_citizen = models.CharField(max_length=3)
-    social_security = models.CharField(max_length=32)
+    social_security = EncryptedTextField()
+    #social_security = models.CharField(max_length=32)
 
-    def _get_ssn(self):
-        enc_obj = Blowfish.new( settings.SECRET_KEY )
-        return u"%s" % enc_obj.decrypt( binascii.a2b_hex(self.social_security) ).rstrip()
+    #def _get_ssn(cipher): #self
+    #    plaintext = decrypt('avnWq287', binascii.a2b_hex(cipher)).decode('utf8')
+    #    return plaintext
+    #    #enc_obj = Blowfish.new( settings.SECRET_KEY )
+    #    #return u"%s" % enc_obj.decrypt( binascii.a2b_hex(self.social_security) ).rstrip()
 
-    def _set_ssn(self, ssn_value):
-        enc_obj = Blowfish.new( settings.SECRET_KEY )
-        repeat = 8 - (len( ssn_value ) % 8)
-        ssn_value = ssn_value + " " * repeat
-        self.social_security = binascii.b2a_hex(enc_obj.encrypt( ssn_value ))
+    #def _set_ssn(self, ssn_value): #self,
+    #    ciphertext = encrypt("avnWq287", ssn_value)
+    #    self.social_security = binascii.b2a_hex(ciphertext)
+    #    #enc_obj = Blowfish.new( settings.SECRET_KEY )
+    #    #repeat = 8 - (len( ssn_value ) % 8)
+    #    #ssn_value = ssn_value + " " * repeat
+    #    #self.social_security = binascii.b2a_hex(enc_obj.encrypt( ssn_value ))
 
-    ssn = property(_get_ssn, _set_ssn)
+    #ssn = property(_get_ssn, _set_ssn)
     denomination = models.IntegerField(default=0)
     start_term = models.CharField(max_length=255)
     student_load_intent = models.CharField(max_length=255)

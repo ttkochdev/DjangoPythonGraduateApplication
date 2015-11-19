@@ -7,6 +7,9 @@ mysqlclient 1.3.6
 django-localflavor
 django-countries
 django-debug-toolbar
+django-encrypted-fields
+django-fernet-fields https://django-fernet-fields.readthedocs.org/en/latest/
+pycrypto http://www.voidspace.org.uk/python/modules.shtml#pycrypto change name in lib
 """
 
 from os import path
@@ -144,11 +147,14 @@ INSTALLED_APPS = (
     #'debug_toolbar', #http://django-debug-toolbar.readthedocs.org/en/1.4/installation.html
     'localflavor',
     'django_countries',
+    #'simplecrypt',
     # Uncomment the next line to enable the admin:
-    'django.contrib.admin',
+    'django.contrib.admin',    
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+ENCRYPTED_FIELDS_KEYDIR = path.join(PROJECT_ROOT, 'fieldkeys').replace('\\', '/')
 
 #remove for production
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

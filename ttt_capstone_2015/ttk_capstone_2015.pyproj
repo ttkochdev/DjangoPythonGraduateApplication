@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="graduate\" />
+    <Folder Include="graduate\fieldkeys\" />
     <Folder Include="graduate\templatetags\" />
     <Folder Include="graduate\static\" />
     <Folder Include="graduate\static\app\" />
