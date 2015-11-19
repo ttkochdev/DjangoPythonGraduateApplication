@@ -44,7 +44,6 @@ class MyUserManager(BaseUserManager):
         return user
 
 class Student(AbstractBaseUser): #models.Model
-    id = models.AutoField(primary_key=True)
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -88,25 +87,25 @@ class Student(AbstractBaseUser): #models.Model
     first_name = models.CharField(max_length=30)
     middle_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    suffix_name = models.CharField(max_length=30)
+    suffix = models.CharField(max_length=30)
     preferred_first_name = models.CharField(max_length=30)
     birth_last_name = models.CharField(max_length=30)
     gender = models.CharField(max_length=45)
     birth_place = models.CharField(max_length=255)
     #birth_date = models.DateTimeField(auto_now=False, auto_now_add=False) #may have to come back to this one after testing....there are known issues with django datetime
     ethnicity = models.CharField(max_length=255)
-    is_citizen = models.IntegerField(default=0)
-    social_security_number = models.CharField(max_length=32) #this was not syncing with the db like the others...need to check funcitonality carefully. 
+    is_citizen = models.CharField(max_length=3)
+    social_security = models.CharField(max_length=32) #this was not syncing with the db like the others...need to check funcitonality carefully. 
 
     def _get_ssn(self):
         enc_obj = Blowfish.new( settings.SECRET_KEY )
-        return u"%s" % enc_obj.decrypt( binascii.a2b_hex(self.social_security_number) ).rstrip()
+        return u"%s" % enc_obj.decrypt( binascii.a2b_hex(self.social_security) ).rstrip()
 
     def _set_ssn(self, ssn_value):
         enc_obj = Blowfish.new( settings.SECRET_KEY )
         repeat = 8 - (len( ssn_value ) % 8)
         ssn_value = ssn_value + " " * repeat
-        self.social_security_number = binascii.b2a_hex(enc_obj.encrypt( ssn_value ))
+        self.social_security = binascii.b2a_hex(enc_obj.encrypt( ssn_value ))
 
     ssn = property(_get_ssn, _set_ssn)
     denomination = models.IntegerField(default=0)
@@ -114,7 +113,7 @@ class Student(AbstractBaseUser): #models.Model
     student_load_intent = models.CharField(max_length=255)
     residency_status = models.CharField(max_length=255)
     planned_major = models.CharField(max_length=255)
-    level = models.CharField(max_length=3)    
+    #level = models.CharField(max_length=3)    
     refered_by_name = models.CharField(max_length=255)
     refered_by_relationship = models.CharField(max_length=255)
     refered_by_name2 = models.CharField(max_length=255)
@@ -122,18 +121,22 @@ class Student(AbstractBaseUser): #models.Model
     influence = models.CharField(max_length=255)
     employer = models.CharField(max_length=255)
     tution_remission = models.IntegerField(default=0)
-    gi = models.IntegerField(default=0)    
+    gi = models.IntegerField(default=0)
+    permanent_phone = models.CharField(max_length=255)    
+    cell_phone = models.CharField(max_length=255)
+    employer_phone = models.CharField(max_length=255)
 
     def __str__(self):
         return self.email
 
-class Phone(models.Model):    
-    student = models.ForeignKey(Student)
-    phone = models.CharField(max_length=75)
-    typeflag = models.CharField(max_length=255)
+#would need to maintain hidden previously enter phone fields in order to do this, because of the updating problem. 
+#class Phone(models.Model):    
+#    student = models.ForeignKey(Student)
+#    phone = models.CharField(max_length=75)
+#    typeflag = models.CharField(max_length=255)
 
-    def __str__(self):              
-        return "%s %s" % (self.phone, self.typeflag)
+#    def __str__(self):              
+#        return "%s %s" % (self.phone, self.typeflag)
 
 class Address(models.Model):
     said = models.AutoField(primary_key=True)
@@ -147,7 +150,7 @@ class Address(models.Model):
     typeflag = models.CharField(max_length=255) #'Flag for Student, Employer'
 
     def __str__(self):
-        return self.said
+        return "%s %s %s %s %s %s %s" % (self.address1, self.address2, self.city, self.state, self.zipcode, self.country, self.typeflag)
 
 
 class Religions(models.Model):
@@ -234,11 +237,8 @@ class Majors(models.Model):
 ### 
 ###
 
-##race
 #INSERT INTO `admissions.dev.capstone`.`graduate_race` (`rid`, `race`) VALUES (NULL, 'American Indian or Alaska Native'), (NULL, 'Asian'), (NULL, 'Black or African American'), (NULL, 'Native Hawaiian or Other Pacific Islander'), (NULL, 'White');
-##religions
 #INSERT INTO `admissions.dev.capstone`.`graduate_religions` (`rid`, `name`) VALUES (NULL, 'No Response'), (NULL, 'African Methodist Episcopal'), (NULL, 'Assembly of God'), (NULL, 'Baptist'), (NULL, 'Bible Church'), (NULL, 'Buddhist'), (NULL, 'Calvary Christian'), (NULL, 'Christian'), (NULL, 'Christian Orthodox'), (NULL, 'Church of Brethren'), (NULL, 'Church of Christ'), (NULL, 'Church of Christian Science'), (NULL, 'Church of God'), (NULL, 'Community'), (NULL, 'Congregational'), (NULL, 'Disciples of Christ'), (NULL, 'Episcopal'), (NULL, 'Evangelical'), (NULL, 'Evangelical Lutheran'), (NULL, 'Greek Orthodox'), (NULL, 'Hindu'), (NULL, 'Independent'), (NULL, 'Islam/Moslem'), (NULL, 'Jewish'), (NULL, 'Lutheran-Missouri'), (NULL, 'Lutheran-Other'), (NULL, 'Mennonite'), (NULL, 'Mormon'), (NULL, 'No Church Affiliation'), (NULL, 'Non-Affiliated Christian'), (NULL, 'Non-Christian'), (NULL, 'Non-Denominational'), (NULL, 'Other'), (NULL, 'Other Protestant'), (NULL, 'Pentecostal'), (NULL, 'Presbyterian'), (NULL, 'Reformed'), (NULL, 'Roman Catholic'), (NULL, 'Serbian Orthodox'), (NULL, 'Seventh Day Adventist'), (NULL, 'Unitarian/Universalist'), (NULL, 'United Church of Christ'), (NULL, 'United Methodist'), (NULL, 'United Presbyterian'), (NULL, 'Wesleyan');
-##majors
 #INSERT INTO `admissions.dev.capstone`.`graduate_majors` (`mid`, `majors`) VALUES (NULL, 'Master of Arts in Education: Curriculum and Instruction'), (NULL, 'Master of Arts in Education:  Educational Leadership & Administration'), (NULL, 'Master of Arts in Liberal Studies:  Culture and Society'), (NULL, 'Master of Arts in Liberal Studies:  Writing, Editing, and Publishing'), (NULL, 'Master of Business Administration:  Accounting'), (NULL, 'Master of Business Administration:  Change Management'), (NULL, 'Master of Business Administration:  Finance'), (NULL, 'Master of Business Administration:  Human Resource Management'), (NULL, 'Master of Business Administration:  Management'), (NULL, 'Master of Business Administration:  Marketing'), (NULL, 'Master of International Business Administration'), (NULL, 'Master of Leadership Studies:  Professional Leadership'), (NULL, 'Master of Leadership Studies:  Higher Education'), (NULL, 'Master of Leadership Studies:  Social Entrepreneurship'), (NULL, 'Master of Leadership Studies: Sport Leadership'), (NULL, 'Master of Science in Web and Internet Applications');
 
 

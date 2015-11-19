@@ -9,7 +9,7 @@ class saveForms(object):
         #data.iterlists()      
 
         #get values from page1 form in session variable
-        #email = data.get("email", "")
+        email = data.get("email", "")
         first_name = data.get("first_name", "")
         middle_name = data.get("middle_name", "")
         last_name = data.get("last_name", "")
@@ -47,15 +47,70 @@ class saveForms(object):
         #cellphone = Phone.objects.update_or_create(pk=2, defaults={'phone':cell_phone, 'typeflag':'permanent_phone'})[0]
         #cellphone.save()
 
-        obj, created = Student.objects.update_or_create(email="ttkoch@noctrl.edu", 
-                                                        defaults={'batch_id':'0','first_name': first_name, 'middle_name':'middle_name', 'last_name':last_name,
-                                                                  'social_security':'','suffix':'','preferred_first_name':'',
-                                                                  'birth_last_name':'','country':'','residence_country':'',
-                                                                  'address1':'','address2':'','city':'',
-                                                                  'state':'','zipcode':'','gender':'','date_of_birth':birth_date,
-                                                                  'ethnicity':'','race':'','denomination':'0','is_citizen':'0',
-                                                                  'level':'1', 'tution_remission':'1', 'gi':'1',
+        studentobj, created = Student.objects.update_or_create(email=email, 
+                                                        defaults={'first_name': first_name, 'middle_name':middle_name, 'last_name':last_name,
+                                                                  'social_security':social_security,'suffix':suffix,'preferred_first_name':preferred_first_name,
+                                                                  'birth_last_name':birth_last_name,'gender':gender,'date_of_birth':birth_date,
+                                                                  'ethnicity':ethnicity,'denomination':denomination,'is_citizen':is_citizen,
+                                                                  'permanent_phone':permanent_phone, 'cell_phone':cell_phone,                                                                  
                                                                   })
+        #studentobj = Student(first_name = first_name, middle_name = middle_name, 
+        #                     last_name = last_name, social_security = '', suffix = '', preferred_first_name = '', 
+        #                     birth_last_name = '', gender = '', 
+        #                     date_of_birth = birth_date, ethnicity = '',  denomination = '0', 
+        #                     is_citizen = is_citizen, level = '1', )
+        #studentobj.save()
+        
+
+        #if Student.objects.filter(email=email).exists():
+        #    phonepk = Phone.objects.get(student_id=studentres.id, type=permanent_phone)
+        
+        #if Student.objects.filter(email=email).exists():
+        #    studentres = Student.objects.get(email=email)
+        #    studentphones = Phone.objects.filter(student_id=studentres.id)
+        #    for s in studentphones:
+        #        phoneres = Phone.objects.get(pk=s.id)
+        #        phoneres.student = studentres  
+        #        phoneres.save()
+
+            #studentres = Student.objects.get(email=email)
+            #if Phone.objects.filter(student_id=studentres.id).filter(phone=permanent_phone).exists(): #.filter(phone=permanent_phone)
+            #    #update permanent phone
+            #    phoneres = Phone.objects.get(student_id=studentres.id, phone=permanent_phone)
+            #    phoneres.student = studentres  
+            #    phoneres.save()
+            #if Phone.objects.filter(student_id=studentres.id).filter(phone=cell_phone).exists():
+            #    #update cell
+            #    phoneres = Phone.objects.get(student_id=studentres.id, phone=cell_phone)
+            #    phoneres.student = studentres  
+            #    phoneres.save()
+
+            #if Phone.objects.exclude(student_id=studentres.id, phone=permanent_phone).exists():
+            #    #create permanent phone entry
+            #    if permanent_phone:
+            #        permanent_phoneobj = Phone(phone=permanent_phone, typeflag = international_phonecheck, student = studentres)
+            #        permanent_phoneobj.save()
+            #if Phone.objects.exclude(student_id=studentres.id, phone=cell_phone).exists():
+            #    if cell_phone:
+            #        cell_phoneobj = Phone(phone=cell_phone, typeflag = international_phonecheck, student = studentres)
+            #        cell_phoneobj.save()    
+
+        #if Student.objects.get(email=email).exists():
+        #    studentres = Student.objects.get(email=email)
+        #    if Phone.objects.get(student=studentres.id).exists():
+        #        phoneres = Phone.objects.get(student=studentres.id)
+        #    else:
+        #        phoneres = Phone.objects.create(phone)
+        #phoneres.student = studentres        
+
+        
+        #phoneobj = Phone(phone='test', typeflag ='type', student = studentobj)
+        #phoneobj.save()
+
+        #country = '', residence_country = '', address1 = '', address2 = '', city = '', state = '',  zipcode = '',
+        #race = '',
+        #tution_remission = '1', gi = '1', batch_id = '0', 
+
         #obj.phone.add(permphone, cellphone)        
         #def updatePage1(data):    
 
