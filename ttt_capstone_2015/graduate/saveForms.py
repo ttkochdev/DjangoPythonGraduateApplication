@@ -52,8 +52,34 @@ class saveForms(object):
                                                                   'social_security':social_security,'suffix':suffix,'preferred_first_name':preferred_first_name,
                                                                   'birth_last_name':birth_last_name,'gender':gender,'date_of_birth':birth_date,
                                                                   'ethnicity':ethnicity,'denomination':denomination,'is_citizen':is_citizen,
-                                                                  'permanent_phone':permanent_phone, 'cell_phone':cell_phone,                                                                  
+                                                                  #'permanent_phone':permanent_phone, 'cell_phone':cell_phone,                                                                  
                                                                   })
+        #update or create phone
+        if Student.objects.filter(email=email).exists():
+            studentres = Student.objects.get(email=email)
+            if Phone.objects.filter(student_id=studentres.id).filter(typeflag="permanent_phone").exists():
+                permphone = Phone.objects.filter(student_id=studentres.id).get(typeflag="permanent_phone")                                
+                permphone.student = studentres
+                permphone.phone = permanent_phone
+                permphone.typeflag = "permanent_phone"
+                permphone.save();
+            else:
+                pp = Phone(phone=permanent_phone, typeflag='permanent_phone', student=studentres)
+                pp.save()            
+            if Phone.objects.filter(student_id=studentres.id).filter(typeflag="cell_phone").exists():                
+                cellphone = Phone.objects.filter(student_id=studentres.id).get(typeflag="cell_phone")     
+                cellphone.student = studentres
+                cellphone.phone = cell_phone
+                cellphone.typeflag = "cell_phone"
+                cellphone.save();
+            else:
+                cp = Phone(phone=cell_phone, typeflag='cell_phone', student=studentres)
+                cp.save()
+
+            #permphoneobj, permphonecreated = Phone.objects.update_or_create(pk=permphone.id, defaults={'phone' : permanent_phone, 'typeflag' : 'permanent_phone', 'student_id' : int(studentres.id)})
+            #cellphoneobj, cellphonecreated = Phone.objects.update_or_create(pk=cellphone.id, defaults={'phone' : cell_phone, 'typeflag' : 'cell_phone', 'student_id' : int(studentres.id)})
+
+            
         #studentobj = Student(first_name = first_name, middle_name = middle_name, 
         #                     last_name = last_name, social_security = '', suffix = '', preferred_first_name = '', 
         #                     birth_last_name = '', gender = '', 

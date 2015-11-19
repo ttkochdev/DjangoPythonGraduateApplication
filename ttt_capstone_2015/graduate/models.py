@@ -123,20 +123,20 @@ class Student(AbstractBaseUser): #models.Model
     tution_remission = models.IntegerField(default=0)
     gi = models.IntegerField(default=0)
     permanent_phone = models.CharField(max_length=255)    
-    cell_phone = models.CharField(max_length=255)
-    employer_phone = models.CharField(max_length=255)
+    #cell_phone = models.CharField(max_length=255)
+    #employer_phone = models.CharField(max_length=255)
 
     def __str__(self):
         return self.email
 
 #would need to maintain hidden previously enter phone fields in order to do this, because of the updating problem. 
-#class Phone(models.Model):    
-#    student = models.ForeignKey(Student)
-#    phone = models.CharField(max_length=75)
-#    typeflag = models.CharField(max_length=255)
+class Phone(models.Model):    
+    student = models.ForeignKey(Student)
+    phone = models.CharField(max_length=75)
+    typeflag = models.CharField(max_length=255)
 
-#    def __str__(self):              
-#        return "%s %s" % (self.phone, self.typeflag)
+    def __str__(self):              
+        return "%s %s" % (self.phone, self.typeflag)
 
 class Address(models.Model):
     said = models.AutoField(primary_key=True)
