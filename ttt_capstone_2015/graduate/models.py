@@ -6,7 +6,7 @@ from django.contrib.auth.models import (
 )
 
 from crypto import * #https://djangosnippets.org/snippets/824/
-#from Crypto.Cipher import Blowfish
+from crypto.Cipher import Blowfish
 from django.conf import settings
 import binascii
 
@@ -92,10 +92,9 @@ class Student(AbstractBaseUser): #models.Model
     birth_last_name = models.CharField(max_length=30)
     gender = models.CharField(max_length=45)
     birth_place = models.CharField(max_length=255)
-    #birth_date = models.DateTimeField(auto_now=False, auto_now_add=False) #may have to come back to this one after testing....there are known issues with django datetime
     ethnicity = models.CharField(max_length=255)
     is_citizen = models.CharField(max_length=3)
-    social_security = models.CharField(max_length=32) #this was not syncing with the db like the others...need to check funcitonality carefully. 
+    social_security = models.CharField(max_length=32)
 
     def _get_ssn(self):
         enc_obj = Blowfish.new( settings.SECRET_KEY )

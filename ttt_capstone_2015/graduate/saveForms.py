@@ -36,31 +36,27 @@ class saveForms(object):
         denomination = data.get("denomination", "")
         is_citizen = data.get("is_citizen", "")
 
-
-        #Student.objects.create(batch_id="123", first_name="first", last_name="last", date_of_birth=dob, is_citizen="1", denomination="1", level="1", tution_remission="1", gi="1")
-        #if international_phonecheck == 1:
-        
-        #need to get the correct primary key for the phone
-        #permphone = Phone.objects.update_or_create(pk=1, defaults={'phone':permanent_phone, 'typeflag':'permanent_phone'})[0]
-        #permphone.save()
-        #else:
-        #cellphone = Phone.objects.update_or_create(pk=2, defaults={'phone':cell_phone, 'typeflag':'permanent_phone'})[0]
-        #cellphone.save()
-
         studentobj, created = Student.objects.update_or_create(email=email, 
                                                         defaults={'first_name': first_name, 'middle_name':middle_name, 'last_name':last_name,
-                                                                  'social_security':social_security,'suffix':suffix,'preferred_first_name':preferred_first_name,
+                                                                  'social_security': Student._set_ssn(Student,social_security),'suffix':suffix,'preferred_first_name':preferred_first_name,
                                                                   'birth_last_name':birth_last_name,'gender':gender,'date_of_birth':birth_date,
                                                                   'ethnicity':ethnicity,'denomination':denomination,'is_citizen':is_citizen,
                                                                   #'permanent_phone':permanent_phone, 'cell_phone':cell_phone,                                                                  
                                                                   })
-        #update or create phone
-        if Student.objects.filter(email=email).exists():
-            studentres = Student.objects.get(email=email)
-            permanentphone, permpcreated = Phone.objects.update_or_create(student=studentres, typeflag="permanent_phone", 
-                                                        defaults={'phone':permanent_phone, 'typeflag':'permanent_phone', 'student':studentres})
-            cellphone, cellpcreated = Phone.objects.update_or_create(student=studentres, typeflag="cell_phone", 
-                                                        defaults={'phone':cell_phone, 'typeflag':'cell_phone', 'student':studentres})
+        
+        if studentobj:  
+            #update or create phone         
+            permanentphone, permpcreated = Phone.objects.update_or_create(student=studentobj, typeflag="permanent_phone", 
+                                                        defaults={'phone':permanent_phone, 'typeflag':'permanent_phone', 'student':studentobj})
+            cellphone, cellpcreated = Phone.objects.update_or_create(student=studentobj, typeflag="cell_phone", 
+                                                        defaults={'phone':cell_phone, 'typeflag':'cell_phone', 'student':studentobj})
+
+            #update or create address
+
+            #update or create race
+
+
+
             #    permphone = Phone.objects.filter(student_id=studentres.id).get(typeflag="permanent_phone")                                
             #    permphone.student = studentres
             #    permphone.phone = permanent_phone
@@ -85,72 +81,10 @@ class saveForms(object):
             #else:
             #    cp = Phone(phone=cell_phone, typeflag='cell_phone', student=studentres)
             #    cp.save()
+    
 
-            #permphoneobj, permphonecreated = Phone.objects.update_or_create(pk=permphone.id, defaults={'phone' : permanent_phone, 'typeflag' : 'permanent_phone', 'student_id' : int(studentres.id)})
-            #cellphoneobj, cellphonecreated = Phone.objects.update_or_create(pk=cellphone.id, defaults={'phone' : cell_phone, 'typeflag' : 'cell_phone', 'student_id' : int(studentres.id)})
-
-            
-        #studentobj = Student(first_name = first_name, middle_name = middle_name, 
-        #                     last_name = last_name, social_security = '', suffix = '', preferred_first_name = '', 
-        #                     birth_last_name = '', gender = '', 
-        #                     date_of_birth = birth_date, ethnicity = '',  denomination = '0', 
-        #                     is_citizen = is_citizen, level = '1', )
-        #studentobj.save()
-        
-
-        #if Student.objects.filter(email=email).exists():
-        #    phonepk = Phone.objects.get(student_id=studentres.id, type=permanent_phone)
-        
-        #if Student.objects.filter(email=email).exists():
-        #    studentres = Student.objects.get(email=email)
-        #    studentphones = Phone.objects.filter(student_id=studentres.id)
-        #    for s in studentphones:
-        #        phoneres = Phone.objects.get(pk=s.id)
-        #        phoneres.student = studentres  
-        #        phoneres.save()
-
-            #studentres = Student.objects.get(email=email)
-            #if Phone.objects.filter(student_id=studentres.id).filter(phone=permanent_phone).exists(): #.filter(phone=permanent_phone)
-            #    #update permanent phone
-            #    phoneres = Phone.objects.get(student_id=studentres.id, phone=permanent_phone)
-            #    phoneres.student = studentres  
-            #    phoneres.save()
-            #if Phone.objects.filter(student_id=studentres.id).filter(phone=cell_phone).exists():
-            #    #update cell
-            #    phoneres = Phone.objects.get(student_id=studentres.id, phone=cell_phone)
-            #    phoneres.student = studentres  
-            #    phoneres.save()
-
-            #if Phone.objects.exclude(student_id=studentres.id, phone=permanent_phone).exists():
-            #    #create permanent phone entry
-            #    if permanent_phone:
-            #        permanent_phoneobj = Phone(phone=permanent_phone, typeflag = international_phonecheck, student = studentres)
-            #        permanent_phoneobj.save()
-            #if Phone.objects.exclude(student_id=studentres.id, phone=cell_phone).exists():
-            #    if cell_phone:
-            #        cell_phoneobj = Phone(phone=cell_phone, typeflag = international_phonecheck, student = studentres)
-            #        cell_phoneobj.save()    
-
-        #if Student.objects.get(email=email).exists():
-        #    studentres = Student.objects.get(email=email)
-        #    if Phone.objects.get(student=studentres.id).exists():
-        #        phoneres = Phone.objects.get(student=studentres.id)
-        #    else:
-        #        phoneres = Phone.objects.create(phone)
-        #phoneres.student = studentres        
-
-        
-        #phoneobj = Phone(phone='test', typeflag ='type', student = studentobj)
-        #phoneobj.save()
-
-        #country = '', residence_country = '', address1 = '', address2 = '', city = '', state = '',  zipcode = '',
-        #race = '',
-        #tution_remission = '1', gi = '1', batch_id = '0', 
-
-        #obj.phone.add(permphone, cellphone)        
-        #def updatePage1(data):    
+             
 
     #def savePage2(data):
-    #def updatePage2(data):
 
     #def savePage3(data):
