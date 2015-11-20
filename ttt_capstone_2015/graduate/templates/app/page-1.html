@@ -33,8 +33,8 @@
     <div class="span12">
         <fieldset class="acct">
             <div class="row-fluid">
-                <div class="span3"><label for="applicatoinEmail">Email Address</label></div>
-                {% render_field form.email  maxlength='50' id='email' name='email' %}
+                <div class="span3"><label for="email">Email Address</label></div>                
+                {% render_field form.email  maxlength='50' id='email' %}
                 <div class="span8"><span>
 </span><br>
                     <span id="email-notice"></span>
@@ -135,18 +135,12 @@
                 <fieldset>
                     <div class="span5"><label>Zip Code</label></div>
                     <div class="span7"><span>
-                        {% render_field form.zipcode class="input-small"  maxlength="10" name="zipcode" %}
+                        {% render_field form.zipcode class="input-small"  maxlength="10"%}
                         </span>
                     </div>
                 </fieldset>
             </div>
-            <div style="display:none;" id="outside_us">
-                <fieldset>
-                    <div class="span5"><label>City and Postal Code</label></div>
-                    <div class="span7">
-                        <span>
-<input type="text" maxlength="30" value="" id="address3" name="address3"></span>                    </div>
-                </fieldset>
+            <div style="display:none;" id="outside_us">      
                 <div class="row-fluid">
                     <div class="span12">
                         <fieldset>
@@ -164,7 +158,7 @@
                     <fieldset>
                         <div class="span12">
                             <div class="span8 offset5">                               
-                                {% render_field form.international_phonecheck name="international_phonecheck" %}                                                             
+                                {% render_field form.international_phonecheck %}                                                             
                                 <label for="international_phonecheck" class="no-bold inline">Check here if you have a non-U.S. phone number</label>
                             </div>
                         </div>
@@ -177,7 +171,7 @@
                     </div>
                     <div class="span7">
                         <span>                        
-                        {% render_field form.permanent_phone name="permanent_phone" maxlength="12" %} 
+                        {% render_field form.permanent_phone maxlength="12" %} 
                         </span>
                     </div>
                 </fieldset>
@@ -188,7 +182,7 @@
                     </div>
                     <div class="span7">
                         <span>
-                            {% render_field form.cell_phone name="cell_phone" maxlength="12" %} 
+                            {% render_field form.cell_phone maxlength="12" %} 
                         </span>                    
                     </div>
                 </fieldset>
@@ -202,7 +196,7 @@
                     <div class="span5"><label>Birth Date</label></div>
                     <div class="span7">
                         <span>
-                            {% render_field form.birth_date name='birth_date' placeholder='yyyy-mm-dd' %}
+                            {% render_field form.birth_date placeholder='yyyy-mm-dd' %}
                         </span>                    
                     </div>
                 </fieldset>
@@ -210,7 +204,7 @@
                     <div class="span5"><label>Birthplace (City/State)</label></div>
                     <div class="span7">
                         <span>
-                            {% render_field form.birth_place name='birth_place' placeholder='City, ST' maxlength='30' %}   
+                            {% render_field form.birth_place placeholder='City, ST' maxlength='30' %}   
                         </span>                    
                     </div>
                 </fieldset>
@@ -232,6 +226,7 @@
         <fieldset class="right-justified">
             <div class="span8 offset2 half">
                 {{ form.race }}
+
             </div>
         </fieldset>              
 
@@ -241,7 +236,7 @@
                             <label>Religious Affiliation<br><span class="subtext">(Optional)</span></label>
                         </div>
                         <div class="span3">
-                            {% render_field form.denomination name='denomination' %}
+                            {% render_field form.denomination %}
                         </div>
                     <p></p>
                 </fieldset>
@@ -261,7 +256,7 @@
                 <div class="span4">
                                         
              
-                {% render_field form.is_citizen name='is_citizen' %}
+                {% render_field form.is_citizen %}
                 </div>
             </fieldset>
             <div style="display:none;" id="citizen_yes">
@@ -270,7 +265,7 @@
                 <div class="span3"><label for="socialSecurityNumber">Social Security Number</label><br><span class="ssn_number">(###-##-####)</span></div>
                 <div class="span4">
                     <span>
-                       {% render_field form.social_security maxlength='11' name='social_security' %}
+                       {% render_field form.social_security maxlength='11' %}
                     </span>                
                 </div>
             </fieldset>
@@ -294,7 +289,7 @@
                 <div class="span3"><label for="alien_reg_no">Alien Registration Number</label><span class="ssn_number">Include the leading letter A</span></div>
                 <div class="span4">
                     <span>
-<input type="text" value="" id="alien_reg_no" name="alien_reg_no"></span>                </div>
+<input type="text" value="" id="alien_reg_no" "></span>                </div>
             </fieldset>
             </div>
             <div style="display:none;" id="citizen_no">
@@ -302,7 +297,7 @@
                 <div class="span3"><label for="is_international_student">Are you or will you be an international student?</label></div>
                 <div class="span4">
                     
-<select id="is_international_student" name="is_international_student">
+<select id="is_international_student" >
     <option label="Yes" value="1">Yes</option>
     <option label="No" value="0">No</option>
     <option selected="selected" label="" value=""></option>
@@ -313,7 +308,7 @@
                 <div class="span3"><label for="alien_status">What is your visa status?</label></div>
                 <div class="span4">
                     
-<select id="alien_status" name="alien_status">
+<select id="alien_status">
     <option selected="selected" label="" value=""></option>
     <option label="F1 Student" value="F1 Student">F1 Student</option>
     <option label="F2" value="F2">F2</option>

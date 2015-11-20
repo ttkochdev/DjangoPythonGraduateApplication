@@ -144,8 +144,7 @@ class Phone(models.Model):
         return "%s %s" % (self.phone, self.typeflag)
 
 class Address(models.Model):
-    said = models.AutoField(primary_key=True)
-    sid = models.ForeignKey(Student)
+    student = models.ForeignKey(Student)
     address1 = models.CharField(max_length=255)
     address2 = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
@@ -166,42 +165,37 @@ class Religions(models.Model):
         return self.name
 
 class StudentLegal(models.Model):
-    slid = models.AutoField(primary_key=True)
-    sid = models.ForeignKey(Student)
+    student = models.ForeignKey(Student)
     reason = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.sid
+        return self.reason
 
 class StudentPolicy(models.Model):
-    spid = models.AutoField(primary_key=True)
-    sid = models.ForeignKey(Student)
+    student = models.ForeignKey(Student)
     reason = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.sid
+        return self.student
 
 class StudentRace(models.Model):
-    srid = models.AutoField(primary_key=True)
-    sid = models.ForeignKey(Student)
-    race = models.CharField(max_length=255)
+    student = models.ForeignKey(Student)
+    raceid = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.srid
+        return self.raceid
 
     #maybe try making this a model form? 
 class StudentUndergraduateInstitution(models.Model):
-    soiid = models.AutoField(primary_key=True)
-    sid = models.ForeignKey(Student)
+    student = models.ForeignKey(Student)
     name = models.CharField(max_length=255)
     ceeb = models.CharField(max_length=10)
 
     def __str__(self):
-        return self.soiid
+        return "%s %s" % (self.name, self.ceeb)
 
 class StudentUploads(models.Model):
-    uid = models.AutoField(primary_key=True)
-    sid = models.ForeignKey(Student)
+    ceeb = models.ForeignKey(Student)
     name = models.CharField(max_length=255)
 
     _data = models.TextField(
@@ -217,7 +211,7 @@ class StudentUploads(models.Model):
     data = property(get_data, set_data)
 
     def __str__(self):
-        return self.uid        
+        return self.name        
 
 class Race(models.Model):
     rid = models.AutoField(primary_key=True)
@@ -245,7 +239,7 @@ class Majors(models.Model):
 #INSERT INTO `admissions.dev.capstone`.`graduate_race` (`rid`, `race`) VALUES (NULL, 'American Indian or Alaska Native'), (NULL, 'Asian'), (NULL, 'Black or African American'), (NULL, 'Native Hawaiian or Other Pacific Islander'), (NULL, 'White');
 #INSERT INTO `admissions.dev.capstone`.`graduate_religions` (`rid`, `name`) VALUES (NULL, 'No Response'), (NULL, 'African Methodist Episcopal'), (NULL, 'Assembly of God'), (NULL, 'Baptist'), (NULL, 'Bible Church'), (NULL, 'Buddhist'), (NULL, 'Calvary Christian'), (NULL, 'Christian'), (NULL, 'Christian Orthodox'), (NULL, 'Church of Brethren'), (NULL, 'Church of Christ'), (NULL, 'Church of Christian Science'), (NULL, 'Church of God'), (NULL, 'Community'), (NULL, 'Congregational'), (NULL, 'Disciples of Christ'), (NULL, 'Episcopal'), (NULL, 'Evangelical'), (NULL, 'Evangelical Lutheran'), (NULL, 'Greek Orthodox'), (NULL, 'Hindu'), (NULL, 'Independent'), (NULL, 'Islam/Moslem'), (NULL, 'Jewish'), (NULL, 'Lutheran-Missouri'), (NULL, 'Lutheran-Other'), (NULL, 'Mennonite'), (NULL, 'Mormon'), (NULL, 'No Church Affiliation'), (NULL, 'Non-Affiliated Christian'), (NULL, 'Non-Christian'), (NULL, 'Non-Denominational'), (NULL, 'Other'), (NULL, 'Other Protestant'), (NULL, 'Pentecostal'), (NULL, 'Presbyterian'), (NULL, 'Reformed'), (NULL, 'Roman Catholic'), (NULL, 'Serbian Orthodox'), (NULL, 'Seventh Day Adventist'), (NULL, 'Unitarian/Universalist'), (NULL, 'United Church of Christ'), (NULL, 'United Methodist'), (NULL, 'United Presbyterian'), (NULL, 'Wesleyan');
 #INSERT INTO `admissions.dev.capstone`.`graduate_majors` (`mid`, `majors`) VALUES (NULL, 'Master of Arts in Education: Curriculum and Instruction'), (NULL, 'Master of Arts in Education:  Educational Leadership & Administration'), (NULL, 'Master of Arts in Liberal Studies:  Culture and Society'), (NULL, 'Master of Arts in Liberal Studies:  Writing, Editing, and Publishing'), (NULL, 'Master of Business Administration:  Accounting'), (NULL, 'Master of Business Administration:  Change Management'), (NULL, 'Master of Business Administration:  Finance'), (NULL, 'Master of Business Administration:  Human Resource Management'), (NULL, 'Master of Business Administration:  Management'), (NULL, 'Master of Business Administration:  Marketing'), (NULL, 'Master of International Business Administration'), (NULL, 'Master of Leadership Studies:  Professional Leadership'), (NULL, 'Master of Leadership Studies:  Higher Education'), (NULL, 'Master of Leadership Studies:  Social Entrepreneurship'), (NULL, 'Master of Leadership Studies: Sport Leadership'), (NULL, 'Master of Science in Web and Internet Applications');
-
+#INSERT INTO `admissions.dev.capstone`.`graduate_studentrace` (`id`, `student_id`, `raceid`) VALUES (NULL, '1', '2'), (NULL, '1', '5');
 
 
 

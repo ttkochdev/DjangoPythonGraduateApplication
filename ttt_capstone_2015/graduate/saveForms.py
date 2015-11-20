@@ -5,8 +5,7 @@ class saveForms(object):
 
 
     def savePage1(data):
-        print(data)
-        #data.iterlists()      
+        print(data) 
 
         #get values from page1 form in session variable
         email = data.get("email", "")
@@ -52,9 +51,16 @@ class saveForms(object):
                                                         defaults={'phone':cell_phone, 'typeflag':'cell_phone', 'student':studentobj})
 
             #update or create address
-
-            #update or create race
-
+            #generate defaults dynamically to remove US info for foreign country and vice versa
+            address, addresscreated = Address.objects.update_or_create(student=studentobj, typeflag="student", 
+                                                        defaults={'address1':address1,'address2':address2,'city':city,'state':state,
+                                                                  'zipcode':zipcode,'country':country, 'typeflag':'student', 'student':studentobj})            
+            #delete all previous for user and create new race additions
+            #if StudentRace.objects.filter(student_id=studentobj.id).exists():
+            #    studentrace = StudentRace.objects.filter(student_id=studentobj.id)
+            #    studentrace.delete()
+            #    sr = StudentRace()
+            #    sr.save()
 
 
             #    permphone = Phone.objects.filter(student_id=studentres.id).get(typeflag="permanent_phone")                                

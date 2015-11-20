@@ -44,10 +44,11 @@ $(document).ready(function () {
 		}
 	});
 	
+	$("#id_is_citizen").trigger('change');
 	$("#id_is_citizen").change(function () {
-	    console.log("is citiz");
+	
 	    if ($(this).val() == 'yes') {
-	        console.log("yes yes yes");
+
 			$('#citizen_yes').show();
 			$('#citizen_legal_resident').hide();
 			$('#citizen_alien').hide();

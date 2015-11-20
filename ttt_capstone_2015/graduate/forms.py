@@ -6,6 +6,7 @@ from django import forms
 from graduate.models import Race
 from graduate.models import Religions
 from graduate.models import Majors
+from graduate.models import StudentRace
 
 from localflavor.us.us_states import STATE_CHOICES
 #from localflavor.us.forms import USStateSelect
@@ -21,8 +22,31 @@ from datetime import date, datetime
 
 from functools import partial
 DateInput = partial(forms.DateInput, {'class': 'birthdatepicker'})
+#class CustomNameTextInput(TextInput):
+#    def render(self, name, value, attrs=None):
+#        if 'name' in attrs:
+#            name = attrs['name']
+#            del attrs['name']
+#        return super(TextInput, self).render(name, value, attrs)
 
 class PageOneForm(forms.Form): 
+
+    def __init__(self, *args, **kwargs):
+        super(PageOneForm, self).__init__(*args, **kwargs)
+        print("\n\npage1form\n\n")
+        if 'initial' not in kwargs:
+            kwargs['initial'] = {}
+            print('set kwargs')
+        else:
+            print(kwargs)
+            print(self.initial['race'])
+        #print(self.fields['race'])
+        print("\n\n")
+#        self.fields['race'].initial = [c.pk for c in StudentRace.object.filter()]
+        #if(StudentRace.objects.filter(student_id='1').exists()):
+
+            #self.fields['race'].initial = [c.raceid for c in StudentRace.objects.filter(student_id='1')]
+
     email = forms.CharField(label='Email', required=True) #Student
     first_name = forms.CharField(label='First Name', required=True)#Student
     middle_name = forms.CharField(label='Middle Name', required=True)#Student
@@ -76,7 +100,7 @@ class PageOneForm(forms.Form):
     cell_phone = forms.CharField(label='Cell Phone Number', required=True) #Phone
     
     #INSERT INTO `admissions.dev.capstone`.`graduate_race` (`rid`, `race`) VALUES (NULL, 'American Indian or Alaska Native'), (NULL, 'Asian'), (NULL, 'Black or African American'), (NULL, 'Native Hawaiian or Other Pacific Islander'), (NULL, 'White');
-    race = forms.ModelMultipleChoiceField(queryset=Race.objects.all(),widget=forms.CheckboxSelectMultiple()) #StudentRace
+    race = forms.ModelMultipleChoiceField(queryset=Race.objects.all(),widget=forms.CheckboxSelectMultiple(), initial={}) #StudentRace
     
 
 class Institutions(forms.Form):
