@@ -27,6 +27,7 @@ def page1(request):
     if request.method == 'POST':
         print("\n\nrequest post ", request.POST,"\n\n")
         reqpost = request.POST.copy()
+        #reqpost.pop('race')
         #reqpost.setlist('race', ['2','3'])
         
         #http://stackoverflow.com/questions/21666963/django-forms-multiplechoicefield-only-selects-one-value
@@ -36,6 +37,10 @@ def page1(request):
             request.session['form_data_page1'] = reqpost
         else:            
             request.session['form_data_page1'] = reqpost
+
+        request.session['raceinit'] = reqpost.getlist('race')
+        print('\n\nraceinit\n\n')
+        print(request.session.get('raceinit', None))
         #request.session.modified = True
         #form = PageOneForm(initial=request.session['form_data_page1'])
         #for key in request.POST:
@@ -65,11 +70,15 @@ def page1(request):
         if 'form_data_page1' in request.session:
             print("\n\nform data in session\n\n")
             print("\n\nsession before inital")
-            print(request.session.get('form_data_page1'))
+            print(request.session.get('form_data_page1',None))
+            print("\n\n")
+            print("\n\nsession before inital raceinit")
+            print(request.session.get('raceinit',None))
             print("\n\n")
             #form = PageOneForm(request.session['form_data'])
             #print(request.session.get('form_data_page1').get('race'))
-            form = PageOneForm(initial=request.session.get('form_data_page1'))
+            form_data_session = request.session.get('form_data_page1', None)
+            form = PageOneForm(initial=form_data_session, raceinit=request.session.get('raceinit', None))
         #form = PageOneForm(SESSION)
         else: #no login - create empty form
             form = PageOneForm()
@@ -122,7 +131,7 @@ def page2(request):
             #form = PageOneForm(request.session['form_data'])
 
             print("\n\n page 1 session from page2 \n\n")
-            print(request.session["form_data_page1"])   
+            print(request.session.get('form_data_page1', None))   
 
             form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
             formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
