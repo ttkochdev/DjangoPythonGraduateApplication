@@ -1,15 +1,15 @@
 ﻿"""
 Django settings for ttk_capstone_2015 project.
 python packages requirements:
-crypto 1.4.1
+
 django-widget-tweaks 1.4.1
 mysqlclient 1.3.6
 django-localflavor
 django-countries
 django-debug-toolbar
-django-encrypted-fields
 django-fernet-fields https://django-fernet-fields.readthedocs.org/en/latest/
 pycrypto http://www.voidspace.org.uk/python/modules.shtml#pycrypto change name in lib
+# not used simple-crypt
 """
 
 from os import path
