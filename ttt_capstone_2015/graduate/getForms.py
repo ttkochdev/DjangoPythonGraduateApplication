@@ -4,7 +4,7 @@ class getForms(object):
     """description of class"""
 
 
-    def getPage1(email):
+    def getPage1(student_session_id):
         #print(data) 
 
         #get values from page1 form in session variable
@@ -42,11 +42,34 @@ class getForms(object):
         #is_international_student = data.get("is_international_student", None)
         #alient_status = data.get("alient_status", None)
         print("\n\n\nGET FORMS PAGE-1\n\n\n")
-        student = Student.objects.get(email=email)
-        sid = student.id 
-        results = Student.objects.filter(phone__student=student)
-        print(results)
+        student = Student.objects.get(pk=student_session_id)
+        #sid = student.id 
+        #results = Student.objects.filter(phone__student=student)
+        #print(results)
+        print("\n\naddress")
+        saddress = Address.objects.get(student=student, typeflag="student")
+        #address = Address.objects.get(student=student, typeflag="employer")
+        print(saddress)
+        print("\n\nphone")
+        cphone= Phone.objects.get(student=student, typeflag="cell_phone")
+        pphone= Phone.objects.get(student=student, typeflag="permanent_phone")
+        print(cphone)
+
+        print("\n\nGET DATA\n\n")
+        data = {'state': saddress.state, 'email': student.email, 'is_citizen': student.is_citizen, 'alien_reg_no': student.alien_reg_no, 
+         'is_international_student': student.is_international_student, #'csrfmiddlewaretoken': 'otwFahh2kZjDjbDOCl7UZ0HWzZLJlgyH',
+         'denomination': student.denomination, 'address2': saddress.address2, 'gender': student.gender, 'birth_date': student.date_of_birth,
+         'cell_phone': cphone.phone, 'birth_last_name': student.birth_last_name, 'zipcode': saddress.zipcode, #'race': race,
+         'alien_status': student.alien_status, 'country': saddress.country, 'last_name': student.last_name, 'residence_country': student.residence_country,
+         'first_name': student.first_name, 'city': saddress.city, 'address1': saddress.address1, 'ethnicity': student.ethnicity,
+         'birth_place': student.birth_place, 'middle_name': student.middle_name, 'social_security': student.social_security,
+         'citizenship_country': student.citizenship_country, 'permanent_phone': pphone.phone, 'suffix': student.suffix, 'preferred_first_name': student.preferred_first_name}
+        print(data)
         print("\n\n")
+        return data
+        #raceinit = 
+
+
     #    #save student
     #    studentobj_uc, created = Student.objects.update_or_create(email=email, 
     #                                                    defaults={'first_name': first_name, 'middle_name':middle_name, 'last_name':last_name,

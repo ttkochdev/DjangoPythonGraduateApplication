@@ -67,19 +67,27 @@ def page1(request):
         
         #print(request.session.get('form_data_page1'))  
         #check if login session exists
+        if '_auth_user_id' in request.session:
+            print("logged in")
+            db_data = getForms.getPage1(request.session.get("_auth_user_id"))
+            request.session['form_data_page1'] = db_data
+            form = PageOneForm(initial=request.session.get('form_data_page1', None), raceinit=request.session.get('raceinit', None))
         #if so populate session data from database
-        if 'form_data_page1' in request.session:
+        elif 'form_data_page1' in request.session:
+            print("not logged in")
             #print("\n\nform data in session\n\n")
-            #print("\n\nsession before inital")
+            #print("\n\nsession before inital is set")
             #print(request.session.get('form_data_page1',None))
-            #print("\n\n")
+            #print("\n\nSESSION")
             #print("\n\nsession before inital raceinit")
             #print(request.session.get('raceinit',None))
             #print("\n\n")
             #form = PageOneForm(request.session['form_data'])
-            #print(request.session.get('form_data_page1').get('race'))
-
-            getForms.getPage1('ttkoch@noctrl.edu')
+            #from django.contrib.sessions.models import Session
+            #session = Session.objects.get(session_key="e625cxugewctjyae62sqbx9v30k32h1h")
+            #session_data = session.get_decoded()
+            #print(session_data)
+           
 
             form_data_session = request.session.get('form_data_page1', None)
             form = PageOneForm(initial=form_data_session, raceinit=request.session.get('raceinit', None))
