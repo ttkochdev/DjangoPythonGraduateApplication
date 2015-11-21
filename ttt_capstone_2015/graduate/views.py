@@ -67,13 +67,13 @@ def page1(request):
         
         #print(request.session.get('form_data_page1'))  
         #check if login session exists
-        if '_auth_user_id' in request.session:
-            print("logged in")
-            db_data = getForms.getPage1(request.session.get("_auth_user_id"))
-            request.session['form_data_page1'] = db_data
-            form = PageOneForm(initial=request.session.get('form_data_page1', None), raceinit=request.session.get('raceinit', None))
+        #if '_auth_user_id' in request.session:
+        #    print("logged in")
+        #    db_data = getForms.getPage1(request.session.get("_auth_user_id"))
+        #    request.session['form_data_page1'] = db_data
+        #    form = PageOneForm(initial=request.session.get('form_data_page1', None), raceinit=request.session.get('raceinit', None))
         #if so populate session data from database
-        elif 'form_data_page1' in request.session:
+        if 'form_data_page1' in request.session:
             print("not logged in")
             #print("\n\nform data in session\n\n")
             #print("\n\nsession before inital is set")
@@ -274,8 +274,12 @@ def login(request, template_name='registration/login.html',
             auth_login(request, form.get_user())
 
             #set session data from database
-            print("\n\nlogin\n\n")
-            print(request.session["form_data_page1"])
+            #print("\n\nlogin\n\n")
+            #print(request.session["form_data_page1"])
+        #if '_auth_user_id' in request.session:
+        #    print("logged in")
+            db_data = getForms.getPage1(request.session.get("_auth_user_id"))
+            request.session['form_data_page1'] = db_data
 
             return HttpResponseRedirect(redirect_to)
     else:
