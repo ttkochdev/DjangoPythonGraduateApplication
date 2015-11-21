@@ -25,7 +25,7 @@ def page1(request):
     assert isinstance(request, HttpRequest)
 
     if request.method == 'POST':
-        print("\n\nrequest post ", request.POST,"\n\n")
+        #print("\n\nrequest post ", request.POST,"\n\n")
         reqpost = request.POST.copy()
         #reqpost.pop('race')
         #reqpost.setlist('race', ['2','3'])
@@ -50,15 +50,15 @@ def page1(request):
         #save post data to session
         #request.session['form1'] =
         
-        print("\n\nsession after post\n\n")
-        print(request.session["form_data_page1"])
+        #print("\n\nsession after post\n\n")
+        #print(request.session["form_data_page1"])
         #if submit = page2 then go to page 2 else if page-3 then go to page 3
         if(request.POST.get('page2', '')):
             return HttpResponseRedirect('/page-2/')
         elif (request.POST.get('page3', '')):
             return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('save', '')):
-            saveForms.savePage1(request.session['form_data_page1'])
+            saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
             return HttpResponseRedirect('/page-1/') 
 
     # if a GET (or any other method) we'll create a blank form
@@ -68,13 +68,13 @@ def page1(request):
         #check if login session exists
         #if so populate session data from database
         if 'form_data_page1' in request.session:
-            print("\n\nform data in session\n\n")
-            print("\n\nsession before inital")
-            print(request.session.get('form_data_page1',None))
-            print("\n\n")
-            print("\n\nsession before inital raceinit")
-            print(request.session.get('raceinit',None))
-            print("\n\n")
+            #print("\n\nform data in session\n\n")
+            #print("\n\nsession before inital")
+            #print(request.session.get('form_data_page1',None))
+            #print("\n\n")
+            #print("\n\nsession before inital raceinit")
+            #print(request.session.get('raceinit',None))
+            #print("\n\n")
             #form = PageOneForm(request.session['form_data'])
             #print(request.session.get('form_data_page1').get('race'))
             form_data_session = request.session.get('form_data_page1', None)

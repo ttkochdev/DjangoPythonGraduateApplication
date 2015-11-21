@@ -14,7 +14,7 @@ import binascii
 # Create your models here.
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, password=None):
+    def create_user(self, email, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -24,21 +24,21 @@ class MyUserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            date_of_birth=date_of_birth,
+            #date_of_birth=date_of_birth,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, date_of_birth, password):
+    def create_superuser(self, email, password):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
         user = self.create_user(email,
             password=password,
-            date_of_birth=date_of_birth
+            #date_of_birth=date_of_birth
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -50,14 +50,15 @@ class Student(AbstractBaseUser): #models.Model
         max_length=255,
         unique=True,
     )
-    date_of_birth = models.DateField()
+
+    date_of_birth = models.DateField(null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_of_birth'] #YYYY-MM-DD
+    #REQUIRED_FIELDS = ['email'] #YYYY-MM-DD
 
     def get_full_name(self):
         # The user is identified by their email address
@@ -84,17 +85,17 @@ class Student(AbstractBaseUser): #models.Model
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
-    batch_id = models.IntegerField(default=0)
+    batch_id = models.IntegerField(null=True)
     first_name = models.CharField(max_length=30)
-    middle_name = models.CharField(max_length=30)
+    middle_name = models.CharField(max_length=30, null=True)
     last_name = models.CharField(max_length=30)
-    suffix = models.CharField(max_length=30)
-    preferred_first_name = models.CharField(max_length=30)
-    birth_last_name = models.CharField(max_length=30)
-    gender = models.CharField(max_length=45)
-    birth_place = models.CharField(max_length=255)
-    ethnicity = models.CharField(max_length=255)
-    is_citizen = models.CharField(max_length=3)
+    suffix = models.CharField(max_length=30, null=True)
+    preferred_first_name = models.CharField(max_length=30, null=True)
+    birth_last_name = models.CharField(max_length=30, null=True)
+    gender = models.CharField(max_length=45, null=True)
+    birth_place = models.CharField(max_length=255, null=True)
+    ethnicity = models.CharField(max_length=255, null=True)
+    is_citizen = models.CharField(max_length=3, null=True)
     social_security = EncryptedTextField()
     #social_security = models.CharField(max_length=32)
 
@@ -113,21 +114,21 @@ class Student(AbstractBaseUser): #models.Model
     #    #self.social_security = binascii.b2a_hex(enc_obj.encrypt( ssn_value ))
 
     #ssn = property(_get_ssn, _set_ssn)
-    denomination = models.IntegerField(default=0)
-    start_term = models.CharField(max_length=255)
-    student_load_intent = models.CharField(max_length=255)
-    residency_status = models.CharField(max_length=255)
-    planned_major = models.CharField(max_length=255)
+    denomination = models.IntegerField(null=True)
+    start_term = models.CharField(max_length=255, null=True)
+    student_load_intent = models.CharField(max_length=255, null=True)
+    residency_status = models.CharField(max_length=255, null=True)
+    planned_major = models.CharField(max_length=255, null=True)
     #level = models.CharField(max_length=3)    
-    refered_by_name = models.CharField(max_length=255)
-    refered_by_relationship = models.CharField(max_length=255)
-    refered_by_name2 = models.CharField(max_length=255)
-    refered_by_relationship2 = models.CharField(max_length=255)
-    influence = models.CharField(max_length=255)
-    employer = models.CharField(max_length=255)
-    tution_remission = models.IntegerField(default=0)
-    gi = models.IntegerField(default=0)
-    permanent_phone = models.CharField(max_length=255)    
+    refered_by_name = models.CharField(max_length=255, null=True)
+    refered_by_relationship = models.CharField(max_length=255, null=True)
+    refered_by_name2 = models.CharField(max_length=255, null=True)
+    refered_by_relationship2 = models.CharField(max_length=255, null=True)
+    influence = models.CharField(max_length=255, null=True)
+    employer = models.CharField(max_length=255, null=True)
+    tution_remission = models.IntegerField(null=True)
+    gi = models.IntegerField(null=True)
+    #permanent_phone = models.CharField(max_length=255, null=True)    
     #cell_phone = models.CharField(max_length=255)
     #employer_phone = models.CharField(max_length=255)
 
@@ -145,12 +146,12 @@ class Phone(models.Model):
 
 class Address(models.Model):
     student = models.ForeignKey(Student)
-    address1 = models.CharField(max_length=255)
-    address2 = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    state = models.CharField(max_length=255)
-    zipcode = models.CharField(max_length=32)
-    country = models.CharField(max_length=255)
+    address1 = models.CharField(max_length=255, null=True)
+    address2 = models.CharField(max_length=255, null=True)
+    city = models.CharField(max_length=255, null=True)
+    state = models.CharField(max_length=255, null=True)
+    zipcode = models.CharField(max_length=32, null=True)
+    country = models.CharField(max_length=255, null=True)
     typeflag = models.CharField(max_length=255) #'Flag for Student, Employer'
 
     def __str__(self):
