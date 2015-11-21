@@ -17,6 +17,7 @@ from .forms import PageTwoForm
 from .forms import Institutions
 
 from .saveForms import *
+from .getForms import *
 
 from graduate.models import Race
 
@@ -77,6 +78,9 @@ def page1(request):
             #print("\n\n")
             #form = PageOneForm(request.session['form_data'])
             #print(request.session.get('form_data_page1').get('race'))
+
+            getForms.getPage1('ttkoch@noctrl.edu')
+
             form_data_session = request.session.get('form_data_page1', None)
             form = PageOneForm(initial=form_data_session, raceinit=request.session.get('raceinit', None))
         #form = PageOneForm(SESSION)

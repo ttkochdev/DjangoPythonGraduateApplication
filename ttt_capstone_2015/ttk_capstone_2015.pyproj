@@ -32,6 +32,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="graduate\forms.py" />
+    <Compile Include="graduate\getForms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="graduate\models.py" />
     <Compile Include="graduate\saveForms.py">
       <SubType>Code</SubType>

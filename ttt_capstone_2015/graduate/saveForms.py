@@ -5,7 +5,7 @@ class saveForms(object):
 
 
     def savePage1(data, raceinit):
-        print(data) 
+        #print(data) 
 
         #get values from page1 form in session variable
         email = data.get("email")
