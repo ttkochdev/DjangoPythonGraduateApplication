@@ -68,6 +68,9 @@
     <Folder Include="ttk_capstone_2015\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="graduate\sql\influences.sql">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="graduate\sql\majors.sql">
       <SubType>Code</SubType>
     </Content>

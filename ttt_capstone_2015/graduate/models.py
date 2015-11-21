@@ -230,7 +230,11 @@ class Majors(models.Model):
     def __str__(self):
         return self.majors
 
-
+class Influences(models.Model):
+    influence = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.influence
 
 ##DB inserts
 

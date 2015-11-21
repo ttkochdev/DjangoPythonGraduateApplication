@@ -66,28 +66,6 @@
 
 <script>
 $( document ).ready(function() {
-    //function cloneMore(selector, type) {
-    //    var newElement = $(selector).clone(true);
-    //    var total = $('#id_' + type + '-TOTAL_FORMS').val();
-    //    newElement.find(':input').each(function () {
-    //        var name = $(this).attr('name').replace('-' + (total - 1) + '-', '-' + total + '-');
-    //        var id = 'id_' + name;
-    //        $(this).attr({ 'name': name, 'id': id }).val('').removeAttr('checked');
-    //    });
-    //    newElement.find('label').each(function () {
-    //        var newFor = $(this).attr('for').replace('-' + (total - 1) + '-', '-' + total + '-');
-    //        $(this).attr('for', newFor);
-    //    });
-    //    total++;
-    //    $('#id_' + type + '-TOTAL_FORMS').val(total);
-    //    $(selector).after(newElement);
-    //}
-
-    //$('#add_more').click(function () {
-    //    cloneMore('div.table:last', 'service');
-    //});
-    //});
-
     $(function () {
         $('#undergraduate_institution tbody tr').formset({
             // For inline formsets, be sure to set the prefix, as the default prefix
@@ -97,8 +75,6 @@ $( document ).ready(function() {
             prefix: 'institutions'
         })
     })
-
-
 });
 </script>   
                 <!--need to populate initial data in views https://github.com/elo80ka/django-dynamic-formset/blob/master/demo/example/views.py-->
@@ -170,38 +146,8 @@ $( document ).ready(function() {
           <label>Who or what helped influence your decision to apply to North Central College?</label>
         </div>
         <div class="span7"> 
-<select name="influenced_to_apply" id="influenced_to_apply">
-    <option value="" label="" selected="selected"></option>
-    <option value="Academic Programs" label="Academic Programs">Academic Programs</option>
-    <option value="Athletic Programs" label="Athletic Programs">Athletic Programs</option>
-    <option value="Attended NCC Summer Camp" label="Attended NCC Summer Camp">Attended NCC Summer Camp</option>
-    <option value="Campus Tour" label="Campus Tour">Campus Tour</option>
-    <option value="Campus Visit" label="Campus Visit">Campus Visit</option>
-    <option value="Class Size Small" label="Class Size Small">Class Size Small</option>
-    <option value="College Fair" label="College Fair">College Fair</option>
-    <option value="Extracurricular Opportunities" label="Extracurricular Opportunities">Extracurricular Opportunities</option>
-    <option value="Financial Aid" label="Financial Aid">Financial Aid</option>
-    <option value="Friend(s)" label="Friend(s)">Friend(s)</option>
-    <option value="High School Coach" label="High School Coach">High School Coach</option>
-    <option value="High School Counselor" label="High School Counselor">High School Counselor</option>
-    <option value="High School Teacher" label="High School Teacher">High School Teacher</option>
-    <option value="Internet Site" label="Internet Site">Internet Site</option>
-    <option value="Location" label="Location">Location</option>
-    <option value="Mailings" label="Mailings">Mailings</option>
-    <option value="North Central Alum" label="North Central Alum">North Central Alum</option>
-    <option value="North Central Coach" label="North Central Coach">North Central Coach</option>
-    <option value="North Central Counselor" label="North Central Counselor">North Central Counselor</option>
-    <option value="North Central Faculty" label="North Central Faculty">North Central Faculty</option>
-    <option value="North Central Student" label="North Central Student">North Central Student</option>
-    <option value="Open House" label="Open House">Open House</option>
-    <option value="Other" label="Other">Other</option>
-    <option value="Publications" label="Publications">Publications</option>
-    <option value="Relative" label="Relative">Relative</option>
-    <option value="Reputation" label="Reputation">Reputation</option>
-    <option value="Size of School" label="Size of School">Size of School</option>
-    <option value="United Methodist Affiliate" label="United Methodist Affiliate">United Methodist Affiliate</option>
-    <option value="Video" label="Video">Video</option>
-</select> </div>
+        {{ form.influence }}
+         </div>
       </div>
       <br>
                         <div class="row-fluid">
@@ -274,7 +220,7 @@ $( document ).ready(function() {
 {% render_field form.employment_address name='employment_address' maxlength='30' %}</span> </div>
         </fieldset>
        			
-            			                          <div id="employer_inside_us">
+          <div id="employer_inside_us">
           <fieldset>
             <div class="span5">
               <label>City / State</label>
@@ -328,7 +274,8 @@ $( document ).ready(function() {
           <label>Tuition Remission</label>
         </div>
         <div id="tuition_remission-contain" class="span7"> 
-<label for="tuition_remission-1"><input type="radio" name="tuition_remission" id="tuition_remission-1" value="1">Yes</label> &nbsp; <label for="tuition_remission-0"><input type="radio" name="tuition_remission" id="tuition_remission-0" value="0" checked="checked">No</label> </div>
+            {{ form.tuition_remission}}
+        </div>
       </div>
       <br>
             
@@ -337,14 +284,15 @@ $( document ).ready(function() {
           <label>GIs</label>
         </div> 
         <div id="gi-contain" class="span7"> 
-<label for="gi-1"><input type="radio" name="gi" id="gi-1" value="1">Yes</label> &nbsp; <label for="gi-0"><input type="radio" name="gi" id="gi-0" value="0" checked="checked">No</label> </div>
+            {{ form.gi }}
+        </div>
       </div>
             </div>
       
       
       
       
-            
+      <!--
       <div class="span7">
            <div class="row-fluid">
         <h2>Upload Supporting Documents</h2>
@@ -365,7 +313,7 @@ $( document ).ready(function() {
       
       </div>
       
-      
+      -->      
       
       
     </div>

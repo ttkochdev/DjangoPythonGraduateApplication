@@ -179,7 +179,7 @@ class PageTwoForm(forms.Form):
     refered_by_relationship = forms.CharField(label='Relationship To You')
     refered_by_name2 = forms.CharField(label='Friend / Relative Name')
     refered_by_relationship2 = forms.CharField(label='Relationship To You')
-    influence = forms.CharField(label='Who or what helped influence your decision to apply to North Central College?') 
+    influence = forms.ModelChoiceField(queryset=Majors.objects.all(), label='Who or what helped influence your decision to apply to North Central College?') 
     POLICY_CHOICES=(
         ('Yes','Yes'),
         ('No','No'),)
