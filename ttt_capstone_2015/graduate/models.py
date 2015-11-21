@@ -128,9 +128,11 @@ class Student(AbstractBaseUser): #models.Model
     employer = models.CharField(max_length=255, null=True)
     tution_remission = models.IntegerField(null=True)
     gi = models.IntegerField(null=True)
-    #permanent_phone = models.CharField(max_length=255, null=True)    
-    #cell_phone = models.CharField(max_length=255)
-    #employer_phone = models.CharField(max_length=255)
+    citizenship_country = models.CharField(max_length=60, null=True)
+    residence_country = models.CharField(max_length=60, null=True)
+    alien_reg_no = models.CharField(max_length=15, null=True)
+    is_international_student = models.CharField(max_length=3, null=True) 
+    alien_status = models.CharField(max_length=30, null=True)
 
     def __str__(self):
         return self.email

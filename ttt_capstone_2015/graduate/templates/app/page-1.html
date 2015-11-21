@@ -289,7 +289,9 @@
                 <div class="span3"><label for="alien_reg_no">Alien Registration Number</label><span class="ssn_number">Include the leading letter A</span></div>
                 <div class="span4">
                     <span>
-<input type="text" value="" id="alien_reg_no" "></span>                </div>
+                        {{ form.alien_reg_no }}
+                    </span>
+                </div>
             </fieldset>
             </div>
             <div style="display:none;" id="citizen_no">
@@ -297,30 +299,17 @@
                 <div class="span3"><label for="is_international_student">Are you or will you be an international student?</label></div>
                 <div class="span4">
                     
-<select id="is_international_student" >
-    <option label="Yes" value="1">Yes</option>
-    <option label="No" value="0">No</option>
-    <option selected="selected" label="" value=""></option>
-</select>                </div>
+                    {{ form.is_international_student }}               
+                </div>
             </fieldset>
             <br>
             <fieldset>
                 <div class="span3"><label for="alien_status">What is your visa status?</label></div>
                 <div class="span4">
                     
-<select id="alien_status">
-    <option selected="selected" label="" value=""></option>
-    <option label="F1 Student" value="F1 Student">F1 Student</option>
-    <option label="F2" value="F2">F2</option>
-    <option label="H1" value="H1">H1</option>
-    <option label="H4" value="H4">H4</option>
-    <option label="J1 Exchange Visitor" value="J1 Exchange Visitor">J1 Exchange Visitor</option>
-    <option label="J2" value="J2">J2</option>
-    <option label="K1" value="K1">K1</option>
-    <option label="PR Permanent Resident US" value="PR Permanent Resident US">PR Permanent Resident US</option>
-    <option label="TD" value="TD">TD</option>
-    <option label="Unknown" value="Unknown">Unknown</option>
-</select>                </div>
+                {{ form.alien_status }}
+                
+               </div>
             </fieldset>
             </div>
                     </div>

@@ -49,7 +49,7 @@ class PageOneForm(forms.Form):
 
     email = forms.CharField(label='Email', required=True) #Student
     first_name = forms.CharField(label='First Name', required=True)#Student
-    middle_name = forms.CharField(label='Middle Name', required=True)#Student
+    middle_name = forms.CharField(label='Middle Name')#Student
     last_name = forms.CharField(label='Last Name', required=True)    #Student
     social_security = USSocialSecurityNumberField()#Student
     SUFFIX_TYPE_CHOICES = (
@@ -61,7 +61,7 @@ class PageOneForm(forms.Form):
         ('IV','IV'),
         )
     suffix = forms.ChoiceField(choices=SUFFIX_TYPE_CHOICES)#Student
-    preferred_first_name = forms.CharField(label='Prefered First Name', required=True)#Student
+    preferred_first_name = forms.CharField(label='Prefered First Name')#Student
     birth_last_name = forms.CharField(label='Birth Last Name', required=True)#Student
     GENDER_TYPE_CHOICES = (
         ('',''),
@@ -70,7 +70,7 @@ class PageOneForm(forms.Form):
         )
     gender = forms.ChoiceField(choices=GENDER_TYPE_CHOICES) #Student
     birth_date = forms.DateField(widget=DateInput()) #Student
-    birth_place = forms.CharField(label='Birthplace', required=True) #Student
+    birth_place = forms.CharField(label='Birthplace') #Student
     ETHNICITY_TYPE_CHOICES = (
         ('',''),
         ('YES','Yes, Hispanic or Latino'),
@@ -86,18 +86,39 @@ class PageOneForm(forms.Form):
     COUNTRY_CHOICES = (('', ''),) + COUNTRY_CHOICES
     country = forms.ChoiceField(choices=COUNTRY_CHOICES)#address Address    
     citizenship_country = forms.ChoiceField(choices=COUNTRY_CHOICES) #citizen questions #Address
-    residence_country = forms.ChoiceField(choices=COUNTRY_CHOICES) #Address    
+    residence_country = forms.ChoiceField(choices=COUNTRY_CHOICES) #Address   
+    alien_reg_no = forms.CharField(label='Alien Registration Number') 
     address1 = forms.CharField(label='Mailing Address', required=True) #Address
-    address2 = forms.CharField(label='Mailing Address 2', required=True) #Address
+    address2 = forms.CharField(label='Mailing Address 2') #Address
     city = forms.CharField(label='City', required=True)#Address
     STATE_CHOICES = (('', ''),) + STATE_CHOICES
-    state = forms.ChoiceField(choices=STATE_CHOICES)#Address
+    state = forms.ChoiceField(choices=STATE_CHOICES, required=True)#Address
     #state = forms.CharField(label='State', required=True)
     zipcode = forms.CharField(label='Zip Code', required=True)#Address
     international_phonecheck = forms.BooleanField()
+    IS_INTERNATIONAL_STUDENT_CHOICES = (
+        ('',''),
+        ('YES','Yes'),
+        ('NO','No'),
+        ) 
+    is_international_student = forms.ChoiceField(choices=IS_INTERNATIONAL_STUDENT_CHOICES) #Student     
+    ALIEN_STATUS_CHOICES = (
+        ('',''),
+        ('F1 Student','F1 Student'),
+        ('F2','F2'),
+        ('H1','H1'),
+        ('H4','H4'),
+        ('J1 Exchange Visitor','J1 Exchange Visitor'),
+        ('K1','K1'),
+        ('PR Permanent Resident US','PR Permanent Resident US'),
+        ('TD','TD'),
+        ('Unknown','Unknown'),
+        ) 
+    alien_status = forms.ChoiceField(choices=ALIEN_STATUS_CHOICES) #Student 
 
-    permanent_phone = forms.CharField(label='Permanent Telephone Number', required=True) #Phone
-    cell_phone = forms.CharField(label='Cell Phone Number', required=True) #Phone
+
+    permanent_phone = forms.CharField(label='Permanent Telephone Number') #Phone
+    cell_phone = forms.CharField(label='Cell Phone Number') #Phone
     
     #INSERT INTO `admissions.dev.capstone`.`graduate_race` (`rid`, `race`) VALUES (NULL, 'American Indian or Alaska Native'), (NULL, 'Asian'), (NULL, 'Black or African American'), (NULL, 'Native Hawaiian or Other Pacific Islander'), (NULL, 'White');
     race = forms.ModelMultipleChoiceField(queryset=Race.objects.all(),widget=forms.CheckboxSelectMultiple()) #StudentRace
