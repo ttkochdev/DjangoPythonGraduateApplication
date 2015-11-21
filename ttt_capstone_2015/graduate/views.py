@@ -81,7 +81,7 @@ def page1(request):
             form = PageOneForm(initial=form_data_session, raceinit=request.session.get('raceinit', None))
         #form = PageOneForm(SESSION)
         else: #no login - create empty form
-            form = PageOneForm()
+            form = PageOneForm(raceinit={})
             
 
     return render(request,

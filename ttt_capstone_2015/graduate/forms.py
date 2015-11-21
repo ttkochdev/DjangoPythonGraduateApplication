@@ -22,32 +22,26 @@ from datetime import date, datetime
 
 from functools import partial
 DateInput = partial(forms.DateInput, {'class': 'birthdatepicker'})
-#class CustomNameTextInput(TextInput):
-#    def render(self, name, value, attrs=None):
-#        if 'name' in attrs:
-#            name = attrs['name']
-#            del attrs['name']
-#        return super(TextInput, self).render(name, value, attrs)
 
 class PageOneForm(forms.Form): 
 
     def __init__(self, *args, **kwargs):
         self.raceinit = kwargs.pop('raceinit')
         super(PageOneForm, self).__init__(*args, **kwargs)
-        print("\n\npage1form\n\n")
+        #print("\n\npage1form\n\n")
         if 'initial' not in kwargs:
             kwargs['initial'] = {}
-            print('set kwargs')
-        else:
-            print("fromdb")
-            print([c.raceid for c in StudentRace.objects.filter(student_id='1')])
-            print("\n\nfromself.raceinit\n")
-            print(self.raceinit)
+            #print('set kwargs')
+        #else:
+            #print("fromdb")
+            #print([c.raceid for c in StudentRace.objects.filter(student_id='1')])
+            #print("\n\nfromself.raceinit\n")
+            #print(self.raceinit)
         #print(self.fields['race'])
-        print("\n\n")
+        #print("\n\n")
         self.initial['race']=self.raceinit
         #self.fields['race'].initial = ['1','2','3']#self.raceinit
-        print(self.fields['race'].initial)
+        #print(self.fields['race'].initial)
 #        self.fields['race'].initial = [c.pk for c in StudentRace.object.filter()]
         #if(StudentRace.objects.filter(student_id='1').exists()):
 
