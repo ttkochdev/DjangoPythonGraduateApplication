@@ -146,28 +146,24 @@ def page2(request):
 
         #request.session['extra_count'] =
         #extra=request.POST.get('extra_field_count')
-        print(request.session["form_data_page2"])
+        #print(request.session["form_data_page2"])
         #if submit = page2 then go to page 2 else if page-3 then go to page 3
         if(request.POST.get('page1', '')):
             return HttpResponseRedirect('/page-1/')
         elif (request.POST.get('page3', '')):
             return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('save', '')):
-
             
-            if formset.is_valid():            
-                for f in formset: 
-                    cd = f.cleaned_data
+            if formset.is_valid() and form.is_valid():
+                instit = []            
+                for i, f in enumerate(formset): 
+                    cd = f.cleaned_data                    
                     undergraduate_institution = cd.get('undergraduate_institution')
-                    ceeb = cd.get('ceeb')
-                    print("\n\n formset is valid")
-                    print(undergraduate_institution)
-                    print("\n\n")
-                    print(ceeb)
-                    page1session = request.session.get('form_data_page1')
-                saveForms.savePage2(page1session.get('email'), request.session.get('form_data_page2'), formset)            
-
-            return HttpResponseRedirect('/page-2/') 
+                    ceeb = cd.get('ceeb')                    
+                    instit.append([undergraduate_institution,ceeb])
+                page1session = request.session.get('form_data_page1')                
+                saveForms.savePage2(page1session.get('email'), request.session.get('form_data_page2'), instit)            
+                return HttpResponseRedirect('/page-2/') 
     # if a GET (or any other method) we'll create a blank form
     else:        
         if 'form_data_page2' in request.session:

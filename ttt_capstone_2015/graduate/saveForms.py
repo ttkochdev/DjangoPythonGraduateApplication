@@ -78,19 +78,19 @@ class saveForms(object):
                     sr.save()
 
 
-    def savePage2(email, data, institutions_formset):
-        print("\n\ninstitution formset\n",institutions_formset, "\n\n")
+    def savePage2(email, data, institutions):
+        print("\n\ninstitution formset\n",institutions, "\n\n")
 
         email = email
         start_term = data.get("start_term")
         student_load_intent = data.get("student_load_intent")
         planned_major = data.get("planned_major")        
         tuition_remission = data.get("tuition_remission")  
-        print(tuition_remission)
-        if tuition_remission is 'on':
-            tuition_remission = 1
-        else:
-            tuition_remission = 0
+        #print(tuition_remission)
+        #if tuition_remission is 'on':
+        #    tuition_remission = 1
+        #else:
+        #    tuition_remission = 0
         #try:
         #    tuition_remission = int(tuition_remission)
         #except ValueError:

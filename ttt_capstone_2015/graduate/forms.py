@@ -171,38 +171,38 @@ class PageTwoForm(forms.Form):
     seasons = season()    
     START_TERM_CHOICES = (('', ''),) + seasons
     start_term = forms.ChoiceField(choices=START_TERM_CHOICES ,label='When do you intend to enroll at North Central College?') 
-    student_load_intent = forms.ChoiceField(label='What is your intended course load?', choices=(('',''), ('fulltime','Full-time'),('parttime','Part-time')))
+    student_load_intent = forms.ChoiceField(label='What is your intended course load?', choices=(('',''), ('fulltime','Full-time'),('parttime','Part-time')), required=False)
     #INSERT INTO `admissions.dev.capstone`.`graduate_majors` (`mid`, `majors`) VALUES (NULL, 'Master of Arts in Education: Curriculum and Instruction'), (NULL, 'Master of Arts in Education:  Educational Leadership & Administration'), (NULL, 'Master of Arts in Liberal Studies:  Culture and Society'), (NULL, 'Master of Arts in Liberal Studies:  Writing, Editing, and Publishing'), (NULL, 'Master of Business Administration:  Accounting'), (NULL, 'Master of Business Administration:  Change Management'), (NULL, 'Master of Business Administration:  Finance'), (NULL, 'Master of Business Administration:  Human Resource Management'), (NULL, 'Master of Business Administration:  Management'), (NULL, 'Master of Business Administration:  Marketing'), (NULL, 'Master of International Business Administration'), (NULL, 'Master of Leadership Studies:  Professional Leadership'), (NULL, 'Master of Leadership Studies:  Higher Education'), (NULL, 'Master of Leadership Studies:  Social Entrepreneurship'), (NULL, 'Master of Leadership Studies: Sport Leadership'), (NULL, 'Master of Science in Web and Internet Applications');
-    planned_major = forms.ModelChoiceField(queryset=Majors.objects.all(), label='What is your program of study?')        
+    planned_major = forms.ModelChoiceField(queryset=Majors.objects.all(), label='What is your program of study?', required=False)        
 
-    refered_by_name = forms.CharField(label='Friend / Relative Name')
-    refered_by_relationship = forms.CharField(label='Relationship To You')
-    refered_by_name2 = forms.CharField(label='Friend / Relative Name')
-    refered_by_relationship2 = forms.CharField(label='Relationship To You')
-    influence = forms.ModelChoiceField(queryset=Influences.objects.all(), label='Who or what helped influence your decision to apply to North Central College?') 
+    refered_by_name = forms.CharField(label='Friend / Relative Name', required=False)
+    refered_by_relationship = forms.CharField(label='Relationship To You', required=False)
+    refered_by_name2 = forms.CharField(label='Friend / Relative Name', required=False)
+    refered_by_relationship2 = forms.CharField(label='Relationship To You', required=False)
+    influence = forms.ModelChoiceField(queryset=Influences.objects.all(), label='Who or what helped influence your decision to apply to North Central College?', required=False) 
     POLICY_CHOICES=(
         ('Yes','Yes'),
         ('No','No'),)
     policy = forms.ChoiceField(choices=POLICY_CHOICES, label='Have you ever been accused or charged with violating a code of student conduct or institutional policy, or been suspended, placed on probation, dismissed, or expelled from any high school or college?', widget=forms.RadioSelect())
-    policy_reason = forms.CharField(label='If yes, please explain why you were suspended/dismissed in 140 characters or less.')
+    policy_reason = forms.CharField(label='If yes, please explain why you were suspended/dismissed in 140 characters or less.', required=False)
     LEGAL_CHOICES=(
         ('Yes','Yes'),
         ('No','No'),)
     legal = forms.ChoiceField(choices=LEGAL_CHOICES, label='Have you ever been arrested, indicted, or convicted of anything other than a minor traffic violation?', widget=forms.RadioSelect())
-    legal_reason = forms.CharField(label='If yes, please explain your conviction in 140 characters or less.')
-    employer = forms.CharField(label='Employer Name')
-    outside_us_employment = forms.BooleanField(label='Employment address outside of the United States?')
+    legal_reason = forms.CharField(label='If yes, please explain your conviction in 140 characters or less.', required=False)
+    employer = forms.CharField(label='Employer Name', required=False)
+    outside_us_employment = forms.BooleanField(label='Employment address outside of the United States?',required=False)
     COUNTRY_CHOICES = tuple(countries)
     COUNTRY_CHOICES = (('', ''),) + COUNTRY_CHOICES
-    employer_country = forms.ChoiceField(choices=COUNTRY_CHOICES) 
-    employment_address = forms.CharField()
-    employment_address_outside = forms.CharField()
-    employment_city = forms.CharField()
+    employer_country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False) 
+    employment_address = forms.CharField(required=False)
+    employment_address_outside_us = forms.NullBooleanField(required=False)
+    employment_city = forms.CharField(required=False)
     STATE_CHOICES = (('', ''),) + STATE_CHOICES
-    employment_state = forms.ChoiceField(choices=STATE_CHOICES)
-    employment_zip = forms.CharField()
-    tuition_remission = forms.BooleanField()
-    gi = forms.BooleanField()
+    employment_state = forms.ChoiceField(choices=STATE_CHOICES, required=False)
+    employment_zip = forms.CharField(required=False)
+    tuition_remission = forms.BooleanField(required=False)
+    gi = forms.BooleanField(required=False)
     
 
 
