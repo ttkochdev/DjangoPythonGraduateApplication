@@ -66,12 +66,13 @@ def page1(request):
             form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
             print('\nSAVE\n')
             if form.is_valid():  
-                cd = form.cleaned_data
                 print("\n\nCLEANED DATA\n\n")
+                cd = form.cleaned_data
+                
                 print(cd)
                 saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
                 return HttpResponseRedirect('/page-1/') 
-
+            print("after is valid")
     # if a GET (or any other method) we'll create a blank form
     else:     
         
@@ -153,8 +154,9 @@ def page2(request):
         elif (request.POST.get('page3', '')):
             return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('save', '')):
-            
+            print("\nbefore page 2 is_valid\n")
             if formset.is_valid() and form.is_valid():
+                print("\inside page 2 is_valid\n")
                 instit = []            
                 for i, f in enumerate(formset): 
                     cd = f.cleaned_data                    
@@ -164,6 +166,7 @@ def page2(request):
                 page1session = request.session.get('form_data_page1')                
                 saveForms.savePage2(page1session.get('email'), request.session.get('form_data_page2'), instit)            
                 return HttpResponseRedirect('/page-2/') 
+            print("\nafter page 2 is_valid\n")
     # if a GET (or any other method) we'll create a blank form
     else:        
         if 'form_data_page2' in request.session:

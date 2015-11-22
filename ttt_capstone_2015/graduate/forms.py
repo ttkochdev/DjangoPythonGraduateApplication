@@ -84,7 +84,7 @@ class PageOneForm(forms.Form):
 
     COUNTRY_CHOICES = tuple(countries)
     COUNTRY_CHOICES = (('', ''),) + COUNTRY_CHOICES
-    country = forms.ChoiceField(choices=COUNTRY_CHOICES)#address Address    
+    country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False)#address Address    
     citizenship_country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False) #citizen questions #Address
     residence_country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False) #Address   
     alien_reg_no = forms.CharField(label='Alien Registration Number', required=False) 
