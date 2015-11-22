@@ -47,12 +47,23 @@ class getForms(object):
         #results = Student.objects.filter(phone__student=student)
         #print(results)
         print("\n\naddress")
-        saddress = Address.objects.get(student=student, typeflag="student")
+        if Address.objects.filter(student=student, typeflag="student").exists():
+            saddress = Address.objects.get(student=student, typeflag="student")
+        else:
+            saddress = Address()
         #address = Address.objects.get(student=student, typeflag="employer")
         print(saddress)
         print("\n\nphone")
-        cphone= Phone.objects.get(student=student, typeflag="cell_phone")
-        pphone= Phone.objects.get(student=student, typeflag="permanent_phone")
+        if Phone.objects.filter(student=student, typeflag="cell_phone"):
+            cphone= Phone.objects.get(student=student, typeflag="cell_phone")
+        else:
+            cphone = Phone()   
+         
+        if Phone.objects.filter(student=student, typeflag="permanent_phone"):                
+            pphone= Phone.objects.get(student=student, typeflag="permanent_phone")
+        else:
+            pphone= Phone()
+            
         print(cphone)
 
         print("\n\nGET DATA\n\n")
