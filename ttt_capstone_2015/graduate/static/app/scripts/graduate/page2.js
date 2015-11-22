@@ -27,16 +27,16 @@ $().ready(function() {
     	$('#'+$(this).parent().parent().parent().parent().attr('id')+' .college-ceeb').val('0002');
     });
     
-    $("input[name='has_legal_issue']").change(function(){
-		if ($("input[name='has_legal_issue']:checked").val() == '1') {
+    $("input[name='legal']").change(function(){
+		if ($("input[name='legal']:checked").val() == 'Yes') {
             $('#legal-reason').show();
         } else {
         	$('#legal-reason').hide();
         }
     });
     
-    $("input[name='has_policy_issue']").change(function(){
-		if ($("input[name='has_policy_issue']:checked").val() == '1') {
+    $("input[name='policy']").change(function () {
+        if ($("input[name='policy']:checked").val() == 'Yes') {
             $('#policy-reason').show();
         } else {
         	$('#policy-reason').hide();

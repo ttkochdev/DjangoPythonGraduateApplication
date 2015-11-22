@@ -110,13 +110,6 @@ class saveForms(object):
         
         legal_reason = data.get("legal_reason")   
         policy_reason = data.get("policy_reason")  
-        
-
-        #institutions-0-undergraduate_institution
-        #institutions-0-ceeb
-        #institutions-1-undergraduate_institution
-        #institutions-1-ceeb
-
 
         #save student
         studentobj_uc, created = Student.objects.update_or_create(email=email, 
@@ -130,11 +123,27 @@ class saveForms(object):
              studentobj = Student.objects.get(email=email)
         #if there is a student then you can update and create fields attached to student
         if studentobj:  
-        #save employer address
+            #save employer address
             address, addresscreated = Address.objects.update_or_create(student=studentobj, typeflag="employer", 
                                                         defaults={'address1':employment_address,'city':employment_city,'state':employment_state,
                                                                   'zipcode':employment_zip,'country':employer_country, 'typeflag':'employer', 'student':studentobj})       
-        #{'institutions-0-undergraduate_institution': 'Wabash College', 'student_load_intent': 'fulltime', 
+            #save institutions             
+            if StudentUndergraduateInstitution.objects.filter(student=studentobj).exists():                
+                studentrace = StudentUndergraduateInstitution.objects.filter(student=studentobj)
+                studentrace.delete() #could be slow if there are a whole lot of institutions
+            if institutions:
+                for inst in institutions:
+                    print(inst)
+                    ins = StudentUndergraduateInstitution(student=studentobj, name=inst[0], ceeb=inst[1])
+                    ins.save()
+            #save legal reason
+            legalobj, legalcreated = StudentLegal.objects.update_or_create(student=studentobj, 
+                                                        defaults={'reason':legal_reason})
+            #save policy reason
+            policyobj, policycreated = StudentLegal.objects.update_or_create(student=studentobj, 
+                                                        defaults={'reason':policy_reason})        
+
+            #{'institutions-0-undergraduate_institution': 'Wabash College', 'student_load_intent': 'fulltime', 
         # 'save': 'save page', 'employer_country': '', 'tuition_remission': 'on', 
         # 'institutions-MAX_NUM_FORMS': '1000', 'legal': 'Yes', 'employment_zip': '47304',
         # 'gi': 'on', 'policy_reason': '', 'employment_address': 'Employment Mailing Address',

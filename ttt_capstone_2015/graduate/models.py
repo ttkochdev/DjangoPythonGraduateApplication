@@ -86,9 +86,9 @@ class Student(AbstractBaseUser): #models.Model
         # Simplest possible answer: All admins are staff
         return self.is_admin
     batch_id = models.IntegerField(null=True)
-    first_name = models.CharField(max_length=30)
+    first_name = models.CharField(max_length=30, null=True)
     middle_name = models.CharField(max_length=30, null=True)
-    last_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30, null=True)
     suffix = models.CharField(max_length=30, null=True)
     preferred_first_name = models.CharField(max_length=30, null=True)
     birth_last_name = models.CharField(max_length=30, null=True)
@@ -96,7 +96,7 @@ class Student(AbstractBaseUser): #models.Model
     birth_place = models.CharField(max_length=255, null=True)
     ethnicity = models.CharField(max_length=255, null=True)
     is_citizen = models.CharField(max_length=3, null=True)
-    social_security = EncryptedTextField()
+    social_security = EncryptedTextField(null=True)
     #social_security = models.CharField(max_length=32)
 
     #def _get_ssn(cipher): #self
@@ -126,8 +126,8 @@ class Student(AbstractBaseUser): #models.Model
     refered_by_relationship2 = models.CharField(max_length=255, null=True)
     influence = models.CharField(max_length=255, null=True)
     employer = models.CharField(max_length=255, null=True)
-    tuition_remission = models.NullBooleanField()    
-    gi = models.NullBooleanField()
+    tuition_remission = models.NullBooleanField(null=True)    
+    gi = models.NullBooleanField(null=True)
     citizenship_country = models.CharField(max_length=60, null=True)
     residence_country = models.CharField(max_length=60, null=True)
     alien_reg_no = models.CharField(max_length=15, null=True)
@@ -140,7 +140,7 @@ class Student(AbstractBaseUser): #models.Model
 #would need to maintain hidden previously enter phone fields in order to do this, because of the updating problem. 
 class Phone(models.Model):    
     student = models.ForeignKey(Student)
-    phone = models.CharField(max_length=75)
+    phone = models.CharField(max_length=75, null=True)
     typeflag = models.CharField(max_length=255)
 
     def __str__(self):              
@@ -168,14 +168,14 @@ class Religions(models.Model):
         return self.name
 
 class StudentLegal(models.Model):
-    student = models.ForeignKey(Student)
+    student = models.ForeignKey(Student, unique=True)
     reason = models.CharField(max_length=255)
 
     def __str__(self):
         return self.reason
 
 class StudentPolicy(models.Model):
-    student = models.ForeignKey(Student)
+    student = models.ForeignKey(Student, unique=True)
     reason = models.CharField(max_length=255)
 
     def __str__(self):
@@ -191,30 +191,30 @@ class StudentRace(models.Model):
     #maybe try making this a model form? 
 class StudentUndergraduateInstitution(models.Model):
     student = models.ForeignKey(Student)
-    name = models.CharField(max_length=255)
-    ceeb = models.CharField(max_length=10)
+    name = models.CharField(max_length=255, null=True)
+    ceeb = models.CharField(max_length=10, null=True)
 
     def __str__(self):
         return "%s %s" % (self.name, self.ceeb)
 
-class StudentUploads(models.Model):
-    ceeb = models.ForeignKey(Student)
-    name = models.CharField(max_length=255)
+#class StudentUploads(models.Model):
+#    ceeb = models.ForeignKey(Student)
+#    name = models.CharField(max_length=255)
 
-    _data = models.TextField(
-            db_column='data',
-            blank=True)
+#    _data = models.TextField(
+#            db_column='data',
+#            blank=True)
 
-    def set_data(self, data):
-        self._data = base64.encodestring(data)
+#    def set_data(self, data):
+#        self._data = base64.encodestring(data)
 
-    def get_data(self):
-        return base64.decodestring(self._data)
+#    def get_data(self):
+#        return base64.decodestring(self._data)
 
-    data = property(get_data, set_data)
+#    data = property(get_data, set_data)
 
-    def __str__(self):
-        return self.name        
+#    def __str__(self):
+#        return self.name        
 
 class Race(models.Model):
     rid = models.AutoField(primary_key=True)
