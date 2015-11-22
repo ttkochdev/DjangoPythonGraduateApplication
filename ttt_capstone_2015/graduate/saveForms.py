@@ -63,7 +63,7 @@ class saveForms(object):
                                                         defaults={'phone':cell_phone, 'typeflag':'cell_phone', 'student':studentobj})
 
             #save address
-            #generate defaults dynamically to remove US info for foreign country and vice versa
+            #needs to generate defaults dynamically to remove US info for foreign country and vice versa
             address, addresscreated = Address.objects.update_or_create(student=studentobj, typeflag="student", 
                                                         defaults={'address1':address1,'address2':address2,'city':city,'state':state,
                                                                   'zipcode':zipcode,'country':country, 'typeflag':'student', 'student':studentobj})       
@@ -85,16 +85,11 @@ class saveForms(object):
         start_term = data.get("start_term")
         student_load_intent = data.get("student_load_intent")
         planned_major = data.get("planned_major")        
-        tuition_remission = data.get("tuition_remission")  
-        #print(tuition_remission)
-        #if tuition_remission is 'on':
-        #    tuition_remission = 1
-        #else:
-        #    tuition_remission = 0
-        #try:
-        #    tuition_remission = int(tuition_remission)
-        #except ValueError:
-        #    tuition_remission = None
+        tuition_remission = data.get("tuition_remission")          
+        if tuition_remission is 'on':
+            tuition_remission = 1
+        else:
+            tuition_remission = 0
         gi = data.get("gi")
         if gi is 'on':
             gi = 1
@@ -106,6 +101,7 @@ class saveForms(object):
         refered_by_relationship2 = data.get("refered_by_relationship2")
         influence = data.get("influence")        
 
+        employer = data.get('employer')
         employer_country = data.get("employer_country")
         employment_address = data.get("employment_address")
         employment_zip = data.get("employment_zip")
@@ -124,13 +120,20 @@ class saveForms(object):
 
         #save student
         studentobj_uc, created = Student.objects.update_or_create(email=email, 
-                                                        defaults={'start_term':start_term, 'student_load_intent':student_load_intent,
+                                                        defaults={'start_term':start_term, 'student_load_intent':student_load_intent, 'employer':employer,
                                                                   'planned_major': planned_major,'tuition_remission':tuition_remission,'influence':influence,      
                                                                   'gi':gi,'refered_by_name':refered_by_name, 'refered_by_name2':refered_by_name2,
                                                                   'refered_by_relationship':refered_by_relationship,'refered_by_relationship2':refered_by_relationship2,                                              
                                                                   })
-
-
+           #update or create (studentobj_uc) would return NO object if nothing was updated or created. 
+        if Student.objects.filter(email=email).exists():
+             studentobj = Student.objects.get(email=email)
+        #if there is a student then you can update and create fields attached to student
+        if studentobj:  
+        #save employer address
+            address, addresscreated = Address.objects.update_or_create(student=studentobj, typeflag="employer", 
+                                                        defaults={'address1':employment_address,'city':employment_city,'state':employment_state,
+                                                                  'zipcode':employment_zip,'country':employer_country, 'typeflag':'employer', 'student':studentobj})       
         #{'institutions-0-undergraduate_institution': 'Wabash College', 'student_load_intent': 'fulltime', 
         # 'save': 'save page', 'employer_country': '', 'tuition_remission': 'on', 
         # 'institutions-MAX_NUM_FORMS': '1000', 'legal': 'Yes', 'employment_zip': '47304',

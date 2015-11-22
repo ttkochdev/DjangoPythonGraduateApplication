@@ -196,7 +196,7 @@ class PageTwoForm(forms.Form):
     COUNTRY_CHOICES = (('', ''),) + COUNTRY_CHOICES
     employer_country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False) 
     employment_address = forms.CharField(required=False)
-    employment_address_outside_us = forms.NullBooleanField(required=False)
+    employment_address_outside_us = forms.BooleanField(required=False)
     employment_city = forms.CharField(required=False)
     STATE_CHOICES = (('', ''),) + STATE_CHOICES
     employment_state = forms.ChoiceField(choices=STATE_CHOICES, required=False)

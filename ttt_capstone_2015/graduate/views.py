@@ -63,7 +63,7 @@ def page1(request):
             return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('save', '')):
             #validate email field
-            form = PageOneForm(request.POST,raceinit=request.session.get('raceinit'))
+            form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
             print('\nSAVE\n')
             if form.is_valid():  
                 cd = form.cleaned_data
