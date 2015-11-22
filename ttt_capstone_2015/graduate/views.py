@@ -40,10 +40,10 @@ def page1(request):
             request.session['form_data_page1'] = reqpost
 
         request.session['raceinit'] = reqpost.getlist('race')
-        print('\n\nraceinit\n\n')
-        print(request.session.get('raceinit', None))
+        #print('\n\nraceinit\n\n')
+        #print(request.session.get('raceinit', None))
         #request.session.modified = True
-        #form = PageOneForm(initial=request.session['form_data_page1'])
+        #form = PageOneForm(request.session.get('form_data_page1'), raceinit=request.session.get('raceinit'))
         #for key in request.POST:
         #    print (key)
         
@@ -55,12 +55,22 @@ def page1(request):
         #print(request.session["form_data_page1"])
         #if submit = page2 then go to page 2 else if page-3 then go to page 3
         if(request.POST.get('page2', '')):
+            #form = PageOneForm(request.POST,raceinit=request.session.get('raceinit'))
+            #print('\n to page 2\n')
+            #if form.get('email').is_valid():  
             return HttpResponseRedirect('/page-2/')
         elif (request.POST.get('page3', '')):
             return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('save', '')):
-            saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
-            return HttpResponseRedirect('/page-1/') 
+            #validate email field
+            form = PageOneForm(request.POST,raceinit=request.session.get('raceinit'))
+            print('\nSAVE\n')
+            if form.is_valid():  
+                cd = form.cleaned_data
+                print("\n\nCLEANED DATA\n\n")
+                print(cd)
+                saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
+                return HttpResponseRedirect('/page-1/') 
 
     # if a GET (or any other method) we'll create a blank form
     else:     
@@ -111,6 +121,14 @@ def page2(request):
     assert isinstance(request, HttpRequest)
     InstitutionsFormset = formset_factory(Institutions)
     
+    #need to have email set from page 1 at least
+    if not 'form_data_page1' in request.session:
+        return HttpResponseRedirect('/page-1/')
+    #elif 'form_data_page1' in request.session:
+    #    initialsession = request.session.get('form_data_page1')
+    #    print('email')
+    #    print(initialsession.get('email'))
+    #    if initialsession is '':
 
     #ideas
     #http://stackoverflow.com/questions/24255955/django-formsets-initializing-values-for-extra-fields-from-list-in-model-formset
@@ -125,6 +143,7 @@ def page2(request):
         form = PageTwoForm(request.POST) #, extra=request.POST.get('extra_field_count')
         formset = InstitutionsFormset(request.POST, prefix='institutions')
         request.session['form_data_page2'] = request.POST
+
         #request.session['extra_count'] =
         #extra=request.POST.get('extra_field_count')
         print(request.session["form_data_page2"])
@@ -134,16 +153,29 @@ def page2(request):
         elif (request.POST.get('page3', '')):
             return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('save', '')):
-            #saveForms.savePage2(request.session['form_data_page2'])
+
+            
+            if formset.is_valid():            
+                for f in formset: 
+                    cd = f.cleaned_data
+                    undergraduate_institution = cd.get('undergraduate_institution')
+                    ceeb = cd.get('ceeb')
+                    print("\n\n formset is valid")
+                    print(undergraduate_institution)
+                    print("\n\n")
+                    print(ceeb)
+                    page1session = request.session.get('form_data_page1')
+                saveForms.savePage2(page1session.get('email'), request.session.get('form_data_page2'), formset)            
+
             return HttpResponseRedirect('/page-2/') 
     # if a GET (or any other method) we'll create a blank form
     else:        
         if 'form_data_page2' in request.session:
-            print("form2 data in session")
+            #print("form2 data in session")
             #form = PageOneForm(request.session['form_data'])
 
-            print("\n\n page 1 session from page2 \n\n")
-            print(request.session.get('form_data_page1', None))   
+            print("\n\n PAGE-2 SESSION \n\n")
+            print(request.session.get('form_data_page2', None))   
 
             form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
             formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')

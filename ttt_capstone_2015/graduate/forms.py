@@ -7,7 +7,7 @@ from graduate.models import Race
 from graduate.models import Religions
 from graduate.models import Majors
 from graduate.models import StudentRace
-
+from graduate.models import Influences
 from localflavor.us.us_states import STATE_CHOICES
 #from localflavor.us.forms import USStateSelect
 from django_countries import countries
@@ -51,7 +51,7 @@ class PageOneForm(forms.Form):
     first_name = forms.CharField(label='First Name', required=True)#Student
     middle_name = forms.CharField(label='Middle Name')#Student
     last_name = forms.CharField(label='Last Name', required=True)    #Student
-    social_security = USSocialSecurityNumberField()#Student
+    social_security = USSocialSecurityNumberField(required=False)#Student
     SUFFIX_TYPE_CHOICES = (
         ('',''),
         ('Jr','Jr.'),
@@ -60,48 +60,48 @@ class PageOneForm(forms.Form):
         ('III','III'),
         ('IV','IV'),
         )
-    suffix = forms.ChoiceField(choices=SUFFIX_TYPE_CHOICES)#Student
-    preferred_first_name = forms.CharField(label='Prefered First Name')#Student
+    suffix = forms.ChoiceField(choices=SUFFIX_TYPE_CHOICES, required=False)#Student
+    preferred_first_name = forms.CharField(label='Prefered First Name', required=False)#Student
     birth_last_name = forms.CharField(label='Birth Last Name', required=True)#Student
     GENDER_TYPE_CHOICES = (
         ('',''),
         ('M','Male'),
         ('F','Female'),
         )
-    gender = forms.ChoiceField(choices=GENDER_TYPE_CHOICES) #Student
-    birth_date = forms.DateField(widget=DateInput()) #Student
-    birth_place = forms.CharField(label='Birthplace') #Student
+    gender = forms.ChoiceField(choices=GENDER_TYPE_CHOICES, required=False) #Student
+    birth_date = forms.DateField(widget=DateInput(), required=False) #Student
+    birth_place = forms.CharField(label='Birthplace', required=False) #Student
     ETHNICITY_TYPE_CHOICES = (
         ('',''),
         ('YES','Yes, Hispanic or Latino'),
         ('NO','No, not Hispanic or Latino'),
         ) 
-    ethnicity = forms.ChoiceField(choices=ETHNICITY_TYPE_CHOICES) #Student        
-    ##INSERT INTO `admissions.dev.capstone`.`graduate_religions` (`rid`, `name`) VALUES (NULL, 'No Response'), (NULL, 'African Methodist Episcopal'), (NULL, 'Assembly of God'), (NULL, 'Baptist'), (NULL, 'Bible Church'), (NULL, 'Buddhist'), (NULL, 'Calvary Christian'), (NULL, 'Christian'), (NULL, 'Christian Orthodox'), (NULL, 'Church of Brethren'), (NULL, 'Church of Christ'), (NULL, 'Church of Christian Science'), (NULL, 'Church of God'), (NULL, 'Community'), (NULL, 'Congregational'), (NULL, 'Disciples of Christ'), (NULL, 'Episcopal'), (NULL, 'Evangelical'), (NULL, 'Evangelical Lutheran'), (NULL, 'Greek Orthodox'), (NULL, 'Hindu'), (NULL, 'Independent'), (NULL, 'Islam/Moslem'), (NULL, 'Jewish'), (NULL, 'Lutheran-Missouri'), (NULL, 'Lutheran-Other'), (NULL, 'Mennonite'), (NULL, 'Mormon'), (NULL, 'No Church Affiliation'), (NULL, 'Non-Affiliated Christian'), (NULL, 'Non-Christian'), (NULL, 'Non-Denominational'), (NULL, 'Other'), (NULL, 'Other Protestant'), (NULL, 'Pentecostal'), (NULL, 'Presbyterian'), (NULL, 'Reformed'), (NULL, 'Roman Catholic'), (NULL, 'Serbian Orthodox'), (NULL, 'Seventh Day Adventist'), (NULL, 'Unitarian/Universalist'), (NULL, 'United Church of Christ'), (NULL, 'United Methodist'), (NULL, 'United Presbyterian'), (NULL, 'Wesleyan');
-    denomination = forms.ModelChoiceField(queryset=Religions.objects.all())#Student
-    is_citizen = forms.ChoiceField(choices=(("",""),('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')))#Student
-    internationalcheck = forms.BooleanField()
+    ethnicity = forms.ChoiceField(choices=ETHNICITY_TYPE_CHOICES, required=False) #Student        
+    ##INSERT INTO `admissions.dev.capstone`.`graduate_religions` (`rid`, `name`) VALUES (NULL, 'No Respons, required=Truee'), (NULL, 'African Methodist Episcopal'), (NULL, 'Assembly of God'), (NULL, 'Baptist'), (NULL, 'Bible Church'), (NULL, 'Buddhist'), (NULL, 'Calvary Christian'), (NULL, 'Christian'), (NULL, 'Christian Orthodox'), (NULL, 'Church of Brethren'), (NULL, 'Church of Christ'), (NULL, 'Church of Christian Science'), (NULL, 'Church of God'), (NULL, 'Community'), (NULL, 'Congregational'), (NULL, 'Disciples of Christ'), (NULL, 'Episcopal'), (NULL, 'Evangelical'), (NULL, 'Evangelical Lutheran'), (NULL, 'Greek Orthodox'), (NULL, 'Hindu'), (NULL, 'Independent'), (NULL, 'Islam/Moslem'), (NULL, 'Jewish'), (NULL, 'Lutheran-Missouri'), (NULL, 'Lutheran-Other'), (NULL, 'Mennonite'), (NULL, 'Mormon'), (NULL, 'No Church Affiliation'), (NULL, 'Non-Affiliated Christian'), (NULL, 'Non-Christian'), (NULL, 'Non-Denominational'), (NULL, 'Other'), (NULL, 'Other Protestant'), (NULL, 'Pentecostal'), (NULL, 'Presbyterian'), (NULL, 'Reformed'), (NULL, 'Roman Catholic'), (NULL, 'Serbian Orthodox'), (NULL, 'Seventh Day Adventist'), (NULL, 'Unitarian/Universalist'), (NULL, 'United Church of Christ'), (NULL, 'United Methodist'), (NULL, 'United Presbyterian'), (NULL, 'Wesleyan');
+    denomination = forms.ModelChoiceField(queryset=Religions.objects.all(), required=False)#Student
+    is_citizen = forms.ChoiceField(choices=(("",""),('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')), required=False)#Student
+    internationalcheck = forms.BooleanField(required=False)
 
     COUNTRY_CHOICES = tuple(countries)
     COUNTRY_CHOICES = (('', ''),) + COUNTRY_CHOICES
     country = forms.ChoiceField(choices=COUNTRY_CHOICES)#address Address    
-    citizenship_country = forms.ChoiceField(choices=COUNTRY_CHOICES) #citizen questions #Address
-    residence_country = forms.ChoiceField(choices=COUNTRY_CHOICES) #Address   
-    alien_reg_no = forms.CharField(label='Alien Registration Number') 
+    citizenship_country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False) #citizen questions #Address
+    residence_country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False) #Address   
+    alien_reg_no = forms.CharField(label='Alien Registration Number', required=False) 
     address1 = forms.CharField(label='Mailing Address', required=True) #Address
-    address2 = forms.CharField(label='Mailing Address 2') #Address
+    address2 = forms.CharField(label='Mailing Address 2', required=False) #Address
     city = forms.CharField(label='City', required=True)#Address
     STATE_CHOICES = (('', ''),) + STATE_CHOICES
     state = forms.ChoiceField(choices=STATE_CHOICES, required=True)#Address
     #state = forms.CharField(label='State', required=True)
     zipcode = forms.CharField(label='Zip Code', required=True)#Address
-    international_phonecheck = forms.BooleanField()
+    international_phonecheck = forms.BooleanField(required=False)
     IS_INTERNATIONAL_STUDENT_CHOICES = (
         ('',''),
         ('YES','Yes'),
         ('NO','No'),
         ) 
-    is_international_student = forms.ChoiceField(choices=IS_INTERNATIONAL_STUDENT_CHOICES) #Student     
+    is_international_student = forms.ChoiceField(choices=IS_INTERNATIONAL_STUDENT_CHOICES, required=False) #Student     
     ALIEN_STATUS_CHOICES = (
         ('',''),
         ('F1 Student','F1 Student'),
@@ -114,14 +114,14 @@ class PageOneForm(forms.Form):
         ('TD','TD'),
         ('Unknown','Unknown'),
         ) 
-    alien_status = forms.ChoiceField(choices=ALIEN_STATUS_CHOICES) #Student 
+    alien_status = forms.ChoiceField(choices=ALIEN_STATUS_CHOICES, required=False) #Student 
 
 
-    permanent_phone = forms.CharField(label='Permanent Telephone Number') #Phone
-    cell_phone = forms.CharField(label='Cell Phone Number') #Phone
+    permanent_phone = forms.CharField(label='Permanent Telephone Number', required=False) #Phone
+    cell_phone = forms.CharField(label='Cell Phone Number', required=False) #Phone
     
     #INSERT INTO `admissions.dev.capstone`.`graduate_race` (`rid`, `race`) VALUES (NULL, 'American Indian or Alaska Native'), (NULL, 'Asian'), (NULL, 'Black or African American'), (NULL, 'Native Hawaiian or Other Pacific Islander'), (NULL, 'White');
-    race = forms.ModelMultipleChoiceField(queryset=Race.objects.all(),widget=forms.CheckboxSelectMultiple()) #StudentRace
+    race = forms.ModelMultipleChoiceField(queryset=Race.objects.all(),widget=forms.CheckboxSelectMultiple(), required=False) #StudentRace
     
 
 class Institutions(forms.Form):
@@ -179,7 +179,7 @@ class PageTwoForm(forms.Form):
     refered_by_relationship = forms.CharField(label='Relationship To You')
     refered_by_name2 = forms.CharField(label='Friend / Relative Name')
     refered_by_relationship2 = forms.CharField(label='Relationship To You')
-    influence = forms.ModelChoiceField(queryset=Majors.objects.all(), label='Who or what helped influence your decision to apply to North Central College?') 
+    influence = forms.ModelChoiceField(queryset=Influences.objects.all(), label='Who or what helped influence your decision to apply to North Central College?') 
     POLICY_CHOICES=(
         ('Yes','Yes'),
         ('No','No'),)

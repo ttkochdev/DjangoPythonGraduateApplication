@@ -78,6 +78,67 @@ class saveForms(object):
                     sr.save()
 
 
-    #def savePage2(data):
+    def savePage2(email, data, institutions_formset):
+        print("\n\ninstitution formset\n",institutions_formset, "\n\n")
 
-    #def savePage3(data):
+        email = email
+        start_term = data.get("start_term")
+        student_load_intent = data.get("student_load_intent")
+        planned_major = data.get("planned_major")        
+        tuition_remission = data.get("tuition_remission")  
+        print(tuition_remission)
+        if tuition_remission is 'on':
+            tuition_remission = 1
+        else:
+            tuition_remission = 0
+        #try:
+        #    tuition_remission = int(tuition_remission)
+        #except ValueError:
+        #    tuition_remission = None
+        gi = data.get("gi")
+        if gi is 'on':
+            gi = 1
+        else:
+            gi = 0
+        refered_by_name = data.get("refered_by_name")
+        refered_by_name2 = data.get("refered_by_name2")
+        refered_by_relationship = data.get("refered_by_relationship")
+        refered_by_relationship2 = data.get("refered_by_relationship2")
+        influence = data.get("influence")        
+
+        employer_country = data.get("employer_country")
+        employment_address = data.get("employment_address")
+        employment_zip = data.get("employment_zip")
+        employment_city = data.get("employment_city")
+        employment_state = data.get("employment_state")
+        
+        legal_reason = data.get("legal_reason")   
+        policy_reason = data.get("policy_reason")  
+        
+
+        #institutions-0-undergraduate_institution
+        #institutions-0-ceeb
+        #institutions-1-undergraduate_institution
+        #institutions-1-ceeb
+
+
+        #save student
+        studentobj_uc, created = Student.objects.update_or_create(email=email, 
+                                                        defaults={'start_term':start_term, 'student_load_intent':student_load_intent,
+                                                                  'planned_major': planned_major,'tuition_remission':tuition_remission,'influence':influence,      
+                                                                  'gi':gi,'refered_by_name':refered_by_name, 'refered_by_name2':refered_by_name2,
+                                                                  'refered_by_relationship':refered_by_relationship,'refered_by_relationship2':refered_by_relationship2,                                              
+                                                                  })
+
+
+        #{'institutions-0-undergraduate_institution': 'Wabash College', 'student_load_intent': 'fulltime', 
+        # 'save': 'save page', 'employer_country': '', 'tuition_remission': 'on', 
+        # 'institutions-MAX_NUM_FORMS': '1000', 'legal': 'Yes', 'employment_zip': '47304',
+        # 'gi': 'on', 'policy_reason': '', 'employment_address': 'Employment Mailing Address',
+        # 'institutions-TOTAL_FORMS': '2', 'employment_address_outside': '', 'page': 'Page2', 
+        # 'refered_by_relationship2': 'Relationship to you ', 'policy': 'No', 'start_term': 'winter',
+        # 'institutions-MIN_NUM_FORMS': '0', 'institutions-1-undergraduate_institution': 'North Central College',
+        # 'employment_city': 'Muncie', 'institutions-INITIAL_FORMS': '0', 'employer_address_outside_us': '0', 
+        # 'baseUrl': '', 'influence': '', 'institutions-0-ceeb': '1895', 'refered_by_name': 'Friend Relative Name',
+        # 'employment_state': 'AL', 'csrfmiddlewaretoken': 'sKjvFDV57pwuDe89yEVgy2opEAqBtbjH', 'refered_by_relationship': 'Relationship to you',
+        # 'legal_reason': '', 'planned_major': '1', 'institutions-1-ceeb': '1111', 'refered_by_name2': 'Friend Relative Name 2'}
