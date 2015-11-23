@@ -75,9 +75,25 @@ def page2(request):
 
     if request.method == 'POST':
         request.session['form_data_page2'] = request.POST
+        print("\n\nPAGE2\n\n")
+        print(request.session['form_data_page2'])
         page2form = PageTwoForm(request.session.get('form_data_page2'))
-        page2formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
+        page2formset = InstitutionsFormset(request.session.get('form_data_page2'),  prefix='institutions') #, initial=request.session.get('form_data_page2')
+        #iTOTAL_FORMS = 1
+        #extra = {}
+        ##page2formset
+        #instit = []            
+        #for i, f in enumerate(request.session.get('form_data_page2')): 
+        #    cd = f
+        #    undergraduate_institution = cd.get('undergraduate_institution')
+        #    ceeb = cd.get('ceeb')                    
+        #    instit.append([undergraduate_institution,ceeb])
+        #iTOTAL_FORMS = len(instit)           
+        #for i, inst in enumerate(instit):
+        #    temp = {'institutions-'+str(i)+'-undergraduate_institution': inst.name,'institutions-'+str(i)+'-ceeb': inst.ceeb}
+        #    extra.update(temp)
 
+        #page2formset = InstitutionsFormset(extra,  prefix='institutions')
         if(request.POST.get('page1', '')):
             return HttpResponseRedirect('/page-1/')
         elif (request.POST.get('page3', '')):
