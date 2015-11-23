@@ -104,8 +104,8 @@ class PageOneForm(forms.Form):
     
 
 class Institutions(forms.Form):
-    undergraduate_institution = forms.CharField(required=True)
-    ceeb = forms.CharField(required=True)
+    undergraduate_institution = forms.CharField()
+    ceeb = forms.CharField()
 
 class PageTwoForm(forms.Form):
     

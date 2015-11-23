@@ -78,7 +78,9 @@ def page2(request):
         print("\n\nPAGE2\n\n")
         print(request.session['form_data_page2'])
         page2form = PageTwoForm(request.session.get('form_data_page2'))
-        page2formset = InstitutionsFormset(request.session.get('form_data_page2'),  prefix='institutions') #, initial=request.session.get('form_data_page2')
+        #request.session.get('form_data_page2')
+        page2formset = InstitutionsFormset({ 'institutions-1-undergraduate_institution': [''], 'institutions-0-undergraduate_institution': [''], 'institutions-1-ceeb': [''], 'institutions-1-ceeb': [''],'institutions-TOTAL_FORMS': ['2'],'institutions-MAX_NUM_FORMS': ['1000'],'institutions-INITIAL_FORMS': ['0'],'institutions-MIN_NUM_FORMS': ['0'],},  prefix='institutions') #, initial=request.session.get('form_data_page2')
+        # 'institutions-1-undergraduate_institution': [''], 'institutions-0-undergraduate_institution': [''], 'institutions-1-ceeb': [''], 'institutions-1-ceeb': [''],'institutions-TOTAL_FORMS': ['2'],'institutions-MAX_NUM_FORMS': ['1000'],'institutions-INITIAL_FORMS': ['0'],'institutions-MIN_NUM_FORMS': ['0'],
         #iTOTAL_FORMS = 1
         #extra = {}
         ##page2formset
@@ -149,8 +151,9 @@ def page3(request):
         return HttpResponseRedirect('/page-1/')
 
     if request.method == 'POST':
-        #validate all forms and show errors
-        #if no errors then display ready to submit and final submit button
+        
+        #need to get post into specefic form sessions http://stackoverflow.com/questions/22244135/how-to-get-certain-things-from-post
+
         
         page1form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
         page2form = PageTwoForm(request.session.get('form_data_page2'))
