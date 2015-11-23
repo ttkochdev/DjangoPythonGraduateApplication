@@ -159,19 +159,43 @@ def page3(request):
             #print("form2 data in session")
             #form = PageOneForm(request.session['form_data'])
 
-            #print("\n\n PAGE-2 SESSION \n\n")
-            #print(request.session.get('form_data_page2', None)) 
-            if 'form_data_page1' in request.session:  
-                form_data_session = request.session.get('form_data_page1', None)
-                page1form = PageOneForm(initial=form_data_session, raceinit=request.session.get('raceinit', None))
+            print("\n\n 'form_data_page1' or 'form_data_page2' \n\n")            
+            if 'form_data_page1' in request.session:                
+                page1form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
+            else:
+                page1form = PageOneForm(raceinit={})
             if 'form_data_page2' in request.session:
-                page2form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
+                page2form = PageTwoForm(request.session.get('form_data_page2'))
                 page2formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
+            else:
+                page2form = PageTwoForm()
+                page2formset = InstitutionsFormset(prefix='institutions')
+            print("BEFORE VALIDATE")
+            if page1form.is_valid() and page2form.is_valid() and page2formset.is_valid():
+                print("\n\nPASSED ALL 3\n\n")
+                cd1 = page1form.cleaned_data
+                cd2 = page2form.cleaned_data
+                instit = []  
+                for i, f in enumerate(formset): 
+                    cd3 = f.cleaned_data                    
+                    undergraduate_institution = cd3.get('undergraduate_institution')
+                    ceeb = cd3.get('ceeb')                    
+                    instit.append([undergraduate_institution,ceeb])
+            print("AFTER VALIDATE")
         else:
             page1form = PageOneForm(raceinit={})
             page2form = PageTwoForm()
             page2formset = InstitutionsFormset(prefix='institutions')
             print("new page3")
+            if page1form.is_valid() and page2form.is_valid() and page2formset.is_valid():
+                cd1 = page1form.cleaned_data
+                cd2 = page2form.cleaned_data
+                instit = []  
+                for i, f in enumerate(formset): 
+                    cd3 = f.cleaned_data                    
+                    undergraduate_institution = cd3.get('undergraduate_institution')
+                    ceeb = cd3.get('ceeb')                    
+                    instit.append([undergraduate_institution,ceeb])
 
     return render(request,
         'app/page-3.html',
@@ -181,6 +205,7 @@ def page3(request):
             'year':datetime.now().year,
             'page1form': page1form,
             'page2form': page2form,
+            'page2formset':page2formset,
         }))
 
 def confirmation(request):

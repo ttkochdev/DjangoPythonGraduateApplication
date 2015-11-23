@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿{% load widget_tweaks %}
+{% load staticfiles %}
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 {% include 'app/header.html' %}
@@ -25,6 +27,21 @@
 				<p>Some of the information on this Application for Admission is mandatory. Please complete these last few blanks before finally submitting your application or going to previous pages.</p>
 				<br />
                 <form enctype="multipart/form-data" action="" method="post" name="applicationDefault">
+                     {{ page1form.non_field_errors }}
+                     {{ page2form.non_field_errors }}
+                     {{ page2formset.non_field_errors }}
+                    <fieldset>
+                        <div class="span3"><label>Name</label></div>
+                        <div class="span2">
+                            <span>
+                            {% render_field page1form.first_name class+="input-medium fieldLabel" placeholder="First" maxlength="14" %}
+                                {{ page1form.first_name.errors }}
+                            </span>        
+                        </div>
+                    </fieldset>
+                    {% if not page1form.first_name.errors %}
+                    {% endif %}
+
                     {% csrf_token %}
                     {{ page1form.as_p }}
                     {{ page2form.as_p }}
