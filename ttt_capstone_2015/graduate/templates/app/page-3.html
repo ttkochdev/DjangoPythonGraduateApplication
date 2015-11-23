@@ -29,10 +29,30 @@
 				<h1 class='pg2-header'>PAGE 3 - FINAL STEPS</h1>
 				<p>Some of the information on this Application for Admission is mandatory. Please complete these last few blanks before finally submitting your application or going to previous pages.</p>
 				<br />
-			</div>
-	    </div>
-	</div>
+                <form enctype="multipart/form-data" action="" method="post" name="applicationDefault">
+                    {% csrf_token %}
+                    {{ page1form.as_p }}
+                    {{ page2form.as_p }}
+                    <div class="row-fluid" id="navigation">
+                    <div class="span12">
+                
+                    <ul class="clearfix" id="saves">
+                    <span class="button-wrapper">
+                        <input type="submit" class="multi-submit current-navigation" value="1" id="page1" name="page1"></span><span class="button-wrapper">
+                        <input type="submit" class="multi-submit" value="Ahead to Page 2 &gt;&gt;" id="page2" name="page2"></span><span class="button-wrapper">
+                        <input type="submit" class="multi-submit" value="3 &gt;&gt;" id="page3" name="page3">
+                        <input type="submit" class="multi-submit" value="save page" id="save" name="save">
+                        <input type="submit" class="multi-submit" value="submit page" id="submit" name="submit">
+                    </span>
+                    </ul>          
+                    </div>
+                    </div>
+                    </form>
+            </div>                
+		</div>
+	 </div>
 </div>
+
 <!-- Print subform errors here -->
 <div class='row-fluid'>
 	<div class='container-fluid'>
@@ -42,5 +62,6 @@
   			</div>
 	    </div>
 	</div>
+</div>
 </body>
 </html>

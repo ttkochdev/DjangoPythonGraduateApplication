@@ -141,7 +141,7 @@ def page2(request):
         print('\n\n')
         #print(request.POST.get('extra_field_count'))
         print('\n\n')
-        form = PageTwoForm(request.POST) #, extra=request.POST.get('extra_field_count')
+        form = PageTwoForm(request.session.get('form_data_page2')) #, extra=request.POST.get('extra_field_count')
         formset = InstitutionsFormset(request.POST, prefix='institutions')
         request.session['form_data_page2'] = request.POST
 
@@ -173,8 +173,8 @@ def page2(request):
             #print("form2 data in session")
             #form = PageOneForm(request.session['form_data'])
 
-            print("\n\n PAGE-2 SESSION \n\n")
-            print(request.session.get('form_data_page2', None))   
+            #print("\n\n PAGE-2 SESSION \n\n")
+            #print(request.session.get('form_data_page2', None))   
 
             form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
             formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
@@ -197,27 +197,50 @@ def page2(request):
 def page3(request):
     """Renders page3."""
     assert isinstance(request, HttpRequest)
-    
+    InstitutionsFormset = formset_factory(Institutions)
     
     if request.method == 'POST':
         #validate all forms and show errors
         #if no errors then display ready to submit and final submit button
         
+        page1form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
+        page2form = PageTwoForm(request.session.get('form_data_page2'))
+        page2formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
+
         #if submit = page2 then go to page 2 else if page-3 then go to page 3
         if(request.POST.get('page1', '')):
             return HttpResponseRedirect('/page-1/')
         elif (request.POST.get('page2', '')):
             return HttpResponseRedirect('/page-2/')
         elif (request.POST.get('save', '')):
+            #saveForms.savePage1(request.session['form_data_page1'])
             #saveForms.savePage2(request.session['form_data_page2'])
-            return HttpResponseRedirect('/page-3/') 
+            #
+            return HttpResponseRedirect('/page-3/')
+        elif (request.POST.get('submit', '')):
+            if page1form.is_valid() and page2form.is_valid() and page2formset.is_valid():
+
+                return HttpResponseRedirect('/confirmation/')
     # if a GET (or any other method) we'll create a blank form
     else:
-        #if session exists populate form
-        #form = PageOneForm(SESSION)
-        #else create empty form
-        #form = PageOneForm()
-        print("page3")
+        
+        if 'form_data_page1' or 'form_data_page2' in request.session:
+            #print("form2 data in session")
+            #form = PageOneForm(request.session['form_data'])
+
+            #print("\n\n PAGE-2 SESSION \n\n")
+            #print(request.session.get('form_data_page2', None)) 
+            if 'form_data_page21' in request.session:  
+                form_data_session = request.session.get('form_data_page1', None)
+                page1form = PageOneForm(initial=form_data_session, raceinit=request.session.get('raceinit', None))
+            if 'form_data_page2' in request.session:
+                page2form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
+                page2formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
+        else:
+            page1form = PageOneForm(raceinit={})
+            page2form = PageTwoForm()
+            page2formset = InstitutionsFormset(prefix='institutions')
+            print("new page3")
 
     return render(request,
         'app/page-3.html',
@@ -225,6 +248,8 @@ def page3(request):
         {
             'title':'Graduate Application Page-3',            
             'year':datetime.now().year,
+            'page1form': page1form,
+            'page2form': page2form,
         }))
 
 def confirmation(request):
