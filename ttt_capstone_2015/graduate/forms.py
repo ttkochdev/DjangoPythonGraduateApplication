@@ -14,6 +14,7 @@ from django_countries import countries
 from django_countries.fields import CountryField
 from django_countries.fields import LazyTypedChoiceField
 from django_countries.widgets import CountrySelectWidget
+from captcha.fields import CaptchaField
 
 from localflavor.us.forms import USSocialSecurityNumberField
 from django.contrib.auth.forms import AuthenticationForm
@@ -203,7 +204,7 @@ class PageTwoForm(forms.Form):
     employment_zip = forms.CharField(required=False)
     tuition_remission = forms.BooleanField(required=False)
     gi = forms.BooleanField(required=False)
-    
+    captcha = CaptchaField()
 
 
 

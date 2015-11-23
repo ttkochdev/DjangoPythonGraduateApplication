@@ -85,6 +85,7 @@ def page2(request):
         elif (request.POST.get('save', '')):
             print("\nbefore page 2 is_valid\n")
             if page2formset.is_valid() and page2form.is_valid():
+                human = True
                 print("\inside page 2 is_valid\n")
                 instit = []            
                 for i, f in enumerate(page2formset): 
@@ -151,7 +152,7 @@ def page3(request):
             return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('submit', '')):
             if page1form.is_valid() and page2form.is_valid() and page2formset.is_valid():
-
+                human = True
                 return HttpResponseRedirect('/confirmation/')
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -175,6 +176,7 @@ def page3(request):
                 page2formset = InstitutionsFormset(prefix='institutions')
             print("BEFORE VALIDATE")
             if page1form.is_valid() and page2form.is_valid() and page2formset.is_valid():
+                human = True
                 print("\n\nPASSED ALL 3\n\n")
                 cd1 = page1form.cleaned_data
                 cd2 = page2form.cleaned_data
@@ -191,6 +193,7 @@ def page3(request):
             page2formset = InstitutionsFormset(prefix='institutions')
             print("new page3")
             if page1form.is_valid() and page2form.is_valid() and page2formset.is_valid():
+                human = True
                 cd1 = page1form.cleaned_data
                 cd2 = page2form.cleaned_data
                 instit = []  

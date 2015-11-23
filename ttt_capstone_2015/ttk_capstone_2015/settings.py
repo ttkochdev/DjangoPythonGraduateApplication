@@ -9,6 +9,8 @@ django-countries
 django-debug-toolbar
 django-fernet-fields https://django-fernet-fields.readthedocs.org/en/latest/
 pycrypto http://www.voidspace.org.uk/python/modules.shtml#pycrypto change name in lib
+django-simple-captcha
+Pillow
 # not used simple-crypt
 """
 
@@ -152,6 +154,7 @@ INSTALLED_APPS = (
     #'simplecrypt',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',    
+    'captcha',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

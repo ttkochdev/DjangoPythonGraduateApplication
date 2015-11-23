@@ -79,9 +79,9 @@ $( document ).ready(function() {
                 </thead>
                 <tbody>
                     {% for form in page2formset.forms %}
-                    <tr id="{{ page2form.prefix }}-row">                        
-                        <td>{{ page2form.undergraduate_institution }}{{ page2form.undergraduate_institution.errors }}</td>
-                        <td>{{ page2form.ceeb }}{{ page2form.ceeb.errors }}</td>
+                    <tr id="{{ form.prefix }}-row">                        
+                        <td>{{ form.undergraduate_institution }}{{ form.undergraduate_institution.errors }}</td>
+                        <td>{{ form.ceeb }}{{ form.ceeb.errors }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -292,7 +292,7 @@ $( document ).ready(function() {
       </div>
       <br>
             
-                        <div class="row-fluid">
+      <div class="row-fluid">
         <div class="span5">
           <label>GIs</label>
         </div> 
@@ -301,6 +301,17 @@ $( document ).ready(function() {
             {{ page2form.gi.errors }}
         </div>
       </div>
+
+      <div class="row-fluid">
+        <div class="span5">
+          <label>Captcha</label>
+        </div> 
+        <div id="captcha-contain" class="span7"> 
+            {{ page2form.captcha }}
+            {{ page2form.captcha.errors }}
+        </div>
+      </div>
+
             </div>
       
       
