@@ -39,11 +39,11 @@ def page1(request):
             return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('save', '')):
             #need to validate email field
-            form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
+            page1form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
             print('\nSAVE\n')
-            if form.is_valid():  
+            if page1form.is_valid():  
                 print("\n\nCLEANED DATA\n\n")
-                cd = form.cleaned_data
+                cd = page1form.cleaned_data
                 
                 print(cd)
                 saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
@@ -53,16 +53,19 @@ def page1(request):
     else:     
         if 'form_data_page1' in request.session:
             print("not logged in")                     
-            form = PageOneForm(initial=request.session.get('form_data_page1'), raceinit=request.session.get('raceinit', None))
+            page1form = PageOneForm(initial=request.session.get('form_data_page1'), raceinit=request.session.get('raceinit', None))
         else: #no login - create empty form
-            form = PageOneForm(raceinit={})
+            page1form = PageOneForm(raceinit={})
             
     return render(request,
         'app/page-1.html',
         context_instance = RequestContext(request,
         {
             'title':'Graduate Application Page-1',
-            'form': form,            
+            'page1form': page1form,
+            'page2form': "",
+            'page2formset': "",   
+            'page':'page1',         
         }))
 
 def page2(request):
@@ -76,7 +79,7 @@ def page2(request):
 
     if request.method == 'POST':
         request.session['form_data_page2'] = request.POST
-        form = PageTwoForm(request.session.get('form_data_page2'))
+        page2form = PageTwoForm(request.session.get('form_data_page2'))
         formset = InstitutionsFormset(request.POST, prefix='institutions')
 
         if(request.POST.get('page1', '')):
@@ -85,7 +88,7 @@ def page2(request):
             return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('save', '')):
             print("\nbefore page 2 is_valid\n")
-            if formset.is_valid() and form.is_valid():
+            if formset.is_valid() and page2form.is_valid():
                 print("\inside page 2 is_valid\n")
                 instit = []            
                 for i, f in enumerate(formset): 
@@ -106,12 +109,12 @@ def page2(request):
             #print("\n\n PAGE-2 SESSION \n\n")
             #print(request.session.get('form_data_page2', None))   
 
-            form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
+            page2form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
             formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
         #form = PageOneForm(SESSION)
         else: #create empty form
             formset = InstitutionsFormset(prefix='institutions')
-            form = PageTwoForm()
+            page2form = PageTwoForm()
 
 
     return render(request,
@@ -119,8 +122,10 @@ def page2(request):
         context_instance = RequestContext(request,
         {
             'title':'Graduate Application Page-2',
-            'form': form,
-            'formset': formset,            
+            'page2form': page2form,
+            'formset': formset,
+            'page1form': "",            
+            'page': "page2",            
         }))
 
 def page3(request):
@@ -206,6 +211,7 @@ def page3(request):
             'page1form': page1form,
             'page2form': page2form,
             'page2formset':page2formset,
+            'page':'finalpage',
         }))
 
 def confirmation(request):

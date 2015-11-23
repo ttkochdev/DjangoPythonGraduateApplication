@@ -158,6 +158,8 @@
     <Content Include="graduate\templates\app\page-1.html" />
     <Content Include="graduate\templates\app\page-2.html" />
     <Content Include="graduate\templates\app\page-3.html" />
+    <Content Include="graduate\templates\app\page1form.html" />
+    <Content Include="graduate\templates\app\page2form.html" />
     <Content Include="graduate\templates\app\pwemail.html" />
     <Content Include="graduate\templates\app\summary.html" />
     <Content Include="requirements.txt" />

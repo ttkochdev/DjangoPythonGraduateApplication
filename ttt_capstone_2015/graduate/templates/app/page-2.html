@@ -34,8 +34,8 @@
           <label>When do you intend to enroll at North Central College?</label>
         </div>
         <div class="span7"> 
-            {{ form.start_term }}
-            {{ form.start_term.errors }}
+            {{ page2form.start_term }}
+            {{ page2form.start_term.errors }}
          </div>
       </div>
                                                                   <div class="row-fluid">
@@ -43,8 +43,8 @@
           <label>What is your intended course load?</label>
         </div>
         <div class="span7"> 
-            {{ form.student_load_intent }}
-            {{ form.student_load_intent.errors }}
+            {{ page2form.student_load_intent }}
+            {{ page2form.student_load_intent.errors }}
          </div>
       </div>
                                                             <div class="row-fluid">
@@ -52,8 +52,8 @@
           <label>What is your program of study?</label>
         </div>
         <div class="span7"> 
-            {{ form.planned_major }}  
-            {{ form.planned_major.errors }}     
+            {{ page2form.planned_major }}  
+            {{ page2form.planned_major.errors }}     
         </div>
       </div>
 <div class="row-fluid">
@@ -89,15 +89,15 @@ $( document ).ready(function() {
                     </tr>
                 </thead>
                 <tbody>
-                    {% for form in formset.forms %}
-                    <tr id="{{ form.prefix }}-row">                        
-                        <td>{{ form.undergraduate_institution }}{{ form.undergraduate_institution.errors }}</td>
-                        <td>{{ form.ceeb }}{{ form.ceeb.errors }}</td>
+                    {% for form in page2formset.forms %}
+                    <tr id="{{ page2form.prefix }}-row">                        
+                        <td>{{ page2form.undergraduate_institution }}{{ page2form.undergraduate_institution.errors }}</td>
+                        <td>{{ page2form.ceeb }}{{ page2form.ceeb.errors }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-{{ formset.management_form }}
+{{ page2formset.management_form }}
         
 
       </div>
@@ -111,8 +111,8 @@ $( document ).ready(function() {
           <label>Friend / Relative Name</label>
         </div>
         <div class="span7"> <span>
-             {% render_field form.refered_by_name maxlength='50' %}
-            {{ form.refered_by_name.errors }}
+             {% render_field page2form.refered_by_name maxlength='50' %}
+            {{ page2form.refered_by_name.errors }}
 
             </span> 
        </div>
@@ -123,8 +123,8 @@ $( document ).ready(function() {
         </div>
         <div class="span7"> <span>
 
-            {% render_field form.refered_by_relationship maxlength='20' %}
-            {{ form.refered_by_relationship.errors }}
+            {% render_field page2form.refered_by_relationship maxlength='20' %}
+            {{ page2form.refered_by_relationship.errors }}
             </span> </div>
       </div>
                                     <div class="row-fluid">
@@ -133,8 +133,8 @@ $( document ).ready(function() {
         </div>
         <div class="span7"> <span>
 
-            {% render_field form.refered_by_name2 maxlength='50' %}
-            {{ form.refered_by_name2.errors }}
+            {% render_field page2form.refered_by_name2 maxlength='50' %}
+            {{ page2form.refered_by_name2.errors }}
             </span> </div>
       </div>
                               <div class="row-fluid">
@@ -143,8 +143,8 @@ $( document ).ready(function() {
         </div>
         <div class="span7"> <span>
 
-            {% render_field form.refered_by_relationship2 maxlength='20' %}
-            {{ form.refered_by_relationship2.errors }}
+            {% render_field page2form.refered_by_relationship2 maxlength='20' %}
+            {{ page2form.refered_by_relationship2.errors }}
             </span> </div>
       </div>
             
@@ -153,8 +153,8 @@ $( document ).ready(function() {
           <label>Who or what helped influence your decision to apply to North Central College?</label>
         </div>
         <div class="span7"> 
-        {{ form.influence }}
-            {{ form.influence.errors }}
+        {{ page2form.influence }}
+            {{ page2form.influence.errors }}
          </div>
       </div>
       <br>
@@ -165,8 +165,8 @@ $( document ).ready(function() {
         <div id="policy-issue-contain" class="span7"> 
 <!--<label for="has_policy_issue-1"><input type="radio" name="has_policy_issue" id="has_policy_issue-1" value="1">Yes</label> &nbsp; 
                             <label for="has_policy_issue-0"><input type="radio" name="has_policy_issue" id="has_policy_issue-0" value="0">No</label> -->
-        {{ form.policy }}
-            {{ form.policy.errors }}   
+        {{ page2form.policy }}
+            {{ page2form.policy.errors }}   
         </div>
       </div>
       <br>
@@ -175,8 +175,8 @@ $( document ).ready(function() {
           <label>If yes, please explain why you were suspended/dismissed in 140 characters or less.</label>
         </div>
         <div class="span7"> <span>
-            {{ form.policy_reason}}
-            {{ form.policy_reason.errors }}
+            {{ page2form.policy_reason}}
+            {{ page2form.policy_reason.errors }}
             </span> </div>
       </div>
       <br>
@@ -190,8 +190,8 @@ $( document ).ready(function() {
             <input type="radio" name="has_legal_issue" id="has_legal_issue-1" value="1">Yes</label> &nbsp; 
             <label for="has_legal_issue-0">
             <input type="radio" name="has_legal_issue" id="has_legal_issue-0" value="0">No</label>  -->
-            {{ form.legal }}       
-            {{ form.legal.errors }}
+            {{ page2form.legal }}       
+            {{ page2form.legal.errors }}
         </div>
       </div>
       <br>
@@ -200,8 +200,8 @@ $( document ).ready(function() {
           <label>If yes, please explain your conviction in 140 characters or less.</label>
         </div>
         <div class="span7"> <span>
-            {{ form.legal_reason}}
-            {{ form.legal_reason.errors }}
+            {{ page2form.legal_reason}}
+            {{ page2form.legal_reason.errors }}
             
             </span> </div>
       </div>
@@ -213,16 +213,16 @@ $( document ).ready(function() {
           </div>
           <div class="span7"> <span>
 
-              {% render_field form.employer class='input-medium fieldLabel' maxlength='100' %}
-              {{ form.employer.errors }}
+              {% render_field page2form.employer class='input-medium fieldLabel' maxlength='100' %}
+              {{ page2form.employer.errors }}
               </span> </div>
         </fieldset>
                 			                      <div class="row-fluid">
           <fieldset>
             <div class="span12">
               <div class="span7 offset5"> 
-                    {{ form.employment_address_outside_us }}
-                  {{ form.employment_address_outside_us.errors }}                    
+                    {{ page2form.employment_address_outside_us }}
+                  {{ page2form.employment_address_outside_us.errors }}                    
                    <label class="no-bold inline" for="employer_address_outside_us">Employment address outside of the United States?</label>
               </div>
             </div>
@@ -233,8 +233,8 @@ $( document ).ready(function() {
             <label>Employment Mailing Address</label>
           </div>
           <div class="span7"> <span>
-{% render_field form.employment_address name='employment_address' maxlength='30' %}
-              {{ form.employment_address.errors }}
+{% render_field page2form.employment_address name='employment_address' maxlength='30' %}
+              {{ page2form.employment_address.errors }}
               </span> </div>
         </fieldset>
        			
@@ -244,12 +244,12 @@ $( document ).ready(function() {
               <label>City / State</label>
             </div>
             <div class="span7"> <span>
-                {% render_field form.employment_city name='employment_city' maxlength='25' class='input-small' placeholder='City' %}
-                {{ form.employment_city.errors }}
+                {% render_field page2form.employment_city name='employment_city' maxlength='25' class='input-small' placeholder='City' %}
+                {{ page2form.employment_city.errors }}
                 </span> 
 
-              {{ form.employment_state }}
-              {{ form.employment_state.errors }}
+              {{ page2form.employment_state }}
+              {{ page2form.employment_state.errors }}
                </div>
           </fieldset>
         
@@ -258,8 +258,8 @@ $( document ).ready(function() {
               <label>Zip Code</label>
             </div>
             <div class="span7"><span>
-              {% render_field form.employment_zip name='employment_zip' maxlength='10' class='input-small' %}
-                {{ form.employment_zip.errors }}
+              {% render_field page2form.employment_zip name='employment_zip' maxlength='10' class='input-small' %}
+                {{ page2form.employment_zip.errors }}
                   </span>
               </div>
           </fieldset>
@@ -270,8 +270,8 @@ $( document ).ready(function() {
               <label>City and Postal Code</label>
             </div>
             <div class="span7"> <span>
-                {% render_field form.employment_address_outside name='employment_address_outside' maxlength='30' %}
-                {{ form.employment_address_outside.errors }}
+                {% render_field page2form.employment_address_outside name='employment_address_outside' maxlength='30' %}
+                {{ page2form.employment_address_outside.errors }}
                 </span> 
               </div>
           </fieldset>
@@ -282,8 +282,8 @@ $( document ).ready(function() {
                   <label for="country">Country</label>
                 </div>
                 <div class="span7"> 
-                    {{ form.employer_country}} 
-                    {{ form.employer_country.errors }}
+                    {{ page2form.employer_country}} 
+                    {{ page2form.employer_country.errors }}
                 </div>
                 <br>
               </fieldset>
@@ -297,8 +297,8 @@ $( document ).ready(function() {
           <label>Tuition Remission</label>
         </div>
         <div id="tuition_remission-contain" class="span7"> 
-            {{ form.tuition_remission}}
-            {{ form.tuition_remission.errors }}
+            {{ page2form.tuition_remission}}
+            {{ page2form.tuition_remission.errors }}
         </div>
       </div>
       <br>
@@ -308,8 +308,8 @@ $( document ).ready(function() {
           <label>GIs</label>
         </div> 
         <div id="gi-contain" class="span7"> 
-            {{ form.gi }}
-            {{ form.gi.errors }}
+            {{ page2form.gi }}
+            {{ page2form.gi.errors }}
         </div>
       </div>
             </div>

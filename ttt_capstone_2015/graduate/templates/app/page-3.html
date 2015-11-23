@@ -4,47 +4,27 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 {% include 'app/header.html' %}
-<!-- completed boolean here -->
 
-    <!--if valid/complete form -->
-<div class='row-fluid'>
-	<div class='container-fluid'>
-		<div class='span12'>
-			<div class='row-fluid'>
-				<h1 class='pg2-header'>PAGE 3 - FINAL STEPS</h1>
-				<p>You're now ready to submit your completed application.</p>
-				<br />
-			</div>
-	    </div>
-	</div>
-</div>
-<!--otherwise show errors-->
-<div class='row-fluid'>
-	<div class='container-fluid'>
-		<div class='span12'>
-			<div class='row-fluid'>
-				<h1 class='pg2-header'>PAGE 3 - FINAL STEPS</h1>
-				<p>Some of the information on this Application for Admission is mandatory. Please complete these last few blanks before finally submitting your application or going to previous pages.</p>
-				<br />
+    <style>
+            #raceul ul{
+                list-style: outside none none;                
+            }
+            #id_race input[type^="checkbox"] {
+                float: right;
+                margin-left: 10px;
+            }
+            #id_international_phonecheck, #id_internationalcheck{
+                margin-right:10px;
+            }
+        </style>
+    <div class="container-fluid">
+            <div class="content row-fluid">
+                <div class="container">
                 <form enctype="multipart/form-data" action="" method="post" name="applicationDefault">
-                     {{ page1form.non_field_errors }}
-                     {{ page2form.non_field_errors }}
-                     {{ page2formset.non_field_errors }}
-                    <fieldset>
-                        <div class="span3"><label>Name</label></div>
-                        <div class="span2">
-                            <span>
-                            {% render_field page1form.first_name class+="input-medium fieldLabel" placeholder="First" maxlength="14" %}
-                                {{ page1form.first_name.errors }}
-                            </span>        
-                        </div>
-                    </fieldset>
-                    {% if not page1form.first_name.errors %}
-                    {% endif %}
-
+                  
                     {% csrf_token %}
-                    {{ page1form.as_p }}
-                    {{ page2form.as_p }}
+                    {% include 'app/page1form.html' %}
+                    {% include 'app/page2form.html' %}
                     <div class="row-fluid" id="navigation">
                     <div class="span12">
                 
