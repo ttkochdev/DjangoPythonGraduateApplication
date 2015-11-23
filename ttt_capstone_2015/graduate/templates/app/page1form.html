@@ -257,6 +257,7 @@
                     </div>
                 </fieldset>
         {% endif %}
+        {% if page != "finalpage" or page1form.gender.errors %}
                 <fieldset>
                     <div class="span5"><label for="gender">Gender</label></div>
                     <div class="span7">                                  
@@ -264,7 +265,9 @@
                         {{ page1form.gender.errors }}
                     </div>
                 </fieldset>
-                                                <fieldset>
+                          {% endif %}
+        {% if page != "finalpage" or page1form.birth_date.errors %}
+                              <fieldset>
                     <div class="span5"><label>Birth Date</label></div>
                     <div class="span7">
                         <span>
@@ -273,6 +276,8 @@
                         </span>                    
                     </div>
                 </fieldset>
+        {% endif %}
+        {% if page != "finalpage" or page1form.birth_place.errors %}
                                                 <fieldset>
                     <div class="span5"><label>Birthplace (City/State)</label></div>
                     <div class="span7">
@@ -282,6 +287,8 @@
                         </span>                    
                     </div>
                 </fieldset>
+        {% endif %}
+        {% if page != "finalpage" or page1form.ethnicity.errors %}
                                                 <fieldset>
                     <div class="span5"><label for="ethnicity">Are you Hispanic or Latino?</label></div>
                     <div class="span1">                        
@@ -289,6 +296,8 @@
                         {{ page1form.ethnicity.errors }}                
                     </div>
                 </fieldset>
+        {% endif %}
+        {% if page != "finalpage" or page1form.race.errors %}
                 <br><br>
                                                 <fieldset>
                     <div class="span4"><label>What is your race?<br><span class="subtext">Choose one or more</span></label></div>
@@ -300,7 +309,9 @@
                 {{ page1form.race }}
                 {{ page1form.race.errors }}
             </div>
-        </fieldset>              
+        </fieldset>      
+        {% endif %}      
+        {% if page != "finalpage" or page1form.denomination.errors %}  
 
                                                 <fieldset>
                     <p>
@@ -313,6 +324,7 @@
                         </div>
                     <p></p>
                 </fieldset>
+        {% endif %}
                             </div> <!-- end container span7 -->
 
      
@@ -322,6 +334,7 @@
             </div>
         </div>
                 </div>
+                {% if page != "finalpage" or page1form.is_citizen.errors or page1form.social_security.errors or page1form.citizenship_country.errors or page1form.residence_country.errors or page1form.alien_reg_no.errors or page1form.is_international_student.errors or page1form.alien_status.errors %}  
     <div class="row-fluid">
         <div class="container-fluid" id="citizen-contain">
              
@@ -396,6 +409,7 @@
             </div>
                     </div>
     </div>
+                {% endif %}
 </div>            </div>
         </div>
         

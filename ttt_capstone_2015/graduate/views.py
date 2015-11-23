@@ -26,12 +26,8 @@ def page1(request):
     assert isinstance(request, HttpRequest)
 
     if request.method == 'POST':
-        reqpost = request.POST.copy()
-        if 'form_data_page1' in request.session:
-            del request.session['form_data_page1']            
-            request.session['form_data_page1'] = reqpost
-        else:            
-            request.session['form_data_page1'] = reqpost
+        reqpost = request.POST.copy()           
+        request.session['form_data_page1'] = reqpost
         request.session['raceinit'] = reqpost.getlist('race')
         if(request.POST.get('page2', '')): 
             return HttpResponseRedirect('/page-2/')
@@ -47,7 +43,7 @@ def page1(request):
                 
                 print(cd)
                 saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
-                return HttpResponseRedirect('/page-1/') 
+                #return HttpResponseRedirect('/page-1/') 
             print("after is valid")
     # if a GET (or any other method) we'll create a blank form
     else:     
@@ -80,7 +76,7 @@ def page2(request):
     if request.method == 'POST':
         request.session['form_data_page2'] = request.POST
         page2form = PageTwoForm(request.session.get('form_data_page2'))
-        formset = InstitutionsFormset(request.POST, prefix='institutions')
+        page2formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
 
         if(request.POST.get('page1', '')):
             return HttpResponseRedirect('/page-1/')
@@ -88,10 +84,10 @@ def page2(request):
             return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('save', '')):
             print("\nbefore page 2 is_valid\n")
-            if formset.is_valid() and page2form.is_valid():
+            if page2formset.is_valid() and page2form.is_valid():
                 print("\inside page 2 is_valid\n")
                 instit = []            
-                for i, f in enumerate(formset): 
+                for i, f in enumerate(page2formset): 
                     cd = f.cleaned_data                    
                     undergraduate_institution = cd.get('undergraduate_institution')
                     ceeb = cd.get('ceeb')                    
@@ -110,10 +106,10 @@ def page2(request):
             #print(request.session.get('form_data_page2', None))   
 
             page2form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
-            formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
+            page2formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
         #form = PageOneForm(SESSION)
         else: #create empty form
-            formset = InstitutionsFormset(prefix='institutions')
+            page2formset = InstitutionsFormset(prefix='institutions')
             page2form = PageTwoForm()
 
 
@@ -123,7 +119,7 @@ def page2(request):
         {
             'title':'Graduate Application Page-2',
             'page2form': page2form,
-            'formset': formset,
+            'page2formset': page2formset,
             'page1form': "",            
             'page': "page2",            
         }))
@@ -164,9 +160,11 @@ def page3(request):
             #print("form2 data in session")
             #form = PageOneForm(request.session['form_data'])
 
-            print("\n\n 'form_data_page1' or 'form_data_page2' \n\n")            
+            print("\n\n 'form_data_page1' or 'form_data_page2' \n\n")    
+            print("raceinit")
+            print(request.session.get('raceinit'))        
             if 'form_data_page1' in request.session:                
-                page1form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
+                page1form = PageOneForm(request.session.get('form_data_page1'),initial=request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
             else:
                 page1form = PageOneForm(raceinit={})
             if 'form_data_page2' in request.session:
@@ -181,7 +179,7 @@ def page3(request):
                 cd1 = page1form.cleaned_data
                 cd2 = page2form.cleaned_data
                 instit = []  
-                for i, f in enumerate(formset): 
+                for i, f in enumerate(page2formset): 
                     cd3 = f.cleaned_data                    
                     undergraduate_institution = cd3.get('undergraduate_institution')
                     ceeb = cd3.get('ceeb')                    
@@ -196,7 +194,7 @@ def page3(request):
                 cd1 = page1form.cleaned_data
                 cd2 = page2form.cleaned_data
                 instit = []  
-                for i, f in enumerate(formset): 
+                for i, f in enumerate(page2formset): 
                     cd3 = f.cleaned_data                    
                     undergraduate_institution = cd3.get('undergraduate_institution')
                     ceeb = cd3.get('ceeb')                    

@@ -1,1 +1,340 @@
-﻿
+﻿{% load widget_tweaks %}
+{% load staticfiles %} 
+<div class="row-fluid">
+            <div class="mini-nav">
+                    <a href="http://apply.northcentralcollege.edu.dev/" id="custom-breadcrumbs-home">Home</a> &gt; <a href="http://apply.northcentralcollege.edu.dev/admission">Admission</a> &gt;
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="inner-node"> 
+                
+
+<div class="row-fluid">
+  <div class="container-fluid">
+    <div class="span7">
+            <div class="row-fluid">
+        <h1 class="pg2-header">PAGE 2 - APPLICATION FOR ADMISSION</h1>
+      </div>
+      <div class="row-fluid">
+        <h2>About Your Academic Plans</h2>
+      </div>
+                                                                  <div class="row-fluid">
+        <div class="span5">
+          <label>When do you intend to enroll at North Central College?</label>
+        </div>
+        <div class="span7"> 
+            {{ page2form.start_term }}
+            {{ page2form.start_term.errors }}
+         </div>
+      </div>
+                                                                  <div class="row-fluid">
+        <div class="span5">
+          <label>What is your intended course load?</label>
+        </div>
+        <div class="span7"> 
+            {{ page2form.student_load_intent }}
+            {{ page2form.student_load_intent.errors }}
+         </div>
+      </div>
+                                                            <div class="row-fluid">
+        <div class="span5">
+          <label>What is your program of study?</label>
+        </div>
+        <div class="span7"> 
+            {{ page2form.planned_major }}  
+            {{ page2form.planned_major.errors }}     
+        </div>
+      </div>
+<div class="row-fluid">
+        <h2>About Your Educational Background</h2>
+      </div>
+      <div class="row-fluid">
+        <p> Failure to report and submit official transcripts from all colleges and universities in which you were enrolled can result in the cancellation of your application for admission. If you have more institutions than can be entered here, please contact the Office of Admission at 630-637-5800 with the additional information. </p>
+      </div>
+            <div id="attendedCollege_div1">
+        <div class="row-fluid">
+          <h4>Undergraduate Institution</h4>
+        </div>
+
+<script>
+$( document ).ready(function() {
+    $(function () {
+        $('#undergraduate_institution tbody tr').formset({
+            // For inline formsets, be sure to set the prefix, as the default prefix
+            // ('form') isn't correct.
+            // Django appears to generate the prefix from the lowercase plural
+            // name of the related model, with camel-case converted to underscores.
+            prefix: 'institutions'
+        })
+    })
+});
+</script>   
+                <!--need to populate initial data in views https://github.com/elo80ka/django-dynamic-formset/blob/master/demo/example/views.py-->
+ <table id="undergraduate_institution" border="0" cellpadding="0" cellspacing="5">
+                <thead>
+                    <tr>                       
+                        <th scope="col">Previous institution</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for form in page2formset.forms %}
+                    <tr id="{{ page2form.prefix }}-row">                        
+                        <td>{{ page2form.undergraduate_institution }}{{ page2form.undergraduate_institution.errors }}</td>
+                        <td>{{ page2form.ceeb }}{{ page2form.ceeb.errors }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+{{ page2formset.management_form }}
+        
+
+      </div>
+     
+                        <div class="row-fluid">
+        <h2>More About You</h2>
+        <p class="wide"> Please list any parents, siblings, other relatives, or friends who have attended North Central College including their relationship to you. </p>
+      </div>
+                                                <div class="row-fluid">
+        <div class="span5">
+          <label>Friend / Relative Name</label>
+        </div>
+        <div class="span7"> <span>
+             {% render_field page2form.refered_by_name maxlength='50' %}
+            {{ page2form.refered_by_name.errors }}
+
+            </span> 
+       </div>
+      </div>
+                                          <div class="row-fluid">
+        <div class="span5">
+          <label>Relationship To You</label>
+        </div>
+        <div class="span7"> <span>
+
+            {% render_field page2form.refered_by_relationship maxlength='20' %}
+            {{ page2form.refered_by_relationship.errors }}
+            </span> </div>
+      </div>
+                                    <div class="row-fluid">
+        <div class="span5">
+          <label>Friend / Relative Name</label>
+        </div>
+        <div class="span7"> <span>
+
+            {% render_field page2form.refered_by_name2 maxlength='50' %}
+            {{ page2form.refered_by_name2.errors }}
+            </span> </div>
+      </div>
+                              <div class="row-fluid">
+        <div class="span5">
+          <label>Relationship To You</label>
+        </div>
+        <div class="span7"> <span>
+
+            {% render_field page2form.refered_by_relationship2 maxlength='20' %}
+            {{ page2form.refered_by_relationship2.errors }}
+            </span> </div>
+      </div>
+            
+            <div class="row-fluid">
+        <div class="span5">
+          <label>Who or what helped influence your decision to apply to North Central College?</label>
+        </div>
+        <div class="span7"> 
+        {{ page2form.influence }}
+            {{ page2form.influence.errors }}
+         </div>
+      </div>
+      <br>
+                        <div class="row-fluid">
+        <div class="span5">
+          <label>Have you ever been accused or charged with violating a code of student conduct or institutional policy, or been suspended, placed on probation, dismissed, or expelled from any high school or college?</label>
+        </div>
+        <div id="policy-issue-contain" class="span7"> 
+<!--<label for="has_policy_issue-1"><input type="radio" name="has_policy_issue" id="has_policy_issue-1" value="1">Yes</label> &nbsp; 
+                            <label for="has_policy_issue-0"><input type="radio" name="has_policy_issue" id="has_policy_issue-0" value="0">No</label> -->
+        {{ page2form.policy }}
+            {{ page2form.policy.errors }}   
+        </div>
+      </div>
+      <br>
+            <div id="policy-reason" class="row-fluid" style="display:none;">
+        <div class="span5">
+          <label>If yes, please explain why you were suspended/dismissed in 140 characters or less.</label>
+        </div>
+        <div class="span7"> <span>
+            {{ page2form.policy_reason}}
+            {{ page2form.policy_reason.errors }}
+            </span> </div>
+      </div>
+      <br>
+                            			      
+                  <div class="row-fluid">
+        <div class="span5">
+          <label>Have you ever been arrested, indicted, or convicted of anything other than a minor traffic violation?</label>
+        </div>
+        <div id="arrested-contain" class="span7"> 
+            <!--<label for="has_legal_issue-1">
+            <input type="radio" name="has_legal_issue" id="has_legal_issue-1" value="1">Yes</label> &nbsp; 
+            <label for="has_legal_issue-0">
+            <input type="radio" name="has_legal_issue" id="has_legal_issue-0" value="0">No</label>  -->
+            {{ page2form.legal }}       
+            {{ page2form.legal.errors }}
+        </div>
+      </div>
+      <br>
+            <div id="legal-reason" class="row-fluid" style="display:none;">
+        <div class="span5">
+          <label>If yes, please explain your conviction in 140 characters or less.</label>
+        </div>
+        <div class="span7"> <span>
+            {{ page2form.legal_reason}}
+            {{ page2form.legal_reason.errors }}
+            
+            </span> </div>
+      </div>
+            <div class="span7">
+                <h2>Employer Mailing Address</h2>
+                        			                      <fieldset>
+          <div class="span5">
+            <label>Employer Name</label>
+          </div>
+          <div class="span7"> <span>
+
+              {% render_field page2form.employer class='input-medium fieldLabel' maxlength='100' %}
+              {{ page2form.employer.errors }}
+              </span> </div>
+        </fieldset>
+                			                      <div class="row-fluid">
+          <fieldset>
+            <div class="span12">
+              <div class="span7 offset5"> 
+                    {{ page2form.employment_address_outside_us }}
+                  {{ page2form.employment_address_outside_us.errors }}                    
+                   <label class="no-bold inline" for="employer_address_outside_us">Employment address outside of the United States?</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+                <fieldset>
+          <div class="span5">
+            <label>Employment Mailing Address</label>
+          </div>
+          <div class="span7"> <span>
+{% render_field page2form.employment_address name='employment_address' maxlength='30' %}
+              {{ page2form.employment_address.errors }}
+              </span> </div>
+        </fieldset>
+       			
+          <div id="employer_inside_us">
+          <fieldset>
+            <div class="span5">
+              <label>City / State</label>
+            </div>
+            <div class="span7"> <span>
+                {% render_field page2form.employment_city name='employment_city' maxlength='25' class='input-small' placeholder='City' %}
+                {{ page2form.employment_city.errors }}
+                </span> 
+
+              {{ page2form.employment_state }}
+              {{ page2form.employment_state.errors }}
+               </div>
+          </fieldset>
+        
+          <fieldset>
+            <div class="span5">
+              <label>Zip Code</label>
+            </div>
+            <div class="span7"><span>
+              {% render_field page2form.employment_zip name='employment_zip' maxlength='10' class='input-small' %}
+                {{ page2form.employment_zip.errors }}
+                  </span>
+              </div>
+          </fieldset>
+        </div>
+        	<div id="employer_outside_us" style="display:none;">
+          <fieldset>
+            <div class="span5">
+              <label>City and Postal Code</label>
+            </div>
+            <div class="span7"> <span>
+                {% render_field page2form.employment_address_outside name='employment_address_outside' maxlength='30' %}
+                {{ page2form.employment_address_outside.errors }}
+                </span> 
+              </div>
+          </fieldset>
+                    <div class="row-fluid">
+            <div class="span12">
+              <fieldset>
+                <div class="span5">
+                  <label for="country">Country</label>
+                </div>
+                <div class="span7"> 
+                    {{ page2form.employer_country}} 
+                    {{ page2form.employer_country.errors }}
+                </div>
+                <br>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+              </div>
+      <div class="span7">
+                        <div class="row-fluid">
+        <div class="span5">
+          <label>Tuition Remission</label>
+        </div>
+        <div id="tuition_remission-contain" class="span7"> 
+            {{ page2form.tuition_remission}}
+            {{ page2form.tuition_remission.errors }}
+        </div>
+      </div>
+      <br>
+            
+                        <div class="row-fluid">
+        <div class="span5">
+          <label>GIs</label>
+        </div> 
+        <div id="gi-contain" class="span7"> 
+            {{ page2form.gi }}
+            {{ page2form.gi.errors }}
+        </div>
+      </div>
+            </div>
+      
+      
+      
+      
+      <!--
+      <div class="span7">
+           <div class="row-fluid">
+        <h2>Upload Supporting Documents</h2>
+      </div>
+            
+      <div class="row-fluid">
+        <div class="span5">
+          <label>Upload your Resume:</label>
+
+        </div>
+        <div id="resume-contain" class="span7"> 
+<dd>
+<input type="hidden" name="MAX_FILE_SIZE" value="2097152" id="MAX_FILE_SIZE">
+<input type="file" name="resume" id="resume"></dd>        
+        </div>
+      </div>
+      <br>
+      
+      </div>
+      
+      -->      
+      
+      
+    </div>
+        <div class="visible-desktop span5">
+      <div class="row"> <img class="admission_ug_page" src="{% static 'app/images/admission_ug_page2.jpg' %}" alt="Undergrad Page 2"> </div>
+    </div>
+      </div>
+</div>
+            </div>
+        </div>
