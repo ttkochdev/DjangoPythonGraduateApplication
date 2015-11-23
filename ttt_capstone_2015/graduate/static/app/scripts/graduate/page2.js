@@ -28,7 +28,7 @@ $().ready(function() {
     });
     
     $("input[name='legal']").change(function(){
-		if ($("input[name='legal']:checked").val() == 'Yes') {
+		if ($("input[name='legal']:checked").val() == '1') {
             $('#legal-reason').show();
         } else {
         	$('#legal-reason').hide();
@@ -36,7 +36,7 @@ $().ready(function() {
     });
     
     $("input[name='policy']").change(function () {
-        if ($("input[name='policy']:checked").val() == 'Yes') {
+        if ($("input[name='policy']:checked").val() == '1') {
             $('#policy-reason').show();
         } else {
         	$('#policy-reason').hide();

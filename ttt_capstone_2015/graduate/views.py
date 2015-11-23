@@ -309,9 +309,10 @@ def login(request, template_name='registration/login.html',
             #print(request.session["form_data_page1"])
         #if '_auth_user_id' in request.session:
         #    print("logged in")
-            db_data = getForms.getPage1(request.session.get("_auth_user_id"))
-            request.session['form_data_page1'] = db_data
-
+            page1_db_data = getForms.getPage1(request.session.get("_auth_user_id"))
+            page2_db_data = getForms.getPage2(request.session.get("_auth_user_id"))
+            request.session['form_data_page1'] = page1_db_data
+            request.session['form_data_page2'] = page2_db_data
             return HttpResponseRedirect(redirect_to)
     else:
         form = authentication_form(request)

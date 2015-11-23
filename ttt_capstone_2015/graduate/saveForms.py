@@ -40,7 +40,7 @@ class saveForms(object):
         residence_country = data.get("residence_country", None)
         alien_reg_no = data.get("alien_reg_no", None)
         is_international_student = data.get("is_international_student", None)
-        alient_status = data.get("alient_status", None)
+        alien_status = data.get("alien_status", None)
 
         #save student
         studentobj_uc, created = Student.objects.update_or_create(email=email, 
@@ -48,7 +48,7 @@ class saveForms(object):
                                                                   'social_security': social_security,'suffix':suffix,'preferred_first_name':preferred_first_name,
                                                                   'birth_last_name':birth_last_name,'gender':gender,'date_of_birth':birth_date, 'birth_place':birth_place,
                                                                   'ethnicity':ethnicity,'denomination':denomination,'is_citizen':is_citizen, 'citizenship_country':citizenship_country, 'residence_country':residence_country,
-                                                                  'alien_reg_no': alien_reg_no,'is_international_student': is_international_student,'alient_status': alient_status,                                                                 
+                                                                  'alien_reg_no': alien_reg_no,'is_international_student': is_international_student,'alien_status': alien_status,                                                                 
                                                                   })
         #update or create (studentobj_uc) would return NO object if nothing was updated or created. 
         if Student.objects.filter(email=email).exists():
@@ -86,15 +86,7 @@ class saveForms(object):
         student_load_intent = data.get("student_load_intent")
         planned_major = data.get("planned_major")        
         tuition_remission = data.get("tuition_remission")          
-        if tuition_remission is 'on':
-            tuition_remission = 1
-        else:
-            tuition_remission = 0
         gi = data.get("gi")
-        if gi is 'on':
-            gi = 1
-        else:
-            gi = 0
         refered_by_name = data.get("refered_by_name")
         refered_by_name2 = data.get("refered_by_name2")
         refered_by_relationship = data.get("refered_by_relationship")
@@ -142,15 +134,3 @@ class saveForms(object):
             #save policy reason
             policyobj, policycreated = StudentLegal.objects.update_or_create(student=studentobj, 
                                                         defaults={'reason':policy_reason})        
-
-            #{'institutions-0-undergraduate_institution': 'Wabash College', 'student_load_intent': 'fulltime', 
-        # 'save': 'save page', 'employer_country': '', 'tuition_remission': 'on', 
-        # 'institutions-MAX_NUM_FORMS': '1000', 'legal': 'Yes', 'employment_zip': '47304',
-        # 'gi': 'on', 'policy_reason': '', 'employment_address': 'Employment Mailing Address',
-        # 'institutions-TOTAL_FORMS': '2', 'employment_address_outside': '', 'page': 'Page2', 
-        # 'refered_by_relationship2': 'Relationship to you ', 'policy': 'No', 'start_term': 'winter',
-        # 'institutions-MIN_NUM_FORMS': '0', 'institutions-1-undergraduate_institution': 'North Central College',
-        # 'employment_city': 'Muncie', 'institutions-INITIAL_FORMS': '0', 'employer_address_outside_us': '0', 
-        # 'baseUrl': '', 'influence': '', 'institutions-0-ceeb': '1895', 'refered_by_name': 'Friend Relative Name',
-        # 'employment_state': 'AL', 'csrfmiddlewaretoken': 'sKjvFDV57pwuDe89yEVgy2opEAqBtbjH', 'refered_by_relationship': 'Relationship to you',
-        # 'legal_reason': '', 'planned_major': '1', 'institutions-1-ceeb': '1111', 'refered_by_name2': 'Friend Relative Name 2'}

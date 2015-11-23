@@ -181,14 +181,14 @@ class PageTwoForm(forms.Form):
     refered_by_relationship2 = forms.CharField(label='Relationship To You', required=False)
     influence = forms.ModelChoiceField(queryset=Influences.objects.all(), label='Who or what helped influence your decision to apply to North Central College?', required=False) 
     POLICY_CHOICES=(
-        ('Yes','Yes'),
-        ('No','No'),)
-    policy = forms.ChoiceField(choices=POLICY_CHOICES, label='Have you ever been accused or charged with violating a code of student conduct or institutional policy, or been suspended, placed on probation, dismissed, or expelled from any high school or college?', widget=forms.RadioSelect())
+        ('1','Yes'),
+        ('0','No'),)
+    policy = forms.ChoiceField(choices=POLICY_CHOICES, label='Have you ever been accused or charged with violating a code of student conduct or institutional policy, or been suspended, placed on probation, dismissed, or expelled from any high school or college?', widget=forms.RadioSelect(), initial=0)
     policy_reason = forms.CharField(label='If yes, please explain why you were suspended/dismissed in 140 characters or less.', required=False)
     LEGAL_CHOICES=(
-        ('Yes','Yes'),
-        ('No','No'),)
-    legal = forms.ChoiceField(choices=LEGAL_CHOICES, label='Have you ever been arrested, indicted, or convicted of anything other than a minor traffic violation?', widget=forms.RadioSelect())
+        ('1','Yes'),
+        ('0','No'),)
+    legal = forms.ChoiceField(choices=LEGAL_CHOICES, label='Have you ever been arrested, indicted, or convicted of anything other than a minor traffic violation?', widget=forms.RadioSelect(), initial=0)
     legal_reason = forms.CharField(label='If yes, please explain your conviction in 140 characters or less.', required=False)
     employer = forms.CharField(label='Employer Name', required=False)
     outside_us_employment = forms.BooleanField(label='Employment address outside of the United States?',required=False)
