@@ -26,43 +26,19 @@ def page1(request):
     assert isinstance(request, HttpRequest)
 
     if request.method == 'POST':
-        #print("\n\nrequest post ", request.POST,"\n\n")
         reqpost = request.POST.copy()
-        #reqpost.pop('race')
-        #reqpost.setlist('race', ['2','3'])
-        
-        #http://stackoverflow.com/questions/21666963/django-forms-multiplechoicefield-only-selects-one-value
-        #https://groups.google.com/forum/#!topic/django-users/Jg2blPdzZV4
         if 'form_data_page1' in request.session:
             del request.session['form_data_page1']            
             request.session['form_data_page1'] = reqpost
         else:            
             request.session['form_data_page1'] = reqpost
-
         request.session['raceinit'] = reqpost.getlist('race')
-        #print('\n\nraceinit\n\n')
-        #print(request.session.get('raceinit', None))
-        #request.session.modified = True
-        #form = PageOneForm(request.session.get('form_data_page1'), raceinit=request.session.get('raceinit'))
-        #for key in request.POST:
-        #    print (key)
-        
-        #print(form)
-        #save post data to session
-        #request.session['form1'] =
-        
-        #print("\n\nsession after post\n\n")
-        #print(request.session["form_data_page1"])
-        #if submit = page2 then go to page 2 else if page-3 then go to page 3
-        if(request.POST.get('page2', '')):
-            #form = PageOneForm(request.POST,raceinit=request.session.get('raceinit'))
-            #print('\n to page 2\n')
-            #if form.get('email').is_valid():  
+        if(request.POST.get('page2', '')): 
             return HttpResponseRedirect('/page-2/')
         elif (request.POST.get('page3', '')):
             return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('save', '')):
-            #validate email field
+            #need to validate email field
             form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
             print('\nSAVE\n')
             if form.is_valid():  
@@ -75,46 +51,19 @@ def page1(request):
             print("after is valid")
     # if a GET (or any other method) we'll create a blank form
     else:     
-        
-        #print(request.session.get('form_data_page1'))  
-        #check if login session exists
-        #if '_auth_user_id' in request.session:
-        #    print("logged in")
-        #    db_data = getForms.getPage1(request.session.get("_auth_user_id"))
-        #    request.session['form_data_page1'] = db_data
-        #    form = PageOneForm(initial=request.session.get('form_data_page1', None), raceinit=request.session.get('raceinit', None))
-        #if so populate session data from database
         if 'form_data_page1' in request.session:
-            print("not logged in")
-            #print("\n\nform data in session\n\n")
-            #print("\n\nsession before inital is set")
-            #print(request.session.get('form_data_page1',None))
-            #print("\n\nSESSION")
-            #print("\n\nsession before inital raceinit")
-            #print(request.session.get('raceinit',None))
-            #print("\n\n")
-            #form = PageOneForm(request.session['form_data'])
-            #from django.contrib.sessions.models import Session
-            #session = Session.objects.get(session_key="e625cxugewctjyae62sqbx9v30k32h1h")
-            #session_data = session.get_decoded()
-            #print(session_data)
-           
-
-            form_data_session = request.session.get('form_data_page1', None)
-            form = PageOneForm(initial=form_data_session, raceinit=request.session.get('raceinit', None))
-        #form = PageOneForm(SESSION)
+            print("not logged in")                     
+            form = PageOneForm(initial=request.session.get('form_data_page1'), raceinit=request.session.get('raceinit', None))
         else: #no login - create empty form
             form = PageOneForm(raceinit={})
             
-
     return render(request,
         'app/page-1.html',
         context_instance = RequestContext(request,
         {
             'title':'Graduate Application Page-1',
-            'form': form,
-            #'test': test,
-            'year':datetime.now().year,
+            'form': form,            
+            #'year':datetime.now().year,
         }))
 
 def page2(request):
@@ -125,30 +74,12 @@ def page2(request):
     #need to have email set from page 1 at least
     if not 'form_data_page1' in request.session:
         return HttpResponseRedirect('/page-1/')
-    #elif 'form_data_page1' in request.session:
-    #    initialsession = request.session.get('form_data_page1')
-    #    print('email')
-    #    print(initialsession.get('email'))
-    #    if initialsession is '':
-
-    #ideas
-    #http://stackoverflow.com/questions/24255955/django-formsets-initializing-values-for-extra-fields-from-list-in-model-formset
 
     if request.method == 'POST':
-        #save post data to session
-        print('\n\n')
-        #print(request.POST) #post value example on bottom of this document
-        print('\n\n')
-        #print(request.POST.get('extra_field_count'))
-        print('\n\n')
-        form = PageTwoForm(request.session.get('form_data_page2')) #, extra=request.POST.get('extra_field_count')
-        formset = InstitutionsFormset(request.POST, prefix='institutions')
         request.session['form_data_page2'] = request.POST
+        form = PageTwoForm(request.session.get('form_data_page2'))
+        formset = InstitutionsFormset(request.POST, prefix='institutions')
 
-        #request.session['extra_count'] =
-        #extra=request.POST.get('extra_field_count')
-        #print(request.session["form_data_page2"])
-        #if submit = page2 then go to page 2 else if page-3 then go to page 3
         if(request.POST.get('page1', '')):
             return HttpResponseRedirect('/page-1/')
         elif (request.POST.get('page3', '')):
@@ -198,7 +129,9 @@ def page3(request):
     """Renders page3."""
     assert isinstance(request, HttpRequest)
     InstitutionsFormset = formset_factory(Institutions)
-    
+    if not 'form_data_page1' in request.session:
+        return HttpResponseRedirect('/page-1/')
+
     if request.method == 'POST':
         #validate all forms and show errors
         #if no errors then display ready to submit and final submit button
@@ -230,7 +163,7 @@ def page3(request):
 
             #print("\n\n PAGE-2 SESSION \n\n")
             #print(request.session.get('form_data_page2', None)) 
-            if 'form_data_page21' in request.session:  
+            if 'form_data_page1' in request.session:  
                 form_data_session = request.session.get('form_data_page1', None)
                 page1form = PageOneForm(initial=form_data_session, raceinit=request.session.get('raceinit', None))
             if 'form_data_page2' in request.session:
