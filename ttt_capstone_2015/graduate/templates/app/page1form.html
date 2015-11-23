@@ -51,6 +51,7 @@
 
 <div class="row-fluid">
     <div class="span12">
+        {% if page != "finalpage" %}  
         <fieldset class="acct">
             <div class="row-fluid">
                 <div class="span3"><label for="email">Email Address</label></div>                
@@ -63,6 +64,7 @@
                 </div>
             </div>
         </fieldset>
+        {% endif %}
     </div>
 </div>
 <div class="row-fluid">
@@ -77,19 +79,24 @@
                         </div>
                                       
                      {% endif %}
+                {% if page != "finalpage" or page1form.middle_name.errors %}   
         <div class="span2">
             <span>
             {% render_field page1form.middle_name class+="input-small" placeholder="Middle" maxlength="14" %}
                 {{ page1form.middle_name.errors }}
             </span>        
         </div>
+ {% endif %}
+                 {% if page != "finalpage" or page1form.last_name.errors %} 
         <div class="span2">
             <span>
             {% render_field page1form.last_name class+="input-medium" placeholder="Last" maxlength="25" %}
                 {{ page1form.last_name.errors }}
             </span>
         </div>
+                {% endif %}
     </fieldset>
+    {% if page != "finalpage" or page1form.suffix.errors %}
             <fieldset>
         <div class="span3"><label>Suffix</label></div>
         <div class="span4">
@@ -100,6 +107,8 @@
         {{ page1form.suffix.errors }}
 </div>
     </fieldset>
+    {% endif %}
+    {% if page != "finalpage" or page1form.preferred_first_name.errors %}
             <fieldset>
         <div class="span3 inline"><label>Preferred First Name</label></div>
         <div class="span4 inline">
@@ -109,6 +118,8 @@
             </span>        
         </div>
     </fieldset>
+    {% endif %}
+    {% if page != "finalpage" or page1form.birth_last_name.errors %}
             <fieldset>
         <div class="span3 inline"><label>Birth Last Name</label></div>
         <div class="span4 inline">
@@ -118,12 +129,18 @@
             </span>        
         </div>
     </fieldset>
+    {% endif %}
     </div>
 <div class="row-fluid">
     <div class="container-fluid">
+
         <div class="span7">
+
+        {% if page != "finalpage" or page1form.internationalcheck.errors or page1form.address1.errors or page1form.address2.errors or page1form.city.errors or page1form.state.errors or page1form.zipcode.errors or page1form.country.errors %}
+        
                         <h2>Permanent Mailing Address</h2>
                                     <div class="row-fluid">
+    
                 <fieldset>
                     <div class="span12">
                         <div class="span7 offset5">
@@ -134,6 +151,7 @@
                         </div>
                     </div>
                 </fieldset>
+    
             </div>
             <fieldset>
                 <div class="span5"><label>Mailing Address</label></div>
@@ -159,7 +177,7 @@
                     <div class="span7">
                         <span>
                         {% render_field page1form.city placeholder="City" class="input-small"  maxlength="25" %}
-                            {{ page1form.first_name.errors }}
+                            {{ page1form.city.errors }}
                         </span>     
                         </div>
                        
@@ -199,7 +217,10 @@
                     </div>
                 </div>
             </div>
-                                        <h2>More About You</h2>
+
+        {% endif %}
+        {% if page != "finalpage" or page1form.international_phonecheck.errors or page1form.permanent_phone.errors or page1form.cell_phone.errors %}                                
+        <h2>More About You</h2>
                                         <div class="row-fluid">
                     <fieldset>
                         <div class="span12">
@@ -235,6 +256,7 @@
                         </span>                    
                     </div>
                 </fieldset>
+        {% endif %}
                 <fieldset>
                     <div class="span5"><label for="gender">Gender</label></div>
                     <div class="span7">                                  
@@ -292,6 +314,8 @@
                     <p></p>
                 </fieldset>
                             </div> <!-- end container span7 -->
+
+     
                     <div class="span5 visible-desktop">
             <div class="row">
                 <img alt="Undergrad Page 1" src="{% static 'app/images/admission_ug_page1.jpg' %}" class="admission_ug_page1">
