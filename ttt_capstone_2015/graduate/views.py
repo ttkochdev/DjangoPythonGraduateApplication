@@ -63,7 +63,6 @@ def page1(request):
         {
             'title':'Graduate Application Page-1',
             'form': form,            
-            #'year':datetime.now().year,
         }))
 
 def page2(request):
@@ -121,8 +120,7 @@ def page2(request):
         {
             'title':'Graduate Application Page-2',
             'form': form,
-            'formset': formset,
-            'year':datetime.now().year,
+            'formset': formset,            
         }))
 
 def page3(request):
@@ -188,14 +186,12 @@ def page3(request):
 def confirmation(request):
     """Renders confirmation page."""
     assert isinstance(request, HttpRequest)
-    form = PageOneForm()
     return render(request,
         'app/confirmation.html',
         context_instance = RequestContext(request,
         {
             'title':'Graduate Application Confirmation',
-            'year':datetime.now().year,
-            'form':form,
+            'year':datetime.now().year,     
         }))
 
 def pwemail(request):
