@@ -169,14 +169,14 @@ class Religions(models.Model):
         return self.name
 
 class StudentLegal(models.Model):
-    student = models.ForeignKey(Student, unique=True)
+    student = models.OneToOneField(Student, primary_key=True)
     reason = models.CharField(max_length=255)
 
     def __str__(self):
         return self.reason
 
 class StudentPolicy(models.Model):
-    student = models.ForeignKey(Student, unique=True)
+    student = models.OneToOneField(Student, primary_key=True)
     reason = models.CharField(max_length=255)
 
     def __str__(self):

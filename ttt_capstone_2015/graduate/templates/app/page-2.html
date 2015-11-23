@@ -11,6 +11,11 @@
                   <form name="applicationDefault" method="post" action="" enctype="multipart/form-data">
                       {% csrf_token %}
     <div class="application">
+        <div class="row-fluid">
+            <div class="mini-nav">
+                    <a href="http://apply.northcentralcollege.edu.dev/" id="custom-breadcrumbs-home">Home</a> &gt; <a href="http://apply.northcentralcollege.edu.dev/admission">Admission</a> &gt;
+            </div>
+        </div>
        {% include 'app/page2form.html' %}
         <div id="navigation" class="row-fluid">
             <div class="span12">
