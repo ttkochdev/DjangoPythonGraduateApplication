@@ -24,7 +24,7 @@ from graduate.models import Race
 def page1(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
-
+    validbool = 'False'   
     if request.method == 'POST':
         reqpost = request.POST.copy()           
         request.session['form_data_page1'] = reqpost
@@ -61,7 +61,8 @@ def page1(request):
             'page1form': page1form,
             'page2form': "",
             'page2formset': "",   
-            'page':'page1',         
+            'page':'page1',  
+            'validbool':validbool,       
         }))
 
 def page2(request):
@@ -79,7 +80,10 @@ def page2(request):
         print(request.session['form_data_page2'])
         page2form = PageTwoForm(request.session.get('form_data_page2'))
         #request.session.get('form_data_page2')
-        page2formset = InstitutionsFormset({ 'institutions-1-undergraduate_institution': [''], 'institutions-0-undergraduate_institution': [''], 'institutions-1-ceeb': [''], 'institutions-1-ceeb': [''],'institutions-TOTAL_FORMS': ['2'],'institutions-MAX_NUM_FORMS': ['1000'],'institutions-INITIAL_FORMS': ['0'],'institutions-MIN_NUM_FORMS': ['0'],},  prefix='institutions') #, initial=request.session.get('form_data_page2')
+        #print(request.session.get('form_data_page2'))
+        #stuff = dict([('institutions-1-undergraduate_institution', ''), ('institutions-0-undergraduate_institution', ''), ('institutions-1-ceeb', ''), ('institutions-1-ceeb', ''),('institutions-TOTAL_FORMS', '2'),('institutions-MAX_NUM_FORMS', '1000'),('institutions-INITIAL_FORMS', '0'),('institutions-MIN_NUM_FORMS', '0')])
+        #print("\n\nstuff \n",stuff,"\n\n")
+        page2formset = InstitutionsFormset(request.session.get('form_data_page2'),  prefix='institutions') #, initial=request.session.get('form_data_page2')
         # 'institutions-1-undergraduate_institution': [''], 'institutions-0-undergraduate_institution': [''], 'institutions-1-ceeb': [''], 'institutions-1-ceeb': [''],'institutions-TOTAL_FORMS': ['2'],'institutions-MAX_NUM_FORMS': ['1000'],'institutions-INITIAL_FORMS': ['0'],'institutions-MIN_NUM_FORMS': ['0'],
         #iTOTAL_FORMS = 1
         #extra = {}
@@ -147,14 +151,37 @@ def page3(request):
     """Renders page3."""
     assert isinstance(request, HttpRequest)
     InstitutionsFormset = formset_factory(Institutions)
+    validbool = 'False'   
     if not 'form_data_page1' in request.session:
         return HttpResponseRedirect('/page-1/')
 
     if request.method == 'POST':
         
         #need to get post into specefic form sessions http://stackoverflow.com/questions/22244135/how-to-get-certain-things-from-post
+        #e = {k:v for k,v in request.POST.items() if k[:2] == 'e_'}
+        #i = {k:v for k,v in request.POST.items() if k[:2] == 'i_'}
 
-        
+        reqpost = request.POST.copy()           
+        #request.session['form_data_page1'] = reqpost
+        #request.session['raceinit'] = reqpost.getlist('race')        
+        #request.session['form_data_page2'] = reqpost        
+        request.session['form_data_page3'] = reqpost
+        #print("\n\n")
+        form_data_page1 = request.session.get('form_data_page1')
+        form_data_page2 = request.session.get('form_data_page2')
+        for page3post in reqpost:
+            if page3post in form_data_page1:
+                #print("in first if")
+                set1 = reqpost.get(page3post)
+                #print(set1)
+                form_data_page1.__setitem__(page3post, set1)
+            if page3post in form_data_page2:
+                #print("in second if")
+                set2 = reqpost.get(page3post)
+                #print(set2)
+                form_data_page2.__setitem__(page3post, set2)
+            #print(page3post)
+        #print("\n\n")
         page1form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
         page2form = PageTwoForm(request.session.get('form_data_page2'))
         page2formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
@@ -165,10 +192,26 @@ def page3(request):
         elif (request.POST.get('page2', '')):
             return HttpResponseRedirect('/page-2/')
         elif (request.POST.get('save', '')):
-            #saveForms.savePage1(request.session['form_data_page1'])
-            #saveForms.savePage2(request.session['form_data_page2'])
-            #
-            return HttpResponseRedirect('/page-3/')
+            print("BEFORE VALIDATE")
+            if page1form.is_valid() and page2form.is_valid() and page2formset.is_valid():
+                human = True
+                print("\n\nPASSED ALL 3\n\n")
+                cd1 = page1form.cleaned_data
+                cd2 = page2form.cleaned_data
+                instit = []  
+                for i, f in enumerate(page2formset): 
+                    cd3 = f.cleaned_data                    
+                    undergraduate_institution = cd3.get('undergraduate_institution')
+                    ceeb = cd3.get('ceeb')                    
+                    instit.append([undergraduate_institution,ceeb])
+            
+                saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
+                page1session = request.session.get('form_data_page1')                
+                saveForms.savePage2(page1session.get('email'), request.session.get('form_data_page2'), instit)
+                validbool = 'True'            
+            print("AFTER VALIDATE")
+            
+            #return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('submit', '')):
             if page1form.is_valid() and page2form.is_valid() and page2formset.is_valid():
                 human = True
@@ -231,6 +274,7 @@ def page3(request):
             'page1form': page1form,
             'page2form': page2form,
             'page2formset':page2formset,
+            'validbool': validbool,
             'page':'finalpage',
         }))
 
