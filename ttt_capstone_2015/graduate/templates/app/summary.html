@@ -132,194 +132,80 @@
 			<div class='span9'>
 				<div>
 					When do you plan to start your courses at North Central College?
-					<?php echo $summary->get('start_term'); ?>
+				
+                    {{ page2_db_data.start_term }}
 				</div>
 				<div>
 					What is your intended course load?
-					<?php echo $summary->get('student_load_intent'); ?>
+					
+                    {{ page2_db_data.student_load_intent }}
 				</div>
 				<div>
 					What is your housing preference?
-					<?php echo $summary->get('residency_status'); ?>
+					
+                    {{ page2_db_data.residency_status }}
 				</div>
 				<div>
 					What is your planned major?
-					<?php echo $summary->get('planned_major'); ?>
+					
+                    {{ page2_db_data.planned_major }}
 				</div>
 				<div>
 					Application Type:
-					<?php echo $summary->get('admit_status'); ?>
+				
+                    {{ page2_db_data.admit_status }}
 				</div>
 			</div>
 		</div>
 	<br>
-		<?php if($summary->get('level') != 'GR') : ?>
+	
 		<div class='row'>
 			<div class='offset1 span2'>
 				About Your Family or Personal Contacts
 			</div>
-			<div class='span9'>
-				<div>
-					<?php echo $summary->get('guardian1_relationship'); ?>
-				</div>
-				<div>
-					<?php if($summary->get('guardian1_last_name') != NULL) {
-					 		echo $summary->get('guardian1_last_name') . ', ' . $summary->get('guardian1_first_name');
-					 	}
-					?>
-				</div>
-				<div>
-					<?php
-						echo $summary->get('guardian1_address1') . '<br />';
-						if ($summary->get('guardian1_address2') != NULL) {
-							echo $summary->get('guardian1_address2') . '<br />';
-							
-							
-							
-							if ($summary->get('guardian1_city') != NULL) {
-								echo $summary->get('guardian1_city');
-							}
-							if ($summary->get('guardian1_state') != NULL) {
-								if ($summary->get('guardian1_city') != NULL) {
-									echo ', ';
-								}
-								echo $summary->get('guardian1_state');
-							}
-							if ($summary->get('guardian1_zip') != NULL) {
-								echo '  ' . $summary->get('guardian1_zip');
-							}
-							//echo $summary->get('guardian1_city') . ', ' .
-							//	$summary->get('guardian1_state') . '  ' . $summary->get('guardian1_zip');
-						}
-					?>
-				</div>
-				<div>
-					<?php if($summary->get('guardian1_email') != NULL)
-								echo 'Email Address: ' . $summary->get('guardian1_email');
-					?>
-				</div>
-				<div>
-					<?php if($summary->get('guardian1_relationship') != NULL)
-							 echo 'Educational Attainment of ' . $summary->get('guardian1_relationship')
-							 . '/Guardian: ' . $summary->get('guardian1_education');
-					?>
-				</div>
-	<br>
-				<div>
-					<?php echo $summary->get('guardian2_relationship'); ?>
-				</div>
-				<div>
-					<?php if($summary->get('guardian2_last_name') != NULL) {
-					 		echo $summary->get('guardian2_last_name') . ', ' . $summary->get('guardian2_first_name');
-					 	}
-					?>
-				</div>
-				<div>
-					<?php
-						echo $summary->get('guardian2_address1') . '<br />';
-						if ($summary->get('guardian2_address2') != NULL) {
-							echo $summary->get('guardian2_address2') . '<br />';
-							
-							if ($summary->get('guardian2_city') != NULL) {
-								echo $summary->get('guardian2_city');
-							}
-							if ($summary->get('guardian2_state') != NULL) {
-								if ($summary->get('guardian2_city') != NULL) {
-									echo ', ';
-								}
-								echo $summary->get('guardian2_state');
-							}
-							if ($summary->get('guardian2_zip') != NULL) {
-								echo '  ' . $summary->get('guardian2_zip');
-							}
-							
-							//echo $summary->get('guardian2_city') . ', ' .
-							//	$summary->get('guardian2_state') . '  ' . $summary->get('guardian2_zip');
-						}
-					?>
-				</div>
-				<div>
-					<?php if($summary->get('guardian2_email') != NULL)
-								echo 'Email Address: ' . $summary->get('guardian2_email');
-					?>
-				</div>
-				<div>
-					<?php if($summary->get('guardian2_relationship') != NULL)
-							 echo 'Educational Attainment of ' . $summary->get('guardian2_relationship')
-							 . '/Guardian: ' . $summary->get('guardian2_education');
-					?>
-				</div>
-			</div>
+		
 		</div>
 	<br>
-		<?php endif; ?>
-		<?php if($summary->get('level') != 'GR') : ?>
+		
+		
+        
 			<div class='row'>
 				<div class='offset1 span2'>
 					About Your Educational Background
 				</div>
 				<div class='span9'>
-					<div>
-						Name of high school from which you will or have graduated (or indicate GED):
-						<?php echo $summary->get('high_school_name'); ?>
-					</div>
-					<div>
-						Code of high school:
-						<?php echo $summary->get('high_school_ceeb_id'); ?>
-					</div>
-					<div>
-						Date of Graduation:
-						<?php echo date('n/j/Y' , strtotime($summary->get('high_school_grad_date'))); ?>
-					</div>
-					<div>
-						Guidance Counselor:
-						<?php echo $summary->get('high_school_guidance_counselor'); ?>
-					</div>
-					<div>
-						Cumulative high school GPA:
-						<?php echo $summary->get('high_school_gpa'); ?>
-					</div>
-					<div>
-						ACT Composite Score:
-						<?php echo $summary->get('act_score'); ?>
-					</div>
-					<div>
-						SAT Composite Score:
-						<?php echo $summary->get('sat_score'); ?>
-					</div>
+			
 					<div>
 						Have you attended college or universities:
-						<?php
-							echo ($summary->get('has_attended_college')) ? 'Yes' : 'No';
-						?>
+						
+                            {% if undergrad|length > 0 %} Yes {% else %} No {% endif %}
+						
 					</div>
-					<?php foreach ($summary->getInstitutions() as $institution): ?>
+					{% for institution in undergrad %}
 					<div>
 						Name:
-						<?php echo $institution->get('name'); ?>,
+						{{institution.name}}
 						CEEB Code:
-						<?php echo $institution->get('ceeb_id'); ?>
+						{{institution.ceeb}}
 					</div>
-					<?php endforeach; ?>
+					{% endfor %}
 				</div>
 			</div>
-		<?php endif ?>
+	
 	<br>
-		<?php if($summary->get('level') != 'GR') : ?>
+		
 		<div class='row'>
 			<div class='offset1 span2'>
 				About Your Activities
 			</div>
 			<div class='span9'>
 				<div>
-					<?php foreach ($summary->getInterests() as $interest): ?>
-						<?php echo $interest->get('interest'); ?><br/>
-					<?php endforeach; ?>
+					{{ page2_db_data.interests }}
 				</div>
 			</div>
 		</div>
 	<br>
-		<?php endif; ?>
+		
 		<div class='row'>
 			<div class='offset1 span2'>
 				More About You
@@ -328,54 +214,24 @@
 				<div>
 					Parents, siblings, other relatives, or friends who have attended North Central College:
 				</div>
-				<?php if ($summary->get('reference1_name')): ?>
+				
+               {% if page2_db_data.refered_by_name %}
 				<div>
-					<?php echo $summary->get('reference1_name') . ', ' . $summary->get('reference1_relationship'); ?>
+					{{ page2_db_data.refered_by_name }} , {{ page2_db_data.refered_by_relationship }}
 				</div>
-				<?php endif; ?>
-				<?php if ($summary->get('reference2_name')): ?>
+				{% endif %}
+				
+				{% if page2_db_data.refered_by_name2 %}
 				<div>
-					<?php echo $summary->get('reference2_name') . ', ' . $summary->get('reference2_relationship'); ?>
+					{{ page2_db_data.refered_by_name2 }} , {{ page2_db_data.refered_by_relationship2 }}
 				</div>
-				<?php endif; ?>
+				{% endif %}
 				<div>
 					Who or what helped influence your decision to apply to North Central College?
-					<?php echo $summary->get('influenced_to_apply'); ?>
+				
+                    {{ page2_db_data.influence }}
 				</div>
-                <?php if($summary->get('level') == 'GR') : ?>
-					<?php foreach ($summary->getInstitutions() as $institution): ?>
-					<div>
-						Name:
-						<?php echo $institution->get('name'); ?>,
-						CEEB Code:
-						<?php echo $institution->get('ceeb_id'); ?>
-					</div>
-					<?php endforeach; ?>
-                <?php endif; ?>
-				<div>
-					<?php if($summary->get('other_institution1') != NULL) {
-							echo 'Institution: ' . $summary->get('other_institution1');
-						}
-					?>
-				</div>
-				<div>
-					<?php if($summary->get('other_institution2') != NULL) {
-							echo 'Institution: ' . $summary->get('other_institution2');
-						}
-					?>
-				</div>
-				<div>
-					<?php if($summary->get('other_institution3') != NULL) {
-							echo 'Institution: ' . $summary->get('other_institution3');
-						}
-					?>
-				</div>
-				<div>
-					<?php if($summary->get('other_institution4') != NULL) {
-							echo 'Institution: ' . $summary->get('other_institution4');
-						}
-					?>
-				</div>
+          
 	<br>
 				<div>
 					Have you ever been accused or charged with violating a code of student conduct or institutional policy, or been suspended, placed on probation, dismissed, or expelled from any high school or college?
