@@ -11,7 +11,8 @@
 
 <!-- completed boolean here -->
 
-{% if page == "finalpage" and validbool == "True" %} 
+{% if page == "finalpage" %} 
+                {% if page1form.is_valid and page2form.is_valid and page2formset.is_valid %}
     <!--if valid/complete form -->
 <div class='row-fluid'>
 	<div class='container-fluid'>
@@ -24,8 +25,9 @@
 	    </div>
 	</div>
 </div>
+                {% endif %}
 {% endif %}
-{% if page == "finalpage" and validbool == "False" %}  
+{% if page == "finalpage" %}  
 {% if not page1form.is_valid or not page2form.is_valid or not page2formset.is_valid %}
 <!--otherwise show errors-->
 <div class='row-fluid'>

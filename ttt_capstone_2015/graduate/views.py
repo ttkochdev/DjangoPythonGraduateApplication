@@ -165,7 +165,7 @@ def page3(request):
     """Renders page3."""
     assert isinstance(request, HttpRequest)
     InstitutionsFormset = formset_factory(Institutions)
-    validbool = 'False'   
+    #validbool = 'False'   
     if not 'form_data_page1' in request.session:
         return HttpResponseRedirect('/page-1/')
 
@@ -175,17 +175,18 @@ def page3(request):
         #print("\n\n")
         form_data_page1 = request.session.get('form_data_page1')
         form_data_page2 = request.session.get('form_data_page2')
-        for page3post in reqpost:
-            if page3post in form_data_page1:
-                #print("in first if")
-                set1 = reqpost.get(page3post)
-                #print(set1)
-                form_data_page1.__setitem__(page3post, set1)
-            if page3post in form_data_page2:
-                #print("in second if")
-                set2 = reqpost.get(page3post)
-                #print(set2)
-                form_data_page2.__setitem__(page3post, set2)
+        if reqpost:
+            for page3post in reqpost:
+                if page3post in form_data_page1:
+                    #print("in first if")
+                    set1 = reqpost.get(page3post)
+                    #print(set1)
+                    form_data_page1.__setitem__(page3post, set1)
+                if page3post in form_data_page2:
+                    #print("in second if")
+                    set2 = reqpost.get(page3post)
+                    #print(set2)
+                    form_data_page2.__setitem__(page3post, set2)
             #print(page3post)
         #print("\n\n")
         page1form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
@@ -214,33 +215,34 @@ def page3(request):
                 saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
                 page1session = request.session.get('form_data_page1')                
                 saveForms.savePage2(page1session.get('email'), request.session.get('form_data_page2'), instit)
-                validbool = 'True'            
+                #validbool = 'True'  
+                #print(validbool)          
             print("AFTER VALIDATE")
             
             #return HttpResponseRedirect('/page-3/')
         elif (request.POST.get('submit', '')):            
             print("BEFORE VALIDATE")
-            if validbool is 'False':
-                if page1form.is_valid() and page2form.is_valid() and page2formset.is_valid():
-                    human = True
-                    print("\n\nPASSED ALL 3\n\n")
-                    cd1 = page1form.cleaned_data
-                    cd2 = page2form.cleaned_data
-                    instit = []  
-                    for i, f in enumerate(page2formset): 
-                        cd3 = f.cleaned_data                    
-                        undergraduate_institution = cd3.get('undergraduate_institution')
-                        ceeb = cd3.get('ceeb')                    
-                        instit.append([undergraduate_institution,ceeb])
+            #if validbool is 'False':
+            if page1form.is_valid() and page2form.is_valid() and page2formset.is_valid():
+                human = True
+                print("\n\nPASSED ALL 3\n\n")
+                cd1 = page1form.cleaned_data
+                cd2 = page2form.cleaned_data
+                instit = []  
+                for i, f in enumerate(page2formset): 
+                    cd3 = f.cleaned_data                    
+                    undergraduate_institution = cd3.get('undergraduate_institution')
+                    ceeb = cd3.get('ceeb')                    
+                    instit.append([undergraduate_institution,ceeb])
             
-                    saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
-                    page1session = request.session.get('form_data_page1')                
-                    saveForms.savePage2(page1session.get('email'), request.session.get('form_data_page2'), instit)
-                    validbool = 'True'            
-                    print("AFTER VALIDATE")
-                    return HttpResponseRedirect('/confirmation/')
-                else:
-                    return HttpResponseRedirect('/confirmation/')
+                saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
+                page1session = request.session.get('form_data_page1')                
+                saveForms.savePage2(page1session.get('email'), request.session.get('form_data_page2'), instit)
+                #validbool = 'True'            
+                print("AFTER VALIDATE")
+                return HttpResponseRedirect('/confirmation/')
+            #else:
+               # return HttpResponseRedirect('/confirmation/')
     # if a GET (or any other method) we'll create a blank form
     else:
         
@@ -299,7 +301,7 @@ def page3(request):
             'page1form': page1form,
             'page2form': page2form,
             'page2formset':page2formset,
-            'validbool': validbool,
+            #'validbool': validbool,
             'page':'finalpage',
         }))
 
