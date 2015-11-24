@@ -313,6 +313,14 @@ def summary(request):
         student = Student.objects.get(email=email)
         page1_db_data = getForms.getPage1(student.id)
         page2_db_data = getForms.getPage2(student.id)
+        race_data = None
+        if StudentRace.objects.filter(student=student):
+            race_data = StudentRace.objects.filter(student=student)
+        print("racedata",race_data,"\n\n")
+        undergrad = None
+        if StudentUndergraduateInstitution.objects.filter(student=student):
+            undergrad = StudentUndergraduateInstitution.objects.filter(student=student)
+        print("undergrad",undergrad,"\n\n")
     return render(request,
         'app/summary.html',
         context_instance = RequestContext(request,
@@ -321,6 +329,8 @@ def summary(request):
             'first_name':student.first_name,
             'page1_db_data':page1_db_data,
             'page2_db_data':page2_db_data,
+            'race_data':race_data,
+            'undergrad':undergrad,
             'year':datetime.now().year,     
         }))
 def pwemail(request):

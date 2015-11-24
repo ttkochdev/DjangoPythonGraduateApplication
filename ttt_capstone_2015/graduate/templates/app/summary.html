@@ -67,43 +67,36 @@
 			<div class='span9'>
 				<div>
 					Home Telephone Number:
-					<?php echo $summary->get('phone1'); ?>
+					{{ page1_db_data.permanent_phone }}
 				</div>
 				<div>
 					Cell/Mobile Phone Number:
-					<?php echo $summary->get('phone2'); ?>
+					{{ page1_db_data.cell_phone }}
 				</div>
 				<div>
 					Gender:
-					<?php echo $summary->get('gender'); ?>
+					{{ page1_db_data.gender }}
 				</div>
 				<div>
 					Birth Date:
-					<?php echo date('n/j/Y', strtotime($summary->get('birth_date'))); ?>
+					{{ page1_db_data.birth_date }}
 				</div>
 				<div>
 					Birth Place (City/State):
-					<?php echo $summary->get('birth_place'); ?>
+					{{ page1_db_data.birth_place }}
 				</div>
 				<div>
 					Are you Hispanic or Latino?:
-					<?php echo $summary->get('ethnicity'); ?>
+					{{ page1_db_data.ethnicity }}
 				</div>
 				<div>
-					Race(s): <?php echo implode(
-					    ', ',
-					    array_filter(array(
-					        $summary->get('race1'),
-					        $summary->get('race2'),
-					        $summary->get('race3'),
-					        $summary->get('race4'),
-					        $summary->get('race5')
-					    ))
-					); ?>
+					{% for race in race_data%}
+                        {{ race }} {% if race|length > 1 %},&nbsp;{% endif %} 
+                    {% endfor %}
 				</div>
 				<div>
 					Religious Affiliation:
-					<?php echo $summary->get('denomination'); ?>
+					{{ page1_db_data.denomination }}
 				</div>
 			</div>
 		</div>
@@ -115,19 +108,17 @@
 			<div class='span9'>
 				<div>
 					Are you a United States Citizen?:
-					<?php
-						echo ($summary->get('is_citzen')) ? 'Yes' : 'No';
-					?>
+					{% if page1_db_data.is_citizen %} Yes {% else %} No {% endif %} 
 				</div>
-				<?php if (!$summary->get('is_citzen')): ?>
+				{% if not page1_db_data.is_citizen %}
 				<div>
 					What is your country of citizenship?
-					<?php echo $summary->get('citizenship_country'); ?>
+					{{ page1_db_data.citizenship_country }}
 				</div>
-				<?php endif; ?>
+				{% endif %} 
 				<div>
 					Social Security Number:
-					<?php echo $summary->get('ssn'); ?>
+					{{ page1_db_data.social_security }}
 				</div>
 			</div>
 		</div>
