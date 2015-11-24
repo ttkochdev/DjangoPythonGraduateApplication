@@ -97,23 +97,6 @@ class Student(AbstractBaseUser): #models.Model
     ethnicity = models.CharField(max_length=255, null=True)
     is_citizen = models.CharField(max_length=3, null=True)
     social_security = EncryptedTextField(null=True)
-    #social_security = models.CharField(max_length=32)
-
-    #def _get_ssn(cipher): #self
-    #    plaintext = decrypt('avnWq287', binascii.a2b_hex(cipher)).decode('utf8')
-    #    return plaintext
-    #    #enc_obj = Blowfish.new( settings.SECRET_KEY )
-    #    #return u"%s" % enc_obj.decrypt( binascii.a2b_hex(self.social_security) ).rstrip()
-
-    #def _set_ssn(self, ssn_value): #self,
-    #    ciphertext = encrypt("avnWq287", ssn_value)
-    #    self.social_security = binascii.b2a_hex(ciphertext)
-    #    #enc_obj = Blowfish.new( settings.SECRET_KEY )
-    #    #repeat = 8 - (len( ssn_value ) % 8)
-    #    #ssn_value = ssn_value + " " * repeat
-    #    #self.social_security = binascii.b2a_hex(enc_obj.encrypt( ssn_value ))
-
-    #ssn = property(_get_ssn, _set_ssn)
     denomination = models.IntegerField(null=True)
     start_term = models.CharField(max_length=255, null=True)
     student_load_intent = models.CharField(max_length=255, null=True)
@@ -135,6 +118,7 @@ class Student(AbstractBaseUser): #models.Model
     alien_status = models.CharField(max_length=30, null=True)
     employment_address_outside_us = models.BooleanField(default=0)
     submitted = models.IntegerField(default=0)
+    internationalcheck = models.NullBooleanField()
 
     def __str__(self):
         return self.email
@@ -250,48 +234,3 @@ class Influences(models.Model):
 #INSERT INTO `admissions.dev.capstone`.`graduate_majors` (`mid`, `majors`) VALUES (NULL, 'Master of Arts in Education: Curriculum and Instruction'), (NULL, 'Master of Arts in Education:  Educational Leadership & Administration'), (NULL, 'Master of Arts in Liberal Studies:  Culture and Society'), (NULL, 'Master of Arts in Liberal Studies:  Writing, Editing, and Publishing'), (NULL, 'Master of Business Administration:  Accounting'), (NULL, 'Master of Business Administration:  Change Management'), (NULL, 'Master of Business Administration:  Finance'), (NULL, 'Master of Business Administration:  Human Resource Management'), (NULL, 'Master of Business Administration:  Management'), (NULL, 'Master of Business Administration:  Marketing'), (NULL, 'Master of International Business Administration'), (NULL, 'Master of Leadership Studies:  Professional Leadership'), (NULL, 'Master of Leadership Studies:  Higher Education'), (NULL, 'Master of Leadership Studies:  Social Entrepreneurship'), (NULL, 'Master of Leadership Studies: Sport Leadership'), (NULL, 'Master of Science in Web and Internet Applications');
 #INSERT INTO `admissions.dev.capstone`.`graduate_studentrace` (`id`, `student_id`, `raceid`) VALUES (NULL, '1', '2'), (NULL, '1', '5');
 #INSERT INTO `admissions.dev.capstone`.`graduate_influences` (`id`, `influence`) VALUES (NULL, 'Academic Programs'), (NULL, 'Athletic Programs'), (NULL, 'Attended NCC Summer Camp'), (NULL, 'Campus Tour'), (NULL, 'Campus Visit'), (NULL, 'Class Size Small'), (NULL, 'College Fair'), (NULL, 'Extracurricular Opportunities'), (NULL, 'Financial Aid'), (NULL, 'Friend(s)'), (NULL, 'High School Coach'), (NULL, 'High School Counselor'), (NULL, 'High School Teacher'), (NULL, 'Internet Site'), (NULL, 'Location'), (NULL, 'Mailings'), (NULL, 'North Central Alum'), (NULL, 'North Central Coach'), (NULL, 'North Central Counselor'), (NULL, 'North Central Faculty'), (NULL, 'North Central Student'), (NULL, 'Open House'), (NULL, 'Other'), (NULL, 'Publications'), (NULL, 'Relative'), (NULL, 'Reputation'), (NULL, 'Size of School'), (NULL, 'United Methodist Affiliate'), (NULL, 'Video');
-
-
-
-
-#class MyUser(AbstractBaseUser):
-#    email = models.EmailField(
-#        verbose_name='email address',
-#        max_length=255,
-#        unique=True,
-#    )
-#    date_of_birth = models.DateField()
-#    is_active = models.BooleanField(default=True)
-#    is_admin = models.BooleanField(default=False)
-
-#    objects = MyUserManager()
-
-#    USERNAME_FIELD = 'email'
-#    REQUIRED_FIELDS = ['date_of_birth'] #YYYY-MM-DD
-
-#    def get_full_name(self):
-#        # The user is identified by their email address
-#        return self.email
-
-#    def get_short_name(self):
-#        # The user is identified by their email address
-#        return self.email
-
-#    def __str__(self):              # __unicode__ on Python 2
-#        return self.email
-
-#    def has_perm(self, perm, obj=None):
-#        "Does the user have a specific permission?"
-#        # Simplest possible answer: Yes, always
-#        return True
-
-#    def has_module_perms(self, app_label):
-#        "Does the user have permissions to view the app `app_label`?"
-#        # Simplest possible answer: Yes, always
-#        return True
-
-    #@property
-    #def is_staff(self):
-    #    "Is the user a member of staff?"
-    #    # Simplest possible answer: All admins are staff
-    #    return self.is_admin

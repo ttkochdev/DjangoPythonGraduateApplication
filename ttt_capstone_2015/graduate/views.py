@@ -56,7 +56,8 @@ def page1(request):
                 ss = Student.objects.get(email=request.POST.__getitem__('email'))
                 if ss.submitted is 1:
                     return HttpResponseRedirect('/alreadycompleted/')
-            reqpost = request.POST.copy()           
+            reqpost = request.POST.copy()   
+            print("reqpost ",reqpost)        
             request.session['form_data_page1'] = reqpost
             request.session['raceinit'] = reqpost.getlist('race')
             if(request.POST.get('page2', '')): 
@@ -124,8 +125,8 @@ def page2(request):
    
     if request.method == 'POST':
         request.session['form_data_page2'] = request.POST
-        print("\n\nPAGE2\n\n")
-        print(request.session['form_data_page2'])
+        #print("\n\nPAGE2\n\n")
+        #print(request.session['form_data_page2'])
         page2form = PageTwoForm(request.session.get('form_data_page2'))
         page2formset = InstitutionsFormset(request.session.get('form_data_page2'),  prefix='institutions') #, initial=request.session.get('form_data_page2')
 
@@ -202,15 +203,23 @@ def page3(request):
         reqpost = request.POST.copy()                
         #print("\n\n")
         form_data_page1 = request.session.get('form_data_page1')
-        form_data_page2 = request.session.get('form_data_page2')
+        if 'form_data_page2' in request.session:
+            form_data_page2 = request.session.get('form_data_page2')
+        else:
+            mydict = {"MAX_FILE_SIZE":"2097152","institutions-TOTAL_FORMS":"0","institutions-MAX_NUM_FORMS":"1000","institutions-MIN_NUM_FORMS":"0","institutions-INITIAL_FORMS":"0"}
+            request.session['form_data_page2'] = mydict
+            form_data_page2 = request.session.get('form_data_page2')
+
         if reqpost:
             for page3post in reqpost:
                 if page3post in form_data_page1:
                     #print("in first if")
+                    #print('reqpost',reqpost)
+                    #print('page3post',page3post)
                     set1 = reqpost.get(page3post)
                     #print(set1)
                     form_data_page1.__setitem__(page3post, set1)
-                if page3post in form_data_page2:
+                if page3post in form_data_page2: # is not None and page3post
                     #print("in second if")
                     set2 = reqpost.get(page3post)
                     #print(set2)

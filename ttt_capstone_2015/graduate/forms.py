@@ -33,6 +33,24 @@ class PageOneForm(forms.Form):
             kwargs['initial'] = {}
         self.initial['race']=self.raceinit
 
+        #check if id_internationalcheck is checked 
+        print("\n\nargs",args)
+        print("\n\nfields",self.fields)
+        print("\n\nkwargs",kwargs)
+        for a in args:
+            if 'internationalcheck' in a:
+                print("in a")
+                print(a['internationalcheck'])
+                if a['internationalcheck'] :
+                    print('is on')
+                    self.fields['city'].required = False
+                    self.fields['state'].required = False
+                    self.fields['zipcode'].required = False
+                else:
+                    self.fields['city'].required = True
+                    self.fields['state'].required = True
+                    self.fields['zipcode'].required = True
+
     email = forms.CharField(label='Email', required=True) #Student
     first_name = forms.CharField(label='First Name', required=True)#Student
     middle_name = forms.CharField(label='Middle Name')#Student
@@ -65,7 +83,7 @@ class PageOneForm(forms.Form):
     ethnicity = forms.ChoiceField(choices=ETHNICITY_TYPE_CHOICES, required=False) #Student            
     denomination = forms.ModelChoiceField(queryset=Religions.objects.all(), required=False)#Student
     is_citizen = forms.ChoiceField(choices=(("",""),('yes','Yes'),('legal','Legal Permanent Resident'),('no','No')), required=False)#Student
-    internationalcheck = forms.BooleanField(required=False)
+    internationalcheck = forms.BooleanField(initial=False, required=False)
     COUNTRY_CHOICES = tuple(countries)
     COUNTRY_CHOICES = (('', ''),) + COUNTRY_CHOICES
     country = forms.ChoiceField(choices=COUNTRY_CHOICES, required=False)#address Address    
@@ -108,7 +126,18 @@ class Institutions(forms.Form):
     ceeb = forms.CharField()
 
 class PageTwoForm(forms.Form):
-    
+
+    def __init__(self, *args, **kwargs):        
+        super(PageTwoForm, self).__init__(*args, **kwargs)        
+        if 'initial' not in kwargs:
+            kwargs['initial'] = {}        
+        for a in args:
+            print(a['institutions-TOTAL_FORMS'])
+            if(int(a['institutions-TOTAL_FORMS']) < 5):
+                self.fields['captcha'].required = False
+            else:
+                self.fields['captcha'].required = True
+               
     def season():
         doy = datetime.today().timetuple().tm_yday
         currentYear = date.today().year

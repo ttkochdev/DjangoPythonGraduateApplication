@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    $('#id_internationalcheck').trigger('change');
+    $('#id_is_citizen').trigger('change');
+
     console.log("started p1 js");
     /*$('#baseUrl').val()+*/
 	$('#email').change(function() { 
@@ -43,8 +46,7 @@ $(document).ready(function () {
 			$('.us_number').show();
 		}
 	});
-	
-	$("#id_is_citizen").trigger('change');
+		
 	$("#id_is_citizen").change(function () {
 	
 	    if ($(this).val() == 'yes') {
