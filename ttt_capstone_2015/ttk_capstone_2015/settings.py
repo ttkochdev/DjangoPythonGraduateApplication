@@ -1,4 +1,10 @@
 ﻿"""
+Capstone Project by Tyler Koch
+11/24/2015
+"""
+
+
+"""
 Django settings for ttk_capstone_2015 project.
 python packages requirements:
 
