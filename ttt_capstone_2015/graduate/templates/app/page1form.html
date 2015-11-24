@@ -59,6 +59,9 @@
                
                 <div class="span8"><span>
                      {{ page1form.email.errors }}
+                    {% if not emailisvalid %}
+                       <ul><li>Please Enter a Valid Email</li></ul>
+                    {% endif %}
 </span><br>
                     <span id="email-notice"></span>
                 </div>

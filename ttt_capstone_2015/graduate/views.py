@@ -31,41 +31,60 @@ def my_random_string(string_length=10):
     random = random.replace("-","") # Remove the UUID '-'.
     return random[0:string_length] # Return the random string.
 
+def validateEmail( email ):
+    from django.core.validators import validate_email
+    from django.core.exceptions import ValidationError
+    try:
+        validate_email( email )
+        return True
+    except ValidationError:
+        return False
+
 def page1(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
     validbool = 'False'   
-    if request.method == 'POST':
-        reqpost = request.POST.copy()           
-        request.session['form_data_page1'] = reqpost
-        request.session['raceinit'] = reqpost.getlist('race')
-        if(request.POST.get('page2', '')): 
-            return HttpResponseRedirect('/page-2/')
-        elif (request.POST.get('page3', '')):
-            return HttpResponseRedirect('/page-3/')
-        elif (request.POST.get('save', '')):
-            #need to validate email field
-            page1form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
-            print('\nSAVE\n')
-            if page1form.is_valid():  
-                print("\n\nCLEANED DATA\n\n")
-                cd = page1form.cleaned_data
+      
+    if request.method == 'POST':        
+        emailisvalid = False     
+        if not request.POST.__contains__('email'):
+            emailisvalid = False
+        else:
+            emailisvalid = validateEmail(request.POST.__getitem__('email'))                            
+        if emailisvalid is True:
+            reqpost = request.POST.copy()           
+            request.session['form_data_page1'] = reqpost
+            request.session['raceinit'] = reqpost.getlist('race')
+            if(request.POST.get('page2', '')): 
+                return HttpResponseRedirect('/page-2/')
+            elif (request.POST.get('page3', '')):
+                return HttpResponseRedirect('/page-3/')
+            elif (request.POST.get('save', '')):
+                #need to validate email field
+                page1form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))
+                print('\nSAVE\n')
+                if page1form.is_valid():  
+                    print("\n\nCLEANED DATA\n\n")
+                    cd = page1form.cleaned_data
                 
-                print(cd)
-                pageonedata = request.session.get('form_data_page1')
-                em = pageonedata.get('email')
-                if not Student.objects.filter(email=em):
-                    pw = my_random_string(6)                    
-                    print("pw: ",pw)
-                    print("\ncd.email: ", cd)
-                    Student.objects.create_user(em, pw)
-                    send_mail('Graduate Application Started', 'Your appication has been started, to log back in again use this password:'+ pw +' .', 'ttkoch@noctrl.edu', [em], fail_silently=False)
+                    print(cd)
+                    pageonedata = request.session.get('form_data_page1')
+                    em = pageonedata.get('email')
+                    if not Student.objects.filter(email=em):
+                        pw = my_random_string(6)                    
+                        print("pw: ",pw)
+                        print("\ncd.email: ", cd)
+                        Student.objects.create_user(em, pw)
+                        send_mail('Graduate Application Started', 'Your appication has been started, to log back in again use this password:'+ pw +' .', 'ttkoch@noctrl.edu', [em], fail_silently=False)
 
-                saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
-                #return HttpResponseRedirect('/page-1/') 
-            print("after is valid")
+                    saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
+                    #return HttpResponseRedirect('/page-1/') 
+                print("after is valid")
+        else: #emailisvalid is false
+            page1form = PageOneForm(raceinit={})
     # if a GET (or any other method) we'll create a blank form
-    else:     
+    else:   
+        emailisvalid = True          
         if 'form_data_page1' in request.session:
             print("not logged in")                     
             page1form = PageOneForm(initial=request.session.get('form_data_page1'), raceinit=request.session.get('raceinit', None))
@@ -81,7 +100,8 @@ def page1(request):
             'page2form': "",
             'page2formset': "",   
             'page':'page1',  
-            'validbool':validbool,       
+            'validbool':validbool,
+            'emailisvalid': emailisvalid,                  
         }))
 
 def page2(request):

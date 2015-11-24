@@ -134,6 +134,7 @@ class Student(AbstractBaseUser): #models.Model
     is_international_student = models.CharField(max_length=3, null=True) 
     alien_status = models.CharField(max_length=30, null=True)
     employment_address_outside_us = models.BooleanField(default=0)
+    submitted = models.IntegerField(default=0)
 
     def __str__(self):
         return self.email
