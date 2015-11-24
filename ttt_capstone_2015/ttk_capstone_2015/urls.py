@@ -11,15 +11,14 @@ from django.conf.urls import include
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Examples:
+urlpatterns = patterns('',    
     url(r'^$', 'graduate.views.page1', name='page1'),
     url(r'^page-1', 'graduate.views.page1', name='page1'), #both home and page-1 are the same
     url(r'^page-2', 'graduate.views.page2', name='page2'), 
     url(r'^page-3', 'graduate.views.page3', name='page3'), 
     url(r'^confirmation', 'graduate.views.confirmation', name='confirmation'), 
     url(r'^pwemail/$', 'graduate.views.pwemail', name='pwemail'),
-    #url(r'^about', 'graduate.views.about', name='about'),
+    url(r'^summary', 'graduate.views.summary', name='summary'),
     url(r'^login/$',
         'graduate.views.login',
         {

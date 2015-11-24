@@ -3,13 +3,42 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+{% include 'app/header.html' %}
 
+<div class='application'>
+    <div class='row-fluid'>
+        <div class='mini-nav'>
+                <a href="/" id="custom-breadcrumbs-home">Home</a> > <a href="/admission">Admission</a> >
+        </div>
+    </div>
+    <div class='row-fluid'>
+        <div class='inner-node'>
+            <div class='row-fluid'>
+            	<div class='container-fluid'>
+            		<div class='span7'>
+            			<div class='row-fluid'>
+            				<h1 class='pg2-header'>Confirmation - THANK YOU FOR YOUR APPLICATION</h1>
+            		    </div>
+            		</div>
+            		<div class='span11'>
+            			<div class='row-fluid'>
+            				<p>Congratulations, {{ first_name }}</p>
+            				<p>You've successfully submitted your admission application to North Central College! Thank you for applying.</p>
+            				<ul>
+            				    <li>Print <a target="_blank" href="/summary/">your North Central College Admission Application</a> (as submitted)</li>
+            				    <li>Print the <a target="_blank" href="https://northcentralcollege.edu/sites/default/files/Documents/admission/TranscriptRequest.pdf">Transcript Request Form</a> to submit to all institutions attended</li>
+            				    <li>For international students, request official <a target="_blank" href="http://www.ets.org/toefl/ibt/scores/send/">TOEFL</a> and/or <a target="_blank" href="http://www.ielts.org/test_takers_information/getting_my_results/getting_my_results.aspx">IELTS</a> scores</li>
+            				    <li>Submit your application <a target="_blank" href="https://northcentralcollege.edu/admission/upload-graduate-documents">materials here</a>
+            				</ul>
+            				<p>We look forward to reviewing your application, {{ first_name }}!</p>
+            			</div>
+            	    </div>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div> 
 
-
+{% include 'app/footer.html' %}
 </body>
 </html>

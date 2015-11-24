@@ -292,14 +292,37 @@ def page3(request):
 def confirmation(request):
     """Renders confirmation page."""
     assert isinstance(request, HttpRequest)
+    student = {}
+    if 'form_data_page1' in request.session:
+        email = request.session.get('form_data_page1').get('email')
+        student = Student.objects.get(email=email)
     return render(request,
         'app/confirmation.html',
         context_instance = RequestContext(request,
         {
             'title':'Graduate Application Confirmation',
+            'first_name':student.first_name,
             'year':datetime.now().year,     
         }))
-
+def summary(request):
+    """Renders summary page."""
+    assert isinstance(request, HttpRequest)
+    student = {}
+    if 'form_data_page1' in request.session:
+        email = request.session.get('form_data_page1').get('email')
+        student = Student.objects.get(email=email)
+        page1_db_data = getForms.getPage1(student.id)
+        page2_db_data = getForms.getPage2(student.id)
+    return render(request,
+        'app/summary.html',
+        context_instance = RequestContext(request,
+        {
+            'title':'Graduate Application Summary',
+            'first_name':student.first_name,
+            'page1_db_data':page1_db_data,
+            'page2_db_data':page2_db_data,
+            'year':datetime.now().year,     
+        }))
 def pwemail(request):
    if request.method == 'GET':
        email = request.GET.get('email')  
