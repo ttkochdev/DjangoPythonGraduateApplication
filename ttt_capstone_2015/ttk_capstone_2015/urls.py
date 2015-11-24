@@ -38,6 +38,8 @@ urlpatterns = patterns('',
         },
         name='logout'),
     url(r'^captcha/', include('captcha.urls')),
+    url(r'^alreadycompleted', 'graduate.views.alreadycompleted', name='alreadycompleted'), 
+    
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

@@ -43,7 +43,7 @@ def validateEmail( email ):
 def page1(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
-    validbool = 'False'   
+    #validbool = 'False'   
       
     if request.method == 'POST':        
         emailisvalid = False     
@@ -52,6 +52,10 @@ def page1(request):
         else:
             emailisvalid = validateEmail(request.POST.__getitem__('email'))                            
         if emailisvalid is True:
+            if Student.objects.filter(email=request.POST.__getitem__('email')):
+                ss = Student.objects.get(email=request.POST.__getitem__('email'))
+                if ss.submitted is 1:
+                    return HttpResponseRedirect('/alreadycompleted/')
             reqpost = request.POST.copy()           
             request.session['form_data_page1'] = reqpost
             request.session['raceinit'] = reqpost.getlist('race')
@@ -100,19 +104,24 @@ def page1(request):
             'page2form': "",
             'page2formset': "",   
             'page':'page1',  
-            'validbool':validbool,
+            #'validbool':validbool,
             'emailisvalid': emailisvalid,                  
         }))
 
 def page2(request):
     """Renders page2."""
     assert isinstance(request, HttpRequest)
-    InstitutionsFormset = formset_factory(Institutions)
-    
-    #need to have email set from page 1 at least
+
+       #need to have email set from page 1 at least
     if not 'form_data_page1' in request.session:
         return HttpResponseRedirect('/page-1/')
-
+    else: 
+        if Student.objects.filter(email=request.session.get('form_data_page1').get('email')):
+            ss = Student.objects.get(email=request.session.get('form_data_page1').get('email'))
+            if ss.submitted is 1:
+                return HttpResponseRedirect('/alreadycompleted/')
+    InstitutionsFormset = formset_factory(Institutions)
+   
     if request.method == 'POST':
         request.session['form_data_page2'] = request.POST
         print("\n\nPAGE2\n\n")
@@ -135,7 +144,16 @@ def page2(request):
                     undergraduate_institution = cd.get('undergraduate_institution')
                     ceeb = cd.get('ceeb')                    
                     instit.append([undergraduate_institution,ceeb])
-                page1session = request.session.get('form_data_page1')                
+
+                page1session = request.session.get('form_data_page1')     
+                em = page1session.get('email')
+                if not Student.objects.filter(email=em):
+                    pw = my_random_string(6)                    
+                    print("pw: ",pw)
+                    print("\ncd.email: ", cd)
+                    Student.objects.create_user(em, pw)
+                    send_mail('Graduate Application Started', 'Your appication has been started, to log back in again use this password:'+ pw +' .', 'ttkoch@noctrl.edu', [em], fail_silently=False)
+                           
                 saveForms.savePage2(page1session.get('email'), request.session.get('form_data_page2'), instit)            
                 return HttpResponseRedirect('/page-2/') 
             print("\nafter page 2 is_valid\n")
@@ -168,7 +186,17 @@ def page3(request):
     #validbool = 'False'   
     if not 'form_data_page1' in request.session:
         return HttpResponseRedirect('/page-1/')
-
+    else: 
+        if Student.objects.filter(email=request.session.get('form_data_page1').get('email')):
+            ss = Student.objects.get(email=request.session.get('form_data_page1').get('email'))
+            if ss.submitted is 1:
+                return HttpResponseRedirect('/alreadycompleted/')
+    #else:
+    #    sem = request.session.get('form_data_page1').get('email')
+    #    if Student.objects.filter(email=sem):
+    #        s = Student.objects.get(email=sem)
+    #        if s.submitted is 1:
+    #            return HttpResponseRedirect('/alreadycompleted/')
     if request.method == 'POST':
 
         reqpost = request.POST.copy()                
@@ -238,6 +266,8 @@ def page3(request):
                 saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
                 page1session = request.session.get('form_data_page1')                
                 saveForms.savePage2(page1session.get('email'), request.session.get('form_data_page2'), instit)
+                Student.objects.filter(email=page1session.get('email')).update(submitted=1)
+                request.session['submitted'] = 1
                 #validbool = 'True'            
                 print("AFTER VALIDATE")
                 return HttpResponseRedirect('/confirmation/')
@@ -359,6 +389,16 @@ def pwemail(request):
    else:
        return HttpResponse("An Error Occurred")
 
+def alreadycompleted(request):
+    """Renders alreadycompleted page."""
+    assert isinstance(request, HttpRequest)
+   
+    return render(request,
+        'app/alreadycompleted.html',
+        context_instance = RequestContext(request,
+        {
+            'title':'Graduate Application Already Completed',                
+        }))
 ####################################################################LOGIN#################################################################
 import warnings
 
