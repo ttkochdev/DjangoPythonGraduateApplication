@@ -6,6 +6,7 @@
             <div class='content row-fluid'>
                 <div class='container'>
                   <div class='application'>
+                      {% if allowed %}
 	<div class='inner-node'>
 			<div class='print-page printableArea pageBreak'>                
 	<div class='print-page printableArea pageBreak'>
@@ -150,11 +151,7 @@
 					
                     {{ page2_db_data.planned_major }}
 				</div>
-				<div>
-					Application Type:
-				
-                    {{ page2_db_data.admit_status }}
-				</div>
+
 			</div>
 		</div>
 	<br>
@@ -297,6 +294,9 @@
 
 		</div>
 	</div>
+                      {% else %}
+                      <h2>You do not have an application summary to be view. <a href="/login/" >Please login</a></h2>
+                      {% endif %}
 {% include 'app/footer.html' %}
 </body>
 </html>

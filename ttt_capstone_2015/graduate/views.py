@@ -366,9 +366,21 @@ def summary(request):
     """Renders summary page."""
     assert isinstance(request, HttpRequest)
     student = {}
-    if 'form_data_page1' in request.session:
-        email = request.session.get('form_data_page1').get('email')
-        student = Student.objects.get(email=email)
+    email = None
+    race_data = None
+    page1_db_data = None
+    page2_db_data = None
+    undergrad = None
+    allowed = False
+    if '_auth_user_id' in request.session or 'form_data_page1' in request.session:
+        if '_auth_user_id' in request.session:        
+            student = Student.objects.get(pk=request.session['_auth_user_id'])
+            email = student.email
+            allowed = True
+        elif 'form_data_page1' in request.session:
+            email = request.session.get('form_data_page1').get('email')
+            student = Student.objects.get(email=email)
+            allowed = True
         page1_db_data = getForms.getPage1(student.id)
         page2_db_data = getForms.getPage2(student.id)
         race_data = None
@@ -384,11 +396,12 @@ def summary(request):
         context_instance = RequestContext(request,
         {
             'title':'Graduate Application Summary',
-            'first_name':student.first_name,
+            'first_name':email,
             'page1_db_data':page1_db_data,
             'page2_db_data':page2_db_data,
             'race_data':race_data,
             'undergrad':undergrad,
+            'allowed': allowed,
             'date':datetime.now(),     
         }))
 def pwemail(request):

@@ -66,7 +66,7 @@ class PageOneForm(forms.Form):
         )
     suffix = forms.ChoiceField(choices=SUFFIX_TYPE_CHOICES, required=False)#Student
     preferred_first_name = forms.CharField(label='Prefered First Name', required=False)#Student
-    birth_last_name = forms.CharField(label='Birth Last Name', required=True)#Student
+    birth_last_name = forms.CharField(label='Birth Last Name', required=False)#Student
     GENDER_TYPE_CHOICES = (
         ('',''),
         ('M','Male'),
