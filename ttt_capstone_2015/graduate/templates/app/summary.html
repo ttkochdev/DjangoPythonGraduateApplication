@@ -235,65 +235,62 @@
 	<br>
 				<div>
 					Have you ever been accused or charged with violating a code of student conduct or institutional policy, or been suspended, placed on probation, dismissed, or expelled from any high school or college?
-					<?php
-						echo ($summary->get('has_policy_issue')) ? 'Yes' : 'No';
-					?>
+					{% if page2_db_data.policy %} Yes {% else %} No {% endif %}
 				</div>
-				<?php if ($summary->get('policy_reason')): ?>
+				{% if page2_db_data.policy %}
 				<div>
 					If yes, please explain the incident in 140 characters or less.:
-					<?php echo $summary->get('policy_reason'); ?>
+					{{ page2_db_data.policy_reason }}
 				</div>
-				<?php endif; ?>
+				{% endif %}
 	<br>
 				<div>
 					Have you ever been arrested, indicted, or convicted of anything other than a minor traffic violation?
-					<?php
-						echo ($summary->get('has_legal_issue')) ? 'Yes' : 'No';
-					?>
+				{% if page2_db_data.legal %} Yes {% else %} No {% endif %}
 				</div>
-				<?php if ($summary->get('legal_reason')): ?>
+				{% if page2_db_data.legal %}
 				<div>
-					If yes, please explain your conviction in 140 characters or less.:
-					<?php echo $summary->get('legal_reason'); ?>
+					If yes, please explain the incident in 140 characters or less.:
+					{{ page2_db_data.legal_reason }}
 				</div>
-                <?php endif; ?>
+				{% endif %}
+	<br>
                 
                 
                 
                 
                 
-                <?php if ($summary->get('employer_name')): ?>
+                {% if page2_db_data.employer %}
 				<div>
 					Employer Name:
-					<?php echo $summary->get('employer_name'); ?>
+					{{ page2_db_data.employer }}
 				</div>
-                <?php endif; ?>
-                <?php if ($summary->get('employer_address')): ?>
+                {% endif %}
+                {% if page2_db_data.employment_address %}
 				<div>
 					Employer Address:
-					<?php echo $summary->get('employer_address'); ?>
+					{{ page2_db_data.employment_address }}
 				</div>
-                <?php endif; ?>
-                <?php if ($summary->get('employer_city')): ?>
+                {% endif %}
+                {% if page2_db_data.employment_city %}
 				<div>
 					Employer City:
-					<?php echo $summary->get('employer_city'); ?>
+					{{ page2_db_data.employment_city }}
 				</div>
-                <?php endif; ?>
-                <?php if ($summary->get('employer_state')): ?>
+                 {% endif %}
+                 {% if page2_db_data.employment_state %}
 				<div>
 					Employer State:
-					<?php echo $summary->get('employer_state'); ?>
+					{{ page2_db_data.employment_state }}
 				</div>
-				<?php endif; ?>
+				{% endif %}
 	<br>
 			</div>
 		</div>
 	<br>
 		<div class='submit row offset9'>
 			Submitted<br>
-			<?php echo date('n/j/Y h:i:s A', strtotime($summary->get('submitted_date'))); ?>
+			{{ date }}
 		</div>
 	</div>
 <?php endforeach; ?>

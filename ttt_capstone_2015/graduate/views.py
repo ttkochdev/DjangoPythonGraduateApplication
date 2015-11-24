@@ -377,7 +377,7 @@ def summary(request):
             'page2_db_data':page2_db_data,
             'race_data':race_data,
             'undergrad':undergrad,
-            'year':datetime.now().year,     
+            'date':datetime.now(),     
         }))
 def pwemail(request):
    if request.method == 'GET':
