@@ -98,27 +98,8 @@ def page2(request):
         print("\n\nPAGE2\n\n")
         print(request.session['form_data_page2'])
         page2form = PageTwoForm(request.session.get('form_data_page2'))
-        #request.session.get('form_data_page2')
-        #print(request.session.get('form_data_page2'))
-        #stuff = dict([('institutions-1-undergraduate_institution', ''), ('institutions-0-undergraduate_institution', ''), ('institutions-1-ceeb', ''), ('institutions-1-ceeb', ''),('institutions-TOTAL_FORMS', '2'),('institutions-MAX_NUM_FORMS', '1000'),('institutions-INITIAL_FORMS', '0'),('institutions-MIN_NUM_FORMS', '0')])
-        #print("\n\nstuff \n",stuff,"\n\n")
         page2formset = InstitutionsFormset(request.session.get('form_data_page2'),  prefix='institutions') #, initial=request.session.get('form_data_page2')
-        # 'institutions-1-undergraduate_institution': [''], 'institutions-0-undergraduate_institution': [''], 'institutions-1-ceeb': [''], 'institutions-1-ceeb': [''],'institutions-TOTAL_FORMS': ['2'],'institutions-MAX_NUM_FORMS': ['1000'],'institutions-INITIAL_FORMS': ['0'],'institutions-MIN_NUM_FORMS': ['0'],
-        #iTOTAL_FORMS = 1
-        #extra = {}
-        ##page2formset
-        #instit = []            
-        #for i, f in enumerate(request.session.get('form_data_page2')): 
-        #    cd = f
-        #    undergraduate_institution = cd.get('undergraduate_institution')
-        #    ceeb = cd.get('ceeb')                    
-        #    instit.append([undergraduate_institution,ceeb])
-        #iTOTAL_FORMS = len(instit)           
-        #for i, inst in enumerate(instit):
-        #    temp = {'institutions-'+str(i)+'-undergraduate_institution': inst.name,'institutions-'+str(i)+'-ceeb': inst.ceeb}
-        #    extra.update(temp)
 
-        #page2formset = InstitutionsFormset(extra,  prefix='institutions')
         if(request.POST.get('page1', '')):
             return HttpResponseRedirect('/page-1/')
         elif (request.POST.get('page3', '')):
@@ -141,15 +122,9 @@ def page2(request):
     # if a GET (or any other method) we'll create a blank form
     else:        
         if 'form_data_page2' in request.session:
-            #print("form2 data in session")
-            #form = PageOneForm(request.session['form_data'])
-
-            #print("\n\n PAGE-2 SESSION \n\n")
-            #print(request.session.get('form_data_page2', None))   
-
             page2form = PageTwoForm(initial=request.session.get('form_data_page2')) #, request.session.get('extra_count')
             page2formset = InstitutionsFormset(request.session.get('form_data_page2'), prefix='institutions')
-        #form = PageOneForm(SESSION)
+
         else: #create empty form
             page2formset = InstitutionsFormset(prefix='institutions')
             page2form = PageTwoForm()
@@ -362,7 +337,7 @@ def pwemail(request):
    else:
        return HttpResponse("An Error Occurred")
 
-
+####################################################################LOGIN#################################################################
 import warnings
 
 from django.conf import settings
@@ -414,11 +389,6 @@ def login(request, template_name='registration/login.html',
             # Okay, security check complete. Log the user in.
             auth_login(request, form.get_user())
 
-            #set session data from database
-            #print("\n\nlogin\n\n")
-            #print(request.session["form_data_page1"])
-        #if '_auth_user_id' in request.session:
-        #    print("logged in")
             page1_db_data = getForms.getPage1(request.session.get("_auth_user_id"))
             page2_db_data = getForms.getPage2(request.session.get("_auth_user_id"))
             request.session['form_data_page1'] = page1_db_data
@@ -442,48 +412,6 @@ def login(request, template_name='registration/login.html',
         request.current_app = current_app
 
     return TemplateResponse(request, template_name, context)
-
-
-#def home(request):
-#    """Renders the home page."""
-#    assert isinstance(request, HttpRequest)
-#    return render(
-#        request,
-#        'app/index.html',
-#        context_instance = RequestContext(request,
-#        {
-#            'title':'Home Page',
-#            'year':datetime.now().year,
-#        })
-#    )
-
-#def contact(request):
-#    """Renders the contact page."""
-#    assert isinstance(request, HttpRequest)
-#    return render(
-#        request,
-#        'app/contact.html',
-#        context_instance = RequestContext(request,
-#        {
-#            'title':'Contact',
-#            'message':'Your contact page.',
-#            'year':datetime.now().year,
-#        })
-#    )
-
-#def about(request):
-#    """Renders the about page."""
-#    assert isinstance(request, HttpRequest)
-#    return render(
-#        request,
-#        'app/about.html',
-#        context_instance = RequestContext(request,
-#        {
-#            'title':'About',
-#            'message':'Your application description page.',
-#            'year':datetime.now().year,
-#        })
-#    )
 
 
 #add this to postman or json editor to make it easy to read
