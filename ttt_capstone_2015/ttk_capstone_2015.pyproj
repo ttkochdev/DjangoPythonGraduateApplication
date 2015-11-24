@@ -152,6 +152,9 @@
     <Content Include="graduate\static\app\scripts\not used\modernizr-2.6.2.js" />
     <Content Include="graduate\static\app\scripts\not used\respond.js" />
     <Content Include="graduate\static\app\scripts\not used\respond.min.js" />
+    <Content Include="graduate\templates\app\alreadycompleted.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="graduate\templates\app\confirmation.html" />
     <Content Include="graduate\templates\app\footer.html" />
     <Content Include="graduate\templates\app\header.html" />
