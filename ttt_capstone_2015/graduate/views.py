@@ -156,16 +156,8 @@ def page3(request):
         return HttpResponseRedirect('/page-1/')
 
     if request.method == 'POST':
-        
-        #need to get post into specefic form sessions http://stackoverflow.com/questions/22244135/how-to-get-certain-things-from-post
-        #e = {k:v for k,v in request.POST.items() if k[:2] == 'e_'}
-        #i = {k:v for k,v in request.POST.items() if k[:2] == 'i_'}
 
-        reqpost = request.POST.copy()           
-        #request.session['form_data_page1'] = reqpost
-        #request.session['raceinit'] = reqpost.getlist('race')        
-        #request.session['form_data_page2'] = reqpost        
-        request.session['form_data_page3'] = reqpost
+        reqpost = request.POST.copy()                
         #print("\n\n")
         form_data_page1 = request.session.get('form_data_page1')
         form_data_page2 = request.session.get('form_data_page2')
@@ -212,9 +204,25 @@ def page3(request):
             print("AFTER VALIDATE")
             
             #return HttpResponseRedirect('/page-3/')
-        elif (request.POST.get('submit', '')):
+        elif (request.POST.get('submit', '')):            
+            print("BEFORE VALIDATE")
             if page1form.is_valid() and page2form.is_valid() and page2formset.is_valid():
                 human = True
+                print("\n\nPASSED ALL 3\n\n")
+                cd1 = page1form.cleaned_data
+                cd2 = page2form.cleaned_data
+                instit = []  
+                for i, f in enumerate(page2formset): 
+                    cd3 = f.cleaned_data                    
+                    undergraduate_institution = cd3.get('undergraduate_institution')
+                    ceeb = cd3.get('ceeb')                    
+                    instit.append([undergraduate_institution,ceeb])
+            
+                saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
+                page1session = request.session.get('form_data_page1')                
+                saveForms.savePage2(page1session.get('email'), request.session.get('form_data_page2'), instit)
+                validbool = 'True'            
+                print("AFTER VALIDATE")
                 return HttpResponseRedirect('/confirmation/')
     # if a GET (or any other method) we'll create a blank form
     else:

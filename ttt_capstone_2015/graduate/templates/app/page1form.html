@@ -327,12 +327,13 @@
         {% endif %}
                             </div> <!-- end container span7 -->
 
-     
+     {% if page != "finalpage" %}
                     <div class="span5 visible-desktop">
             <div class="row">
                 <img alt="Undergrad Page 1" src="{% static 'app/images/admission_ug_page1.jpg' %}" class="admission_ug_page1">
             </div>
         </div>
+        {% endif %}
                 </div>
                 {% if page != "finalpage" or page1form.is_citizen.errors or page1form.social_security.errors or page1form.citizenship_country.errors or page1form.residence_country.errors or page1form.alien_reg_no.errors or page1form.is_international_student.errors or page1form.alien_status.errors %}  
     <div class="row-fluid">
