@@ -10,6 +10,9 @@ from django.template import RequestContext
 from datetime import date, datetime
 from django.forms import formset_factory
 import json
+import random 
+import uuid
+from graduate.models import MyUserManager
 from django.core.mail import send_mail
 
 from .forms import PageOneForm
@@ -20,6 +23,13 @@ from .saveForms import *
 from .getForms import *
 
 from graduate.models import Race
+
+def my_random_string(string_length=10):
+    """Returns a random string of length string_length."""
+    random = str(uuid.uuid4()) # Convert UUID format to a Python string.
+    random = random.upper() # Make all characters uppercase.
+    random = random.replace("-","") # Remove the UUID '-'.
+    return random[0:string_length] # Return the random string.
 
 def page1(request):
     """Renders the home page."""
@@ -42,6 +52,15 @@ def page1(request):
                 cd = page1form.cleaned_data
                 
                 print(cd)
+                pageonedata = request.session.get('form_data_page1')
+                em = pageonedata.get('email')
+                if not Student.objects.filter(email=em):
+                    pw = my_random_string(6)                    
+                    print("pw: ",pw)
+                    print("\ncd.email: ", cd)
+                    Student.objects.create_user(em, pw)
+                    send_mail('Graduate Application Started', 'Your appication has been started, to log back in again use this password:'+ pw +' .', 'ttkoch@noctrl.edu', [em], fail_silently=False)
+
                 saveForms.savePage1(request.session.get('form_data_page1'), request.session.get('raceinit'))
                 #return HttpResponseRedirect('/page-1/') 
             print("after is valid")
@@ -335,12 +354,10 @@ def summary(request):
         }))
 def pwemail(request):
    if request.method == 'GET':
-       email = request.GET.get('email')  
-        
-       if Student.objects.filter(email=email).exists():
-           #send_mail('Subject here', 'Here is the message.', 'ttkoch@noctrl.edu', [email], fail_silently=False)
+       email = request.GET.get('email')         
+       if Student.objects.filter(email=email).exists():          
            return HttpResponse("<p>Login with your previous session or continue to overwrite previous changes.</p><p><a href='/login'>Login to continue previous application</a></p>")
-       else:
+       else:                                 
            return HttpResponse("<p>Saving a form will email you a password so that you can return to the application where you left off.</p>")       
    else:
        return HttpResponse("An Error Occurred")
