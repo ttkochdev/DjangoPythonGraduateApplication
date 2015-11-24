@@ -202,28 +202,31 @@ def page3(request):
 
         reqpost = request.POST.copy()                
         #print("\n\n")
-        form_data_page1 = request.session.get('form_data_page1')
-        if 'form_data_page2' in request.session:
-            form_data_page2 = request.session.get('form_data_page2')
+        if 'form_data_page1' in request.session:
+            request.session['form_data_page1'] = request.session.get('form_data_page1')
         else:
-            mydict = {"MAX_FILE_SIZE":"2097152","institutions-TOTAL_FORMS":"0","institutions-MAX_NUM_FORMS":"1000","institutions-MIN_NUM_FORMS":"0","institutions-INITIAL_FORMS":"0"}
+            request.session['form_data_page1'] = {}
+        if 'form_data_page2' in request.session:
+            request.session['form_data_page2'] = request.session.get('form_data_page2')
+        else:
+            mydict = {"MAX_FILE_SIZE":"2097152","institutions-TOTAL_FORMS":"1","institutions-MAX_NUM_FORMS":"1000","institutions-MIN_NUM_FORMS":"0","institutions-INITIAL_FORMS":"0"}
             request.session['form_data_page2'] = mydict
-            form_data_page2 = request.session.get('form_data_page2')
+            #form_data_page2 = request.session.get('form_data_page2')
 
         if reqpost:
             for page3post in reqpost:
-                if page3post in form_data_page1:
+                if page3post in request.session['form_data_page1']:
                     #print("in first if")
                     #print('reqpost',reqpost)
                     #print('page3post',page3post)
                     set1 = reqpost.get(page3post)
                     #print(set1)
-                    form_data_page1.__setitem__(page3post, set1)
-                if page3post in form_data_page2: # is not None and page3post
+                    request.session['form_data_page1'].__setitem__(page3post, set1)
+                if page3post in request.session['form_data_page2']: # is not None and page3post
                     #print("in second if")
                     set2 = reqpost.get(page3post)
                     #print(set2)
-                    form_data_page2.__setitem__(page3post, set2)
+                    request.session['form_data_page2'].__setitem__(page3post, set2)
             #print(page3post)
         #print("\n\n")
         page1form = PageOneForm(request.session.get('form_data_page1'),raceinit=request.session.get('raceinit'))

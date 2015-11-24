@@ -1,31 +1,20 @@
 $().ready(function() {
 	
-	$('#add_CEEB_2').bind('click', function(){
-        $('#add_CEEB_3').show();
-        $('#attendedCollege_div2').show();
-        $(this).hide();
-    });//end bind
-
-    $('#add_CEEB_3').bind('click', function(){
-        $('#add_CEEB_4').show();
-        $('#attendedCollege_div3').show();
-        $(this).hide();
-    });//end bind
-
-    $('#add_CEEB_4').bind('click', function(){
-        $('#add_CEEB_5').show();
-        $('#attendedCollege_div4').show();
-        $(this).hide();
-    });//end bind
-
-    $('#add_CEEB_5').bind('click', function(){
-        $('#attendedCollege_div5').show();
-        $(this).hide();
-    });
-    
-    $('.international-ceeb-college').click(function() {
-    	$('#'+$(this).parent().parent().parent().parent().attr('id')+' .college-ceeb').val('0002');
-    });
+$('#id_employment_address_outside_us').change(function () {
+		if ($(this).is(':checked')) {
+			$('#employer_outside_us').show();
+			$('#employer_inside_us').hide();
+			$('#id_employment_city').val('');
+			$('#id_employment_state').val('');
+			$('#id_employment_zip').val('');
+		} else {
+			$('#employer_outside_us').hide();
+			$('#employer_inside_us').show();
+			//$('#address3').val('');
+			$('#country').val('');
+		}
+	});
+  
     
     $("input[name='legal']").change(function(){
 		if ($("input[name='legal']:checked").val() == '1') {
